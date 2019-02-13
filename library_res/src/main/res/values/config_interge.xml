@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--验证码失效时间-->
     <integer name="config_validtime_authcode">3</integer>
+    <!--自动轮播时间间隔-->
+    <integer name="config_banner_pointAutoPlayInterval">3000</integer>
+    <!--首页自由购数量-->
+    <integer name="config_freebuy_displayquants">4</integer>
 </resources>

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="me.goldze.mvvmhabit.base.BaseViewModel" />
+            type="com.lcworld.module_home.viewmodel.HomeViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

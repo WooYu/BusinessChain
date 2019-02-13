@@ -8,22 +8,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
+import com.blankj.utilcode.util.ObjectUtils;
+import com.lcworld.businesschain.GlideApp;
 import com.lcworld.module_home.R;
+import com.lcworld.module_home.bean.DataSpellDeals;
+import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
+
+import java.util.List;
 
 /**
  * 首页拼团采集
  */
-public class HomeSubSpellPurchaseAdapter extends DelegateAdapter.Adapter<RecyclerView.ViewHolder> {
+public class HomeSubSpellPurchaseAdapter extends DelegateAdapter.Adapter<HomeSubSpellPurchaseAdapter.SpellBuyViewHolder> {
     private Context mContext;
     private LayoutHelper mLayoutHelper;
     private ItemClickListener mClickEvent;
-    private int mCount;
+    private List<DataSpellDeals> mDatas;
 
-    public HomeSubSpellPurchaseAdapter(Context mContext, LayoutHelper mLayoutHelper, int mCount, ItemClickListener mClickEvent) {
+    public HomeSubSpellPurchaseAdapter(Context mContext, LayoutHelper mLayoutHelper, ItemClickListener mClickEvent, List<DataSpellDeals> mDatas) {
         this.mContext = mContext;
         this.mLayoutHelper = mLayoutHelper;
-        this.mCount = mCount;
         this.mClickEvent = mClickEvent;
+        this.mDatas = mDatas;
+    }
+
+    public void setmDatas(List<DataSpellDeals> mDatas) {
+        this.mDatas = mDatas;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -33,18 +44,21 @@ public class HomeSubSpellPurchaseAdapter extends DelegateAdapter.Adapter<Recycle
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public HomeSubSpellPurchaseAdapter.SpellBuyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         return new SpellBuyViewHolder(LayoutInflater.from(mContext).inflate(R.layout.home_item_sub_spellpurchase, viewGroup, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int viewType) {
-
+    public void onBindViewHolder(@NonNull HomeSubSpellPurchaseAdapter.SpellBuyViewHolder viewHolder, int viewType) {
     }
 
     @Override
-    protected void onBindViewHolderWithOffset(RecyclerView.ViewHolder holder, int position, final int offsetTotal) {
+    protected void onBindViewHolderWithOffset(HomeSubSpellPurchaseAdapter.SpellBuyViewHolder holder, int position, final int offsetTotal) {
         super.onBindViewHolderWithOffset(holder, position, offsetTotal);
+        GlideApp.with(mContext)
+                .load(mDatas.get(position).getImg_url())
+                .error(R.mipmap.def_circle_a)
+                .into(holder.imageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,13 +72,15 @@ public class HomeSubSpellPurchaseAdapter extends DelegateAdapter.Adapter<Recycle
 
     @Override
     public int getItemCount() {
-        return mCount;
+        return ObjectUtils.isEmpty(mDatas) ? 0 : mDatas.size();
     }
 
     class SpellBuyViewHolder extends RecyclerView.ViewHolder {
+        QMUIRadiusImageView imageView;
 
         public SpellBuyViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.iv_photo);
         }
     }
 

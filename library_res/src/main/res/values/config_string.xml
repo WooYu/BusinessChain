@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //客户端类型 APP/WAP/PC
+    <string-array name="client_type">
+        <item name="type_a">APP</item>
+        <item name="type_b">WAP</item>
+        <item name="type_c">PC</item>
+    </string-array>
+
+    //页面类型 HOME（首页）/ MEMBER（会员专区）
+    <string-array name="page_type">
+        <item name="type_a">HOME</item>
+        <item name="type_b">MEMBER</item>
+    </string-array>
+
+    //操作类型 URL, GOODS,KEYWORD,SHOP,CATEGORY,TOPIC,NONE
+    <string-array name="operation_type">
+        <item>URL</item>
+        <item>GOODS</item>
+        <item>KEYWORD</item>
+        <item>SHOP</item>
+        <item>CATEGORY</item>
+        <item>TOPIC</item>
+        <item>NONE</item>
+    </string-array>
+
+    //bao爆品抢购 pin拼团采集 hot热卖 new新品 recommend推荐
+    <string-array name="mark_type">
+        <item>bao</item>
+        <item>pin</item>
+        <item>hot</item>
+        <item>new</item>
+        <item>recommend</item>
+    </string-array>
+
+</resources>

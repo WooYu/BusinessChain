@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cn.bingoogolapple.bgabanner.BGABanner xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/top_banner"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/gap_size15"
-    android:background="#DAAADB"
-    app:banner_pointContainerBackground="@android:color/transparent"
-    app:banner_pointDrawable="@drawable/home_selector_banner_point" />
+                                       xmlns:app="http://schemas.android.com/apk/res-auto"
+                                       android:id="@+id/top_banner"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:layout_marginTop="@dimen/gap_size15"
+                                       android:background="@color/appbg_color"
+                                       app:banner_pointAutoPlayInterval ="@integer/config_banner_pointAutoPlayInterval"
+                                       app:banner_transitionEffect="depth"
+                                       app:banner_pointContainerBackground="@android:color/transparent"
+                                       app:banner_pointDrawable="@drawable/home_selector_banner_point"/>

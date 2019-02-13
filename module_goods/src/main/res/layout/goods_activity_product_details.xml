@@ -115,12 +115,9 @@
         android:background="@drawable/shape_circle_a"
         android:src="@mipmap/arrow_left2"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/gap_size9"
+        android:scaleType="center"
         android:layout_marginTop="@dimen/gap_size26"
         android:layout_marginStart="@dimen/gap_size7"
-        android:paddingEnd="@dimen/gap_size9"
-        android:paddingTop="@dimen/gap_size6"
-        android:paddingBottom="@dimen/gap_size6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -130,12 +127,9 @@
         android:background="@drawable/shape_circle_a"
         android:src="@mipmap/title_share"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/gap_size9"
         android:layout_marginTop="@dimen/gap_size26"
-        android:paddingEnd="@dimen/gap_size9"
+        android:scaleType="center"
         android:layout_marginEnd="@dimen/gap_size4"
-        android:paddingTop="@dimen/gap_size6"
-        android:paddingBottom="@dimen/gap_size6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -4,6 +4,5 @@
     android:id="@+id/iv_photo"
     android:layout_width="match_parent"
     android:src="@color/colorPrimary"
-    android:scaleType="center"
     android:layout_height="match_parent"
-    app:qmui_corner_radius="15dp" />
+    app:qmui_corner_radius="@dimen/gap_size3" />

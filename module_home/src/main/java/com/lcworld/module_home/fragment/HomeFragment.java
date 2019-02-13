@@ -1,5 +1,6 @@
 package com.lcworld.module_home.fragment;
 
+import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,26 +17,34 @@ import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.lcworld.library_base.base.BaseFragmentEnhance;
-import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.extension.DialogControllTypeInterf;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.module_home.R;
 import com.lcworld.module_home.adapter.*;
+import com.lcworld.module_home.bean.DataFocusPictures;
+import com.lcworld.module_home.bean.DataGoodsInfo;
+import com.lcworld.module_home.bean.DataSpellDeals;
 import com.lcworld.module_home.databinding.HomeFragEntranceBinding;
+import com.lcworld.module_home.viewmodel.HomeViewModel;
 import me.goldze.mvvmhabit.BR;
 
 import java.util.LinkedList;
 import java.util.List;
 
 @Route(path = RouterFragmentPath.Home.PAGER_ENTRANCE)
-public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, BaseViewModelEnhance> {
+public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, HomeViewModel> {
 
     private float mColorOffsetThreshold;//状态栏变色阈值
     private VirtualLayoutManager mVirtualLayoutManager;
+
+    private HomeSubTopBannerAdapter mTopBannerAdapter;
+    private HomeSubHotSaleAdapter mHotSaleAdapter;
+    private HomeSubSpellPurchaseAdapter mSpellPurchaseAdapter;
 
     @Override
     public int initContentView(LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
@@ -58,9 +67,105 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, B
             }
         });
 
+        initObservable_FoucsPicture();
+        initObservable_FreeBuy();
+        initObservable_SpellDeals();
+
         initView_GradienColor();
         initView_StatusBar();
         initView_RecyclerView();
+
+        requestData();
+    }
+
+    private void initObservable_FoucsPicture() {
+        viewModel.uc.focusPicturesObservableList.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<DataFocusPictures>>() {
+            @Override
+            public void onChanged(ObservableList<DataFocusPictures> sender) {
+                LogUtils.d("onChanged()");
+            }
+
+            @Override
+            public void onItemRangeChanged(ObservableList<DataFocusPictures> sender, int positionStart, int itemCount) {
+                LogUtils.d("onItemRangeChanged()");
+            }
+
+            @Override
+            public void onItemRangeInserted(ObservableList<DataFocusPictures> sender, int positionStart, int itemCount) {
+                LogUtils.d("onItemRangeInserted()");
+                updateView_Banner(sender);
+            }
+
+            @Override
+            public void onItemRangeMoved(ObservableList<DataFocusPictures> sender, int fromPosition, int toPosition, int itemCount) {
+                LogUtils.d("onItemRangeMoved()");
+            }
+
+            @Override
+            public void onItemRangeRemoved(ObservableList<DataFocusPictures> sender, int positionStart, int itemCount) {
+                LogUtils.d("onItemRangeRemoved()");
+            }
+        });
+    }
+
+    private void initObservable_FreeBuy() {
+        viewModel.uc.freeBuyObserableList.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<DataGoodsInfo>>() {
+            @Override
+            public void onChanged(ObservableList<DataGoodsInfo> sender) {
+                LogUtils.d("onChanged()");
+            }
+
+            @Override
+            public void onItemRangeChanged(ObservableList<DataGoodsInfo> sender, int positionStart, int itemCount) {
+                LogUtils.d("onItemRangeChanged()");
+            }
+
+            @Override
+            public void onItemRangeInserted(ObservableList<DataGoodsInfo> sender, int positionStart, int itemCount) {
+                LogUtils.d("onItemRangeInserted()");
+                updateView_FreeBuy(sender);
+            }
+
+            @Override
+            public void onItemRangeMoved(ObservableList<DataGoodsInfo> sender, int fromPosition, int toPosition, int itemCount) {
+                LogUtils.d("onItemRangeMoved()");
+            }
+
+            @Override
+            public void onItemRangeRemoved(ObservableList<DataGoodsInfo> sender, int positionStart, int itemCount) {
+                LogUtils.d("onItemRangeRemoved()");
+            }
+        });
+    }
+
+    private void initObservable_SpellDeals() {
+        viewModel.uc.spellDealsObservableArrayList.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<DataSpellDeals>>() {
+            @Override
+            public void onChanged(ObservableList<DataSpellDeals> sender) {
+                LogUtils.d("onChanged()");
+            }
+
+            @Override
+            public void onItemRangeChanged(ObservableList<DataSpellDeals> sender, int positionStart, int itemCount) {
+                LogUtils.d("onItemRangeChanged()");
+            }
+
+            @Override
+            public void onItemRangeInserted(ObservableList<DataSpellDeals> sender, int positionStart, int itemCount) {
+                LogUtils.d("onItemRangeInserted()");
+                updateView_SpellDeals(sender);
+            }
+
+            @Override
+            public void onItemRangeMoved(ObservableList<DataSpellDeals> sender, int fromPosition, int toPosition, int itemCount) {
+                LogUtils.d("onItemRangeMoved()");
+            }
+
+            @Override
+            public void onItemRangeRemoved(ObservableList<DataSpellDeals> sender, int positionStart, int itemCount) {
+                LogUtils.d("onItemRangeRemoved()");
+            }
+        });
     }
 
     private void initView_GradienColor() {
@@ -123,7 +228,7 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, B
             SingleLayoutHelper topBannerLayoutHelper = new SingleLayoutHelper();
             topBannerLayoutHelper.setAspectRatio(2.2f);
             topBannerLayoutHelper.setMargin(margin, (int) -topBannerOffset, margin, 0);
-            adapters.add(new HomeSubTopBannerAdapter(getActivity(), topBannerLayoutHelper, 1));
+            adapters.add(mTopBannerAdapter = new HomeSubTopBannerAdapter(getActivity(), topBannerLayoutHelper, null));
         }
 
         //爆品抢购标题
@@ -143,7 +248,7 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, B
             GridLayoutHelper hotSaleLayoutHelper = new GridLayoutHelper(2);
             hotSaleLayoutHelper.setAutoExpand(false);
             hotSaleLayoutHelper.setMargin(margin, 0, margin, 0);
-            adapters.add(new HomeSubHotSaleAdapter(getActivity(), hotSaleLayoutHelper, new HomeSubHotSaleAdapter.ItemClickListener() {
+            adapters.add(mHotSaleAdapter = new HomeSubHotSaleAdapter(getActivity(), hotSaleLayoutHelper, new HomeSubHotSaleAdapter.ItemClickListener() {
                 @Override
                 public void clickedItem(int position) {
                     ToastUtils.showShort(position + " ");
@@ -167,17 +272,16 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, B
         //拼团采集列表
         {
             LinearLayoutHelper spellBuyLayoutHelper = new LinearLayoutHelper();
-            int size = 2;
             int marginBottom = (int) getResources().getDimension(R.dimen.gap_size13);
             spellBuyLayoutHelper.setMargin(margin, 0, margin, marginBottom);
             spellBuyLayoutHelper.setAspectRatio(3.5f);
             spellBuyLayoutHelper.setDividerHeight(marginBottom);
-            adapters.add(new HomeSubSpellPurchaseAdapter(getActivity(), spellBuyLayoutHelper, size, new HomeSubSpellPurchaseAdapter.ItemClickListener() {
+            adapters.add(mSpellPurchaseAdapter = new HomeSubSpellPurchaseAdapter(getActivity(), spellBuyLayoutHelper, new HomeSubSpellPurchaseAdapter.ItemClickListener() {
                 @Override
                 public void clickedItem(int position) {
                     ToastUtils.showShort(position + "");
                 }
-            }));
+            }, null));
         }
 
         //分割线
@@ -196,7 +300,7 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, B
         //招商加盟
         {
             LinearLayoutHelper investLayoutHelper = new LinearLayoutHelper();
-            int size = 2;
+            int size = 1;
             int marginBottom = (int) getResources().getDimension(R.dimen.gap_size13);
             investLayoutHelper.setMargin(margin, 0, margin, marginBottom);
             investLayoutHelper.setAspectRatio(3.5f);
@@ -204,12 +308,30 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, B
             adapters.add(new HomeSubInvestAdapter(getActivity(), investLayoutHelper, size, new HomeSubInvestAdapter.ItemClickListener() {
                 @Override
                 public void clickedItem(int position) {
-                    ToastUtils.showShort(position + "");
+                    ToastUtils.showShort("经纪人召集令");
                 }
             }));
         }
 
         delegateAdapter.setAdapters(adapters);
 
+    }
+
+    private void updateView_Banner(List<DataFocusPictures> list) {
+        mTopBannerAdapter.setmDatas(list);
+    }
+
+    private void updateView_FreeBuy(List<DataGoodsInfo> list) {
+        mHotSaleAdapter.setmDatas(list);
+    }
+
+    private void updateView_SpellDeals(List<DataSpellDeals> list) {
+        mSpellPurchaseAdapter.setmDatas(list);
+    }
+
+    private void requestData() {
+        viewModel.requestFocusPictures();
+        viewModel.requestFreeBuy();
+        viewModel.requestSpellDeals();
     }
 }
