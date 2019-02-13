@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/rg_title"
+        android:background="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/title_height"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:button="@null"
+            android:textSize="@dimen/tx_size15"
+            android:checked="true"
+            android:text="@string/home_msg_earnings"
+            android:textColor="@drawable/selector_txcolor_a"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:button="@null"
+            android:textSize="@dimen/tx_size15"
+            android:text="@string/home_msg_other"
+            android:layout_marginStart="67dp"
+            android:textColor="@drawable/selector_txcolor_a"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/home_title_back"
+        android:paddingStart="@dimen/gap_size13"
+        android:paddingEnd="@dimen/gap_size13"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/rg_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rg_title" />
+
+    <View
+        android:id="@+id/line_title"
+        android:layout_width="0dp"
+        android:background="@color/line_colorb"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rg_title" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/contentViewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_title" />
+</android.support.constraint.ConstraintLayout>

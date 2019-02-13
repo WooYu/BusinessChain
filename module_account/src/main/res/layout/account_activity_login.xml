@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.lcworld.module_account.viewmodel.LoginViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:background="@color/appbg_color_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/gline_start1"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="@dimen/gap_size17" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/gline_start2"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="43dp" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/gline_end"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_end="@dimen/gap_size17" />
+
+        <!--去注册-->
+        <com.qmuiteam.qmui.widget.QMUITopBarLayout
+            android:id="@+id/qmui_topbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--登录商链-->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/tx_colorb"
+            android:textSize="@dimen/tx_size20"
+            android:layout_marginTop="41dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/gline_start2"
+            app:layout_constraintTop_toBottomOf="@id/qmui_topbar"
+            tools:text="@string/account_login_title1" />
+
+        <TextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="wrap_content"
+            android:textColor="@color/tx_colorb"
+            android:layout_marginTop="@dimen/gap_size20"
+            android:textSize="@dimen/tx_size13"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/gline_start2"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="@string/account_login_subtitle1" />
+
+        <!--手机号-->
+        <View
+            android:id="@+id/bg_phone"
+            android:layout_marginTop="38dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="360:47"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_subtitle" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@mipmap/account_login_phone"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gap_size2"
+            app:layout_constraintBottom_toBottomOf="@id/bg_phone"
+            app:layout_constraintStart_toStartOf="@id/gline_start1"
+            app:layout_constraintTop_toTopOf="@id/bg_phone" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@null"
+            android:textSize="@dimen/tx_size15"
+            android:text="@={viewModel.telephone}"
+            android:textColorHint="@color/tx_colord"
+            android:afterTextChanged="@{viewModel.telephoneAfterTextChanged()}"
+            android:textColor="@color/tx_colorb"
+            android:inputType="phone"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@id/bg_phone"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:layout_constraintStart_toStartOf="@id/gline_start2"
+            app:layout_constraintTop_toTopOf="@id/bg_phone"
+            tools:hint="@string/account_hint_phone1" />
+
+        <View
+            android:layout_width="0dp"
+            android:background="@color/line_colorc"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gline_start2" />
+
+        <!--登录密码\验证码-->
+        <View
+            android:id="@+id/bg_code"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="360:47"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bg_phone" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@mipmap/account_login_psw"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gap_size2"
+            app:layout_constraintBottom_toBottomOf="@id/bg_code"
+            app:layout_constraintStart_toStartOf="@id/gline_start1"
+            app:layout_constraintTop_toTopOf="@id/bg_code" />
+
+        <!--输入验证码或登录密码-->
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@null"
+            android:textSize="@dimen/tx_size15"
+            android:afterTextChanged="@{viewModel.codeAfterTextChanged()}"
+            android:textColorHint="@color/tx_colord"
+            android:textColor="@color/tx_colorb"
+            android:maxLines="1"
+            android:text="@={viewModel.logincode}"
+            android:inputType="textPassword"
+            android:layout_marginEnd="@dimen/gap_size10"
+            app:layout_constraintBottom_toBottomOf="@id/bg_code"
+            app:layout_constraintEnd_toStartOf="@id/tv_countdown"
+            app:layout_constraintStart_toStartOf="@id/gline_start2"
+            app:layout_constraintTop_toTopOf="@id/bg_code"
+            tools:hint="@string/account_hint_psw1" />
+
+        <View
+            android:layout_width="0dp"
+            android:background="@color/line_colorc"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gline_start2" />
+
+        <!--验证码计时-->
+        <TextView
+            android:id="@+id/tv_countdown"
+            android:layout_width="wrap_content"
+            android:textColor="@drawable/selector_txcolor_b"
+            android:textSize="@dimen/tx_size15"
+            android:layout_marginEnd="@dimen/gap_size4"
+            android:layout_height="0dp"
+            android:enabled="@{viewModel.uc.authcodeEnableObservable,default=false}"
+            android:gravity="center"
+            android:text="@={viewModel.countdown}"
+            app:layout_constraintBottom_toBottomOf="@id/bg_code"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:layout_constraintTop_toTopOf="@id/bg_code"
+            app:onClickCommand="@{viewModel.clickCommand_Countdonw}" />
+
+        <!--忘记密码-->
+        <TextView
+            android:id="@+id/tv_retrieve"
+            android:layout_width="wrap_content"
+            android:text="@string/account_login_retrieve"
+            android:textColor="@color/tx_colore"
+            android:layout_marginTop="@dimen/gap_size16"
+            android:layout_marginEnd="@dimen/gap_size5"
+            android:textSize="@dimen/tx_size13"
+            app:onClickCommand="@{viewModel.clickCommand_RetrievePsw}"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:layout_constraintTop_toBottomOf="@id/bg_code" />
+
+        <!--登录-->
+        <Button
+            android:id="@+id/btn_enter"
+            android:layout_width="0dp"
+            android:textSize="@dimen/tx_size15"
+            android:textColor="@color/tx_colorf"
+            android:layout_height="0dp"
+            android:enabled="@{viewModel.uc.nextEnableObservable}"
+            android:text="@string/account_login_enter"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/selector_btnbg_a"
+            app:layout_constraintDimensionRatio="327:40"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:onClickCommand="@{viewModel.clickCommand_LoginBtn}"
+            app:layout_constraintStart_toStartOf="@id/gline_start1"
+            app:layout_constraintTop_toBottomOf="@id/tv_retrieve" />
+
+        <!--切换登录方式-->
+        <CheckBox
+            android:id="@+id/cbox_switch_loginmode"
+            android:button="@null"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/tx_size15"
+            android:layout_marginTop="@dimen/gap_size27"
+            android:textColor="@color/tx_colore"
+            app:onCheckedChangedCommand="@{viewModel.loginModeCheckCommand}"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_enter"
+            tools:text="@string/account_login_textlogin" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--标题-->
+    <com.qmuiteam.qmui.widget.QMUITopBarLayout
+        android:id="@+id/qmui_topbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--配送地址-->
+
+    <!--商品列表-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_goods"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/gap_size6"
+        app:layout_constraintBottom_toTopOf="@id/bg_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qmui_topbar"
+        tools:listitem="@layout/order_item_shoppingcart" />
+
+    <!--底部-->
+    <android.support.v7.widget.CardView
+        android:id="@+id/bg_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:cardElevation="@dimen/gap_size9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_totalmoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/tx_size20"
+                android:textColor="@color/tx_colore"
+                android:layout_marginStart="@dimen/gap_size17"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/format_money" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:minHeight="30dp"
+                android:textSize="@dimen/tx_size14"
+                android:elevation="10dp"
+                android:layout_marginEnd="@dimen/gap_size10"
+                android:minWidth="100dp"
+                android:paddingStart="@dimen/gap_size23"
+                android:paddingEnd="@dimen/gap_size23"
+                android:paddingTop="@dimen/gap_size8"
+                android:paddingBottom="@dimen/gap_size8"
+                android:text="@string/order_create_submit"
+                android:background="@drawable/shape_btnbg_b"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</android.support.constraint.ConstraintLayout>

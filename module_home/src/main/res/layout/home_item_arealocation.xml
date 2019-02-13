@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_location"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/home_addr_location"
+        android:layout_marginStart="@dimen/gap_size18"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--地址-->
+    <TextView
+        android:id="@+id/tv_addr"
+        android:layout_width="0dp"
+        android:textColor="@color/tx_colorb"
+        android:layout_marginEnd="@dimen/gap_size10"
+        android:textSize="@dimen/tx_size14"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_size13"
+        android:layout_marginStart="@dimen/gap_size10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_location"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="永辉超市" />
+
+    <!--距离-->
+    <TextView
+        android:id="@+id/tv_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_size13"
+        android:textColor="@color/tx_colord"
+        android:textSize="@dimen/tx_size13"
+        app:layout_constraintEnd_toStartOf="@id/line_address"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/tv_addr"
+        app:layout_constraintTop_toBottomOf="@id/tv_addr"
+        tools:text="@string/home_format_distance" />
+
+    <!--分割线-->
+    <View
+        android:id="@+id/line_address"
+        android:layout_width="1dp"
+        android:layout_marginStart="@dimen/gap_size10"
+        android:layout_marginEnd="@dimen/gap_size10"
+        android:background="@color/tx_colord"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_area"
+        app:layout_constraintEnd_toStartOf="@id/tv_area"
+        app:layout_constraintStart_toEndOf="@id/tv_distance"
+        app:layout_constraintTop_toTopOf="@id/tv_area" />
+
+    <!--详细地址-->
+    <TextView
+        android:id="@+id/tv_area"
+        android:layout_width="0dp"
+        android:textSize="@dimen/tx_size13"
+        android:textColor="@color/tx_colord"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/gap_size10"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_distance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/line_address"
+        tools:text="朝阳" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/gap_size8"
+        android:background="@color/line_colorc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_addr"
+        app:layout_constraintTop_toBottomOf="@id/tv_area" />
+</android.support.constraint.ConstraintLayout>

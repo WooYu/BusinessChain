@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    defaultConfig {
+        applicationId "com.lcworld.businesschain"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //阿里路由框架配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            if (isBuildModule.toBoolean()) {
+                //独立运行
+                manifest.srcFile 'src/main/alone/AndroidManifest.xml'
+            } else {
+                //合并到宿主
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                resources {
+                    //正式版本时，排除debug文件夹下所有调试文件
+                    exclude 'src/debug/*'
+                }
+            }
+        }
+    }
+
+    //启用databinding
+    dataBinding {
+        enabled true
+    }
+
+    //统一资源前缀，规范资源引用
+    resourcePrefix "app_"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //宿主项目中判断组件是否需要独立运行
+    if (isBuildModule.toBoolean()) {
+        //组件独立运行时，宿主项目直接依赖基础库，避免编译错误
+        implementation project(':library_base')
+    } else {
+
+//        library_base（公共base类）:存放一些公共方法、公共常量、组件通信的契约类等。上层被所有组件依赖，下层依赖公共资源库、图片选择库、路由库等通用库，
+//        通过它，避免了组件直接依赖各种通用库，承上启下，作为整个组件化的核心库包含第三方依赖库（二维码、轮播图）
+//        library_res（公共资源）:主要存放与res相关的公共数据，比如图片、style、anim、color等。
+//        module_main（启动模块）:启动页、主模块
+//        module_home(首页模块)：首页
+//        module_goods（商品模块）：商品详情、店铺、客服、详情、评论
+//        module_order（订单模块）:购物车、订单管理、支付
+//        module_account(账号管理）：登录、注册、忘记密码、找回密码、账号信息、账号认证、会员管理
+//        module_exchange（钱包模块）：账号余额、银行卡、商链钻
+//        module_backstage(后台管理):粉丝
+//        module_system（设置模块）:意见反馈、关于我们、常见问题、消息设置
+//        module_share（分享模块）：分享
+
+        //主业务模块
+        implementation project(':module_main')
+        //首页模块
+        implementation project(':module_home')
+        //商品管理模块
+        implementation project(':module_goods')
+        //订单管理模块
+        implementation project(':module_order')
+        //账号管理模块
+        implementation project(':module_account')
+        //钱包模块
+        implementation project(':module_exchange')
+        //后台管理模块
+        //系统设置模块
+//        implementation project(':module_other')
+        //分享模块
+        implementation project(':module_share')
+    }
+
+}

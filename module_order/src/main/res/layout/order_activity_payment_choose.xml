@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--标题-->
+    <com.qmuiteam.qmui.widget.QMUITopBarLayout
+        android:id="@+id/qmui_topbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_start"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="@dimen/gap_size16" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_middle"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.24" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_end"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_end="@dimen/gap_size17" />
+
+    <!--支付金额-->
+    <View
+        android:id="@+id/bg_amount"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/gap_size6"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qmui_topbar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colorb"
+        android:textSize="@dimen/tx_size14"
+        android:text="@string/order_payment_amount"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_amount"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_amount" />
+
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colore"
+        android:textSize="@dimen/tx_size15"
+        android:maxLines="1"
+        android:layout_height="wrap_content"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/bg_amount"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@id/gline_middle"
+        app:layout_constraintTop_toTopOf="@id/bg_amount"
+        tools:text="@string/format_money" />
+
+    <View
+        android:id="@+id/line_amount"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_amount" />
+
+    <!--支付方式背景-->
+    <View
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/line_blank"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bg_balance" />
+
+    <!--佣金支付-->
+    <View
+        android:id="@+id/bg_balance"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/gap_size6"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_amount" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colorb"
+        android:textSize="@dimen/tx_size14"
+        android:text="@string/order_payment_balance"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/gap_size10"
+        android:drawableStart="@mipmap/order_payment_balance"
+        app:layout_constraintBottom_toBottomOf="@id/bg_balance"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_balance" />
+
+    <CheckBox
+        android:id="@+id/cbox_balance"
+        android:layout_width="wrap_content"
+        android:button="@drawable/selector_cbox_e"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_balance"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/bg_balance" />
+
+    <View
+        android:id="@+id/line_balance"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="43dp"
+        android:background="@color/line_colorc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_balance" />
+
+    <!--微信支付-->
+    <View
+        android:id="@+id/bg_wechat"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_balance" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colorb"
+        android:textSize="@dimen/tx_size14"
+        android:text="@string/order_payment_wechat"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/gap_size10"
+        android:drawableStart="@mipmap/order_payment_wx"
+        app:layout_constraintBottom_toBottomOf="@id/bg_wechat"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_wechat" />
+
+    <CheckBox
+        android:id="@+id/cbox_wechat"
+        android:layout_width="wrap_content"
+        android:button="@drawable/selector_cbox_e"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_wechat"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/bg_wechat" />
+
+    <View
+        android:id="@+id/line_wechat"
+        android:layout_width="0dp"
+        android:background="@color/line_colorc"
+        android:layout_height="1dp"
+        android:layout_marginStart="43dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_wechat" />
+
+    <!--支付宝支付-->
+    <View
+        android:id="@+id/bg_alipay"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_wechat" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colorb"
+        android:textSize="@dimen/tx_size14"
+        android:text="@string/order_payment_alipay"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/gap_size10"
+        android:drawableStart="@mipmap/order_payment_alipay"
+        app:layout_constraintBottom_toBottomOf="@id/bg_alipay"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_alipay" />
+
+    <CheckBox
+        android:id="@+id/cbox_alipay"
+        android:layout_width="wrap_content"
+        android:button="@drawable/selector_cbox_e"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_alipay"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/bg_alipay" />
+
+    <View
+        android:id="@+id/line_alipay"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="43dp"
+        android:background="@color/line_colorc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_alipay" />
+
+    <!--银行卡支付-->
+    <View
+        android:id="@+id/bg_blank"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_alipay" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colorb"
+        android:textSize="@dimen/tx_size14"
+        android:text="@string/order_payment_blank"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/gap_size10"
+        android:drawableStart="@mipmap/order_payment_bank"
+        app:layout_constraintBottom_toBottomOf="@id/bg_blank"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_blank" />
+
+    <CheckBox
+        android:id="@+id/cbox_blank"
+        android:layout_width="wrap_content"
+        android:button="@drawable/selector_cbox_e"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_blank"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/bg_blank" />
+
+    <View
+        android:id="@+id/line_blank"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="43dp"
+        android:background="@color/line_colorc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_blank" />
+
+    <!--协议-->
+    <CheckBox
+        android:id="@+id/cbox_protocol"
+        android:layout_width="wrap_content"
+        android:button="@drawable/selector_cbox_c"
+        android:text="@string/order_payment_protocol_tip1"
+        android:textSize="@dimen/tx_size13"
+        android:paddingStart="@dimen/gap_size5"
+        android:layout_marginTop="@dimen/gap_size16"
+        android:textColor="@color/tx_colord"
+        android:layout_height="wrap_content"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toStartOf="@id/tv_protocol"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/line_blank" />
+
+    <TextView
+        android:id="@+id/tv_protocol"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/tx_size13"
+        android:textColor="@color/tx_colore"
+        android:text="@string/order_payment_protocol_tip2"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@id/cbox_protocol"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toEndOf="@id/cbox_protocol" />
+
+    <!--立即支付-->
+    <Button
+        android:id="@+id/btn_paynow"
+        android:layout_marginBottom="@dimen/gap_size16"
+        android:layout_marginStart="@dimen/gap_size16"
+        android:layout_marginEnd="@dimen/gap_size17"
+        android:text="@string/order_payment_paynow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/selector_btnbg_a"
+        android:textColor="@color/white"
+        android:textSize="@dimen/tx_size15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="327:40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

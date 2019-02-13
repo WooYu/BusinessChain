@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_start"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="12dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_end"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_end="14dp" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/gap_size6"
+        android:textColor="@color/tx_colorb"
+        android:textSize="@dimen/tx_size15"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/gap_size13"
+        android:paddingBottom="@dimen/gap_size13"
+        app:layout_constraintEnd_toStartOf="@id/iv_arrow"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="标题" />
+
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/arrow_right2"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+    <View
+        android:id="@+id/line_title"
+        android:layout_width="0dp"
+        android:background="@color/line_colorb"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="0dp"
+        android:textSize="@dimen/tx_size13"
+        android:paddingTop="@dimen/gap_size11"
+        android:textColor="@color/tx_colorb"
+        android:paddingBottom="@dimen/gap_size18"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/line_title"
+        tools:text="内容" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colorg"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_content"
+        tools:text="2019年11月11日 11：01:11" />
+
+    <View
+        android:id="@+id/line_time"
+        android:layout_marginTop="@dimen/gap_size11"
+        android:layout_width="0dp"
+        android:background="@color/appbg_color"
+        android:layout_height="@dimen/gap_size7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_time" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,85 @@
+<resources>
+    <string name="order_name">module_order</string>
+
+
+    <!--StringFormat-->
+    <string name="order_format_settle">结算（%d）</string>
+    <string name="order_format_salescycle">%d天</string>
+    <string name="order_format_settlementdate">周期天数+%d天</string>
+    <string name="order_format_earnprofit">%s%</string>
+    <string name="order_format_earndiamond">%s枚</string>
+    <string name="order_format_ordernum">订单编号：%s</string>
+    <string name="order_format_purchasequantity">X%s</string>
+    <string name="order_format_totalamount">¥ %s</string>
+
+
+    <!--tip-->
+    <string name="order_tip_payment_result_success">支付成功</string>
+
+    <!--hint-->
+    <string name="order_hint_receiveraddr_name">请填写真实姓名</string>
+    <string name="order_hint_receiveraddr_phone">请输入手机号码</string>
+    <string name="order_hint_receiveraddr_area">请输入所在区域</string>
+    <string name="order_hint_receiveraddr_address">请填写详细地址</string>
+
+    <string name="order_trolley_title">购物车</string>
+    <string name="order_trolley_subtitle">编辑</string>
+    <string name="order_trolley_sub">-</string>
+    <string name="order_trolley_add">+</string>
+    <string name="order_trolley_checkall">全选</string>
+    <string name="order_trolley_total">合计：</string>
+    <string name="order_trolley_settle">结算</string>
+    <string name="order_trolley_delete">删除</string>
+    <string name="order_create_title">确认订单</string>
+    <string name="order_create_submit">提交订单</string>
+    <string name="order_create_paymethod">支付方式</string>
+    <string name="order_create_paymethod_a">在线支付</string>
+    <string name="order_create_salesvolume">销售商品件数</string>
+    <string name="order_create_salescycle">销售周期</string>
+    <string name="order_create_settlementdate">结算时间</string>
+    <string name="order_create_earnprofit">预期利润</string>
+    <string name="order_create_earndiamond">结算收益商链钻</string>
+    <string name="order_create_contractdetail">合同明细</string>
+    <string name="order_receiveraddr_title">收货地址</string>
+    <string name="order_receiveraddr_edit_title">编辑收货地址</string>
+    <string name="order_receiveraddr_create_title">新建收货地址</string>
+    <string name="order_receiveraddr_default">默认地址</string>
+    <string name="order_receiveraddr_edit">编辑</string>
+    <string name="order_receiveraddr_create">新建地址</string>
+    <string name="order_receiveraddr_save">保存</string>
+    <string name="order_receiveraddr_modify_name">收件人</string>
+    <string name="order_receiveraddr_modify_phone">手机号</string>
+    <string name="order_receiveraddr_modify_area">所在区域</string>
+    <string name="order_receiveraddr_modify_detailaddr">详细地址</string>
+    <string name="order_payment_title">支付</string>
+    <string name="order_payment_diamond">商链钻支付</string>
+    <string name="order_payment_amount">支付金额</string>
+    <string name="order_payment_balance">佣金支付</string>
+    <string name="order_payment_wechat">微信支付</string>
+    <string name="order_payment_alipay">支付宝支付</string>
+    <string name="order_payment_blank">银行卡支付</string>
+    <string name="order_payment_protocol_tip1">我已认真阅读，同意遵守</string>
+    <string name="order_payment_protocol_tip2">《商链》</string>
+    <string name="order_payment_paynow">立即支付</string>
+    <string name="order_payment_seelater">稍后查看</string>
+    <string name="order_payment_vieworder">查看订单</string>
+    <string name="order_payment_finish_title">支付完成</string>
+    <string name="order_list_title">我的订单</string>
+    <string name="order_list_all">全部</string>
+    <string name="order_list_paid">已付款</string>
+    <string name="order_list_settled">已结算</string>
+    <string name="order_list_expired">已失效</string>
+    <string name="order_list_operation_pickup">申请提货</string>
+    <string name="order_list_operation_buyagain1">再来一单</string>
+    <string name="order_list_operation_buyagain2">再次购买</string>
+    <string name="order_list_operation_cancel">取消订单</string>
+    <string name="order_detail_title">订单详情</string>
+    <string name="order_detail_total">总计：</string>
+    <string name="order_detail_service">联系商家</string>
+    <string name="order_detail_deliverymethod">配送快腿</string>
+    <string name="order_detail_createtime">下单时间</string>
+    <string name="order_detail_paymethod">支付方式</string>
+    <string name="order_detail_deliveryaddr">配送地址</string>
+
+
+</resources>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:paddingBottom="@dimen/gap_size14"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_start"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="@dimen/gap_size10" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/gap_size10" />
+
+    <!--图片-->
+    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:scaleType="centerCrop"
+        android:elevation="@dimen/gap_size5"
+        app:layout_constraintDimensionRatio="147:113"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:qmui_border_color="@color/qmui_config_color_gray_8"
+        app:qmui_border_width="1px"
+        app:qmui_corner_radius="3dp"
+        app:qmui_selected_border_width="1px" />
+
+    <!--商品名称-->
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:textSize="@dimen/tx_size13"
+        android:textColor="@color/tx_colorb"
+        android:layout_height="42dp"
+        android:gravity="top"
+        android:layout_marginTop="@dimen/gap_size5"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:lineSpacingExtra="@dimen/gap_size5"
+        android:text="欧丽雅欧丽雅欧丽雅欧丽雅欧丽雅欧丽雅欧欧丽雅欧丽雅欧丽雅欧丽雅欧丽雅欧丽雅欧丽雅欧丽雅欧丽雅欧丽雅欧丽雅丽雅欧丽雅欧丽雅欧丽雅欧丽雅"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/iv_photo" />
+
+    <!--折扣价-->
+    <TextView
+        android:id="@+id/tv_dicountprice"
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colore"
+        android:textSize="@dimen/tx_size16"
+        android:drawablePadding="@dimen/gap_size3"
+        android:layout_height="wrap_content"
+        android:text="@string/home_defaultprice"
+        android:maxLines="1"
+        android:drawableStart="@mipmap/home_diamon_orange"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+    <!--原价-->
+    <TextView
+        android:id="@+id/tv_originalprice"
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colord"
+        android:textSize="@dimen/tx_size12"
+        android:drawablePadding="@dimen/gap_size3"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_size5"
+        android:maxLines="1"
+        android:text="@string/home_defaultprice"
+        android:textStyle="italic"
+        android:drawableStart="@mipmap/home_diamon_gray"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_dicountprice"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@id/tv_dicountprice"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+    <!--原价删除线-->
+    <View
+        android:id="@+id/line_overdueprice"
+        android:layout_width="0dp"
+        android:background="@color/tx_colord"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_originalprice"
+        app:layout_constraintEnd_toEndOf="@id/tv_originalprice"
+        app:layout_constraintStart_toStartOf="@id/tv_originalprice"
+        app:layout_constraintTop_toTopOf="@id/tv_originalprice" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lcworld.module_goods">
+
+    <application>
+        <activity android:name="com.lcworld.module_goods.activity.ProductDetailAct" />
+    </application>
+
+</manifest>

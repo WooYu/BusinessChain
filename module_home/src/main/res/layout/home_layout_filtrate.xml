@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/home_activity_search_goodsresult">
+
+    <CheckBox
+        android:id="@+id/cbox_filtrate_recom"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="@dimen/gap_size20"
+        android:drawablePadding="@dimen/gap_size4"
+        android:text="@string/home_filtrate_recommend"
+        android:textColor="@drawable/selector_txcolor_a"
+        android:textSize="@dimen/tx_size14"
+        android:checked="true"
+        android:button="@null"
+        android:drawableEnd="@drawable/selector_cbox_b"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/cbox_displaymode"
+        app:layout_constraintEnd_toStartOf="@id/cbox_filtrate_sales"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cbox_displaymode" />
+
+    <CheckBox
+        android:id="@+id/cbox_filtrate_sales"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="@dimen/gap_size20"
+        android:drawablePadding="@dimen/gap_size4"
+        android:text="@string/home_filtrate_sales"
+        android:textColor="@drawable/selector_txcolor_a"
+        android:textSize="@dimen/tx_size14"
+        android:button="@null"
+        android:drawableEnd="@drawable/selector_cbox_b"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/cbox_displaymode"
+        app:layout_constraintEnd_toStartOf="@id/cbox_filtrate_price"
+        app:layout_constraintStart_toEndOf="@id/cbox_filtrate_recom"
+        app:layout_constraintTop_toTopOf="@id/cbox_displaymode" />
+
+    <CheckBox
+        android:id="@+id/cbox_filtrate_price"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="@dimen/gap_size20"
+        android:drawablePadding="@dimen/gap_size4"
+        android:text="@string/home_filtrate_price"
+        android:textColor="@drawable/selector_txcolor_a"
+        android:textSize="@dimen/tx_size14"
+        android:button="@null"
+        android:drawableEnd="@drawable/selector_cbox_b"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/cbox_displaymode"
+        app:layout_constraintEnd_toStartOf="@id/cbox_filtrate_discount"
+        app:layout_constraintStart_toEndOf="@id/cbox_filtrate_sales"
+        app:layout_constraintTop_toTopOf="@id/cbox_displaymode" />
+
+    <CheckBox
+        android:id="@+id/cbox_filtrate_discount"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="@dimen/gap_size20"
+        android:drawablePadding="@dimen/gap_size4"
+        android:text="@string/home_filtrate_discount"
+        android:textColor="@drawable/selector_txcolor_a"
+        android:textSize="@dimen/tx_size14"
+        android:button="@null"
+        android:drawableEnd="@drawable/selector_cbox_b"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/cbox_displaymode"
+        app:layout_constraintEnd_toStartOf="@id/cbox_displaymode"
+        app:layout_constraintStart_toEndOf="@id/cbox_filtrate_price"
+        app:layout_constraintTop_toTopOf="@id/cbox_displaymode" />
+
+    <CheckBox
+        android:id="@+id/cbox_displaymode"
+        android:button="@drawable/home_selector_switchdisplay"
+        android:paddingEnd="@dimen/gap_size10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cbox_filtrate_discount" />
+</merge>

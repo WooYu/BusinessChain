@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="me.goldze.mvvmhabit.base.BaseViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/gline_start"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="@dimen/gap_size10" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/gline_end"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_end="@dimen/gap_size10" />
+
+        <!--vlayout-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_home"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/appbg_color_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--占位的状态栏-->
+        <View
+            android:id="@+id/view_placeholder"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--搜索栏-->
+        <!--标题背景-->
+        <View
+            android:id="@+id/bg_title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/title_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_placeholder" />
+
+        <!--搜索框背景-->
+        <View
+            android:id="@+id/bg_searchbox"
+            android:layout_width="0dp"
+            android:background="@drawable/home_shape_searchbox_bg"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_title"
+            app:layout_constraintEnd_toStartOf="@id/iv_msg"
+            app:layout_constraintStart_toStartOf="@id/gline_start"
+            app:layout_constraintTop_toTopOf="@id/bg_title" />
+
+        <!--搜索内容-->
+        <TextView
+            android:id="@+id/tv_searchtip"
+            android:drawableStart="@mipmap/home_searchbox_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/tx_colord"
+            android:textSize="@dimen/tx_size13"
+            android:maxLines="1"
+            android:layout_marginStart="@dimen/gap_size20"
+            android:layout_marginEnd="@dimen/gap_size20"
+            android:drawablePadding="@dimen/gap_size6"
+            android:background="@null"
+            android:textColor="@color/tx_colord"
+            app:layout_constraintBottom_toBottomOf="@id/bg_searchbox"
+            app:layout_constraintEnd_toEndOf="@id/bg_searchbox"
+            app:layout_constraintStart_toStartOf="@id/bg_searchbox"
+            app:layout_constraintTop_toTopOf="@+id/bg_searchbox" />
+
+        <!--消息-->
+        <cn.bingoogolapple.badgeview.BGABadgeImageView
+            android:id="@+id/iv_msg"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/home_title_msg"
+            android:layout_height="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bg_title" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

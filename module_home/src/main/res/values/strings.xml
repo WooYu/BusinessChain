@@ -1,0 +1,60 @@
+<resources>
+    <string name="home_name">module_home</string>
+
+    <!--hint-->
+    <string name="home_hint_search">请输入搜索内容</string>
+    <string name="home_hint_phone">请输入电话号码</string>
+    <string name="home_hint_wechat">请输入微信号码</string>
+    <string name="home_hint_linkman">请输入联系人</string>
+    <string name="home_hint_companyprofile">请输入企业介绍</string>
+    <string name="home_hint_arealocation">附近位置</string>
+    
+    <!--空提示-->
+    <string name="home_empty_phone">电话号码不能为空！</string>
+    <string name="home_empty_wechat">微信号码不能为空！</string>
+    <string name="home_empty_linkman">联系人不能为空！</string>
+    <string name="home_empty_region">所在地区不能为空！</string>
+    <string name="home_empty_profile">企业介绍不能为空！</string>
+    <string name="home_empty_qrcode">请上传微信二维码！</string>
+
+    <!--错误提示-->
+    <string name="home_error_phone">请输入正确的电话号码！</string>
+
+    <!--StringFormat-->
+    <string name="home_format_chainid">商链号：%s</string>
+    <string name="home_format_fans">粉丝/%s人</string>
+    <string name="home_format_distance">距您%s公里</string>
+
+    <!---->
+    <string name="home_defaultprice">0.0</string>
+    <string name="home_hotsale">自由购</string>
+    <string name="home_spellpurchase">如意赚</string>
+    <string name="home_viewmore">查看更多</string>
+    <string name="home_invest">经纪人召集令</string>
+    <string name="home_searchhistory">搜索历史</string>
+    <string name="home_searchrecommend">搜索推荐</string>
+    <string name="home_filtrate_recommend">推荐爆品</string>
+    <string name="home_filtrate_sales">销量</string>
+    <string name="home_filtrate_price">价格</string>
+    <string name="home_filtrate_discount">折扣</string>
+    <string name="home_msg_earnings">收益消息</string>
+    <string name="home_msg_other">其他消息</string>
+    <string name="home_member_title">会员专区</string>
+    <string name="home_provider_title">经纪人召集令</string>
+    <string name="home_provider_applicant">申请企业</string>
+    <string name="home_provider_tell">电话号码</string>
+    <string name="home_provider_wechat">微信号码</string>
+    <string name="home_provider_linkman">联系人</string>
+    <string name="home_provider_region">所在地区</string>
+    <string name="home_provider_companyprofile">企业介绍</string>
+    <string name="home_provider_qrcode">微信二维码</string>
+    <string name="home_provider_submit">提交</string>
+    <string name="home_mine_title">我的</string>
+    <string name="home_mine_copy">可复制</string>
+    <string name="home_mine_wallet">钱包</string>
+    <string name="home_mine_background">后台</string>
+    <string name="home_mine_tool">工具</string>
+    <string name="home_mine_quit">退出</string>
+    <string name="home_mine_notlogin">未登录</string>
+
+</resources>

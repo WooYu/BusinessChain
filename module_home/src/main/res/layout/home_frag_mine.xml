@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="me.goldze.mvvmhabit.base.BaseViewModel" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.lcworld.library_base.widget.scrollview.ScrollViewMine
+            android:id="@+id/scrollview"
+            android:layout_width="0dp"
+            android:scrollbars="none"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/gline_start1"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintGuide_begin="@dimen/gap_size10" />
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/gline_start2"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintGuide_begin="@dimen/gap_size16" />
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/gline_end1"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintGuide_end="@dimen/gap_size10" />
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/gline_end2"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintGuide_end="@dimen/gap_size16" />
+
+                <android.support.constraint.Group
+                    android:id="@+id/group_notlogin"
+                    android:layout_width="wrap_content"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="tv_levels,bg_logout,iv_logout,tv_logout,iv_logout_arrow" />
+
+                <!--顶部背景-->
+                <View
+                    android:id="@+id/bg_top"
+                    android:layout_width="0dp"
+                    android:background="@drawable/shape_gradually_bg"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="360:167"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--头像-->
+                <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@mipmap/def_circle_a"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginStart="@dimen/gap_size8"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_top"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="@id/gline_start1"
+                    app:layout_constraintTop_toTopOf="@id/bg_top"
+                    app:layout_constraintVertical_bias="0.65"
+                    app:layout_constraintWidth_percent="0.17"
+                    app:qmui_border_color="@color/white"
+                    app:qmui_border_width="1px"
+                    app:qmui_is_circle="true"
+                    app:qmui_selected_border_color="?attr/qmui_config_color_gray_4"
+                    app:qmui_selected_border_width="1px"
+                    app:qmui_selected_mask_color="?attr/qmui_config_color_gray_8" />
+
+                <!--登录名称-->
+                <TextView
+                    android:id="@+id/tv_loginname"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/tx_colorf"
+                    android:textSize="@dimen/tx_size16"
+                    android:layout_marginStart="@dimen/gap_size17"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/iv_avatar"
+                    app:layout_constraintTop_toTopOf="@id/iv_avatar"
+                    tools:text="@string/home_mine_notlogin" />
+
+                <!--会员状态-->
+                <TextView
+                    android:id="@+id/tv_levels"
+                    android:layout_width="wrap_content"
+                    android:drawableStart="@mipmap/home_mine_memberlevel"
+                    android:maxLines="1"
+                    android:layout_marginStart="@dimen/gap_size15"
+                    android:textColor="@color/tx_colorf"
+                    android:textSize="@dimen/tx_size14"
+                    android:drawablePadding="@dimen/gap_size3"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_loginname"
+                    app:layout_constraintEnd_toEndOf="@id/gline_end1"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/tv_loginname"
+                    tools:layout_editor_absoluteY="80dp"
+                    tools:text="会员" />
+
+                <!--商链号-->
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_btnbg_c"
+                    android:layout_marginTop="@dimen/gap_size12"
+                    android:paddingTop="@dimen/gap_size3"
+                    android:paddingStart="@dimen/gap_size10"
+                    android:paddingEnd="@dimen/gap_size10"
+                    android:paddingBottom="@dimen/gap_size3"
+                    android:layout_marginStart="@dimen/gap_size12"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@id/gline_end1"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/iv_avatar"
+                    app:layout_constraintTop_toBottomOf="@id/tv_loginname">
+
+                    <TextView
+                        android:id="@+id/tv_chainnum"
+                        android:layout_width="wrap_content"
+                        android:maxLines="1"
+                        android:maxWidth="220dp"
+                        android:textSize="@dimen/tx_size13"
+                        android:textColor="@color/tx_colorf"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tv_chainnum_tip"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/home_format_chainid" />
+
+                    <TextView
+                        android:id="@+id/tv_chainnum_tip"
+                        android:layout_width="wrap_content"
+                        android:text="@string/home_mine_copy"
+                        android:textColor="@color/tx_colorh"
+                        android:layout_marginStart="@dimen/gap_size9"
+                        android:textSize="@dimen/tx_size10"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBaseline_toBaselineOf="@id/tv_chainnum"
+                        app:layout_constraintStart_toEndOf="@id/tv_chainnum" />
+                </android.support.constraint.ConstraintLayout>
+
+                <!--粉丝-->
+                <TextView
+                    android:id="@+id/tv_fans"
+                    android:layout_width="wrap_content"
+                    android:drawableStart="@mipmap/home_mine_fans"
+                    android:layout_marginStart="@dimen/gap_size21"
+                    android:textColor="@color/tx_colorh"
+                    android:drawablePadding="@dimen/gap_size3"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/tx_size14"
+                    app:layout_constraintStart_toEndOf="@id/iv_avatar"
+                    app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+                    tools:text="@string/home_format_fans" />
+
+                <!--轮播图-->
+                <cn.bingoogolapple.bgabanner.BGABanner
+                    android:id="@+id/banner"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/gap_size10"
+                    android:background="@color/tx_colore"
+                    app:layout_constraintDimensionRatio="340:103"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bg_top" />
+
+                <!--钱包-->
+                <View
+                    android:id="@+id/bg_wallet"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/gap_size10"
+                    android:background="@color/appbg_color_white"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="360:47"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/banner" />
+
+                <ImageView
+                    android:id="@+id/iv_wallet"
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/home_mine_wallet"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_wallet"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"
+                    app:layout_constraintTop_toTopOf="@id/bg_wallet" />
+
+                <TextView
+                    android:id="@+id/tv_wallet"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/tx_size14"
+                    android:textColor="@color/tx_colorb"
+                    android:text="@string/home_mine_wallet"
+                    android:layout_marginStart="@dimen/gap_size8"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_wallet"
+                    app:layout_constraintStart_toEndOf="@id/iv_wallet"
+                    app:layout_constraintTop_toTopOf="@id/bg_wallet" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_wallet"
+                    app:layout_constraintEnd_toEndOf="@id/gline_end2"
+                    app:layout_constraintTop_toTopOf="@id/bg_wallet" />
+
+                <View
+                    android:id="@+id/line_wallet"
+                    android:layout_width="0dp"
+                    android:background="@color/line_colorc"
+                    android:layout_height="1px"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_wallet"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_wallet" />
+
+                <!--后台-->
+                <View
+                    android:id="@+id/bg_background"
+                    android:layout_width="0dp"
+                    android:background="@color/appbg_color_white"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="360:47"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/line_wallet" />
+
+                <ImageView
+                    android:id="@+id/iv_background"
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/home_mine_background"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_background"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"
+                    app:layout_constraintTop_toTopOf="@id/bg_background" />
+
+                <TextView
+                    android:id="@+id/tv_background"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/tx_size14"
+                    android:textColor="@color/tx_colorb"
+                    android:text="@string/home_mine_background"
+                    android:layout_marginStart="@dimen/gap_size8"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_background"
+                    app:layout_constraintStart_toEndOf="@id/iv_background"
+                    app:layout_constraintTop_toTopOf="@id/bg_background" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_background"
+                    app:layout_constraintEnd_toEndOf="@id/gline_end2"
+                    app:layout_constraintTop_toTopOf="@id/bg_background" />
+
+                <View
+                    android:id="@+id/line_background"
+                    android:layout_width="0dp"
+                    android:background="@color/line_colorc"
+                    android:layout_height="1px"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_background" />
+
+                <!--工具-->
+                <View
+                    android:id="@+id/bg_toolkit"
+                    android:layout_width="0dp"
+                    android:background="@color/appbg_color_white"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="360:47"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/line_background" />
+
+                <ImageView
+                    android:id="@+id/iv_toolkit"
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/home_mine_toolkit"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_toolkit"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"
+                    app:layout_constraintTop_toTopOf="@id/bg_toolkit" />
+
+                <TextView
+                    android:id="@+id/tv_toolkit"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/tx_size14"
+                    android:textColor="@color/tx_colorb"
+                    android:text="@string/home_mine_tool"
+                    android:layout_marginStart="@dimen/gap_size8"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_toolkit"
+                    app:layout_constraintStart_toEndOf="@id/iv_toolkit"
+                    app:layout_constraintTop_toTopOf="@id/bg_toolkit" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_toolkit"
+                    app:layout_constraintEnd_toEndOf="@id/gline_end2"
+                    app:layout_constraintTop_toTopOf="@id/bg_toolkit" />
+
+                <!--退出-->
+                <View
+                    android:id="@+id/bg_logout"
+                    android:layout_width="0dp"
+                    android:background="@color/appbg_color_white"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/gap_size7"
+                    app:layout_constraintDimensionRatio="360:47"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bg_toolkit" />
+
+                <ImageView
+                    android:id="@+id/iv_logout"
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/home_mine_quit"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_logout"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"
+                    app:layout_constraintTop_toTopOf="@id/bg_logout" />
+
+                <TextView
+                    android:id="@+id/tv_logout"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/tx_size14"
+                    android:textColor="@color/tx_colorb"
+                    android:text="@string/home_mine_quit"
+                    android:layout_marginStart="@dimen/gap_size8"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_logout"
+                    app:layout_constraintStart_toEndOf="@id/iv_toolkit"
+                    app:layout_constraintTop_toTopOf="@id/bg_logout" />
+
+                <ImageView
+                    android:id="@+id/iv_logout_arrow"
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_logout"
+                    app:layout_constraintEnd_toEndOf="@id/gline_end2"
+                    app:layout_constraintTop_toTopOf="@id/bg_logout" />
+
+            </android.support.constraint.ConstraintLayout>
+        </com.lcworld.library_base.widget.scrollview.ScrollViewMine>
+
+        <!--标题背景-->
+        <View
+            android:id="@+id/bg_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--标题-->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:text="@string/home_mine_title"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tx_size15"
+            android:layout_marginTop="31dp"
+            android:paddingBottom="@dimen/gap_size18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--设置-->
+        <ImageView
+            android:id="@+id/iv_settting"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/home_title_setting"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/gap_size20"
+            android:paddingEnd="@dimen/gap_size10"
+            android:layout_marginTop="33dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
+

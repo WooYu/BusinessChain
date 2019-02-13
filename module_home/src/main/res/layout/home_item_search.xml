@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/home_shape_searchlist_bg"
+    android:layout_width="match_parent"
+    android:paddingTop="@dimen/gap_size5"
+    android:paddingBottom="@dimen/gap_size5"
+    android:paddingStart="@dimen/gap_size14"
+    android:paddingEnd="@dimen/gap_size14"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="0dp"
+        android:maxLines="1"
+        android:textColor="@color/tx_colord"
+        android:textSize="@dimen/tx_size13"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="哈哈哈" />
+
+</android.support.constraint.ConstraintLayout>

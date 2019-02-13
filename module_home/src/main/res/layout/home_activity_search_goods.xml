@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_start"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="@dimen/gap_size12" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_end"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_end="@dimen/gap_size10" />
+
+    <!--标题-->
+    <include layout="@layout/home_layout_search_title" />
+
+    <!--搜索历史-->
+    <TextView
+        android:id="@+id/tv_history"
+        android:layout_marginTop="@dimen/gap_size20"
+        android:layout_width="wrap_content"
+        android:text="@string/home_searchhistory"
+        android:textColor="@color/tx_colorb"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/et_search" />
+
+    <ImageView
+        android:id="@+id/iv_empty"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/home_history_empty"
+        android:paddingEnd="@dimen/gap_size10"
+        android:paddingStart="@dimen/gap_size20"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_history" />
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/flowlayout_history"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/gap_size16"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_history"
+        app:max_select="1" />
+
+    <!--热搜推荐-->
+    <TextView
+        android:id="@+id/tv_recommend"
+        android:layout_marginTop="@dimen/gap_size20"
+        android:layout_width="wrap_content"
+        android:text="@string/home_searchrecommend"
+        android:textColor="@color/tx_colorb"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/flowlayout_history" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recommend"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/gap_size16"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_recommend" />
+</android.support.constraint.ConstraintLayout>

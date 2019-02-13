@@ -1,0 +1,51 @@
+<resources>
+    <string name="account_name">module_account</string>
+
+    <!--hint-->
+    <string name="account_hint_phone1">手机号</string>
+    <string name="account_hint_phone2">请输入手机号</string>
+    <string name="account_hint_psw1">登录密码</string>
+    <string name="account_hint_psw2">请输入密码</string>
+    <string name="account_hint_psw3">请输入确认密码</string>
+    <string name="account_hint_authcode">请输入验证码</string>
+    <string name="account_hint_referralcode">请输入推荐人手机号或者8位推荐码</string>
+
+    <!--empty-->
+    <string name="account_empty_phone">请输入手机号！</string>
+    <string name="account_empty_psw">请输入登录密码！</string>
+    <string name="account_empty_confirmpsw">请输入确认密码！</string>
+    <string name="account_empty_authcode">请输入验证码！</string>
+
+    <!--error-->
+    <string name="account_error_phone">请输入正确的手机号！</string>
+    <string name="account_error_psw">请输入正确的登录密码！</string>
+    <string name="account_error_pswmismatch">两次密码不一致！</string>
+
+    <!--stringformat-->
+    <string name="account_format_resend">重新发送(%ds)</string>
+
+    <string name="account_login_regist">去注册</string>
+    <string name="account_login_title1">登录商链</string>
+    <string name="account_login_title2">直接登录</string>
+    <string name="account_login_subtitle1">手机号登录方便快捷</string>
+    <string name="account_login_subtitle2">请输入手机号码验证码可直接登录</string>
+    <string name="account_login_retrieve">忘记密码</string>
+    <string name="account_login_authcode">验证码</string>
+    <string name="account_login_enter">登录</string>
+    <string name="account_login_textlogin">短信验证码登录</string>
+    <string name="account_login_pswlogin">密码登录</string>
+    <string name="account_regist_title1">快速注册</string>
+    <string name="account_regist_title2">设置登录密码</string>
+    <string name="account_regist_subtitle1">请输入您的手机号码去注册</string>
+    <string name="account_regist_subtitle2">请输入6&#8212;16位数字+字母组合</string>
+    <string name="account_regist_protocol">我已认真阅读，同意遵守《商链》</string>
+    <string name="account_regist_next">下一步</string>
+    <string name="account_regist_protocol_tip1">我已认真阅读，同意遵守</string>
+    <string name="account_regist_protocol_tip2">《商链》</string>
+    <string name="account_regist_protocol_title">商链协议</string>
+    <string name="account_regist_sure">确认</string>
+    <string name="account_retrieve_title">忘记密码</string>
+    <string name="account_retrieve_subtitle">请输入原手机号码找回</string>
+
+
+</resources>

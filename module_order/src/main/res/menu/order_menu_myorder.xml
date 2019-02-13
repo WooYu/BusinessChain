@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_one"
+        android:title="@string/order_list_all"/>
+
+    <item
+        android:id="@+id/tab_two"
+        android:title="@string/order_list_paid"/>
+
+    <item
+        android:id="@+id/tab_three"
+        android:title="@string/order_list_settled"/>
+
+    <item
+        android:id="@+id/tab_four"
+        android:title="@string/order_list_expired"/>
+</menu>

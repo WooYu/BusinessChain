@@ -1,0 +1,9 @@
+<manifest package="com.lcworld.module_account"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity android:name="com.lcworld.module_account.activity.LoginActivity"/>
+        <activity android:name="com.lcworld.module_account.activity.RegistFirstActivity"/>
+        <activity android:name="com.lcworld.module_account.activity.SetPasswordActivity"/>
+        <activity android:name="com.lcworld.module_account.activity.RetrieveFirstActivity"/>
+    </application>
+</manifest>

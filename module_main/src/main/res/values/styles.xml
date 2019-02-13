@@ -1,0 +1,12 @@
+<resources>
+    <!--StartActivity Style 冷启动效果-->
+    <style name="MainAppTheme.Start" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@drawable/main_activity_start</item>
+    </style>
+    
+    <!--全屏主题-->
+    <style name="MainTheme.FullScreen" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+
+    </style>
+
+</resources>

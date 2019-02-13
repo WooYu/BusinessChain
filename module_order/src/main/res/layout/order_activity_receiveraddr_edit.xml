@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_start"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="@dimen/gap_size17" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_middle"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.24" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_end"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_end="@dimen/gap_size17" />
+
+    <!--标题-->
+    <com.qmuiteam.qmui.widget.QMUITopBarLayout
+        android:id="@+id/qmui_topbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--收件人-->
+    <View
+        android:id="@+id/bg_name"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/gap_size6"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:47"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qmui_topbar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colorb"
+        android:textSize="@dimen/tx_size15"
+        android:text="@string/order_receiveraddr_modify_name"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_name"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_name" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="0dp"
+        android:textColor="@color/tx_colorc"
+        android:textColorHint="@color/tx_colord"
+        android:inputType="text"
+        android:textSize="@dimen/tx_size15"
+        android:hint="@string/order_hint_receiveraddr_name"
+        android:background="@null"
+        android:maxLines="1"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_name"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_middle"
+        app:layout_constraintTop_toTopOf="@id/bg_name" />
+
+    <View
+        android:id="@+id/line_name"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_name" />
+
+    <!--手机号-->
+    <View
+        android:id="@+id/bg_phone"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:47"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colorb"
+        android:textSize="@dimen/tx_size15"
+        android:text="@string/order_receiveraddr_modify_phone"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_phone"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_phone" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="0dp"
+        android:textColor="@color/tx_colorc"
+        android:textColorHint="@color/tx_colord"
+        android:inputType="phone"
+        android:textSize="@dimen/tx_size15"
+        android:hint="@string/order_hint_receiveraddr_phone"
+        android:background="@null"
+        android:maxLines="1"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_phone"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_middle"
+        app:layout_constraintTop_toTopOf="@id/bg_phone" />
+
+    <View
+        android:id="@+id/line_phone"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_phone" />
+
+    <!--所在区域-->
+    <View
+        android:id="@+id/bg_area"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:47"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_phone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/tx_colorb"
+        android:textSize="@dimen/tx_size15"
+        android:text="@string/order_receiveraddr_modify_area"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_area"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_area" />
+
+    <EditText
+        android:id="@+id/et_area"
+        android:layout_width="0dp"
+        android:textColor="@color/tx_colorc"
+        android:textColorHint="@color/tx_colord"
+        android:inputType="text"
+        android:textSize="@dimen/tx_size15"
+        android:hint="@string/order_hint_receiveraddr_area"
+        android:background="@null"
+        android:maxLines="1"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/bg_area"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_middle"
+        app:layout_constraintTop_toTopOf="@id/bg_area" />
+
+    <View
+        android:id="@+id/line_area"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_area" />
+
+    <!--详细地址-->
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clayout_address"
+        android:layout_width="0dp"
+        android:paddingTop="@dimen/gap_size16"
+        android:paddingBottom="87dp"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_area">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/gline_middle2"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.24" />
+
+        <TextView
+            android:id="@+id/tv_address_left"
+            android:layout_width="wrap_content"
+            android:textColor="@color/tx_colorb"
+            android:textSize="@dimen/tx_size15"
+            android:text="@string/order_receiveraddr_modify_detailaddr"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gap_size16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="0dp"
+            android:textColor="@color/tx_colorc"
+            android:textColorHint="@color/tx_colord"
+            android:inputType="text"
+            android:textSize="@dimen/tx_size15"
+            android:hint="@string/order_hint_receiveraddr_address"
+            android:layout_marginEnd="@dimen/gap_size17"
+            android:background="@null"
+            android:maxLines="5"
+            android:layout_height="wrap_content"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_address_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gline_middle2" />
+
+        <View
+            android:id="@+id/line_address"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <!--保存-->
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_marginBottom="@dimen/gap_size16"
+        android:layout_marginStart="@dimen/gap_size16"
+        android:layout_marginEnd="@dimen/gap_size17"
+        android:text="@string/order_receiveraddr_save"
+        android:enabled="false"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/selector_btnbg_a"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/gap_size16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="327:40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clayout_address"
+        app:layout_constraintVertical_bias="1" />
+</android.support.constraint.ConstraintLayout>

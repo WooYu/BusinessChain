@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#FF5234</color>
+
+    <color name="viewLineColor">#F0F0F0</color>
+
+    <!--字体颜色-->
+    <color name="tx_colora">#111111</color>
+    <color name="tx_colorb">#333333</color>
+    <color name="tx_colorc">#666666</color>
+    <color name="tx_colord">#999999</color>
+    <color name="tx_colore">#FF5234</color>
+    <color name="tx_colorf">#FFFFFF</color>
+    <color name="tx_colorg">#BBBBBB</color>
+    <color name="tx_colorh">#FFBE9D</color>
+    <color name="txhint_colora">#6c6c6c</color>
+    <color name="txhint_colorb">#999999</color>
+
+
+    <!--页面背景色-->
+    <color name="appbg_color">#F8F8F8</color>
+    <color name="appbg_color_white">#FFFFFF</color>
+
+    <!--分割线颜色-->
+    <color name="line_colora">#ECECEC</color>
+    <color name="line_colorb">#F8F8F8</color>
+    <color name="line_colorc">#E8E8E8</color>
+
+    <!--边框颜色-->
+    <color name="border_colora">#E8E8E8</color>
+
+    <!--底部导航-->
+    <color name="navi_txunselect_color">#BBBBBB</color>
+    <color name="navi_txselect_color">#FF5234</color>
+</resources>

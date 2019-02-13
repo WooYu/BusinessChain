@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lcworld.module_home">
+
+    <application>
+        <!--在自己组件中注册Activity-->
+        <activity android:name="com.lcworld.module_home.activity.SearchGoodsAct" />
+        <activity android:name="com.lcworld.module_home.activity.SearchGoodsResultAct" />
+        <activity android:name="com.lcworld.module_home.activity.GoodsHotSaleListAct" />
+        <activity android:name="com.lcworld.module_home.activity.MessageListAct" />
+        <activity android:name="com.lcworld.module_home.activity.OperatorApplyAct" />
+        <activity android:name="com.lcworld.module_home.activity.MessageDetailAct" />
+        <activity android:name="com.lcworld.module_home.activity.OperatorAreaLocationAct" />
+        <activity android:name="com.lcworld.module_home.activity.OperatorAuditResultAct" />
+    </application>
+
+</manifest>

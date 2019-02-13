@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_start"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="@dimen/gap_size16" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_end"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_end="@dimen/gap_size17" />
+
+    <com.qmuiteam.qmui.widget.QMUITopBarLayout
+        android:id="@+id/qmui_topbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--销售商品数量-->
+    <View
+        android:id="@+id/bg_salesvolume"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/appbg_color_white"
+        android:layout_marginTop="@dimen/gap_size6"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qmui_topbar" />
+
+    <TextView
+        android:id="@+id/tv_quantity_desc"
+        android:text="@string/order_create_salesvolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textColor="@color/tx_colorb"
+        app:layout_constraintBottom_toBottomOf="@id/bg_salesvolume"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_salesvolume" />
+
+    <View
+        android:id="@+id/bg_changenum"
+        android:layout_width="0dp"
+        android:background="@drawable/order_shape_shoppingcart_num"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_salesvolume"
+        app:layout_constraintDimensionRatio="73:19"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/bg_salesvolume"
+        app:layout_constraintWidth_percent="0.2" />
+
+    <View
+        android:id="@+id/line_sub"
+        android:layout_width="1dp"
+        android:background="@color/line_colorc"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/gap_size21"
+        app:layout_constraintBottom_toBottomOf="@id/bg_changenum"
+        app:layout_constraintStart_toStartOf="@id/bg_changenum"
+        app:layout_constraintTop_toTopOf="@id/bg_changenum" />
+
+    <View
+        android:id="@+id/line_add"
+        android:layout_width="1dp"
+        android:background="@color/line_colorc"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/gap_size21"
+        app:layout_constraintBottom_toBottomOf="@id/bg_changenum"
+        app:layout_constraintEnd_toEndOf="@id/bg_changenum"
+        app:layout_constraintTop_toTopOf="@id/bg_changenum" />
+
+    <TextView
+        android:id="@+id/tv_operate_sub"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/order_trolley_sub"
+        android:textSize="@dimen/tx_size15"
+        android:gravity="center"
+        android:textColor="@color/tx_colorc"
+        app:layout_constraintBottom_toBottomOf="@id/bg_changenum"
+        app:layout_constraintEnd_toEndOf="@id/line_sub"
+        app:layout_constraintStart_toStartOf="@id/bg_changenum"
+        app:layout_constraintTop_toTopOf="@id/bg_changenum" />
+
+    <TextView
+        android:id="@+id/view_operate_add"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_height="0dp"
+        android:textColor="@color/tx_colorc"
+        android:textSize="@dimen/tx_size15"
+        android:text="@string/order_trolley_add"
+        app:layout_constraintBottom_toBottomOf="@id/bg_changenum"
+        app:layout_constraintEnd_toEndOf="@id/bg_changenum"
+        app:layout_constraintStart_toStartOf="@id/line_add"
+        app:layout_constraintTop_toTopOf="@id/bg_changenum" />
+
+    <TextView
+        android:id="@+id/tv_quantity_value"
+        android:textSize="@dimen/tx_size15"
+        android:textColor="@color/tx_colorb"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/bg_changenum"
+        app:layout_constraintEnd_toEndOf="@id/line_add"
+        app:layout_constraintStart_toStartOf="@id/line_sub"
+        app:layout_constraintTop_toTopOf="@id/bg_changenum"
+        tools:text="11" />
+
+    <!--销售周期-->
+    <View
+        android:id="@+id/bg_cycle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/appbg_color_white"
+        android:layout_marginTop="@dimen/gap_size3"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_salesvolume" />
+
+    <TextView
+        android:id="@+id/tv_cycle_desc"
+        android:text="@string/order_create_salescycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textColor="@color/tx_colorb"
+        app:layout_constraintBottom_toBottomOf="@id/bg_cycle"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_cycle" />
+
+    <TextView
+        android:id="@+id/tv_cycle_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textColor="@color/tx_colorb"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/bg_cycle"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/bg_cycle"
+        tools:text="@string/order_format_salescycle" />
+
+    <!--结算时间-->
+    <View
+        android:id="@+id/bg_settletime"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/appbg_color_white"
+        android:layout_marginTop="@dimen/gap_size1"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_cycle" />
+
+    <TextView
+        android:id="@+id/tv_settletime_desc"
+        android:text="@string/order_create_settlementdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textColor="@color/tx_colorb"
+        app:layout_constraintBottom_toBottomOf="@id/bg_settletime"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_settletime" />
+
+    <TextView
+        android:id="@+id/tv_settletime_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textStyle="bold"
+        android:textColor="@color/tx_colorb"
+        app:layout_constraintBottom_toBottomOf="@id/bg_settletime"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/bg_settletime"
+        tools:text="@string/order_format_settlementdate" />
+
+    <!--预期利润-->
+    <View
+        android:id="@+id/bg_profit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/appbg_color_white"
+        android:layout_marginTop="@dimen/gap_size1"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_settletime" />
+
+    <TextView
+        android:id="@+id/tv_profit_desc"
+        android:text="@string/order_create_earnprofit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textColor="@color/tx_colorb"
+        app:layout_constraintBottom_toBottomOf="@id/bg_profit"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_profit" />
+
+    <TextView
+        android:id="@+id/tv_profit_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textStyle="bold"
+        android:textColor="@color/tx_colorb"
+        app:layout_constraintBottom_toBottomOf="@id/bg_profit"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/bg_profit"
+        tools:text="@string/order_format_earnprofit" />
+
+    <!--结算收益商链钻-->
+    <View
+        android:id="@+id/bg_diamond"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/appbg_color_white"
+        android:layout_marginTop="@dimen/gap_size1"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_profit" />
+
+    <TextView
+        android:id="@+id/tv_diamond_desc"
+        android:text="@string/order_create_earndiamond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textColor="@color/tx_colorb"
+        app:layout_constraintBottom_toBottomOf="@id/bg_diamond"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_diamond" />
+
+    <TextView
+        android:id="@+id/tv_diamond_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textStyle="bold"
+        android:textColor="@color/tx_colorb"
+        app:layout_constraintBottom_toBottomOf="@id/bg_diamond"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintTop_toTopOf="@id/bg_diamond"
+        tools:text="@string/order_format_earndiamond" />
+
+    <!--合同明细-->
+    <View
+        android:id="@+id/bg_contract"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/appbg_color_white"
+        android:layout_marginTop="@dimen/gap_size1"
+        app:layout_constraintDimensionRatio="360:43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_diamond" />
+
+    <TextView
+        android:id="@+id/tv_constract_desc"
+        android:text="@string/order_create_contractdetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/tx_size15"
+        android:textColor="@color/tx_colorb"
+        app:layout_constraintBottom_toBottomOf="@id/bg_contract"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toTopOf="@id/bg_contract" />
+
+    <CheckBox
+        android:id="@+id/cbox_constract_value"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:button="@drawable/selector_cbox_c"
+        android:paddingEnd="@dimen/gap_size17"
+        app:layout_constraintBottom_toBottomOf="@id/bg_contract"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bg_contract" />
+
+    <!--提交订单-->
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="0dp"
+        android:layout_marginBottom="@dimen/gap_size15"
+        android:layout_height="0dp"
+        android:textSize="@dimen/gap_size15"
+        android:background="@drawable/selector_btnbg_a"
+        android:textColor="@color/tx_colorf"
+        android:text="@string/order_create_submit"
+        android:enabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="327:40"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_start" />
+</android.support.constraint.ConstraintLayout>

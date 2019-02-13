@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_start"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_begin="@dimen/gap_size12" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gline_end"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_end="@dimen/gap_size10" />
+
+    <!--标题-->
+    <include layout="@layout/home_layout_search_title" />
+
+    <!--筛选项-->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clayout_filtrate"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/gap_size20"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_searchbox">
+
+        <include layout="@layout/home_layout_filtrate" />
+    </android.support.constraint.ConstraintLayout>
+
+    <!--列表-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_goods"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/gap_size17"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/gline_end"
+        app:layout_constraintStart_toStartOf="@id/gline_start"
+        app:layout_constraintTop_toBottomOf="@id/clayout_filtrate"
+        tools:layoutManager="GridLayoutManager"
+        tools:listitem="@layout/home_item_goods_grid"
+        tools:spanCount="2" />
+</android.support.constraint.ConstraintLayout>

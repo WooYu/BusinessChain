@@ -1,0 +1,10 @@
+<resources>
+    <string name="goods_name">module_goods</string>
+    <string name="goods_title">享橙</string>
+    <string name="goods_search_tip">粘贴宝贝链接，先领券后购买</string>
+    <string name="goods_detail_service">客服</string>
+    <string name="goods_detail_shoppingcart">购物车</string>
+    <string name="goods_detail_confirmpurchase">确认购买</string>
+    <string name="goods_detail_addshoppingcart">加入购物车</string>
+    <string name="goods_detail_paynow">立即支付</string>
+</resources>

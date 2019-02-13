@@ -1,0 +1,77 @@
+一、组件介绍
+app
+library_base（公共base类）:存放一些公共方法、公共常量、组件通信的契约类等。上层被所有组件依赖，下层依赖公共资源库、图片选择库、路由库等通用库，
+             通过它，避免了组件直接依赖各种通用库，承上启下，作为整个组件化的核心库包含第三方依赖库（二维码、轮播图）
+library_res（公共资源）:主要存放与res相关的公共数据，比如图片、style、anim、color等。
+module_main（启动模块）:启动页、主模块
+module_home(首页模块)：首页、会员商品列表、我的
+module_goods（商品模块）：商品详情、店铺、客服、详情、评论
+module_order（订单模块）:购物车、订单管理、支付
+module_account(账号管理）：登录、注册、忘记密码、找回密码、账号信息、账号认证、会员管理
+module_exchange（钱包模块）：账号余额、银行卡、商链钻
+module_backstage(后台管理):粉丝
+module_system（设置模块）:意见反馈、关于我们、常见问题、消息设置
+module_share（分享模块）：分享
+
+二、目录简介
+config.gradle:控制第三方依赖库版本、编译版本。需要和MVVMHabit里面第三方依赖库的版本一致。
+module.build.gradle:非app组件公用的build.gradle
+
+三、框架参考
+MVVM+谷歌部分Jetpack组件+Arouter：https://github.com/goldze/MVVMHabitComponent
+阿里Arouter:https://github.com/alibaba/ARouter
+电商组件化分析实例： https://juejin.im/post/5a6482f86fb9a01ca7138cbd#heading-27
+
+四、注意事项
+1、config.gradle
+部分第三方依赖库的版本，需要和MVVMHabit保持一致
+2、AndroidUtilCode https://github.com/Blankj/AndroidUtilCode
+MVVMHabit中也拷贝了部分AndroidUtilCode的代码，并且在BaseApplication中进行了初始化。但是优先使用com.blankj:utilcode包下的工具。
+3、BaseActivityEnhance、BaseFragmentEnhance、BaseViewModelEnhance推荐使用，对网络请求和对话框进一步加工。
+
+五、文件命名规范（仅供参考）
+    注:限定约束符时，可以省略
+1、Activity相关
+    ·类
+    Act或者Activity标识
+    ·xml
+    限定约束符_activity/act_功能名称.xml
+2、Fragment相关
+    ·类
+    Frag或者Fragment标识
+    ·xml
+    限定约束符_fragment/frag_功能名称.xml
+3、Adapter相关
+    ·类
+    Adapter标识
+    ·xml
+    限定约束符_item_功能名称.xml
+4、弹窗相关
+    ·类
+    Popup标识
+    ·xml
+    限定修饰符_popup_功能名称.xml
+5、提取的布局
+    .xml
+    限定修饰符layout_功能名称.xml
+6、接口相关
+    ·接口
+    Interf标识
+    ·实现
+    Impl标识
+7、抽象类
+    ·Abs标识
+8、资源文件
+    ·selector
+    限定约束符_selector_功能名称.xml
+    ·shape
+    限定约束符_shape_功能名称.xml
+    ·anim
+    限定约束符_anim_功能名称.xml
+    ·图片
+    限定约束符_模块_功能名称.png/jpg
+9、JavaBean相关
+    ·RxBus事件
+    Event开头标识
+    ·网络请求的data
+    Data开头标识

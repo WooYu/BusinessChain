@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.lcworld.module_goods.viewmodel.GoodsViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+
+        <com.qmuiteam.qmui.widget.QMUITopBarLayout
+            android:id="@+id/qmui_topbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/bg_search"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintDimensionRatio="278:21"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/qmui_topbar"
+            app:onClickCommand="@{viewModel.searchBoxClickCommand}" />
+
+        <ImageView
+            android:id="@+id/iv_seach_left"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="10dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="@id/bg_search"
+            app:layout_constraintStart_toStartOf="@id/bg_search"
+            app:layout_constraintTop_toTopOf="@id/bg_search" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/goods_search_tip"
+            android:textColor="@color/txhint_colora"
+            android:textSize="@dimen/tx_size12"
+            app:layout_constraintBottom_toBottomOf="@id/bg_search"
+            app:layout_constraintEnd_toEndOf="@id/bg_search"
+            app:layout_constraintStart_toEndOf="@id/iv_seach_left"
+            app:layout_constraintTop_toTopOf="@id/bg_search" />
+
+        <View
+            android:id="@+id/line_search"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/line_colora"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bg_search" />
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="8dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line_search"
+            app:layout_constraintWidth_percent="0.25">
+
+            <me.majiajie.pagerbottomtabstrip.PageNavigationView
+                android:id="@+id/navi_left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </ScrollView>
+
+        <com.lcworld.library_base.widget.viewpager.NoTouchViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/scrollview"
+            app:layout_constraintTop_toBottomOf="@id/line_search" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
