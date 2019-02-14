@@ -15,6 +15,10 @@
     <dimen name="tx_size18">18sp</dimen>
     <dimen name="tx_size19">19sp</dimen>
     <dimen name="tx_size20">20sp</dimen>
+    <dimen name="tx_size21">21sp</dimen>
+    <dimen name="tx_size22">22sp</dimen>
+    <dimen name="tx_size23">23sp</dimen>
+    <dimen name="tx_size24">24sp</dimen>
 
     <!--常用间隔-->
     <dimen name="gap_size1">1dp</dimen>

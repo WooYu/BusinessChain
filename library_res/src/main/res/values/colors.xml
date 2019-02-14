@@ -15,6 +15,7 @@
     <color name="tx_colorf">#FFFFFF</color>
     <color name="tx_colorg">#BBBBBB</color>
     <color name="tx_colorh">#FFBE9D</color>
+    <color name="tx_color_FFD8D1">#FFD8D1</color>
     <color name="txhint_colora">#6c6c6c</color>
     <color name="txhint_colorb">#999999</color>
 

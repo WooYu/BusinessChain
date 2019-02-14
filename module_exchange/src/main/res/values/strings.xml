@@ -1,3 +1,13 @@
 <resources>
     <string name="exchange_name">module_exchange</string>
+    <string name="exchange_wallet">钱包</string>
+    <string name="exchange_account_balance">账户余额</string>
+    <string name="exchange_money">￥%s</string>
+    <string name="exchange_settlement_income">结算收益￥%s</string>
+    <string name="exchange_recharge">充值</string>
+    <string name="exchange_withdraw">提现</string>
+    <string name="exchange_bankcard">银行卡</string>
+    <string name="exchange_bill">账单</string>
+    <string name="exchange_order">订单</string>
+    <string name="exchange_commodity_chain">商链钻</string>
 </resources>
