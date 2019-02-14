@@ -29,6 +29,15 @@ public class RouterActivityPath {
     }
 
     /**
+     * 商品管理组件
+     */
+    public static class Product{
+        private static final String PRODUCT = "/product";
+        //商品详情
+        public static final String PAGER_PRODUCTDETAIL = PRODUCT + "/detail";
+    }
+
+    /**
      * 订单管理组件
      */
     public static class Order {

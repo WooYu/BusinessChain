@@ -251,7 +251,9 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, H
             adapters.add(mHotSaleAdapter = new HomeSubHotSaleAdapter(getActivity(), hotSaleLayoutHelper, new HomeSubHotSaleAdapter.ItemClickListener() {
                 @Override
                 public void clickedItem(int position) {
-                    ToastUtils.showShort(position + " ");
+                    ARouter.getInstance().build(RouterActivityPath.Product.PAGER_PRODUCTDETAIL)
+                            .withInt("goods_id",mHotSaleAdapter.getmDatas().get(position).getGoods_id())
+                            .navigation();
                 }
             }));
         }

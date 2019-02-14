@@ -33,13 +33,8 @@ public class MainActivity extends BaseActivityEnhance<MainActivityMainBinding, B
     @Override
     public void initData() {
         super.initData();
-        initStatusBar();
         initFragment();
         initBottomTab();
-    }
-
-    private void initStatusBar() {
-
     }
 
     private void initFragment() {

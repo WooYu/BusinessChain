@@ -39,6 +39,10 @@ public class HomeSubHotSaleAdapter extends DelegateAdapter.Adapter<HomeSubHotSal
         notifyDataSetChanged();
     }
 
+    public List<DataGoodsInfo> getmDatas() {
+        return mDatas;
+    }
+
     @Override
     public LayoutHelper onCreateLayoutHelper() {
         return mLayoutHelper;

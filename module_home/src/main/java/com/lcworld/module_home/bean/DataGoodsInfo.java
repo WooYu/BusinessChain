@@ -18,6 +18,7 @@ public class DataGoodsInfo {
     private int goods_id;
     private String goods_name;
     private double price;
+    private double sprice;
     private int quantity;
     private String sn;
     private String thumbnail;
@@ -60,6 +61,14 @@ public class DataGoodsInfo {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getSprice() {
+        return sprice;
+    }
+
+    public void setSprice(double sprice) {
+        this.sprice = sprice;
     }
 
     public int getQuantity() {

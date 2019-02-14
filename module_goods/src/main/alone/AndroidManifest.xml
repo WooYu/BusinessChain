@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.lcworld.module_goods.activity.ProductDetailAct" />
+        <activity android:name="com.lcworld.module_goods.activity.ProductDetailAct"
+                  android:theme="@style/MainTheme.TranslucentTheme"/>
     </application>
 </manifest>
