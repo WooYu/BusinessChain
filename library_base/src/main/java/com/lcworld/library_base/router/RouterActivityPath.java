@@ -42,7 +42,8 @@ public class RouterActivityPath {
      */
     public static class Order {
         private static final String ORDER = "/order";
-        public static final String PAGER_ORDER = ORDER + "/order";
+        public static final String Pager_Order_Confirm1 = ORDER + "/confirm1";
+        public static final String Pager_Order_Confirm2 = ORDER + "/confirm2";
         public static final String PAGER_TROLLEY = ORDER + "/trolley";
     }
 

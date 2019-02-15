@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/tv_operation_service_b"
+            android:textSize="@dimen/tx_size10"
+            android:drawablePadding="@dimen/gap_size5"
+            android:textColor="@color/tx_colorg"
+            android:layout_width="wrap_content"
+            android:drawableTop="@mipmap/goods_detail_service"
+            android:text="@string/goods_detail_service"
+            android:layout_marginStart="@dimen/gap_size29"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+            android:id="@+id/btn_operation_confirmbuy"
+            android:layout_width="0dp"
+            android:text="@string/goods_detail_confirmpurchase"
+            android:textColor="@color/tx_colorf"
+            android:background="@drawable/shape_btnbg_b"
+            android:layout_marginStart="@dimen/gap_size14"
+            android:textSize="@dimen/tx_size15"
+            android:layout_marginEnd="@dimen/gap_size9"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="293:30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_operation_service_b"
+            app:layout_constraintTop_toTopOf="parent"/>
+</android.support.constraint.ConstraintLayout>

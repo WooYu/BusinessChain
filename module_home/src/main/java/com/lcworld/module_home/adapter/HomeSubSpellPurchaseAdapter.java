@@ -37,6 +37,10 @@ public class HomeSubSpellPurchaseAdapter extends DelegateAdapter.Adapter<HomeSub
         notifyDataSetChanged();
     }
 
+    public List<DataSpellDeals> getmDatas() {
+        return mDatas;
+    }
+
     @Override
     public LayoutHelper onCreateLayoutHelper() {
         return mLayoutHelper;
@@ -53,7 +57,7 @@ public class HomeSubSpellPurchaseAdapter extends DelegateAdapter.Adapter<HomeSub
     }
 
     @Override
-    protected void onBindViewHolderWithOffset(HomeSubSpellPurchaseAdapter.SpellBuyViewHolder holder, int position, final int offsetTotal) {
+    protected void onBindViewHolderWithOffset(HomeSubSpellPurchaseAdapter.SpellBuyViewHolder holder, final int position, final int offsetTotal) {
         super.onBindViewHolderWithOffset(holder, position, offsetTotal);
         GlideApp.with(mContext)
                 .load(mDatas.get(position).getImg_url())
@@ -65,7 +69,7 @@ public class HomeSubSpellPurchaseAdapter extends DelegateAdapter.Adapter<HomeSub
                 if (null == mClickEvent) {
                     return;
                 }
-                mClickEvent.clickedItem(offsetTotal);
+                mClickEvent.clickedItem(position);
             }
         });
     }

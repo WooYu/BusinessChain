@@ -35,8 +35,9 @@
 
     //商品类型NORMAL普通POINT积分SHANGBI商币
     <string-array name="goods_type">
-        <item>NORMAL</item>
-        <item>POINT</item>
-        <item>SHANGBI</item>
+        <item>normal</item>
+        <item>point</item>
+        <item>shangbi</item>
+        <item>pintuan</item>
     </string-array>
 </resources>

@@ -2,7 +2,7 @@ package com.lcworld.module_goods.bean;
 /**
  * 商品属性下的分类信息
  */
-public class DataGoodsSpecInfo {
+public class DataSpecValueVo {
 
     /**
      * spec_id : 0
@@ -13,12 +13,12 @@ public class DataGoodsSpecInfo {
      * spec_value_id : 0
      */
 
-    private int spec_id;
-    private String spec_image;
-    private String spec_name;
-    private int spec_type;
-    private String spec_value;
-    private int spec_value_id;
+    private int spec_id;//规格项id
+    private String spec_image;//规格的图片
+    private String spec_name;//规格名称
+    private int spec_type;//该规格是否有图片，1 有 0 没有
+    private String spec_value;//规格值名字
+    private int spec_value_id;//规格值id
 
     public int getSpec_id() {
         return spec_id;

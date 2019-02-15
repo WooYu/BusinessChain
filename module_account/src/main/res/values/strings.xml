@@ -10,6 +10,9 @@
     <string name="account_hint_authcode">请输入验证码</string>
     <string name="account_hint_referralcode">请输入推荐人手机号或者8位推荐码</string>
 
+    <!--tip-->
+    <string name="account_tip_loginsuccess">登录成功！</string>
+
     <!--empty-->
     <string name="account_empty_phone">请输入手机号！</string>
     <string name="account_empty_psw">请输入登录密码！</string>

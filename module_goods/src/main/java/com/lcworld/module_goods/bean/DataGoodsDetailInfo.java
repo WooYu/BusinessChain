@@ -36,34 +36,34 @@ public class DataGoodsDetailInfo {
      * weight : 0
      */
 
-    private Integer category_id;
+    private Integer category_id;//分类id
     private String category_name;
-    private Integer disabled;
-    private Integer enable_quantity;
-    private Integer goods_id;
-    private String goods_name;
+    private Integer disabled;//是否放入回收站 0 删除 1未删除
+    private Integer enable_quantity;//可用库存
+    private Integer goods_id;//商品id
+    private String goods_name;//商品名称
     private Integer goods_off;
-    private Integer goods_transfee_charge;
+    private Integer goods_transfee_charge;//谁承担运费0：买家承担，1：卖家承担
     private Integer grade;
-    private String intro;
-    private Integer is_auth;
-    private Long last_modify;
-    private Integer market_enable;
-    private String meta_description;
-    private String meta_keywords;
-    private String page_title;
-    private Double price;
-    private Integer quantity;
-    private Integer seller_id;
-    private String sn;
-    private Integer template_id;
-    private String thumbnail;
-    private Double weight;
-    private int goods_type;
+    private String intro;//详情
+    private Integer is_auth;//是否审核通过 0 未审核 1 通过 2 不通过
+    private Long last_modify;//商品最后修改时间
+    private Integer market_enable;//是否上架，1上架 0下架
+    private String meta_description;//seo描述
+    private String meta_keywords;//seo关键字
+    private String page_title;//seo标题
+    private Double price;//商品价格
+    private Integer quantity;//库存
+    private Integer seller_id;//卖家
+    private String sn;//商品编号
+    private Integer template_id;//运费模板id,不需要运费模板时值是0
+    private String thumbnail;//商品缩略图
+    private Double weight;//重量
+    private String goods_type;//商品类型normal普通point积分shangbi商币
     private Double sprice;
     private List<DataGoodsGalleryInfo> gallery_list;
-    private List<DataGoodsParamsGroupVOInfo> param_list;
-    private List<DataGoodsSKUInfo> sku_list;
+    private List<DataGoodsParamsGroupVoInfo> param_list;
+    private List<DataSKUVo> sku_list;
 
     public Integer getCategory_id() {
         return category_id;
@@ -249,11 +249,11 @@ public class DataGoodsDetailInfo {
         this.weight = weight;
     }
 
-    public int getGoods_type() {
+    public String getGoods_type() {
         return goods_type;
     }
 
-    public void setGoods_type(int goods_type) {
+    public void setGoods_type(String goods_type) {
         this.goods_type = goods_type;
     }
 
@@ -273,19 +273,19 @@ public class DataGoodsDetailInfo {
         this.gallery_list = gallery_list;
     }
 
-    public List<DataGoodsParamsGroupVOInfo> getParam_list() {
+    public List<DataGoodsParamsGroupVoInfo> getParam_list() {
         return param_list;
     }
 
-    public void setParam_list(List<DataGoodsParamsGroupVOInfo> param_list) {
+    public void setParam_list(List<DataGoodsParamsGroupVoInfo> param_list) {
         this.param_list = param_list;
     }
 
-    public List<DataGoodsSKUInfo> getSku_list() {
+    public List<DataSKUVo> getSku_list() {
         return sku_list;
     }
 
-    public void setSku_list(List<DataGoodsSKUInfo> sku_list) {
+    public void setSku_list(List<DataSKUVo> sku_list) {
         this.sku_list = sku_list;
     }
 }

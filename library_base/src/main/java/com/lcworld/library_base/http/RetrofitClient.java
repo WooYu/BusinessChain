@@ -2,7 +2,9 @@ package com.lcworld.library_base.http;
 
 import android.content.Context;
 import android.text.TextUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.lcworld.library_base.BuildConfig;
+import com.lcworld.library_base.global.SPKeyGlobal;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -15,15 +17,14 @@ import me.goldze.mvvmhabit.http.interceptor.logging.Level;
 import me.goldze.mvvmhabit.http.interceptor.logging.LoggingInterceptor;
 import me.goldze.mvvmhabit.utils.KLog;
 import me.goldze.mvvmhabit.utils.Utils;
-import okhttp3.Cache;
-import okhttp3.ConnectionPool;
-import okhttp3.OkHttpClient;
+import okhttp3.*;
 import okhttp3.internal.platform.Platform;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -80,6 +81,19 @@ public class RetrofitClient {
         okHttpClient = new OkHttpClient.Builder()
                 .cookieJar(new CookieJarImpl(new PersistentCookieStore(mContext)))
 //                .cache(cache)
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request original = chain.request();
+
+                        Request request = original.newBuilder()
+                                .addHeader("Authorization", SPUtils.getInstance().getString(SPKeyGlobal.Key_Account_Access_Token))
+                                .method(original.method(), original.body())
+                                .build();
+
+                        return chain.proceed(request);
+                    }
+                })
                 .addInterceptor(new BaseInterceptor(headers))
                 .addInterceptor(new CacheInterceptor(mContext))
                 .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)

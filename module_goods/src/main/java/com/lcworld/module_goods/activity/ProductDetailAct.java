@@ -1,14 +1,18 @@
 package com.lcworld.module_goods.activity;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.databinding.Observable;
 import android.databinding.ObservableList;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.webkit.*;
+import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -33,6 +37,12 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
     @Autowired(name = "goods_id")
     public int mGoodsID;
 
+    private TextView tvOperationServiceA;//tv_operation_service_a
+    private TextView tvOperationTurn2ShoppingCart;//tv_operation_shoppingcart
+    private Button btnOperationAdd2ShoppingCart;//btn_operation_addShoppingCart
+    private Button btnOperationPayNow;//btn_operation_paynow
+    private TextView tvOperationServiceB;//tv_operation_service_b
+    private Button btnOperationConfirmBuy;//btn_operation_confirmbuy
 
     @Override
     public int initContentView(Bundle bundle) {
@@ -47,7 +57,7 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
     @Override
     public void initData() {
         super.initData();
-        ARouter.getInstance().inject(this);//添加在onCreate（）
+        ARouter.getInstance().inject(this);
     }
 
     @Override
@@ -56,9 +66,11 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
 
         initView_Webview();
         initObservable_TopBanner();
-        initObservable_Detail();
+        initObservable_DetailIntro();
+        initObservable_GoodsType();
 
         viewModel.requestDetail(mGoodsID);
+        viewModel.requestDetailSKU(mGoodsID);
     }
 
     @Override
@@ -77,7 +89,7 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
         });
     }
 
-    private void initObservable_Detail() {
+    private void initObservable_DetailIntro() {
         viewModel.productDetail.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
@@ -86,9 +98,17 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
         });
     }
 
+    private void initObservable_GoodsType() {
+        viewModel.productType.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                updateView_BottomOperation();
+            }
+        });
+    }
+
     @SuppressLint("JavascriptInterface")
     private void initView_Webview() {
-        binding.wvDetail.setWebChromeClient(webChromeClient);
         binding.wvDetail.setWebViewClient(webViewClient);
 
         WebSettings webSettings = binding.wvDetail.getSettings();
@@ -117,16 +137,48 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
         binding.viewBanner.setData(viewModel.galleryInfoList, null);
     }
 
+    private void updateView_BottomOperation() {
+        String[] configGoodsType = getResources().getStringArray(R.array.goods_type);
+        if ((viewModel.productType.get().equals(configGoodsType[0]) || viewModel.productType.get().equals(configGoodsType[2]))
+                && null != binding.vStubBottomA.getViewStub()) {
+            binding.vStubBottomA.getViewStub().inflate();
+            tvOperationServiceA = findViewById(R.id.tv_operation_service_a);
+            tvOperationTurn2ShoppingCart = findViewById(R.id.tv_operation_shoppingcart);
+            btnOperationAdd2ShoppingCart = findViewById(R.id.btn_operation_addShoppingCart);
+            btnOperationPayNow = findViewById(R.id.btn_operation_paynow);
+            btnOperationPayNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewModel.requestBuyNow(256, 1);
+                }
+            });
+            btnOperationAdd2ShoppingCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewModel.requestAdd2ShoppingCart(256,1);
+                }
+            });
+        } else if (viewModel.productType.get().equals(configGoodsType[3]) && null != binding.vStubBottomB.getViewStub()) {
+            binding.vStubBottomB.getViewStub().inflate();
+            tvOperationServiceB = findViewById(R.id.tv_operation_service_b);
+            btnOperationConfirmBuy = findViewById(R.id.btn_operation_confirmbuy);
+            btnOperationConfirmBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ARouter.getInstance().build(RouterActivityPath.Order.Pager_Order_Confirm2).navigation();
+                }
+            });
+        }
+    }
+
     //WebViewClient主要帮助WebView处理各种通知、请求事件
     private WebViewClient webViewClient = new WebViewClient() {
         @Override
         public void onPageFinished(WebView view, String url) {//页面加载完成
-//            progressBar.setVisibility(View.GONE);
         }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {//页面开始加载
-//            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -136,38 +188,5 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
         }
 
     };
-
-    //WebChromeClient主要辅助WebView处理Javascript的对话框、网站图标、网站title、加载进度等
-    private WebChromeClient webChromeClient = new WebChromeClient() {
-        //不支持js的alert弹窗，需要自己监听然后通过dialog弹窗
-        @Override
-        public boolean onJsAlert(WebView webView, String url, String message, JsResult result) {
-            AlertDialog.Builder localBuilder = new AlertDialog.Builder(webView.getContext());
-            localBuilder.setMessage(message).setPositiveButton("确定", null);
-            localBuilder.setCancelable(false);
-            localBuilder.create().show();
-
-            //注意:
-            //必须要这一句代码:result.confirm()表示:
-            //处理结果为确定状态同时唤醒WebCore线程
-            //否则不能继续点击按钮
-            result.confirm();
-            return true;
-        }
-
-        //获取网页标题
-        @Override
-        public void onReceivedTitle(WebView view, String title) {
-            super.onReceivedTitle(view, title);
-            KLog.i("网页标题:" + title);
-        }
-
-        //加载进度回调
-        @Override
-        public void onProgressChanged(WebView view, int newProgress) {
-//            progressBar.setProgress(newProgress);
-        }
-    };
-
 
 }

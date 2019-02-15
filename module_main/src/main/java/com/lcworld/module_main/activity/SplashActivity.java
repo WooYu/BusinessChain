@@ -27,7 +27,7 @@ public class SplashActivity extends Activity {
      * 进入主页面
      */
     private void inMain() {
-        startActivity(new Intent(this, GuideActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

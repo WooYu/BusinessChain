@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-                name="viewmodel"
+                name="viewModel"
                 type="com.lcworld.module_goods.viewmodel.ProductDetailViewModel"/>
     </data>
 
@@ -63,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/gap_size24"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:text="@{String.valueOf(viewmodel.dPrice)}"
+                        android:text="@{String.valueOf(viewModel.dPrice)}"
                         app:layout_constraintTop_toBottomOf="@id/view_banner"
                         tools:text="300.00"/>
 
@@ -79,7 +79,7 @@
                         android:layout_marginTop="@dimen/gap_size24"
                         app:layout_constraintBaseline_toBaselineOf="@id/tv_price1"
                         app:layout_constraintStart_toEndOf="@id/tv_price1"
-                        android:text="@{String.valueOf(viewmodel.oPrice)}"
+                        android:text="@{String.valueOf(viewModel.oPrice)}"
                         tools:text="300.00"/>
 
                 <View
@@ -106,7 +106,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_price1"
-                        android:text="dafdfadfdsaf"/>
+                        android:text="@{viewModel.prodouctName}"/>
 
                 <!--商品详情-->
                 <WebView
@@ -157,121 +157,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-        <android.support.constraint.ConstraintLayout
-                android:id="@+id/clayout_bottom_a"
-                android:layout_width="0dp"
-                android:background="@color/white"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/bg_bottom">
+        <FrameLayout android:layout_width="0dp"
+                     android:background="@color/white"
+                     android:layout_height="0dp"
+                     app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="@id/bg_bottom">
 
-            <TextView
-                    android:id="@+id/tv_operation_service_a"
-                    android:textSize="@dimen/tx_size10"
-                    android:drawablePadding="@dimen/gap_size5"
-                    android:textColor="@color/tx_colorg"
-                    android:layout_width="wrap_content"
-                    android:drawableTop="@mipmap/goods_detail_service"
-                    android:text="@string/goods_detail_service"
-                    android:layout_marginStart="@dimen/gap_size26"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+            <ViewStub
+                    android:id="@+id/vStub_bottomA"
+                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:layout="@layout/goods_layout_productdetail_bottom_a"/>
 
-            <TextView
-                    android:id="@+id/tv_operation_shoppingcart"
-                    android:textSize="@dimen/tx_size10"
-                    android:drawablePadding="@dimen/gap_size5"
-                    android:textColor="@color/tx_colorg"
-                    android:layout_width="wrap_content"
-                    android:drawableTop="@mipmap/goods_detail_shoppingcart"
-                    android:text="@string/goods_detail_addshoppingcart"
-                    android:layout_marginStart="39dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_operation_service_a"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            <Button
-                    android:id="@+id/btn_operation_addShoppingCart"
-                    android:layout_width="0dp"
-                    android:text="@string/goods_detail_addshoppingcart"
-                    android:textColor="@color/tx_colorf"
-                    android:background="@drawable/shape_btnbg_d"
-                    android:textSize="@dimen/tx_size15"
-                    android:layout_marginTop="@dimen/gap_size7"
-                    android:layout_marginBottom="@dimen/gap_size7"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="100:30"
-                    app:layout_constraintEnd_toStartOf="@id/btn_operation_paynow"
-                    app:layout_constraintHorizontal_bias="1"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toEndOf="@id/tv_operation_shoppingcart"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            <Button
-                    android:id="@+id/btn_operation_paynow"
-                    android:layout_width="0dp"
-                    android:text="@string/goods_detail_paynow"
-                    android:textColor="@color/tx_colorf"
-                    android:background="@drawable/shape_btnbg_b"
-                    android:textSize="@dimen/tx_size15"
-                    android:layout_marginTop="@dimen/gap_size7"
-                    android:layout_marginBottom="@dimen/gap_size7"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="@dimen/gap_size3"
-                    android:layout_marginEnd="@dimen/gap_size10"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="100:30"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/btn_operation_addShoppingCart"
-                    app:layout_constraintTop_toTopOf="parent"/>
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout
-                android:id="@+id/clayout_bottom_b"
-                android:layout_width="0dp"
-                android:background="@color/white"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/bg_bottom">
-
-            <TextView
-                    android:id="@+id/tv_operation_service_b"
-                    android:textSize="@dimen/tx_size10"
-                    android:drawablePadding="@dimen/gap_size5"
-                    android:textColor="@color/tx_colorg"
-                    android:layout_width="wrap_content"
-                    android:drawableTop="@mipmap/goods_detail_service"
-                    android:text="@string/goods_detail_service"
-                    android:layout_marginStart="@dimen/gap_size29"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            <Button
-                    android:id="@+id/btn_operation_confirmbuy"
-                    android:layout_width="0dp"
-                    android:text="@string/goods_detail_confirmpurchase"
-                    android:textColor="@color/tx_colorf"
-                    android:background="@drawable/shape_btnbg_b"
-                    android:layout_marginStart="@dimen/gap_size14"
-                    android:textSize="@dimen/tx_size15"
-                    android:layout_marginEnd="@dimen/gap_size9"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="293:30"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_operation_service_b"
-                    app:layout_constraintTop_toTopOf="parent"/>
-        </android.support.constraint.ConstraintLayout>
+            <ViewStub
+                    android:id="@+id/vStub_bottomB"
+                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:layout="@layout/goods_layout_productdetail_bottom_b"/>
+        </FrameLayout>
 
 
     </android.support.constraint.ConstraintLayout>

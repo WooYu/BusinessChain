@@ -1,5 +1,9 @@
 <resources>
     <string name="goods_name">module_goods</string>
+
+    <!--tip-->
+    <string name="goods_tip_add2shoppingcart">添加购物车成功！</string>
+
     <string name="goods_title">享橙</string>
     <string name="goods_search_tip">粘贴宝贝链接，先领券后购买</string>
     <string name="goods_detail_service">客服</string>

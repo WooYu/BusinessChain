@@ -281,7 +281,9 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, H
             adapters.add(mSpellPurchaseAdapter = new HomeSubSpellPurchaseAdapter(getActivity(), spellBuyLayoutHelper, new HomeSubSpellPurchaseAdapter.ItemClickListener() {
                 @Override
                 public void clickedItem(int position) {
-                    ToastUtils.showShort(position + "");
+                    ARouter.getInstance().build(RouterActivityPath.Product.PAGER_PRODUCTDETAIL)
+                            .withInt("goods_id",mSpellPurchaseAdapter.getmDatas().get(position).getGood_id())
+                            .navigation();
                 }
             }, null));
         }

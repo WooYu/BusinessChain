@@ -9,9 +9,11 @@ import android.text.Editable;
 import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.blankj.utilcode.util.RegexUtils;
-import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
+import com.lcworld.library_base.extension.DialogControllTypeInterf;
 import com.lcworld.library_base.extension.RegexExUtil;
+import com.lcworld.library_base.global.SPKeyGlobal;
 import com.lcworld.library_base.http.*;
 import com.lcworld.module_account.ApiServiceInterf;
 import com.lcworld.module_account.R;
@@ -186,7 +188,13 @@ public class LoginViewModel extends BaseViewModelEnhance {
                 .subscribe(new ResponseObserver<RequestResult<DataLogin>>() {
                     @Override
                     public void onSuccess(RequestResult<DataLogin> result) {
-                        ToastUtils.showShort("登录成功");
+
+                        SPUtils.getInstance()
+                                .put(SPKeyGlobal.Key_Account_Access_Token, result.getData().getAccess_token());
+                        SPUtils.getInstance()
+                                .put(SPKeyGlobal.Key_Account_Refresh_Token, result.getData().getRefresh_token());
+                        dialogControll_show(DialogControllTypeInterf.SUCCESS, getApplication().getString(R.string.account_tip_loginsuccess));
+                        finish();
                     }
 
                 });

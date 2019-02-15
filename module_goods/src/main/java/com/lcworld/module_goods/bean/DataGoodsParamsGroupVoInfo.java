@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 参数组
  */
-public class DataGoodsParamsGroupVOInfo {
+public class DataGoodsParamsGroupVoInfo {
     private int group_id;
     private String group_name;
     private List<DataGoodsParamsVoInfo> params;

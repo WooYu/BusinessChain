@@ -123,7 +123,7 @@ public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends 
         }
         mQMuiDialog.show();
 
-        Observable.timer(1500, TimeUnit.MILLISECONDS)
+        Observable.timer(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
                     @Override
