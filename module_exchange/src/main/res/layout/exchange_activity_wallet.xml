@@ -2,7 +2,7 @@
 <layout>
     <data>
         <variable
-                name="viewmodel"
+                name="viewModel"
                 type="com.lcworld.module_exchange.viewmodel.WalletViewModel"/>
     </data>
     <android.support.constraint.ConstraintLayout

@@ -1,4 +1,7 @@
 apply from: "../module.build.gradle"
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 android {
     defaultConfig {
         //如果是独立模块，则使用当前组件的包名
@@ -15,5 +18,6 @@ dependencies {
     api project(':library_base')
     //组件中依赖阿里路由编译框架
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //单组件依赖的第三方库，这里不能用implementation，否则宿主项目会因为databinding运行时不能找到第三方类报编译错误
 }
