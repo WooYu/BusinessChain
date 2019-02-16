@@ -1,13 +1,14 @@
 package com.lcworld.module_order.viewmodel;
 
 import android.app.Application;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableDouble;
-import android.databinding.ObservableInt;
+import android.databinding.*;
 import android.databinding.adapters.TextViewBindingAdapter;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
+import com.lcworld.library_base.extension.ConvertExUtils;
+import com.lcworld.library_base.extension.DialogControllTypeInterf;
 import com.lcworld.library_base.http.*;
 import com.lcworld.module_order.ApiServiceInterf;
 import com.lcworld.module_order.R;
@@ -41,27 +42,32 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
     public BindingCommand clickOfSubmit = new BindingCommand<>(new BindingAction() {
         @Override
         public void call() {
-            requestConfirmOrder(252, 1, valueQuantityOfGoods.get());
+            clickSubmitOrder();
         }
     });
     //销售周期的点击事件
     public BindingCommand clickOfSalesCycle = new BindingCommand<>(new BindingAction() {
         @Override
         public void call() {
-
+            uc.showSalesCycle.set(!uc.showSalesCycle.get());
         }
     });
 
     //销售商品件数的值
     public ObservableInt valueQuantityOfGoods = new ObservableInt();
     //销售周期的值
-    public ObservableInt valueDaysSales = new ObservableInt(0);
-    //结算时间的值
+    public ObservableField<String> valueDaysSales = new ObservableField<>();
+    //销售周期列表
+    public ObservableList<DataProportionDTO> valuesSaleDayList = new ObservableArrayList<>();
+    //选中的销售周期的位置
+    public ObservableInt valueSalesDayPosition = new ObservableInt();
+    //结算时间的值ObservableInt
     public ObservableInt valueDaySettle = new ObservableInt(1);
     //预期利润的值
-    public ObservableDouble valueProfitRatio = new ObservableDouble();
+    public ObservableField<String> valueProfitRatio = new ObservableField<>("");
     //结算收益商链钻的值
-    public ObservableInt valueProfitDiamond = new ObservableInt();
+    public ObservableField<String> valueProfitDiamond = new ObservableField<>("");
+
 
     //购买数量输入监听
     //密码或者验证码输入监听
@@ -79,13 +85,15 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
 
     public class UIChangeObservable {
         //提交订单是否可以点击
-        public ObservableBoolean enableSubmitOrder = new ObservableBoolean(false);
+        public ObservableBoolean enableSubmitOrder = new ObservableBoolean(true);
         //减号是否可以点击
         public ObservableBoolean enableSub = new ObservableBoolean(false);
         //加号是否可以点击
         public ObservableBoolean enableAdd = new ObservableBoolean(false);
         //合同明细的选中监听
         public ObservableBoolean checkCompact = new ObservableBoolean(false);
+        //销售周期点击减
+        public ObservableBoolean showSalesCycle = new ObservableBoolean(false);
     }
 
     public OrderConfirmBViewModel(@NonNull Application application) {
@@ -104,6 +112,30 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
         }
     }
 
+    private void clickSubmitOrder() {
+        if (valuesSaleDayList.isEmpty()) {
+            dialogControll_show(DialogControllTypeInterf.WARNING, getApplication().getString(R.string.order_error_salesday));
+            return;
+        }
+
+        if (valueQuantityOfGoods.get() <= 0) {
+            dialogControll_show(DialogControllTypeInterf.WARNING, getApplication().getString(R.string.order_error_goodsquantity));
+            return;
+        }
+
+        if (ObjectUtils.isEmpty(valueDaysSales.get())) {
+            dialogControll_show(DialogControllTypeInterf.WARNING, getApplication().getString(R.string.order_error_salesday));
+            return;
+        }
+
+        if (!uc.checkCompact.get()) {
+            dialogControll_show(DialogControllTypeInterf.WARNING, getApplication().getString(R.string.order_error_compact));
+            return;
+        }
+
+        requestConfirmOrder(252, valuesSaleDayList.get(valueSalesDayPosition.get()).getId(), valueQuantityOfGoods.get());
+    }
+
     //请求获取拼团年化收益率列表
     public void requestBenefitsList() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
@@ -113,20 +145,25 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
 
                     @Override
                     public void onSuccess(RequestResult<List<DataProportionDTO>> listRequestResult) {
-
+                        valuesSaleDayList.clear();
+                        valuesSaleDayList.addAll(listRequestResult.getData());
                     }
                 });
     }
 
     //请求根据销售周期计算收益商链钻
-    public void requestBenefitsList(int sku_id, int proportion_id, int count) {
+    public void requestCalculateProfit() {
+        DataProportionDTO proportionDTO = valuesSaleDayList.get(valueSalesDayPosition.get());
+        int sku_id = 252;
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
-                .pinTuanOrderGetProfit(sku_id, proportion_id, count)
+                .pinTuanOrderGetProfit(sku_id, proportionDTO.getId(), valueQuantityOfGoods.get())
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResult<DataOrderProfitDiamond>>() {
                     @Override
                     public void onSuccess(RequestResult<DataOrderProfitDiamond> dataOrderProfitDiamondRequestResult) {
-
+                        valueProfitDiamond.set(dataOrderProfitDiamondRequestResult.getData().getDiamond_num() + "");
+                        valueProfitRatio.set(
+                                ConvertExUtils.convertProfitRatio(dataOrderProfitDiamondRequestResult.getData().getProfit() + ""));
                     }
                 });
     }

@@ -6,15 +6,20 @@
     <string name="order_format_settle">结算（%d）</string>
     <string name="order_format_salescycle">%d天</string>
     <string name="order_format_settlementdate">周期天数+%d天</string>
-    <string name="order_format_earnprofit">%s%</string>
+    <string name="order_format_earnprofit">%s%%</string>
     <string name="order_format_earndiamond">%s枚</string>
     <string name="order_format_ordernum">订单编号：%s</string>
     <string name="order_format_purchasequantity">X%s</string>
     <string name="order_format_totalamount">¥ %s</string>
 
+    <!--error-->
+    <string name="order_error_goodsquantity">请输入销售商品件数！</string>
+    <string name="order_error_salesday">请重新选择销售周期！</string>
+    <string name="order_error_compact">请同意合同明细！</string>
 
     <!--tip-->
     <string name="order_tip_payment_result_success">支付成功</string>
+
 
     <!--hint-->
     <string name="order_hint_receiveraddr_name">请填写真实姓名</string>

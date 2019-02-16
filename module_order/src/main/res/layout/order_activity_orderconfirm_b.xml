@@ -185,7 +185,9 @@
                 android:textSize="@dimen/tx_size15"
                 android:textColor="@color/tx_colorb"
                 android:drawableEnd="@mipmap/arrow_right2"
-                android:text="@{@string/order_format_salescycle(viewModel.valueDaysSales)}"
+                android:paddingStart="@dimen/gap_size20"
+                android:text="@{viewModel.valueDaysSales}"
+                tools:text="@string/order_format_salescycle"
                 app:onClickCommand="@{viewModel.clickOfSalesCycle}"
                 android:drawablePadding="@dimen/gap_size5"
                 app:layout_constraintBottom_toBottomOf="@id/bg_cycle"
@@ -293,7 +295,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/bg_diamond"
                 app:layout_constraintEnd_toEndOf="@id/gline_end"
                 app:layout_constraintTop_toTopOf="@id/bg_diamond"
-                android:text="@{@string/order_format_earndiamond(viewModel.valueProfitDiamond)}"/>
+                android:text="@{String.format(@string/order_format_earndiamond,viewModel.valueProfitDiamond)}"/>
 
         <!--合同明细-->
         <View
@@ -340,6 +342,7 @@
                 android:textColor="@color/tx_colorf"
                 android:text="@string/order_create_submit"
                 android:enabled="@{viewModel.uc.enableSubmitOrder}"
+                app:onClickCommand="@{viewModel.clickOfSubmit}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="327:40"
                 app:layout_constraintEnd_toEndOf="@id/gline_end"

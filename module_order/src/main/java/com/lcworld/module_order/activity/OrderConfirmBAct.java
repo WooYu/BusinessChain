@@ -2,15 +2,19 @@ package com.lcworld.module_order.activity;
 
 import android.databinding.Observable;
 import android.os.Bundle;
+import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseActivityEnhance;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.BR;
 import com.lcworld.module_order.R;
+import com.lcworld.module_order.bean.DataProportionDTO;
 import com.lcworld.module_order.databinding.OrderActivityOrderconfirmBBinding;
 import com.lcworld.module_order.viewmodel.OrderConfirmBViewModel;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.util.QMUIViewHelper;
+import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheet;
 
 /**
  * 确认订单（如意赚）
@@ -34,6 +38,9 @@ public class OrderConfirmBAct extends BaseActivityEnhance<OrderActivityOrderconf
         initView_Title();
 
         initObservable_QuantityChange();
+        initObservable_SalesCycle();
+
+        viewModel.requestBenefitsList();
     }
 
     private void initView_Title() {
@@ -50,5 +57,38 @@ public class OrderConfirmBAct extends BaseActivityEnhance<OrderActivityOrderconf
                 viewModel.uc.enableAdd.set(viewModel.valueQuantityOfGoods.get() != getResources().getInteger(R.integer.config_goodsquantity_maxlimit));
             }
         });
+    }
+
+    private void initObservable_SalesCycle() {
+        viewModel.uc.showSalesCycle.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                showDialogSelectSalesCycle();
+            }
+        });
+    }
+
+    private void showDialogSelectSalesCycle() {
+        if (ObjectUtils.isEmpty(viewModel.valuesSaleDayList) || viewModel.valuesSaleDayList.size() == 0) {
+            return;
+        }
+
+        QMUIBottomSheet.BottomListSheetBuilder sheetBuilder = new QMUIBottomSheet.BottomListSheetBuilder(this);
+        for (int i = 0; i < viewModel.valuesSaleDayList.size(); i++) {
+            DataProportionDTO bean = viewModel.valuesSaleDayList.get(i);
+            sheetBuilder.addItem(String.format(getResources().getString(R.string.order_format_salescycle), bean.getDay()));
+        }
+        sheetBuilder
+                .setOnSheetItemClickListener(new QMUIBottomSheet.BottomListSheetBuilder.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(QMUIBottomSheet dialog, View itemView, int position, String tag) {
+                        dialog.dismiss();
+                        viewModel.valueDaysSales.set(tag);
+                        viewModel.valueSalesDayPosition.set(position);
+                        viewModel.requestCalculateProfit();
+                    }
+                })
+                .build()
+                .show();
     }
 }

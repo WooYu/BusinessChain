@@ -36,4 +36,20 @@ public class ConvertExUtils {
             return "0";
         }
     }
+
+    //转换收益比
+    public static String convertProfitRatio(String ratio) {
+        if (null == ratio || "".equals(ratio)) {
+            return "0";
+        }
+
+        try {
+            Double ratioD = Double.parseDouble(ratio) * 100;
+            DecimalFormat df = new DecimalFormat("0.##");
+            return df.format(ratioD);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "0";
+        }
+    }
 }
