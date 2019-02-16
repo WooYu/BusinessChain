@@ -1,4 +1,4 @@
-package com.lcworld.module_goods.bean;
+package com.lcworld.module_order.bean;
 
 public class DataConsigneeVo {
     private String address;//详细地址

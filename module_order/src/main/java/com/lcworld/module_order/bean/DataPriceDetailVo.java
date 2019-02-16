@@ -1,4 +1,4 @@
-package com.lcworld.module_goods.bean;
+package com.lcworld.module_order.bean;
 
 /**
  * 价格明细

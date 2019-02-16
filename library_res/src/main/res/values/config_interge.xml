@@ -6,4 +6,6 @@
     <integer name="config_banner_pointAutoPlayInterval">3000</integer>
     <!--首页自由购数量-->
     <integer name="config_freebuy_displayquants">4</integer>
+    <!--商品的最大购买限制-->
+    <integer name="config_goodsquantity_maxlimit">200</integer>
 </resources>

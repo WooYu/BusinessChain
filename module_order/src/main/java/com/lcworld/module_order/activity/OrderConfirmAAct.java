@@ -11,7 +11,7 @@ import com.qmuiteam.qmui.util.QMUIViewHelper;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 /**
- * 确认订单
+ * 确认订单(普通、积分、商币)
  */
 @Route(path = RouterActivityPath.Order.Pager_Order_Confirm1)
 public class OrderConfirmAAct extends AppCompatActivity {

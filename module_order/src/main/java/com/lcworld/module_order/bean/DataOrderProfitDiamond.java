@@ -1,4 +1,4 @@
-package com.lcworld.module_goods.bean;
+package com.lcworld.module_order.bean;
 
 /**
  * 收益和商钻数
