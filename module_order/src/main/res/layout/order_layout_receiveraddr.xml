@@ -1,62 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/clayout_address"
-    android:layout_width="match_parent"
-    android:paddingTop="@dimen/gap_size20"
-    android:paddingBottom="@dimen/gap_size16"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/gap_size6"
-    android:background="@color/appbg_color_white">
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:id="@+id/clayout_address"
+                                             android:layout_width="match_parent"
+                                             android:paddingTop="@dimen/gap_size20"
+                                             android:paddingBottom="@dimen/gap_size16"
+                                             android:layout_height="wrap_content"
+                                             android:layout_marginTop="@dimen/gap_size6"
+                                             android:background="@color/appbg_color_white">
+
+
+    <android.support.constraint.Group
+            android:id="@+id/group_defAddr"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_address_name,tv_address_phone,iv_arrow,tv_address_desc"/>
+
+    <android.support.constraint.Group
+            android:id="@+id/group_noAddr"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_noaddress"/>
 
     <TextView
-        android:id="@+id/tv_address_name"
-        android:layout_width="wrap_content"
-        android:textColor="@color/tx_colorb"
-        android:textSize="@dimen/tx_size15"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/gap_size16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="张先生" />
+            android:id="@+id/tv_address_name"
+            android:layout_width="wrap_content"
+            android:textColor="@color/tx_colorb"
+            android:textSize="@dimen/tx_size15"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gap_size16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="张先生"/>
 
     <TextView
-        android:id="@+id/tv_address_phone"
-        android:layout_width="wrap_content"
-        android:textColor="@color/tx_colorb"
-        android:textSize="@dimen/tx_size15"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/gap_size20"
-        app:layout_constraintBaseline_toBaselineOf="@id/tv_address_name"
-        app:layout_constraintStart_toEndOf="@id/tv_address_name"
-        tools:text="130****1111" />
+            android:id="@+id/tv_address_phone"
+            android:layout_width="wrap_content"
+            android:textColor="@color/tx_colorb"
+            android:textSize="@dimen/tx_size15"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gap_size20"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_address_name"
+            app:layout_constraintStart_toEndOf="@id/tv_address_name"
+            tools:text="130****1111"/>
 
     <ImageView
-        android:id="@+id/iv_arrow"
-        android:layout_width="wrap_content"
-        android:src="@mipmap/arrow_right1"
-        android:layout_marginEnd="@dimen/gap_size17"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/gap_size5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/iv_arrow"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/arrow_right1"
+            android:layout_marginEnd="@dimen/gap_size17"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gap_size5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/iv_address"
-        android:layout_width="0dp"
-        android:drawableStart="@mipmap/order_address"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/tx_size13"
-        android:textColor="@color/tx_colorb"
-        android:layout_marginTop="@dimen/gap_size19"
-        android:drawablePadding="@dimen/gap_size4"
-        android:layout_marginEnd="@dimen/gap_size8"
-        app:layout_constraintEnd_toStartOf="@id/iv_arrow"
-        app:layout_constraintStart_toStartOf="@id/tv_address_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_address_name"
-        tools:text="这是个详细地址这是个详细地址这是个详细地址这是个详细地址这是个详细地址这是个详细地址这是个详细地址这是个详细地址" />
+            android:id="@+id/tv_address_desc"
+            android:layout_width="0dp"
+            android:drawableStart="@mipmap/order_address"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/tx_size13"
+            android:textColor="@color/tx_colorb"
+            android:layout_marginTop="@dimen/gap_size19"
+            android:drawablePadding="@dimen/gap_size4"
+            android:layout_marginEnd="@dimen/gap_size8"
+            app:layout_constraintEnd_toStartOf="@id/iv_arrow"
+            app:layout_constraintStart_toStartOf="@id/tv_address_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_address_name"
+            tools:text="这是个详细地址这是个详细地址这是个详细地址这是个详细地址这是个详细地址这是个详细地址这是个详细地址这是个详细地址"/>
 
+
+    <TextView
+            android:id="@+id/tv_noaddress"
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center_vertical|start"
+            android:layout_marginEnd="@dimen/gap_size17"
+            android:text="@string/order_create_noaddr"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/gap_size16"
+            android:drawableEnd="@mipmap/arrow_right1"
+            android:textSize="@dimen/tx_size15"
+            android:textColor="@color/tx_colorb"
+            app:layout_constraintStart_toStartOf="parent"/>
 </android.support.constraint.ConstraintLayout>
 
     

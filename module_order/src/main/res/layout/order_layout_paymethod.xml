@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent"
+                                             android:paddingTop="@dimen/gap_size6"
+                                             android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/bg_paymethod"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/appbg_color_white"
-        app:layout_constraintBottom_toTopOf="@id/bg_bottom"
-        app:layout_constraintDimensionRatio="360:43"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            android:id="@+id/bg_paymethod"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/appbg_color_white"
+            app:layout_constraintBottom_toTopOf="@id/bg_bottom"
+            app:layout_constraintDimensionRatio="360:43"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_paymethod_left"
-        android:layout_width="wrap_content"
-        android:textColor="@color/tx_colorb"
-        android:textSize="@dimen/tx_size14"
-        android:text="@string/order_create_paymethod"
-        android:layout_marginStart="@dimen/gap_size16"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/bg_paymethod"
-        app:layout_constraintStart_toStartOf="@id/bg_paymethod"
-        app:layout_constraintTop_toTopOf="@id/bg_paymethod" />
+            android:id="@+id/tv_paymethod_left"
+            android:layout_width="wrap_content"
+            android:textColor="@color/tx_colorb"
+            android:textSize="@dimen/tx_size14"
+            android:text="@string/order_create_paymethod"
+            android:layout_marginStart="@dimen/gap_size16"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/bg_paymethod"
+            app:layout_constraintStart_toStartOf="@id/bg_paymethod"
+            app:layout_constraintTop_toTopOf="@id/bg_paymethod"/>
 
     <TextView
-        android:id="@+id/tv_paymethod_value"
-        android:layout_width="wrap_content"
-        android:textColor="@color/tx_colorb"
-        android:textSize="@dimen/tx_size14"
-        android:text="@string/order_create_paymethod_a"
-        android:layout_marginEnd="@dimen/gap_size20"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/bg_paymethod"
-        app:layout_constraintEnd_toEndOf="@id/bg_paymethod"
-        app:layout_constraintTop_toTopOf="@id/bg_paymethod" />
+            android:id="@+id/tv_paymethod_value"
+            android:layout_width="wrap_content"
+            android:textColor="@color/tx_colorc"
+            android:textSize="@dimen/tx_size14"
+            android:text="@string/order_create_paymethod_a"
+            android:layout_marginEnd="@dimen/gap_size20"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/bg_paymethod"
+            app:layout_constraintEnd_toEndOf="@id/bg_paymethod"
+            app:layout_constraintTop_toTopOf="@id/bg_paymethod"/>
 </android.support.constraint.ConstraintLayout>

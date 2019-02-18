@@ -1,6 +1,9 @@
 package com.lcworld.module_order.bean;
 
-public class DataConsigneeVo {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class DataConsigneeVo implements Parcelable {
     private String address;//详细地址
     private String city;//市
     private int city_id;//市ID
@@ -118,4 +121,57 @@ public class DataConsigneeVo {
     public void setTown_id(int town_id) {
         this.town_id = town_id;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.address);
+        dest.writeString(this.city);
+        dest.writeInt(this.city_id);
+        dest.writeInt(this.consignee_id);
+        dest.writeString(this.county);
+        dest.writeInt(this.county_id);
+        dest.writeString(this.mobile);
+        dest.writeString(this.name);
+        dest.writeString(this.province);
+        dest.writeInt(this.province_id);
+        dest.writeString(this.telephone);
+        dest.writeString(this.town);
+        dest.writeInt(this.town_id);
+    }
+
+    public DataConsigneeVo() {
+    }
+
+    protected DataConsigneeVo(Parcel in) {
+        this.address = in.readString();
+        this.city = in.readString();
+        this.city_id = in.readInt();
+        this.consignee_id = in.readInt();
+        this.county = in.readString();
+        this.county_id = in.readInt();
+        this.mobile = in.readString();
+        this.name = in.readString();
+        this.province = in.readString();
+        this.province_id = in.readInt();
+        this.telephone = in.readString();
+        this.town = in.readString();
+        this.town_id = in.readInt();
+    }
+
+    public static final Parcelable.Creator<DataConsigneeVo> CREATOR = new Parcelable.Creator<DataConsigneeVo>() {
+        @Override
+        public DataConsigneeVo createFromParcel(Parcel source) {
+            return new DataConsigneeVo(source);
+        }
+
+        @Override
+        public DataConsigneeVo[] newArray(int size) {
+            return new DataConsigneeVo[size];
+        }
+    };
 }

@@ -1,9 +1,12 @@
 package com.lcworld.module_order.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * 发票
  */
-public class DataReceiptVo {
+public class DataReceiptVo implements Parcelable {
     private String receipt_content;//发票内容
     private String receipt_title;//发票抬头
     private String tax_no;//发票税号
@@ -40,4 +43,39 @@ public class DataReceiptVo {
     public void setType(int type) {
         this.type = type;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.receipt_content);
+        dest.writeString(this.receipt_title);
+        dest.writeString(this.tax_no);
+        dest.writeInt(this.type);
+    }
+
+    public DataReceiptVo() {
+    }
+
+    protected DataReceiptVo(Parcel in) {
+        this.receipt_content = in.readString();
+        this.receipt_title = in.readString();
+        this.tax_no = in.readString();
+        this.type = in.readInt();
+    }
+
+    public static final Parcelable.Creator<DataReceiptVo> CREATOR = new Parcelable.Creator<DataReceiptVo>() {
+        @Override
+        public DataReceiptVo createFromParcel(Parcel source) {
+            return new DataReceiptVo(source);
+        }
+
+        @Override
+        public DataReceiptVo[] newArray(int size) {
+            return new DataReceiptVo[size];
+        }
+    };
 }

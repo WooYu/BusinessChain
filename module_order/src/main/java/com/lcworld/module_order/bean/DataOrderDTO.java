@@ -1,8 +1,12 @@
 package com.lcworld.module_order.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class DataOrderDTO {
+public class DataOrderDTO implements Parcelable {
 
     private int address_id;//收货地址id
     private String admin_remark;//管理员备注
@@ -36,6 +40,7 @@ public class DataOrderDTO {
     private String receipt_content;// 内容
     private String receipt_title;//抬头
     private DataReceiptVo receipt_vo;//发票
+    private DataReceiptVo receipt;//发票
     private String receive_time;//发货时间类型
     private String remark;//订单备注
     private int seller_id;//卖家id
@@ -65,6 +70,7 @@ public class DataOrderDTO {
     private String trade_sn;//交易编号
     private int warehouse_id;//发货仓库id
     private double weight;//购物车重量
+
 
     public int getAddress_id() {
         return address_id;
@@ -322,6 +328,14 @@ public class DataOrderDTO {
         this.receipt_vo = receipt_vo;
     }
 
+    public DataReceiptVo getReceipt() {
+        return receipt;
+    }
+
+    public void setReceipt(DataReceiptVo receipt) {
+        this.receipt = receipt;
+    }
+
     public String getReceive_time() {
         return receive_time;
     }
@@ -553,4 +567,159 @@ public class DataOrderDTO {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.address_id);
+        dest.writeString(this.admin_remark);
+        dest.writeString(this.cancel_reason);
+        dest.writeString(this.client_type);
+        dest.writeString(this.comment_status);
+        dest.writeParcelable(this.ConsigneeVO, flags);
+        dest.writeList(this.coupon_list);
+        dest.writeLong(this.create_time);
+        dest.writeInt(this.disabled);
+        dest.writeList(this.gift_coupon_list);
+        dest.writeList(this.gift_list);
+        dest.writeInt(this.gift_point);
+        dest.writeInt(this.goods_num);
+        dest.writeInt(this.invalid);
+        dest.writeInt(this.logi_id);
+        dest.writeString(this.logi_name);
+        dest.writeInt(this.member_id);
+        dest.writeString(this.member_name);
+        dest.writeDouble(this.need_pay_money);
+        dest.writeInt(this.need_receipt);
+        dest.writeDouble(this.order_price);
+        dest.writeString(this.order_status);
+        dest.writeString(this.pay_status);
+        dest.writeString(this.payment_account);
+        dest.writeInt(this.payment_method_id);
+        dest.writeString(this.payment_method_name);
+        dest.writeString(this.payment_plugin_id);
+        dest.writeString(this.payment_type);
+        dest.writeParcelable(this.PriceDetailVO, flags);
+        dest.writeString(this.receipt_content);
+        dest.writeString(this.receipt_title);
+        dest.writeParcelable(this.receipt_vo, flags);
+        dest.writeParcelable(this.receipt, flags);
+        dest.writeString(this.receive_time);
+        dest.writeString(this.remark);
+        dest.writeInt(this.seller_id);
+        dest.writeString(this.seller_name);
+        dest.writeString(this.service_status);
+        dest.writeString(this.ship_city);
+        dest.writeInt(this.ship_city_id);
+        dest.writeString(this.ship_name);
+        dest.writeString(this.ship_no);
+        dest.writeString(this.ship_province);
+        dest.writeInt(this.ship_province_id);
+        dest.writeString(this.ship_region);
+        dest.writeInt(this.ship_region_id);
+        dest.writeString(this.ship_status);
+        dest.writeLong(this.ship_time);
+        dest.writeInt(this.ship_town);
+        dest.writeInt(this.ship_town_id);
+        dest.writeInt(this.shipping_id);
+        dest.writeDouble(this.shipping_price);
+        dest.writeString(this.shipping_type);
+        dest.writeInt(this.shipping_type_id);
+        dest.writeString(this.shipping_type_name);
+        dest.writeLong(this.signing_time);
+        dest.writeList(this.sku_list);
+        dest.writeString(this.sn);
+        dest.writeString(this.the_sign);
+        dest.writeString(this.trade_sn);
+        dest.writeInt(this.warehouse_id);
+        dest.writeDouble(this.weight);
+    }
+
+    public DataOrderDTO() {
+    }
+
+    protected DataOrderDTO(Parcel in) {
+        this.address_id = in.readInt();
+        this.admin_remark = in.readString();
+        this.cancel_reason = in.readString();
+        this.client_type = in.readString();
+        this.comment_status = in.readString();
+        this.ConsigneeVO = in.readParcelable(DataConsigneeVo.class.getClassLoader());
+        this.coupon_list = new ArrayList<DataCouponVo>();
+        in.readList(this.coupon_list, DataCouponVo.class.getClassLoader());
+        this.create_time = in.readLong();
+        this.disabled = in.readInt();
+        this.gift_coupon_list = new ArrayList<DataCouponVo>();
+        in.readList(this.gift_coupon_list, DataCouponVo.class.getClassLoader());
+        this.gift_list = new ArrayList<DataGiftVo>();
+        in.readList(this.gift_list, DataGiftVo.class.getClassLoader());
+        this.gift_point = in.readInt();
+        this.goods_num = in.readInt();
+        this.invalid = in.readInt();
+        this.logi_id = in.readInt();
+        this.logi_name = in.readString();
+        this.member_id = in.readInt();
+        this.member_name = in.readString();
+        this.need_pay_money = in.readDouble();
+        this.need_receipt = in.readInt();
+        this.order_price = in.readDouble();
+        this.order_status = in.readString();
+        this.pay_status = in.readString();
+        this.payment_account = in.readString();
+        this.payment_method_id = in.readInt();
+        this.payment_method_name = in.readString();
+        this.payment_plugin_id = in.readString();
+        this.payment_type = in.readString();
+        this.PriceDetailVO = in.readParcelable(DataPriceDetailVo.class.getClassLoader());
+        this.receipt_content = in.readString();
+        this.receipt_title = in.readString();
+        this.receipt_vo = in.readParcelable(DataReceiptVo.class.getClassLoader());
+        this.receipt = in.readParcelable(DataReceiptVo.class.getClassLoader());
+        this.receive_time = in.readString();
+        this.remark = in.readString();
+        this.seller_id = in.readInt();
+        this.seller_name = in.readString();
+        this.service_status = in.readString();
+        this.ship_city = in.readString();
+        this.ship_city_id = in.readInt();
+        this.ship_name = in.readString();
+        this.ship_no = in.readString();
+        this.ship_province = in.readString();
+        this.ship_province_id = in.readInt();
+        this.ship_region = in.readString();
+        this.ship_region_id = in.readInt();
+        this.ship_status = in.readString();
+        this.ship_time = in.readLong();
+        this.ship_town = in.readInt();
+        this.ship_town_id = in.readInt();
+        this.shipping_id = in.readInt();
+        this.shipping_price = in.readDouble();
+        this.shipping_type = in.readString();
+        this.shipping_type_id = in.readInt();
+        this.shipping_type_name = in.readString();
+        this.signing_time = in.readLong();
+        this.sku_list = new ArrayList<DataSKUVo>();
+        in.readList(this.sku_list, DataSKUVo.class.getClassLoader());
+        this.sn = in.readString();
+        this.the_sign = in.readString();
+        this.trade_sn = in.readString();
+        this.warehouse_id = in.readInt();
+        this.weight = in.readDouble();
+    }
+
+    public static final Parcelable.Creator<DataOrderDTO> CREATOR = new Parcelable.Creator<DataOrderDTO>() {
+        @Override
+        public DataOrderDTO createFromParcel(Parcel source) {
+            return new DataOrderDTO(source);
+        }
+
+        @Override
+        public DataOrderDTO[] newArray(int size) {
+            return new DataOrderDTO[size];
+        }
+    };
 }

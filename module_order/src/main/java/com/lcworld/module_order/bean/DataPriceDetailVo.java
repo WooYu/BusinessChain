@@ -1,9 +1,12 @@
 package com.lcworld.module_order.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * 价格明细
  */
-public class DataPriceDetailVo {
+public class DataPriceDetailVo implements Parcelable {
 
     private double cash_back;//返现金额，不含优惠卷
     private double coupon_price;//优惠卷抵扣金额
@@ -95,4 +98,51 @@ public class DataPriceDetailVo {
     public void setTotal_price(double total_price) {
         this.total_price = total_price;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(this.cash_back);
+        dest.writeDouble(this.coupon_price);
+        dest.writeDouble(this.discount_price);
+        dest.writeDouble(this.exchange_point);
+        dest.writeDouble(this.freight_price);
+        dest.writeDouble(this.full_minus);
+        dest.writeDouble(this.goods_price);
+        dest.writeInt(this.is_free_freight);
+        dest.writeDouble(this.original_price);
+        dest.writeDouble(this.total_price);
+    }
+
+    public DataPriceDetailVo() {
+    }
+
+    protected DataPriceDetailVo(Parcel in) {
+        this.cash_back = in.readDouble();
+        this.coupon_price = in.readDouble();
+        this.discount_price = in.readDouble();
+        this.exchange_point = in.readDouble();
+        this.freight_price = in.readDouble();
+        this.full_minus = in.readDouble();
+        this.goods_price = in.readDouble();
+        this.is_free_freight = in.readInt();
+        this.original_price = in.readDouble();
+        this.total_price = in.readDouble();
+    }
+
+    public static final Parcelable.Creator<DataPriceDetailVo> CREATOR = new Parcelable.Creator<DataPriceDetailVo>() {
+        @Override
+        public DataPriceDetailVo createFromParcel(Parcel source) {
+            return new DataPriceDetailVo(source);
+        }
+
+        @Override
+        public DataPriceDetailVo[] newArray(int size) {
+            return new DataPriceDetailVo[size];
+        }
+    };
 }

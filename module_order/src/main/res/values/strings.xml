@@ -37,6 +37,7 @@
     <string name="order_trolley_delete">删除</string>
     <string name="order_create_title">确认订单</string>
     <string name="order_create_submit">提交订单</string>
+    <string name="order_create_noaddr">请先添加一个默认地址!</string>
     <string name="order_create_paymethod">支付方式</string>
     <string name="order_create_paymethod_a">在线支付</string>
     <string name="order_create_salesvolume">销售商品件数</string>

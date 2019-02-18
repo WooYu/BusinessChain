@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
-import com.lcworld.library_base.extension.ConvertExUtils;
 import com.lcworld.library_base.extension.DialogControllTypeInterf;
 import com.lcworld.library_base.http.*;
 import com.lcworld.module_order.ApiServiceInterf;
@@ -133,7 +132,7 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
             return;
         }
 
-        requestConfirmOrder(252, valuesSaleDayList.get(valueSalesDayPosition.get()).getId(), valueQuantityOfGoods.get());
+        requestConfirmOrder(285, valuesSaleDayList.get(valueSalesDayPosition.get()).getId(), valueQuantityOfGoods.get());
     }
 
     //请求获取拼团年化收益率列表
@@ -154,7 +153,7 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
     //请求根据销售周期计算收益商链钻
     public void requestCalculateProfit() {
         DataProportionDTO proportionDTO = valuesSaleDayList.get(valueSalesDayPosition.get());
-        int sku_id = 252;
+        int sku_id = 285;
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .pinTuanOrderGetProfit(sku_id, proportionDTO.getId(), valueQuantityOfGoods.get())
                 .compose(RxUtilsEnhanced.explicitTransform())
@@ -162,8 +161,6 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
                     @Override
                     public void onSuccess(RequestResult<DataOrderProfitDiamond> dataOrderProfitDiamondRequestResult) {
                         valueProfitDiamond.set(dataOrderProfitDiamondRequestResult.getData().getDiamond_num() + "");
-                        valueProfitRatio.set(
-                                ConvertExUtils.convertProfitRatio(dataOrderProfitDiamondRequestResult.getData().getProfit() + ""));
                     }
                 });
     }

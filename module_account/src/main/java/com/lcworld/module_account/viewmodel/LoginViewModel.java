@@ -11,7 +11,6 @@ import com.blankj.utilcode.util.ObjectUtils;
 import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
-import com.lcworld.library_base.extension.DialogControllTypeInterf;
 import com.lcworld.library_base.extension.RegexExUtil;
 import com.lcworld.library_base.global.SPKeyGlobal;
 import com.lcworld.library_base.http.*;
@@ -193,7 +192,6 @@ public class LoginViewModel extends BaseViewModelEnhance {
                                 .put(SPKeyGlobal.Key_Account_Access_Token, result.getData().getAccess_token());
                         SPUtils.getInstance()
                                 .put(SPKeyGlobal.Key_Account_Refresh_Token, result.getData().getRefresh_token());
-                        dialogControll_show(DialogControllTypeInterf.SUCCESS, getApplication().getString(R.string.account_tip_loginsuccess));
                         finish();
                     }
 
