@@ -1,5 +1,6 @@
 package com.lcworld.module_home.fragment;
 
+import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,21 +9,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ScreenUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.lcworld.library_base.base.BaseFragmentEnhance;
-import com.lcworld.library_base.base.BaseViewModelEnhance;
+import com.lcworld.library_base.extension.ListChangedCallbackImpl;
+import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.module_home.R;
 import com.lcworld.module_home.adapter.HomeSubAdapter;
 import com.lcworld.module_home.adapter.HomeSubTopBannerAdapter;
 import com.lcworld.module_home.adapter.MemberAreaGoodsAdapter;
+import com.lcworld.module_home.bean.DataFocusPictures;
+import com.lcworld.module_home.bean.DataGoodsInfo;
 import com.lcworld.module_home.databinding.HomeFragMemberGoodsBinding;
+import com.lcworld.module_home.viewmodel.HomeMemberViewModel;
 import me.goldze.mvvmhabit.BR;
 
 import java.util.LinkedList;
@@ -32,10 +37,12 @@ import java.util.List;
  * 会员专区
  */
 @Route(path = RouterFragmentPath.Home.PAGER_MEMBERAREA)
-public class MembeAreaFrag extends BaseFragmentEnhance<HomeFragMemberGoodsBinding, BaseViewModelEnhance> {
+public class MemberAreaFrag extends BaseFragmentEnhance<HomeFragMemberGoodsBinding, HomeMemberViewModel> {
 
     private VirtualLayoutManager mVirtualLayoutManager;
     private float mColorOffsetThreshold;//状态栏变色阈值
+    private HomeSubTopBannerAdapter mTopBannerAdapter;
+    private MemberAreaGoodsAdapter mMemberGoodsAdapter;
 
     @Override
     public int initContentView(LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
@@ -53,6 +60,11 @@ public class MembeAreaFrag extends BaseFragmentEnhance<HomeFragMemberGoodsBindin
         initView_GradienColor();
         initView_StatusBar();
         initView_RecyclerView();
+
+        initObservable_FoucsPicture();
+        initObservable_MemberGoods();
+
+        requestData();
     }
 
     private void initView_GradienColor() {
@@ -116,7 +128,7 @@ public class MembeAreaFrag extends BaseFragmentEnhance<HomeFragMemberGoodsBindin
             SingleLayoutHelper topBannerLayoutHelper = new SingleLayoutHelper();
             topBannerLayoutHelper.setAspectRatio(2.2f);
             topBannerLayoutHelper.setMargin(margin, (int) -topBannerOffset, margin, 0);
-            adapters.add(new HomeSubTopBannerAdapter(getActivity(), topBannerLayoutHelper, 1));
+            adapters.add(mTopBannerAdapter = new HomeSubTopBannerAdapter(getActivity(), topBannerLayoutHelper, null));
         }
 
         //会员专区商品
@@ -133,14 +145,49 @@ public class MembeAreaFrag extends BaseFragmentEnhance<HomeFragMemberGoodsBindin
             int rightMargin = (int) getResources().getDimension(R.dimen.gap_size17);
 
             memberLayoutHelper.setMargin(leftMargin, topMargin, rightMargin, 0);
-            adapters.add(new MemberAreaGoodsAdapter(getActivity(), memberLayoutHelper, new MemberAreaGoodsAdapter.ItemClickListener() {
+            adapters.add(mMemberGoodsAdapter = new MemberAreaGoodsAdapter(getActivity(), memberLayoutHelper, new MemberAreaGoodsAdapter.ItemClickListener() {
                 @Override
                 public void clickedItem(int position) {
-                    ToastUtils.showShort(position + " ");
+                    ARouter.getInstance().build(RouterActivityPath.Product.PAGER_PRODUCTDETAIL)
+                            .withInt("goods_id", mMemberGoodsAdapter.getmDatas().get(position).getGoods_id())
+                            .navigation();
                 }
             }));
         }
 
         delegateAdapter.setAdapters(adapters);
+    }
+
+    private void initObservable_FoucsPicture() {
+        viewModel.uc.focusPicturesObservableList.addOnListChangedCallback(new ListChangedCallbackImpl() {
+            @Override
+            public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
+                super.onItemRangeInserted(sender, positionStart, itemCount);
+                updateView_Banner(sender);
+            }
+        });
+    }
+
+    private void initObservable_MemberGoods() {
+        viewModel.uc.memberGoodsObserableList.addOnListChangedCallback(new ListChangedCallbackImpl() {
+            @Override
+            public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
+                super.onItemRangeInserted(sender, positionStart, itemCount);
+                updateView_MemberGoods(sender);
+            }
+        });
+    }
+
+    private void updateView_Banner(List<DataFocusPictures> list) {
+        mTopBannerAdapter.setmDatas(list);
+    }
+
+    private void updateView_MemberGoods(List<DataGoodsInfo> list) {
+        mMemberGoodsAdapter.setmDatas(list);
+    }
+
+    private void requestData() {
+        viewModel.requestFocusPictures();
+        viewModel.requestMemberGoods();
     }
 }

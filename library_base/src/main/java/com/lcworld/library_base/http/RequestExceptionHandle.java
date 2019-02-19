@@ -4,6 +4,7 @@ import android.net.ParseException;
 import com.google.gson.JsonParseException;
 import com.google.gson.stream.MalformedJsonException;
 import me.goldze.mvvmhabit.http.ResponseThrowable;
+import me.goldze.mvvmhabit.utils.KLog;
 import okhttp3.ResponseBody;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONException;
@@ -29,6 +30,8 @@ public class RequestExceptionHandle {
 
     public static ResponseThrowable handleException(Throwable e) {
         ResponseThrowable ex;
+        KLog.e(e);
+
         if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
             ex = new ResponseThrowable(e, ErrorConvention.HTTP_ERROR);

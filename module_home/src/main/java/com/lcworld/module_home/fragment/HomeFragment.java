@@ -1,5 +1,6 @@
 package com.lcworld.module_home.fragment;
 
+import android.content.Intent;
 import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,14 +18,14 @@ import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.blankj.utilcode.util.BarUtils;
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.lcworld.library_base.base.BaseFragmentEnhance;
 import com.lcworld.library_base.extension.DialogControllTypeInterf;
+import com.lcworld.library_base.extension.ListChangedCallbackImpl;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.module_home.R;
+import com.lcworld.module_home.activity.OperatorApplyAct;
 import com.lcworld.module_home.adapter.*;
 import com.lcworld.module_home.bean.DataFocusPictures;
 import com.lcworld.module_home.bean.DataGoodsInfo;
@@ -62,8 +63,7 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, H
         binding.bgSearchbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build(RouterActivityPath.Order.PAGER_TROLLEY).navigation();
-//                startActivity(new Intent(getActivity(), OperatorApplyAct.class));
+                ARouter.getInstance().build(RouterActivityPath.Home.Pager_Home_Search).navigation();
             }
         });
 
@@ -79,91 +79,31 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, H
     }
 
     private void initObservable_FoucsPicture() {
-        viewModel.uc.focusPicturesObservableList.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<DataFocusPictures>>() {
+        viewModel.uc.focusPicturesObservableList.addOnListChangedCallback(new ListChangedCallbackImpl() {
             @Override
-            public void onChanged(ObservableList<DataFocusPictures> sender) {
-                LogUtils.d("onChanged()");
-            }
-
-            @Override
-            public void onItemRangeChanged(ObservableList<DataFocusPictures> sender, int positionStart, int itemCount) {
-                LogUtils.d("onItemRangeChanged()");
-            }
-
-            @Override
-            public void onItemRangeInserted(ObservableList<DataFocusPictures> sender, int positionStart, int itemCount) {
-                LogUtils.d("onItemRangeInserted()");
+            public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
+                super.onItemRangeInserted(sender, positionStart, itemCount);
                 updateView_Banner(sender);
-            }
-
-            @Override
-            public void onItemRangeMoved(ObservableList<DataFocusPictures> sender, int fromPosition, int toPosition, int itemCount) {
-                LogUtils.d("onItemRangeMoved()");
-            }
-
-            @Override
-            public void onItemRangeRemoved(ObservableList<DataFocusPictures> sender, int positionStart, int itemCount) {
-                LogUtils.d("onItemRangeRemoved()");
             }
         });
     }
 
     private void initObservable_FreeBuy() {
-        viewModel.uc.freeBuyObserableList.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<DataGoodsInfo>>() {
+        viewModel.uc.freeBuyObserableList.addOnListChangedCallback(new ListChangedCallbackImpl() {
             @Override
-            public void onChanged(ObservableList<DataGoodsInfo> sender) {
-                LogUtils.d("onChanged()");
-            }
-
-            @Override
-            public void onItemRangeChanged(ObservableList<DataGoodsInfo> sender, int positionStart, int itemCount) {
-                LogUtils.d("onItemRangeChanged()");
-            }
-
-            @Override
-            public void onItemRangeInserted(ObservableList<DataGoodsInfo> sender, int positionStart, int itemCount) {
-                LogUtils.d("onItemRangeInserted()");
+            public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
+                super.onItemRangeInserted(sender, positionStart, itemCount);
                 updateView_FreeBuy(sender);
-            }
-
-            @Override
-            public void onItemRangeMoved(ObservableList<DataGoodsInfo> sender, int fromPosition, int toPosition, int itemCount) {
-                LogUtils.d("onItemRangeMoved()");
-            }
-
-            @Override
-            public void onItemRangeRemoved(ObservableList<DataGoodsInfo> sender, int positionStart, int itemCount) {
-                LogUtils.d("onItemRangeRemoved()");
             }
         });
     }
 
     private void initObservable_SpellDeals() {
-        viewModel.uc.spellDealsObservableArrayList.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<DataSpellDeals>>() {
+        viewModel.uc.spellDealsObservableArrayList.addOnListChangedCallback(new ListChangedCallbackImpl() {
             @Override
-            public void onChanged(ObservableList<DataSpellDeals> sender) {
-                LogUtils.d("onChanged()");
-            }
-
-            @Override
-            public void onItemRangeChanged(ObservableList<DataSpellDeals> sender, int positionStart, int itemCount) {
-                LogUtils.d("onItemRangeChanged()");
-            }
-
-            @Override
-            public void onItemRangeInserted(ObservableList<DataSpellDeals> sender, int positionStart, int itemCount) {
-                LogUtils.d("onItemRangeInserted()");
+            public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
+                super.onItemRangeInserted(sender, positionStart, itemCount);
                 updateView_SpellDeals(sender);
-            }
-
-            @Override
-            public void onItemRangeMoved(ObservableList<DataSpellDeals> sender, int fromPosition, int toPosition, int itemCount) {
-                LogUtils.d("onItemRangeMoved()");
-            }
-
-            @Override
-            public void onItemRangeRemoved(ObservableList<DataSpellDeals> sender, int positionStart, int itemCount) {
-                LogUtils.d("onItemRangeRemoved()");
             }
         });
     }
@@ -252,7 +192,7 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, H
                 @Override
                 public void clickedItem(int position) {
                     ARouter.getInstance().build(RouterActivityPath.Product.PAGER_PRODUCTDETAIL)
-                            .withInt("goods_id",mHotSaleAdapter.getmDatas().get(position).getGoods_id())
+                            .withInt("goods_id", mHotSaleAdapter.getmDatas().get(position).getGoods_id())
                             .navigation();
                 }
             }));
@@ -282,7 +222,7 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, H
                 @Override
                 public void clickedItem(int position) {
                     ARouter.getInstance().build(RouterActivityPath.Product.PAGER_PRODUCTDETAIL)
-                            .withInt("goods_id",mSpellPurchaseAdapter.getmDatas().get(position).getGood_id())
+                            .withInt("goods_id", mSpellPurchaseAdapter.getmDatas().get(position).getGood_id())
                             .navigation();
                 }
             }, null));
@@ -312,7 +252,7 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, H
             adapters.add(new HomeSubInvestAdapter(getActivity(), investLayoutHelper, size, new HomeSubInvestAdapter.ItemClickListener() {
                 @Override
                 public void clickedItem(int position) {
-                    ToastUtils.showShort("经纪人召集令");
+                    startActivity(new Intent(getActivity(), OperatorApplyAct.class));
                 }
             }));
         }

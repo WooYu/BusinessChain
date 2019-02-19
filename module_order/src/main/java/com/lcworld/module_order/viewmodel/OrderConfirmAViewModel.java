@@ -6,6 +6,7 @@ import android.databinding.ObservableDouble;
 import android.databinding.ObservableParcelable;
 import android.support.annotation.NonNull;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.http.RequestResult;
 import com.lcworld.library_base.http.ResponseObserver;
@@ -18,11 +19,14 @@ import com.lcworld.module_order.bean.*;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrderConfirmAViewModel extends BaseViewModelEnhance {
     public final ObservableParcelable<DataMemberAddress> observableAddress = new ObservableParcelable<>();
-    public final ObservableArrayList<DataCartVo> observableCartVoList = new ObservableArrayList<>();
+    public final ObservableArrayList<DataSKUVo> observableCartVoList = new ObservableArrayList<>();
     public final ObservableDouble observableTotalPrice = new ObservableDouble();
-    public BindingCommand clickOfSubmit = new BindingCommand(new BindingAction(){
+    public BindingCommand clickOfSubmit = new BindingCommand(new BindingAction() {
 
         @Override
         public void call() {
@@ -37,6 +41,21 @@ public class OrderConfirmAViewModel extends BaseViewModelEnhance {
         requestOrderBillingInfo();
     }
 
+    //处理商品展示的数据
+    private void processDataGoods(List<DataCartVo> list) {
+        if (ObjectUtils.isEmpty(list)) {
+            return;
+        }
+
+        List<DataSKUVo> skuVoList = new ArrayList<>();
+        for (DataCartVo dataCartVo : list) {
+            skuVoList.addAll(dataCartVo.getSku_list());
+        }
+
+        observableCartVoList.clear();
+        observableCartVoList.addAll(skuVoList);
+    }
+
     //获取结算详情
     public void requestOrderDetail() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
@@ -46,8 +65,7 @@ public class OrderConfirmAViewModel extends BaseViewModelEnhance {
 
                     @Override
                     public void onSuccess(RequestResult<DataCartView> dataCartViewRequestResult) {
-                        observableCartVoList.clear();
-                        observableCartVoList.addAll(dataCartViewRequestResult.getData().getCart_list());
+                        processDataGoods(dataCartViewRequestResult.getData().getCart_list());
                         observableTotalPrice.set(dataCartViewRequestResult.getData().getTotal_price().getTotal_price());
                     }
                 });

@@ -17,6 +17,14 @@ public class RouterActivityPath {
     }
 
     /**
+     * 首页组件
+     */
+    public static class Home {
+        private static final String Home = "/home";
+        public static final String Pager_Home_Search = Home + "/search";
+    }
+
+    /**
      * 账号管理组件
      */
     public static class Account {

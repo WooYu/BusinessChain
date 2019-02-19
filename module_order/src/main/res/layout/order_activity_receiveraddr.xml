@@ -1,43 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!--标题-->
-    <com.qmuiteam.qmui.widget.QMUITopBarLayout
-        android:id="@+id/qmui_topbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <!--地址列表-->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_address"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/gap_size16"
-        app:layout_constraintBottom_toTopOf="@id/btn_create"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/qmui_topbar"
-        tools:listitem="@layout/order_item_receiveraddr" />
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+        <import type="android.support.v7.widget.LinearLayoutManager" />
+        <variable name="viewModel" type="com.lcworld.module_order.viewmodel.ReceiverAddressViewModel"/>
+    </data>
 
-    <!--新建地址-->
-    <Button
-        android:id="@+id/btn_create"
-        android:layout_marginBottom="@dimen/gap_size16"
-        android:layout_marginStart="@dimen/gap_size16"
-        android:layout_marginEnd="@dimen/gap_size17"
-        android:text="@string/order_receiveraddr_create"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/selector_btnbg_a"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="327:40"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <!--标题-->
+        <com.qmuiteam.qmui.widget.QMUITopBarLayout
+                android:id="@+id/qmui_topbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                binding:layout_constraintEnd_toEndOf="parent"
+                binding:layout_constraintStart_toStartOf="parent"
+                binding:layout_constraintTop_toTopOf="parent"/>
+
+        <!--地址列表-->
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_address"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/gap_size16"
+                binding:layout_constraintBottom_toTopOf="@id/btn_create"
+                binding:layout_constraintEnd_toEndOf="parent"
+                binding:layout_constraintStart_toStartOf="parent"
+                binding:layout_constraintTop_toBottomOf="@id/qmui_topbar"
+                tools:listitem="@layout/order_item_receiveraddr"
+                binding:adapter="@{viewModel.adapter}"
+                binding:itemBinding="@{viewModel.itemBinding}"
+                binding:items="@{viewModel.observableList}"
+                binding:layoutManager="@{LayoutManagers.linear()}"/>
+
+        <!--新建地址-->
+        <Button
+                android:id="@+id/btn_create"
+                android:layout_marginBottom="@dimen/gap_size16"
+                android:layout_marginStart="@dimen/gap_size16"
+                android:layout_marginEnd="@dimen/gap_size17"
+                android:text="@string/order_receiveraddr_create"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/selector_btnbg_a"
+                android:textColor="@color/white"
+                binding:layout_constraintBottom_toBottomOf="parent"
+                binding:layout_constraintDimensionRatio="327:40"
+                binding:layout_constraintEnd_toEndOf="parent"
+                binding:layout_constraintStart_toStartOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

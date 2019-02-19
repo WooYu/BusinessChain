@@ -18,6 +18,11 @@ public interface ApiServiceInterf {
     @GET("members/address/{id}")
     Observable<RequestResult<DataMemberAddress>> membersAddress(@Path("id") int id);
 
+    //查询当前会员地址列表
+    @GET("members/addresses")
+    Observable<RequestResult<List<DataMemberAddress>>> membersAddresses();
+
+
     //交易
     //购物车接口模块
     //获取结算页面购物车详情

@@ -1,5 +1,7 @@
 package com.lcworld.library_base.extension;
 
+import com.blankj.utilcode.util.ObjectUtils;
+
 import java.text.DecimalFormat;
 
 /**
@@ -51,5 +53,26 @@ public class ConvertExUtils {
             e.printStackTrace();
             return "0";
         }
+    }
+
+    //转换手机号
+    public static String convertPhone(String mobile) {
+        if (ObjectUtils.isEmpty(mobile)) {
+            return "";
+        }
+        StringBuilder sBuilder = new StringBuilder();
+        int length = mobile.length();
+        for (int i = 0; i < length; i++) {
+            char tempChar = mobile.charAt(i);
+            if ((i == length - 11) || (i == length - 10)
+                    || (i == length - 9) || (i == length - 4)
+                    || (i == length - 3) || (i == length - 2)
+                    || (i == length - 1)) {
+                sBuilder.append(tempChar);
+            } else {
+                sBuilder.append("*");
+            }
+        }
+        return sBuilder.toString();
     }
 }
