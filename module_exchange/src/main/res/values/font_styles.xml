@@ -1,0 +1,70 @@
+<resources>
+
+    <style name="exchange_text_12_999999">
+        <item name="android:textColor">#999999</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="exchange_text_13_333333">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="exchange_text_13_ffffff">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="exchange_text_13_666666">
+        <item name="android:textColor">#666666</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="exchange_text_14_FFFFFF">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="exchange_text_14_333333">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="exchange_text_14_333333_b">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="exchange_text_14_999999">
+        <item name="android:textColor">#999999</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="exchange_text_15_333333">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="exchange_text_15_333333_b">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="exchange_text_15_666666">
+        <item name="android:textColor">#666666</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="exchange_text_15_FFFFFF_b">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="exchange_text_18_666666">
+        <item name="android:textColor">#666666</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+</resources>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_exchange.viewmodel.WithdrawSuccessViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appbg_color">
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/exchange_layout_title"/>
+
+        <ImageView
+                android:id="@+id/iv_success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/exchange_success"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="51dp"
+                android:contentDescription="@string/image_description_default"/>
+
+        <TextView
+                android:id="@+id/tv_success"
+                style="@style/exchange_text_15_666666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/iv_success"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/gap_size14"
+                android:text="@string/exchange_submit_query_tips"/>
+        <!--到账银行卡-->
+        <View
+                android:id="@+id/bg_receiver_bankcard"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:43"
+                app:layout_constraintTop_toBottomOf="@id/tv_success"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="57dp"
+                android:background="@color/appbg_color_white"/>
+
+        <TextView
+                style="@style/exchange_text_14_333333_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_receiver_bankcard"
+                app:layout_constraintBottom_toBottomOf="@id/bg_receiver_bankcard"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="@dimen/gap_size19"
+                android:text="@string/exchange_receiver_bankcard"/>
+
+        <TextView
+                android:id="@+id/tv_receiver_bankcard"
+                style="@style/exchange_text_14_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_receiver_bankcard"
+                app:layout_constraintBottom_toBottomOf="@id/bg_receiver_bankcard"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="@dimen/gap_size20"
+                android:text="@{viewModel.payType}"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_receiver_bankcard"
+                android:background="@color/line_colorc"/>
+        <!--金额-->
+        <View
+                android:id="@+id/bg_receiver_amount"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:43"
+                app:layout_constraintTop_toBottomOf="@id/bg_receiver_bankcard"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@color/appbg_color_white"/>
+
+        <TextView
+                style="@style/exchange_text_14_333333_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_receiver_amount"
+                app:layout_constraintBottom_toBottomOf="@id/bg_receiver_amount"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="@dimen/gap_size19"
+                android:text="@string/exchange_amount"/>
+
+        <TextView
+                android:id="@+id/tv_receiver_amount"
+                style="@style/exchange_text_14_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_receiver_amount"
+                app:layout_constraintBottom_toBottomOf="@id/bg_receiver_amount"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="@dimen/gap_size20"
+                android:text="@{viewModel.amount}"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

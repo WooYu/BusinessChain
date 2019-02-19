@@ -1,0 +1,31 @@
+<resources>
+
+    <style name="exchange_recharge_amount">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintDimensionRatio">77:33</item>
+        <item name="android:textSize">@dimen/tx_size14</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="exchange_item_bg">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintDimensionRatio">360:43</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="android:background">@color/appbg_color_white</item>
+    </style>
+
+    <style name="exchange_btn_confirm" parent="exchange_text_15_FFFFFF_b">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintDimensionRatio">327:40</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="android:layout_marginStart">@dimen/gap_size16</item>
+        <item name="android:layout_marginEnd">@dimen/gap_size16</item>
+        <item name="android:text">@string/exchange_next</item>
+        <item name="android:background">@drawable/selector_btnbg_a</item>
+    </style>
+</resources>

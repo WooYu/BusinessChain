@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_exchange.viewmodel.AddBankcardViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appbg_color">
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/exchange_layout_title"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/gap_size17"/>
+        <!--选择卡类型-->
+        <View
+                android:id="@+id/bg_choose_card_type"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                android:layout_marginTop="@dimen/gap_size6"
+                style="@style/exchange_item_bg"
+                app:onClickCommand="@{viewModel.cardSelectOnClickCommand}"
+                tools:ignore="MissingConstraints"/>
+
+        <TextView
+                style="@style/exchange_text_14_333333_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_choose_card_type"
+                app:layout_constraintBottom_toBottomOf="@id/bg_choose_card_type"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                android:text="@string/exchange_select_card_type"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_choose_card_type"
+                app:layout_constraintBottom_toBottomOf="@id/bg_choose_card_type"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="@dimen/gap_size17"
+                android:src="@mipmap/arrow_right2"
+                android:contentDescription="@string/image_description_default"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_size1"
+                android:background="@color/line_colorc"
+                app:layout_constraintBottom_toBottomOf="@id/bg_choose_card_type"/>
+
+        <View
+                android:id="@+id/bg_card_name"
+                style="@style/exchange_item_bg"
+                app:layout_constraintTop_toBottomOf="@id/bg_choose_card_type"
+                tools:ignore="MissingConstraints"/>
+
+        <TextView
+                android:id="@+id/tv_card_number"
+                style="@style/exchange_text_14_333333_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_card_name"
+                app:layout_constraintBottom_toBottomOf="@id/bg_card_name"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                android:text="@string/exchange_card_number"/>
+
+        <EditText
+                android:id="@+id/et_card_number"
+                style="@style/exchange_text_14_333333"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_card_name"
+                app:layout_constraintTop_toTopOf="@id/bg_card_name"
+                app:layout_constraintLeft_toRightOf="@id/tv_card_number"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="@dimen/gap_size21"
+                android:layout_marginStart="@dimen/gap_size10"
+                android:hint="@string/exchange_bankcard_tips"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:maxLines="1"
+                android:digits="0123456789xX"
+                tools:ignore="Autofill"
+                android:text="@{viewModel.cardNumber}"
+                android:inputType="number"/>
+
+        <Button
+                android:id="@+id/bt_confirm"
+                style="@style/exchange_btn_confirm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/gap_size16"
+                android:text="@string/exchange_confirm"
+                app:onClickCommand="@{viewModel.nextOnClickCommand}"
+                tools:ignore="MissingConstraints"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

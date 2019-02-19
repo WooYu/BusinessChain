@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_exchange.viewmodel.RechargeViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appbg_color"
+            >
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/gap_size15"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/gap_size13"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/gap_size13"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/gap_size19"/>
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/exchange_layout_title"/>
+        <!--充值金额-->
+        <View
+                android:id="@+id/bg_recharge_amount"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintDimensionRatio="36:15"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                android:layout_marginTop="@dimen/gap_size7"
+                android:background="@color/appbg_color_white"
+                />
+
+        <TextView
+                android:id="@+id/tv_recharge_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/bg_recharge_amount"
+                android:layout_marginTop="@dimen/gap_size17"
+                android:text="@string/exchange_recharge_amount"
+                android:textSize="@dimen/tx_size15"
+                android:textColor="@color/tx_colorb"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/bt_10"
+                style="@style/exchange_recharge_amount"
+                app:layout_constraintLeft_toLeftOf="@id/guideline2"
+                app:layout_constraintRight_toLeftOf="@+id/bt_20"
+                app:layout_constraintTop_toBottomOf="@id/tv_recharge_amount"
+                android:background="@{viewModel.amountObservableList[0] ? @drawable/shape_btnbg_g : @drawable/shape_btnbg_i}"
+                android:textColor="@{viewModel.amountObservableList[0] ? @color/tx_colorf : @color/tx_colorc}"
+                android:layout_marginTop="@dimen/gap_size20"
+                android:tag="0"
+                android:onClick="@{(view)->viewModel.onAmountSelect(view)}"
+                android:text="@string/exchange_money_10"/>
+
+        <TextView
+                android:id="@+id/bt_20"
+                style="@style/exchange_recharge_amount"
+                app:layout_constraintLeft_toRightOf="@id/bt_10"
+                app:layout_constraintRight_toLeftOf="@+id/bt_50"
+                app:layout_constraintTop_toTopOf="@id/bt_10"
+                android:layout_marginStart="@dimen/gap_size9"
+                android:background="@{viewModel.amountObservableList[1] ? @drawable/shape_btnbg_g : @drawable/shape_btnbg_i}"
+                android:textColor="@{viewModel.amountObservableList[1] ? @color/tx_colorf : @color/tx_colorc}"
+                android:tag="1"
+                android:onClick="@{(view)->viewModel.onAmountSelect(view)}"
+                android:text="@string/exchange_money_20"/>
+
+        <TextView
+                android:id="@+id/bt_50"
+                style="@style/exchange_recharge_amount"
+                app:layout_constraintLeft_toRightOf="@id/bt_20"
+                app:layout_constraintRight_toLeftOf="@+id/bt_100"
+                app:layout_constraintTop_toTopOf="@id/bt_10"
+                android:background="@{viewModel.amountObservableList[2] ? @drawable/shape_btnbg_g : @drawable/shape_btnbg_i}"
+                android:textColor="@{viewModel.amountObservableList[2] ? @color/tx_colorf : @color/tx_colorc}"
+                android:tag="2"
+                android:onClick="@{(view)->viewModel.onAmountSelect(view)}"
+                android:layout_marginStart="@dimen/gap_size9"
+                android:text="@string/exchange_money_50"/>
+
+        <TextView
+                android:id="@+id/bt_100"
+                style="@style/exchange_recharge_amount"
+                app:layout_constraintLeft_toRightOf="@id/bt_50"
+                app:layout_constraintRight_toRightOf="@id/guideline3"
+                app:layout_constraintTop_toTopOf="@id/bt_10"
+                android:background="@{viewModel.amountObservableList[3] ? @drawable/shape_btnbg_g : @drawable/shape_btnbg_i}"
+                android:textColor="@{viewModel.amountObservableList[3] ? @color/tx_colorf : @color/tx_colorc}"
+                android:tag="3"
+                android:onClick="@{(view)->viewModel.onAmountSelect(view)}"
+                android:layout_marginStart="@dimen/gap_size9"
+                android:text="@string/exchange_money_100"/>
+
+        <TextView
+                android:id="@+id/bt_200"
+                style="@style/exchange_recharge_amount"
+                app:layout_constraintLeft_toLeftOf="@id/bt_10"
+                app:layout_constraintRight_toRightOf="@id/bt_10"
+                app:layout_constraintTop_toBottomOf="@id/bt_10"
+                android:background="@{viewModel.amountObservableList[4] ? @drawable/shape_btnbg_g : @drawable/shape_btnbg_i}"
+                android:textColor="@{viewModel.amountObservableList[4] ? @color/tx_colorf : @color/tx_colorc}"
+                android:tag="4"
+                android:onClick="@{(view)->viewModel.onAmountSelect(view)}"
+                android:layout_marginTop="@dimen/gap_size13"
+                android:text="@string/exchange_money_200"/>
+
+        <TextView
+                android:id="@+id/bt_300"
+                style="@style/exchange_recharge_amount"
+                app:layout_constraintLeft_toLeftOf="@id/bt_20"
+                app:layout_constraintRight_toRightOf="@id/bt_20"
+                app:layout_constraintTop_toTopOf="@id/bt_200"
+                android:background="@{viewModel.amountObservableList[5] ? @drawable/shape_btnbg_g : @drawable/shape_btnbg_i}"
+                android:textColor="@{viewModel.amountObservableList[5] ? @color/tx_colorf : @color/tx_colorc}"
+                android:tag="5"
+                android:onClick="@{(view)->viewModel.onAmountSelect(view)}"
+                android:text="@string/exchange_money_300"/>
+
+        <TextView
+                android:id="@+id/bt_500"
+                style="@style/exchange_recharge_amount"
+                app:layout_constraintLeft_toLeftOf="@id/bt_50"
+                app:layout_constraintRight_toRightOf="@id/bt_50"
+                app:layout_constraintTop_toTopOf="@id/bt_200"
+                android:background="@{viewModel.amountObservableList[6] ? @drawable/shape_btnbg_g : @drawable/shape_btnbg_i}"
+                android:textColor="@{viewModel.amountObservableList[6] ? @color/tx_colorf : @color/tx_colorc}"
+                android:tag="6"
+                android:onClick="@{(view)->viewModel.onAmountSelect(view)}"
+                android:text="@string/exchange_money_500"/>
+
+        <TextView
+                android:id="@+id/bt_1000"
+                style="@style/exchange_recharge_amount"
+                app:layout_constraintLeft_toLeftOf="@id/bt_100"
+                app:layout_constraintRight_toRightOf="@id/bt_100"
+                app:layout_constraintTop_toTopOf="@id/bt_200"
+                android:background="@{viewModel.amountObservableList[7] ? @drawable/shape_btnbg_g : @drawable/shape_btnbg_i}"
+                android:textColor="@{viewModel.amountObservableList[7] ? @color/tx_colorf : @color/tx_colorc}"
+                android:tag="7"
+                android:onClick="@{(view)->viewModel.onAmountSelect(view)}"
+                android:text="@string/exchange_money_1000"/>
+
+        <!--充值金额输入-->
+        <View
+                android:id="@+id/bg_recharge_input"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintDimensionRatio="36:5"
+                app:layout_constraintTop_toBottomOf="@id/bg_recharge_amount"
+                android:background="@color/appbg_color_white"
+                android:layout_marginTop="@dimen/gap_size7"/>
+
+        <EditText
+                android:id="@+id/et_recharge_input"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintLeft_toLeftOf="@id/guideline2"
+                app:layout_constraintRight_toRightOf="@id/guideline3"
+                app:layout_constraintTop_toTopOf="@id/bg_recharge_input"
+                app:layout_constraintBottom_toBottomOf="@id/bg_recharge_input"
+                android:textSize="@dimen/tx_size15"
+                android:textColor="@color/tx_colorc"
+                android:hint="@string/exchange_hint_input_recharge_amount"
+                android:background="@null"
+                android:maxLines="1"
+                android:gravity="center_vertical"
+                android:inputType="numberDecimal"
+                android:text="@{viewModel.amount}"
+                android:selection="@{viewModel.amount.get().length}"
+                android:afterTextChanged="@{viewModel.amountAfterTextChanged}"
+                app:onFocusChangeCommand="@{viewModel.onFocusChangeCommand}"
+                tools:ignore="Autofill"/>
+        <!--微信支付-->
+        <View
+                android:id="@+id/bg_wechat"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/gap_size6"
+                android:background="@color/appbg_color_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintDimensionRatio="360:43"
+                app:layout_constraintTop_toBottomOf="@id/bg_recharge_input"/>
+
+        <ImageView
+                android:id="@+id/iv_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/exchange_wechat_pay"
+                app:layout_constraintTop_toTopOf="@id/bg_wechat"
+                app:layout_constraintBottom_toBottomOf="@id/bg_wechat"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                android:contentDescription="@string/image_description_default"/>
+
+        <TextView
+                android:id="@+id/tv_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/tx_size14"
+                android:textColor="@color/tx_colorb"
+                android:text="@string/exchange_wechat_pay"
+                android:layout_marginStart="@dimen/gap_size10"
+                app:layout_constraintStart_toEndOf="@id/iv_wechat"
+                app:layout_constraintBottom_toBottomOf="@id/bg_wechat"
+                app:layout_constraintTop_toTopOf="@id/bg_wechat"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/cb_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_cbox_a"
+                app:layout_constraintBottom_toBottomOf="@id/bg_wechat"
+                app:layout_constraintTop_toTopOf="@id/bg_wechat"
+                app:layout_constraintEnd_toEndOf="@id/guideline4"
+                android:checked="@{viewModel.payTypeList[0]}"
+                android:tag="0"
+                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"
+                />
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/line_colorc"
+                app:layout_constraintBottom_toBottomOf="@id/bg_wechat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_wechat"/>
+        <!--支付宝支付-->
+        <View
+                android:id="@+id/bg_ali_pay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/appbg_color_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintDimensionRatio="360:43"
+                app:layout_constraintTop_toBottomOf="@id/bg_wechat"/>
+
+        <ImageView
+                android:id="@+id/iv_ali_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/exchange_alipay"
+                app:layout_constraintTop_toTopOf="@id/bg_ali_pay"
+                app:layout_constraintBottom_toBottomOf="@id/bg_ali_pay"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                android:contentDescription="@string/image_description_default"/>
+
+        <TextView
+                android:id="@+id/tv_ali_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/tx_size14"
+                android:textColor="@color/tx_colorb"
+                android:text="@string/exchange_ali_pay"
+                android:layout_marginStart="@dimen/gap_size10"
+                app:layout_constraintStart_toEndOf="@id/iv_ali_pay"
+                app:layout_constraintBottom_toBottomOf="@id/bg_ali_pay"
+                app:layout_constraintTop_toTopOf="@id/bg_ali_pay"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/cb_ali_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_cbox_a"
+                app:layout_constraintBottom_toBottomOf="@id/bg_ali_pay"
+                app:layout_constraintTop_toTopOf="@id/bg_ali_pay"
+                app:layout_constraintEnd_toEndOf="@id/guideline4"
+                android:checked="@{viewModel.payTypeList[1]}"
+                android:tag="1"
+                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"
+                />
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/line_colorc"
+                app:layout_constraintBottom_toBottomOf="@id/bg_ali_pay"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_ali_pay"/>
+        <!--银行卡支付-->
+        <View
+                android:id="@+id/bg_bankcard_pay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/appbg_color_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintDimensionRatio="360:43"
+                app:layout_constraintTop_toBottomOf="@id/bg_ali_pay"/>
+
+        <ImageView
+                android:id="@+id/iv_bankcard_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/exchange_bankcard"
+                app:layout_constraintTop_toTopOf="@id/bg_bankcard_pay"
+                app:layout_constraintBottom_toBottomOf="@id/bg_bankcard_pay"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                android:contentDescription="@string/image_description_default"/>
+
+        <TextView
+                android:id="@+id/tv_bankcard_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/tx_size14"
+                android:textColor="@color/tx_colorb"
+                android:text="@string/exchange_bank_pay"
+                android:layout_marginStart="@dimen/gap_size10"
+                app:layout_constraintStart_toEndOf="@id/iv_bankcard_pay"
+                app:layout_constraintBottom_toBottomOf="@id/bg_bankcard_pay"
+                app:layout_constraintTop_toTopOf="@id/bg_bankcard_pay"/>
+
+        <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/cb_bankcard_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_cbox_a"
+                app:layout_constraintBottom_toBottomOf="@id/bg_bankcard_pay"
+                app:layout_constraintTop_toTopOf="@id/bg_bankcard_pay"
+                app:layout_constraintEnd_toEndOf="@id/guideline4"
+                android:checked="@{viewModel.payTypeList[2]}"
+                android:tag="2"
+                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"
+                />
+
+        <Button
+                android:id="@+id/bt_next"
+                style="@style/exchange_btn_confirm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/gap_size16"
+                android:text="@string/exchange_pay_immediately"
+                android:enabled="@{viewModel.isBtnEnable}"
+                app:onClickCommand="@{viewModel.confirmOnClickCommand}"
+                tools:ignore="MissingConstraints"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

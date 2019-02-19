@@ -64,4 +64,12 @@ public class RouterActivityPath {
         private static final String BACKSTAGE = "/backstage";
         public static final String PAGER_ENTRANCE = BACKSTAGE + "/backstage";
     }
+
+    /**
+     * 钱包组件
+     */
+    public static class Exchange {
+        private static final String EXCHANGE = "/exchange";
+        public static final String PAGER_WALLET = EXCHANGE + "/wallet";
+    }
 }

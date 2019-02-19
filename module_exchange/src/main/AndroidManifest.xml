@@ -1,2 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lcworld.module_exchange" />
+          package="com.lcworld.module_exchange">
+
+    <application>
+        <activity android:name=".activity.WalletAct"/>
+        <activity android:name=".activity.RechargeAct"/>
+        <activity android:name=".activity.RechargeRecordAct"/>
+        <activity android:name=".activity.RechargeSuccessAct"/>
+        <activity android:name=".activity.AddBankcardAct"/>
+        <activity
+                android:name=".activity.AddInfoAct"
+                android:windowSoftInputMode="stateVisible|adjustResize"/>
+        <activity android:name=".activity.NoBankcardAct"/>
+        <activity
+                android:name=".activity.WithDrawAct"
+                android:windowSoftInputMode="stateVisible|stateHidden"/>
+        <activity android:name=".activity.WithdrawSuccessAct"/>
+        <activity android:name=".activity.BankCardListAct"/>
+        <activity android:name=".activity.SetPwdAct"/>
+        <activity android:name=".activity.VerifyPhoneNumberAct"/>
+    </application>
+
+</manifest>

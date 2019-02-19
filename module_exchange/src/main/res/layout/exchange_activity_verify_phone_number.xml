@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_exchange.viewmodel.VerifyPhoneNumberViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appbg_color">
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/exchange_layout_title"/>
+
+        <View
+                android:id="@+id/bg_phone_number"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                android:layout_marginTop="@dimen/gap_size6"
+                style="@style/exchange_item_bg"
+                tools:ignore="MissingConstraints"/>
+
+        <EditText
+                android:id="@+id/et_phone_number"
+                style="@style/exchange_text_14_333333"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_phone_number"
+                app:layout_constraintTop_toTopOf="@id/bg_phone_number"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/bt_verify_code"
+                android:layout_marginStart="@dimen/gap_size17"
+                android:hint="@string/exchange_hint_phone_number_input"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                tools:ignore="Autofill,TextFields"
+                android:inputType="number"/>
+
+        <Button
+                style="@style/exchange_text_13_ffffff"
+                android:id="@+id/bt_verify_code"
+                android:layout_width="73dp"
+                android:layout_height="@dimen/gap_size22"
+                app:layout_constraintLeft_toRightOf="@id/et_phone_number"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bg_phone_number"
+                app:layout_constraintBottom_toBottomOf="@id/bg_phone_number"
+                android:background="@drawable/selector_btnbg_f"
+                android:layout_marginEnd="@dimen/gap_size19"
+                android:text="@{viewModel.codeBtnText}"
+                android:textSize="@dimen/tx_size13"
+                android:textColor="@color/selector_color_b"
+                app:onClickCommand="@{viewModel.getCodeOnClickCommand}"
+                />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_size1"
+                android:background="@color/line_colorc"
+                app:layout_constraintBottom_toBottomOf="@id/bg_phone_number"/>
+        <!--短信验证码-->
+        <View
+                android:id="@+id/bg_verify_code"
+                style="@style/exchange_item_bg"
+                app:layout_constraintTop_toBottomOf="@id/bg_phone_number"
+                tools:ignore="MissingConstraints"/>
+
+        <EditText
+                android:id="@+id/et_verify_code"
+                style="@style/exchange_text_14_333333"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_verify_code"
+                app:layout_constraintTop_toTopOf="@id/bg_verify_code"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="@dimen/gap_size17"
+                android:layout_marginStart="@dimen/gap_size17"
+                android:hint="@string/exchange_hint_verification_code_input"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                tools:ignore="Autofill"
+                android:inputType="number"/>
+
+        <Button
+                android:id="@+id/bt_confirm"
+                style="@style/exchange_btn_confirm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/gap_size16"
+                app:onClickCommand="@{viewModel.nextOnClickCommand}"
+                tools:ignore="MissingConstraints"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

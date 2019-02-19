@@ -13,13 +13,14 @@ import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.library_base.widget.scrollview.ScrollViewMine;
 import com.lcworld.module_home.R;
 import com.lcworld.module_home.databinding.HomeFragMineBinding;
+import com.lcworld.module_home.viewmodel.MineViewModel;
 import me.goldze.mvvmhabit.BR;
 
 /**
  * 我的
  */
 @Route(path = RouterFragmentPath.Home.PAGER_MINE)
-public class MineFragment extends BaseFragmentEnhance<HomeFragMineBinding, BaseViewModelEnhance> {
+public class MineFragment extends BaseFragmentEnhance<HomeFragMineBinding, MineViewModel> {
 
     private float mColorOffsetThreshold;//状态栏变色阈值
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_exchange.viewmodel.recyclerItem.RechargeRecordItemHeadViewModel"/>
+
+    </data>
+
+    <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/gap_size15"
+            android:text="@{viewModel.text}"
+            style="@style/exchange_text_15_333333"
+            android:background="@color/appbg_color"
+            tools:ignore="RtlSymmetry">
+
+
+    </TextView>
+</layout>
