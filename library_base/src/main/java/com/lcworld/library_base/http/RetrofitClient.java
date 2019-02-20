@@ -25,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -38,7 +39,8 @@ public class RetrofitClient {
     //缓存时间
     private static final int CACHE_TIMEOUT = 10 * 1024 * 1024;
     //服务端根路径
-    public static String baseUrl = "http://39.106.25.50:5002/";
+    public static String url_global = "http://39.106.25.50:5002/";
+    public static String url_base = "http://39.106.25.50:5001/";
 
     private static Context mContext = Utils.getContext();
 
@@ -57,13 +59,13 @@ public class RetrofitClient {
     }
 
     private RetrofitClient() {
-        this(baseUrl, null);
+        this(url_global, null);
     }
 
     private RetrofitClient(String url, Map<String, String> headers) {
 
         if (TextUtils.isEmpty(url)) {
-            url = baseUrl;
+            url = url_global;
         }
 
         if (httpCacheDirectory == null) {
@@ -94,6 +96,45 @@ public class RetrofitClient {
                         return chain.proceed(request);
                     }
                 })
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        //获取request
+                        Request request = chain.request();
+                        //获取request的创建者builder
+                        Request.Builder builder = request.newBuilder();
+                        //从request中获取headers，通过给定的键url_name
+                        List<String> headerValues = request.headers("url_name");
+                        if (headerValues != null && headerValues.size() > 0) {
+                            //如果有这个header，先将配置的header删除，因此header仅用作app和okhttp之间使用
+                            builder.removeHeader("url_name");
+                            //匹配获得新的BaseUrl
+                            String headerValue = headerValues.get(0);
+                            HttpUrl newBaseUrl = null;
+                            //从request中获取原有的HttpUrl实例oldHttpUrl
+                            HttpUrl oldHttpUrl = request.url();
+                            if ("module_base".equals(headerValue)) {
+                                newBaseUrl = HttpUrl.parse(url_base);
+                            } else {
+                                newBaseUrl = oldHttpUrl;
+                            }
+                            //重建新的HttpUrl，修改需要修改的url部分
+                            HttpUrl newFullUrl = oldHttpUrl
+                                    .newBuilder()
+                                    .scheme(newBaseUrl.scheme())
+                                    .host(newBaseUrl.host())
+                                    .port(newBaseUrl.port())
+                                    .build();
+                            //重建这个request，通过builder.url(newFullUrl).build()；
+                            //然后返回一个response至此结束修改
+                            return chain.proceed(builder.url(newFullUrl).build());
+                        } else {
+                            return chain.proceed(request);
+                        }
+
+                    }
+
+                })
                 .addInterceptor(new BaseInterceptor(headers))
                 .addInterceptor(new CacheInterceptor(mContext))
                 .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
@@ -111,6 +152,8 @@ public class RetrofitClient {
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .connectionPool(new ConnectionPool(8, 15, TimeUnit.SECONDS))
                 // 这里你可以根据自己的机型设置同时连接的个数和时间，我这里8个，和每个保持时间为10s
+
+
                 .build();
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)

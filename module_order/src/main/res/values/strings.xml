@@ -16,6 +16,10 @@
     <string name="order_error_goodsquantity">请输入销售商品件数！</string>
     <string name="order_error_salesday">请重新选择销售周期！</string>
     <string name="order_error_compact">请同意合同明细！</string>
+    <string name="order_error_phone">请输入正确的手机号！</string>
+
+    <!--empty-->
+    <string name="order_empty_region">请选择所在区域！</string>
 
     <!--tip-->
     <string name="order_tip_payment_result_success">支付成功</string>

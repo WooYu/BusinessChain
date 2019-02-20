@@ -4,19 +4,35 @@ import com.lcworld.library_base.http.RequestResult;
 import com.lcworld.library_base.http.RequestResultImp;
 import com.lcworld.module_order.bean.*;
 import io.reactivex.Observable;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 import java.util.List;
 
 public interface ApiServiceInterf {
     //会员
     //会员地址相关API
+    //添加会员地址  , @Query("town_id") int town_id, @Query("town") String town,
+    @POST("members/address")
+    Observable<RequestResult<DataMemberAddress>> membersAddressCreate(@Query("name") String name, @Query("mobile") String mobile
+            , @Query("province_id") int province_id, @Query("province") String province, @Query("city_id") int city_id
+            , @Query("city") String city, @Query("county_id") int county_id, @Query("county") String county
+            , @Query("addr") String addr, @Query("def_addr") int def_addr);
+
     //查询当前会员的某个地址
     @GET("members/address/{id}")
     Observable<RequestResult<DataMemberAddress>> membersAddress(@Path("id") int id);
+
+    //修改会员地址
+    @PUT("members/address/{id}")
+    Observable<RequestResult<DataMemberAddress>> memberAddressModify(
+            @Path("id") int id, @Query("name") String name, @Query("mobile") String mobile
+            , @Query("province_id") int province_id, @Query("province") String province, @Query("city_id") int city_id
+            , @Query("city") String city, @Query("county_id") int county_id, @Query("county") String county
+            , @Query("addr") String addr, @Query("def_addr") int def_addr);
+
+    //设置地址为默认
+    @PUT("members/address/{id}/default")
+    Observable<RequestResult<DataMemberAddress>> memberAddressDefault(@Path("id") int id);
 
     //查询当前会员地址列表
     @GET("members/addresses")
@@ -34,11 +50,17 @@ public interface ApiServiceInterf {
     @GET("trade/checkout-params")
     Observable<RequestResult<DataOrderDTO>> tradeCheckoutParams();
 
+    //设置收货地址id
+    @POST("trade/checkout-params/address-id/{address_id}")
+    Observable<RequestResultImp> tradeCheckoutParamsAddressId(@Path("address_id") int address_id);
+
 
     //交易接口模块
     //创建交易
     @POST("trade/create")
-    Observable<RequestResult<DataTradeVo>> tradeCreate(@Query("client") String client);
+    @FormUrlEncoded
+    Observable<RequestResult<DataTradeVo>> tradeCreate(@Field("client") String client);
+
 
     //拼团采集
     //拼团订单API
@@ -54,5 +76,11 @@ public interface ApiServiceInterf {
     @GET("pintuan/order/getProportion")
     Observable<RequestResult<List<DataProportionDTO>>> pinTuanOrderGetProportion();
 
+    //default
+    //地区API
+    //获取某地区的子地区
+    @Headers({"url_name:module_base"})
+    @GET("regions/{id}/children")
+    Observable<RequestResult<List<DataRegions>>> regionsIdChildren(@Path("id") int id);
 
 }

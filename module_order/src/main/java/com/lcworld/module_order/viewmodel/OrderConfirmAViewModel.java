@@ -16,13 +16,19 @@ import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.ApiServiceInterf;
 import com.lcworld.module_order.R;
 import com.lcworld.module_order.bean.*;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
+import me.goldze.mvvmhabit.bus.RxBus;
+import me.goldze.mvvmhabit.bus.RxSubscriptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderConfirmAViewModel extends BaseViewModelEnhance {
+    private Disposable disposableSelectReceiverAddress;
+
     public final ObservableParcelable<DataMemberAddress> observableAddress = new ObservableParcelable<>();
     public final ObservableArrayList<DataSKUVo> observableCartVoList = new ObservableArrayList<>();
     public final ObservableDouble observableTotalPrice = new ObservableDouble();
@@ -39,6 +45,25 @@ public class OrderConfirmAViewModel extends BaseViewModelEnhance {
 
         requestOrderDetail();
         requestOrderBillingInfo();
+    }
+
+    @Override
+    public void registerRxBus() {
+        super.registerRxBus();
+        disposableSelectReceiverAddress = RxBus.getDefault().toObservable(EventSelectReceiverAddress.class)
+                .subscribe(new Consumer<EventSelectReceiverAddress>() {
+                    @Override
+                    public void accept(EventSelectReceiverAddress eventSelectReceiverAddress) throws Exception {
+                        observableAddress.set(eventSelectReceiverAddress.getMemberAddress());
+                    }
+                });
+        RxSubscriptions.add(disposableSelectReceiverAddress);
+    }
+
+    @Override
+    public void removeRxBus() {
+        super.removeRxBus();
+        RxSubscriptions.remove(disposableSelectReceiverAddress);
     }
 
     //处理商品展示的数据

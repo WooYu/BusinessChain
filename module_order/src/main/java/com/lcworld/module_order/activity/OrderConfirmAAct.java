@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lcworld.library_base.base.BaseActivityEnhance;
+import com.lcworld.library_base.extension.ConvertExUtils;
 import com.lcworld.library_base.extension.ListChangedCallbackImpl;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.BR;
@@ -76,6 +77,7 @@ public class OrderConfirmAAct extends BaseActivityEnhance<OrderActivityOrderconf
         clayoutAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ARouter.getInstance().build(RouterActivityPath.Order.Pager_ReceiverAddress_List).navigation();
             }
         });
@@ -110,7 +112,7 @@ public class OrderConfirmAAct extends BaseActivityEnhance<OrderActivityOrderconf
 
                     tvDefAddrName.setText(bean.getName());
                     tvDefAddrDesc.setText(bean.getAddr());
-                    tvDefAddrPhone.setText(bean.getTel());
+                    tvDefAddrPhone.setText(ConvertExUtils.convertPhone(bean.getMobile()));
                 }
             }
         });

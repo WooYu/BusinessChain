@@ -5,9 +5,9 @@
         xmlns:binding="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
-        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
-        <import type="android.support.v7.widget.LinearLayoutManager" />
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers"/>
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers"/>
+        <import type="android.support.v7.widget.LinearLayoutManager"/>
         <variable name="viewModel" type="com.lcworld.module_order.viewmodel.ReceiverAddressViewModel"/>
     </data>
 
@@ -34,10 +34,7 @@
                 binding:layout_constraintStart_toStartOf="parent"
                 binding:layout_constraintTop_toBottomOf="@id/qmui_topbar"
                 tools:listitem="@layout/order_item_receiveraddr"
-                binding:adapter="@{viewModel.adapter}"
-                binding:itemBinding="@{viewModel.itemBinding}"
-                binding:items="@{viewModel.observableList}"
-                binding:layoutManager="@{LayoutManagers.linear()}"/>
+        />
 
         <!--新建地址-->
         <Button
@@ -47,6 +44,7 @@
                 android:layout_marginEnd="@dimen/gap_size17"
                 android:text="@string/order_receiveraddr_create"
                 android:layout_width="0dp"
+                binding:onClickCommand="@{viewModel.clickOfCreateAddr}"
                 android:layout_height="0dp"
                 android:background="@drawable/selector_btnbg_a"
                 android:textColor="@color/white"

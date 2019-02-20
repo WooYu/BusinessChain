@@ -8,4 +8,6 @@
     <integer name="config_freebuy_displayquants">4</integer>
     <!--商品的最大购买限制-->
     <integer name="config_goodsquantity_maxlimit">200</integer>
+    <!--默认地址-->
+    <integer name="config_def_address">1</integer>
 </resources>

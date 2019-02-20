@@ -33,7 +33,7 @@ public class HomeMemberViewModel extends BaseViewModelEnhance {
     public void requestFocusPictures() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .focusPictures(getApplication().getResources().getStringArray(R.array.client_type)[0]
-                        , getApplication().getResources().getStringArray(R.array.page_type)[0])
+                        , getApplication().getResources().getStringArray(R.array.page_type)[1])
                 .compose(RxUtilsEnhanced.implicitTransform())
                 .subscribe(new ResponseObserver<RequestResult<List<DataFocusPictures>>>() {
 
