@@ -1,5 +1,6 @@
 package com.lcworld.module_order.adapter;
 
+import android.support.v7.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.lcworld.module_order.R;
@@ -28,5 +29,19 @@ public class ReceiverAddressAdapter extends BaseItemDraggableAdapter<DataMemberA
 
         helper.addOnClickListener(R.id.view_defaul);
         helper.addOnClickListener(R.id.tv_edit);
+    }
+
+    @Override
+    public void onItemSwiped(RecyclerView.ViewHolder viewHolder) {
+        int pos = getViewHolderPosition(viewHolder);
+        if(mData.get(pos).getDef_addr() == mContext.getResources().getInteger(R.integer.config_def_address)){
+            if (mOnItemSwipeListener != null && itemSwipeEnabled) {
+                mOnItemSwipeListener.onItemSwiped(viewHolder, getViewHolderPosition(viewHolder));
+            }
+             notifyItemChanged(pos);
+        }else{
+            super.onItemSwiped(viewHolder);
+        }
+
     }
 }

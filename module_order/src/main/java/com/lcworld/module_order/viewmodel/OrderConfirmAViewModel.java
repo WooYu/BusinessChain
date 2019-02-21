@@ -36,7 +36,7 @@ public class OrderConfirmAViewModel extends BaseViewModelEnhance {
 
         @Override
         public void call() {
-            requestCreateOrder();
+            turn2Payment();
         }
     });
 
@@ -79,6 +79,24 @@ public class OrderConfirmAViewModel extends BaseViewModelEnhance {
 
         observableCartVoList.clear();
         observableCartVoList.addAll(skuVoList);
+    }
+
+    //跳转到支付
+    private void turn2Payment() {
+        if(ObjectUtils.isEmpty(observableCartVoList)){
+            return;
+        }
+
+        if(observableCartVoList.get(0).getGoods_type()
+                .equals(getApplication().getResources().getStringArray(R.array.goods_type)[2])){
+            //商币支付
+            ARouter.getInstance().build(RouterActivityPath.Order.Pager_Payment_Diamond).navigation();
+        }else{
+            //普通商品支付
+            ARouter.getInstance().build(RouterActivityPath.Order.Pager_Payment_Choose).navigation();
+        }
+        finish();
+
     }
 
     //获取结算详情
@@ -124,17 +142,4 @@ public class OrderConfirmAViewModel extends BaseViewModelEnhance {
                 });
     }
 
-    //创建订单
-    private void requestCreateOrder() {
-        RetrofitClient.getInstance().create(ApiServiceInterf.class)
-                .tradeCreate(getApplication().getResources().getStringArray(R.array.client_type)[0])
-                .compose(RxUtilsEnhanced.explicitTransform())
-                .subscribe(new ResponseObserver<RequestResult<DataTradeVo>>() {
-
-                    @Override
-                    public void onSuccess(RequestResult<DataTradeVo> dataTradeVoRequestResult) {
-                        ARouter.getInstance().build(RouterActivityPath.Order.Pager_Payment_Choose).navigation();
-                    }
-                });
-    }
 }

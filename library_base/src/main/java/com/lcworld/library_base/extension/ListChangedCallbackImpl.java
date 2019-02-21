@@ -3,7 +3,7 @@ package com.lcworld.library_base.extension;
 import android.databinding.ObservableList;
 import me.goldze.mvvmhabit.utils.KLog;
 
-public class ListChangedCallbackImpl extends ObservableList.OnListChangedCallback{
+public class ListChangedCallbackImpl<T extends ObservableList> extends ObservableList.OnListChangedCallback<T>{
     @Override
     public void onChanged(ObservableList sender) {
         KLog.d("onChanged()");

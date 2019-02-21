@@ -19,7 +19,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ScreenUtils;
-import com.lcworld.library_base.base.BaseFragmentEnhance;
+import com.lcworld.library_base.base.BaseRefreshFragment;
 import com.lcworld.library_base.extension.DialogControllTypeInterf;
 import com.lcworld.library_base.extension.ListChangedCallbackImpl;
 import com.lcworld.library_base.router.RouterActivityPath;
@@ -38,7 +38,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Route(path = RouterFragmentPath.Home.PAGER_ENTRANCE)
-public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, HomeViewModel> {
+public class HomeFragment extends BaseRefreshFragment<HomeFragEntranceBinding, HomeViewModel> {
 
     private float mColorOffsetThreshold;//状态栏变色阈值
     private VirtualLayoutManager mVirtualLayoutManager;
@@ -75,6 +75,11 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, H
         initView_StatusBar();
         initView_RecyclerView();
 
+        requestData();
+    }
+
+    @Override
+    public void startRefresh() {
         requestData();
     }
 
@@ -278,4 +283,5 @@ public class HomeFragment extends BaseFragmentEnhance<HomeFragEntranceBinding, H
         viewModel.requestFreeBuy();
         viewModel.requestSpellDeals();
     }
+
 }

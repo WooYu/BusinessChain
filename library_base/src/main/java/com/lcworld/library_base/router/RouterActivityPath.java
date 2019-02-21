@@ -54,6 +54,7 @@ public class RouterActivityPath {
         public static final String Pager_Order_Confirm2 = ORDER + "/confirm2";
         public static final String PAGER_TROLLEY = ORDER + "/trolley";
         public static final String Pager_Payment_Choose = ORDER + "/payment/choose";
+        public static final String Pager_Payment_Diamond = ORDER + "/payment/diamond";
         public static final String Pager_ReceiverAddress_List = ORDER + "/receiver/address/list";
         public static final String Pager_ReceiverAddress_Edit = ORDER + "/receiver/address/edit";
     }

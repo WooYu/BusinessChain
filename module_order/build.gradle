@@ -15,4 +15,8 @@ dependencies {
     api project(':library_base')
     //组件中依赖阿里路由编译框架
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    //支付宝支付
+    implementation files('libs/alipaySdk-20180601.jar')
+    //微信支付
+    implementation rootProject.ext.dependencies["paysdk_wechat"]
 }

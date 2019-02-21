@@ -4,6 +4,7 @@ import android.app.Application;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableDouble;
 import android.databinding.ObservableField;
+import android.databinding.ObservableInt;
 import android.support.annotation.NonNull;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ObjectUtils;
@@ -33,6 +34,7 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
     public ObservableField<String> prodouctName = new ObservableField<>();
     public ObservableField<String> productDetail = new ObservableField<>();
     public ObservableField<String> productType = new ObservableField<>();
+    public ObservableInt valueSkuId = new ObservableInt();
 
     //请求商品详情
     public void requestDetail(int goods_id) {
@@ -67,7 +69,7 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
     }
 
     //请求商品SKU
-    public void requestDetailSKU(int goods_id){
+    public void requestDetailSKU(int goods_id) {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .goodsDetailSKUS(goods_id)
                 .compose(RxUtilsEnhanced.implicitTransform())
@@ -75,7 +77,10 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
 
                     @Override
                     public void onSuccess(RequestResult<List<DataSKUVo>> listRequestResult) {
-
+                        if (null == listRequestResult.getData()) {
+                            return;
+                        }
+                        valueSkuId.set(listRequestResult.getData().get(0).getSku_id());
                     }
                 });
 
@@ -83,8 +88,8 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
     }
 
     //请求加入购物车
-    public void requestAdd2ShoppingCart(int sku_id, int num) {
-
+    public void requestAdd2ShoppingCart(int num) {
+        int sku_id = valueSkuId.get();
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .tradeCarts(sku_id, num)
                 .compose(RxUtilsEnhanced.explicitTransform())
@@ -92,14 +97,14 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
 
                     @Override
                     public void onSuccess(RequestResult<DataSKUVo> dataSKUVoRequestResult) {
-                            dialogControll_show(DialogControllTypeInterf.SUCCESS,getApplication().getString(R.string.goods_tip_add2shoppingcart));
+                        dialogControll_show(DialogControllTypeInterf.SUCCESS, getApplication().getString(R.string.goods_tip_add2shoppingcart));
                     }
                 });
     }
 
     //请求立即购买
-    public void requestBuyNow(int sku_id, int num) {
-
+    public void requestBuyNow(int num) {
+        int sku_id = valueSkuId.get();
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .tradeCartsBuy(sku_id, num)
                 .compose(RxUtilsEnhanced.explicitTransform())

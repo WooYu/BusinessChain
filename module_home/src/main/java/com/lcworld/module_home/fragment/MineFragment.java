@@ -7,8 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ScreenUtils;
-import com.lcworld.library_base.base.BaseFragmentEnhance;
-import com.lcworld.library_base.base.BaseViewModelEnhance;
+import com.lcworld.library_base.base.BaseRefreshFragment;
 import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.library_base.widget.scrollview.ScrollViewMine;
 import com.lcworld.module_home.R;
@@ -20,7 +19,7 @@ import me.goldze.mvvmhabit.BR;
  * 我的
  */
 @Route(path = RouterFragmentPath.Home.PAGER_MINE)
-public class MineFragment extends BaseFragmentEnhance<HomeFragMineBinding, MineViewModel> {
+public class MineFragment extends BaseRefreshFragment<HomeFragMineBinding, MineViewModel> {
 
     private float mColorOffsetThreshold;//状态栏变色阈值
 
@@ -45,6 +44,11 @@ public class MineFragment extends BaseFragmentEnhance<HomeFragMineBinding, MineV
         super.initViewObservable();
         initView_GradienColor();
         initView_ScrollView();
+    }
+
+    @Override
+    public void startRefresh() {
+
     }
 
     private void initView_GradienColor() {

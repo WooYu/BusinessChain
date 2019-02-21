@@ -1,100 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!--标题-->
-    <com.qmuiteam.qmui.widget.QMUITopBarLayout
-        android:id="@+id/qmui_topbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<layout>
+    <data>
+        <variable name="viewModel" type="com.lcworld.module_order.viewmodel.PaymentDiamondViewModel"/>
+    </data>
 
-    <android.support.constraint.Guideline
-        android:id="@+id/gline_start"
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_begin="@dimen/gap_size16" />
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+        <!--标题-->
+        <com.qmuiteam.qmui.widget.QMUITopBarLayout
+                android:id="@+id/qmui_topbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/gline_middle"
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.24" />
+        <android.support.constraint.Guideline
+                android:id="@+id/gline_start"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_begin="@dimen/gap_size16" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/gline_end"
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_end="@dimen/gap_size17" />
+        <android.support.constraint.Guideline
+                android:id="@+id/gline_middle"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.24" />
 
-    <!--支付金额-->
-    <View
-        android:id="@+id/bg_amount"
-        android:layout_width="0dp"
-        android:layout_marginTop="@dimen/gap_size6"
-        android:background="@color/white"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="360:43"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/qmui_topbar" />
+        <android.support.constraint.Guideline
+                android:id="@+id/gline_end"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_end="@dimen/gap_size17" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:textColor="@color/tx_colorb"
-        android:textSize="@dimen/tx_size14"
-        android:text="@string/order_payment_diamond"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/bg_amount"
-        app:layout_constraintStart_toStartOf="@id/gline_start"
-        app:layout_constraintTop_toTopOf="@id/bg_amount" />
+        <!--支付金额-->
+        <View
+                android:id="@+id/bg_amount"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/gap_size6"
+                android:background="@color/white"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:43"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/qmui_topbar" />
 
-    <TextView
-        android:id="@+id/tv_amount"
-        android:layout_width="wrap_content"
-        android:textColor="@color/tx_colore"
-        android:textSize="@dimen/tx_size15"
-        android:maxLines="1"
-        android:layout_height="wrap_content"
-        app:layout_constrainedWidth="true"
-        android:drawableStart="@mipmap/order_payment_diamond"
-        app:layout_constraintBottom_toBottomOf="@id/bg_amount"
-        app:layout_constraintEnd_toEndOf="@id/gline_end"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="@id/gline_middle"
-        app:layout_constraintTop_toTopOf="@id/bg_amount"
-        android:drawablePadding="@dimen/gap_size4"
-        tools:text="0.00" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/tx_colorb"
+                android:textSize="@dimen/tx_size14"
+                android:text="@string/order_payment_diamond"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/bg_amount"
+                app:layout_constraintStart_toStartOf="@id/gline_start"
+                app:layout_constraintTop_toTopOf="@id/bg_amount" />
 
-    <View
-        android:id="@+id/line_amount"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bg_amount" />
+        <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="wrap_content"
+                android:textColor="@color/tx_colore"
+                android:textSize="@dimen/tx_size15"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                app:layout_constrainedWidth="true"
+                android:drawableStart="@mipmap/order_payment_diamond"
+                app:layout_constraintBottom_toBottomOf="@id/bg_amount"
+                app:layout_constraintEnd_toEndOf="@id/gline_end"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="@id/gline_middle"
+                app:layout_constraintTop_toTopOf="@id/bg_amount"
+                android:text="@{viewModel.valueTotalPrice}"
+                android:drawablePadding="@dimen/gap_size4"
+                tools:text="0.00" />
 
-    <!--立即支付-->
-    <Button
-        android:id="@+id/btn_paynow"
-        android:layout_marginBottom="@dimen/gap_size16"
-        android:layout_marginStart="@dimen/gap_size16"
-        android:layout_marginEnd="@dimen/gap_size17"
-        android:text="@string/order_payment_paynow"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/selector_btnbg_a"
-        android:textColor="@color/white"
-        android:textSize="@dimen/tx_size15"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="327:40"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        <View
+                android:id="@+id/line_amount"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bg_amount" />
+
+        <!--立即支付-->
+        <Button
+                android:id="@+id/btn_paynow"
+                android:layout_marginBottom="@dimen/gap_size16"
+                android:layout_marginStart="@dimen/gap_size16"
+                android:layout_marginEnd="@dimen/gap_size17"
+                android:text="@string/order_payment_paynow"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/selector_btnbg_a"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tx_size15"
+                android:enabled="@{viewModel.enablePayNow}"
+                app:onClickCommand="@{viewModel.clickOfPayNow}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="327:40"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

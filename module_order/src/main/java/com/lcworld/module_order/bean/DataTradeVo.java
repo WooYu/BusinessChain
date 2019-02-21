@@ -1,8 +1,11 @@
 package com.lcworld.module_order.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class DataTradeVo {
+public class DataTradeVo implements Parcelable {
 
     private DataConsigneeVo consignee;
     private List<DataCouponVo> coupon_list;
@@ -85,4 +88,50 @@ public class DataTradeVo {
     public void setTrade_sn(String trade_sn) {
         this.trade_sn = trade_sn;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.consignee, flags);
+        dest.writeTypedList(this.coupon_list);
+        dest.writeTypedList(this.gift_list);
+        dest.writeInt(this.member_id);
+        dest.writeString(this.member_name);
+        dest.writeTypedList(this.order_list);
+        dest.writeString(this.payment_type);
+        dest.writeParcelable(this.price_detail, flags);
+        dest.writeString(this.trade_sn);
+    }
+
+    public DataTradeVo() {
+    }
+
+    protected DataTradeVo(Parcel in) {
+        this.consignee = in.readParcelable(DataConsigneeVo.class.getClassLoader());
+        this.coupon_list = in.createTypedArrayList(DataCouponVo.CREATOR);
+        this.gift_list = in.createTypedArrayList(DataGiftVo.CREATOR);
+        this.member_id = in.readInt();
+        this.member_name = in.readString();
+        this.order_list = in.createTypedArrayList(DataOrderDTO.CREATOR);
+        this.payment_type = in.readString();
+        this.price_detail = in.readParcelable(DataPriceDetailVo.class.getClassLoader());
+        this.trade_sn = in.readString();
+    }
+
+    public static final Parcelable.Creator<DataTradeVo> CREATOR = new Parcelable.Creator<DataTradeVo>() {
+        @Override
+        public DataTradeVo createFromParcel(Parcel source) {
+            return new DataTradeVo(source);
+        }
+
+        @Override
+        public DataTradeVo[] newArray(int size) {
+            return new DataTradeVo[size];
+        }
+    };
 }

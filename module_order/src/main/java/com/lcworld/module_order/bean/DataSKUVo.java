@@ -1,11 +1,15 @@
 package com.lcworld.module_order.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 商品属性信息
  */
-public class DataSKUVo {
+public class DataSKUVo implements Parcelable {
 
     /**
      * cost : 0
@@ -39,7 +43,7 @@ public class DataSKUVo {
     private double original_price;//商品原价
     private int point;//使用积分
     private int purchase_num;//优惠数量数量
-    private int purchase_price;//购买时的成交价
+    private double purchase_price;//购买时的成交价
     private int seller_id;//卖家id
     private String seller_name;//卖家姓名
     private String service_status;//售后状态
@@ -78,14 +82,6 @@ public class DataSKUVo {
 
     public void setChecked(int checked) {
         this.checked = checked;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
     }
 
     public String getError_message() {
@@ -216,11 +212,11 @@ public class DataSKUVo {
         this.purchase_num = purchase_num;
     }
 
-    public int getPurchase_price() {
+    public double getPurchase_price() {
         return purchase_price;
     }
 
-    public void setPurchase_price(int purchase_price) {
+    public void setPurchase_price(double purchase_price) {
         this.purchase_price = purchase_price;
     }
 
@@ -280,6 +276,22 @@ public class DataSKUVo {
         this.subtotal = subtotal;
     }
 
+    public int getTemplate_id() {
+        return template_id;
+    }
+
+    public void setTemplate_id(int template_id) {
+        this.template_id = template_id;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
     public double getPrice() {
         return price;
     }
@@ -304,12 +316,12 @@ public class DataSKUVo {
         this.sn = sn;
     }
 
-    public int getTemplate_id() {
-        return template_id;
+    public double getWeight() {
+        return weight;
     }
 
-    public void setTemplate_id(int template_id) {
-        this.template_id = template_id;
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     public int getVersion() {
@@ -318,14 +330,6 @@ public class DataSKUVo {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
     }
 
     public DataPromotonRule getRule() {
@@ -367,4 +371,110 @@ public class DataSKUVo {
     public void setSingle_list(List<DataCartPromotionVo> single_list) {
         this.single_list = single_list;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.cat_id);
+        dest.writeInt(this.checked);
+        dest.writeString(this.error_message);
+        dest.writeInt(this.goods_id);
+        dest.writeString(this.goods_image);
+        dest.writeString(this.goods_type);
+        dest.writeDouble(this.goods_weight);
+        dest.writeInt(this.enable_quantity);
+        dest.writeInt(this.invalid);
+        dest.writeInt(this.is_free_freight);
+        dest.writeInt(this.is_ship);
+        dest.writeLong(this.last_modify);
+        dest.writeString(this.name);
+        dest.writeInt(this.not_join_promotion);
+        dest.writeInt(this.num);
+        dest.writeDouble(this.original_price);
+        dest.writeInt(this.point);
+        dest.writeInt(this.purchase_num);
+        dest.writeDouble(this.purchase_price);
+        dest.writeInt(this.seller_id);
+        dest.writeString(this.seller_name);
+        dest.writeString(this.service_status);
+        dest.writeInt(this.sku_id);
+        dest.writeString(this.sku_sn);
+        dest.writeInt(this.snapshot_id);
+        dest.writeDouble(this.subtotal);
+        dest.writeInt(this.template_id);
+        dest.writeDouble(this.cost);
+        dest.writeDouble(this.price);
+        dest.writeInt(this.quantity);
+        dest.writeString(this.sn);
+        dest.writeDouble(this.weight);
+        dest.writeInt(this.version);
+        dest.writeParcelable(this.rule, flags);
+        dest.writeList(this.spec_list);
+        dest.writeList(this.group_list);
+        dest.writeStringList(this.promotion_tags);
+        dest.writeList(this.single_list);
+    }
+
+    public DataSKUVo() {
+    }
+
+    protected DataSKUVo(Parcel in) {
+        this.cat_id = in.readInt();
+        this.checked = in.readInt();
+        this.error_message = in.readString();
+        this.goods_id = in.readInt();
+        this.goods_image = in.readString();
+        this.goods_type = in.readString();
+        this.goods_weight = in.readDouble();
+        this.enable_quantity = in.readInt();
+        this.invalid = in.readInt();
+        this.is_free_freight = in.readInt();
+        this.is_ship = in.readInt();
+        this.last_modify = in.readLong();
+        this.name = in.readString();
+        this.not_join_promotion = in.readInt();
+        this.num = in.readInt();
+        this.original_price = in.readDouble();
+        this.point = in.readInt();
+        this.purchase_num = in.readInt();
+        this.purchase_price = in.readDouble();
+        this.seller_id = in.readInt();
+        this.seller_name = in.readString();
+        this.service_status = in.readString();
+        this.sku_id = in.readInt();
+        this.sku_sn = in.readString();
+        this.snapshot_id = in.readInt();
+        this.subtotal = in.readDouble();
+        this.template_id = in.readInt();
+        this.cost = in.readDouble();
+        this.price = in.readDouble();
+        this.quantity = in.readInt();
+        this.sn = in.readString();
+        this.weight = in.readDouble();
+        this.version = in.readInt();
+        this.rule = in.readParcelable(DataPromotonRule.class.getClassLoader());
+        this.spec_list = new ArrayList<DataSpecValueVo>();
+        in.readList(this.spec_list, DataSpecValueVo.class.getClassLoader());
+        this.group_list = new ArrayList<DataCartPromotionVo>();
+        in.readList(this.group_list, DataCartPromotionVo.class.getClassLoader());
+        this.promotion_tags = in.createStringArrayList();
+        this.single_list = new ArrayList<DataCartPromotionVo>();
+        in.readList(this.single_list, DataCartPromotionVo.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<DataSKUVo> CREATOR = new Parcelable.Creator<DataSKUVo>() {
+        @Override
+        public DataSKUVo createFromParcel(Parcel source) {
+            return new DataSKUVo(source);
+        }
+
+        @Override
+        public DataSKUVo[] newArray(int size) {
+            return new DataSKUVo[size];
+        }
+    };
 }

@@ -1,9 +1,11 @@
 package com.lcworld.module_main.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lcworld.library_base.base.BaseActivityEnhance;
+import com.lcworld.library_base.base.BaseRefreshFragment;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.module_main.BR;
@@ -16,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivityEnhance<MainActivityMainBinding, BaseViewModelEnhance> {
-    private List<Fragment> mFragments;
-    private Fragment mCurFrag;
+    private List<BaseRefreshFragment> mFragments;
+    private BaseRefreshFragment mCurFrag;
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -33,15 +35,39 @@ public class MainActivity extends BaseActivityEnhance<MainActivityMainBinding, B
     @Override
     public void initData() {
         super.initData();
+
+        initSwipeRefreshLayout();
         initFragment();
         initBottomTab();
     }
 
+    private void initSwipeRefreshLayout() {
+        binding.swipeRefreshLayout.setProgressViewOffset(true, -0, 100);
+        binding.swipeRefreshLayout.setProgressViewEndTarget(true, 180);
+        binding.swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.tx_colore));
+        binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (null != mCurFrag) {
+                    mCurFrag.startRefresh();
+                }
+
+                //模拟网络请求需要3000毫秒，请求完成，设置setRefreshing 为false
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2000);
+            }
+        });
+    }
+
     private void initFragment() {
         //ARouter拿到多Fragment(这里需要通过ARouter获取，不能直接new,因为在组件独立运行时，宿主app是没有依赖其他组件，所以new不到其他组件的Fragment)
-        Fragment homeFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_ENTRANCE).navigation();
-        Fragment goodsFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_MEMBERAREA).navigation();
-        Fragment mineFragment = (Fragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_MINE).navigation();
+        BaseRefreshFragment homeFragment = (BaseRefreshFragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_ENTRANCE).navigation();
+        BaseRefreshFragment goodsFragment = (BaseRefreshFragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_MEMBERAREA).navigation();
+        BaseRefreshFragment mineFragment = (BaseRefreshFragment) ARouter.getInstance().build(RouterFragmentPath.Home.PAGER_MINE).navigation();
         mFragments = new ArrayList<>();
         mFragments.add(homeFragment);
         mFragments.add(goodsFragment);
@@ -73,7 +99,7 @@ public class MainActivity extends BaseActivityEnhance<MainActivityMainBinding, B
         });
     }
 
-    private void switchFragment(Fragment fragment) {
+    private void switchFragment(BaseRefreshFragment fragment) {
         if (null == fragment) {
             return;
         }

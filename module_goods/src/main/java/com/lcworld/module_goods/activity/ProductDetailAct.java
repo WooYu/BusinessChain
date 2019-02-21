@@ -138,8 +138,9 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
     }
 
     private void updateView_BottomOperation() {
-        String[] configGoodsType = getResources().getStringArray(R.array.goods_type);
-        if ((viewModel.productType.get().equals(configGoodsType[0]) || viewModel.productType.get().equals(configGoodsType[2]))
+        //商品类型NORMAL普通POINT积分SHANGBI商币PINTUAN拼团
+        final String[] configGoodsType = getResources().getStringArray(R.array.goods_type);
+        if ((viewModel.productType.get().equals(configGoodsType[0]) || viewModel.productType.get().equals(configGoodsType[1]))
                 && null != binding.vStubBottomA.getViewStub()) {
             binding.vStubBottomA.getViewStub().inflate();
             tvOperationServiceA = findViewById(R.id.tv_operation_service_a);
@@ -149,23 +150,29 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
             btnOperationPayNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    viewModel.requestBuyNow(256, 1);
+                    viewModel.requestBuyNow(1);
                 }
             });
             btnOperationAdd2ShoppingCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    viewModel.requestAdd2ShoppingCart(256,1);
+                    viewModel.requestAdd2ShoppingCart(1);
                 }
             });
-        } else if (viewModel.productType.get().equals(configGoodsType[3]) && null != binding.vStubBottomB.getViewStub()) {
+        } else if ((viewModel.productType.get().equals(configGoodsType[2]) || viewModel.productType.get().equals(configGoodsType[3]))
+                && null != binding.vStubBottomB.getViewStub()) {
             binding.vStubBottomB.getViewStub().inflate();
             tvOperationServiceB = findViewById(R.id.tv_operation_service_b);
             btnOperationConfirmBuy = findViewById(R.id.btn_operation_confirmbuy);
             btnOperationConfirmBuy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ARouter.getInstance().build(RouterActivityPath.Order.Pager_Order_Confirm2).navigation();
+                    if (viewModel.productType.get().equals(configGoodsType[2])) {
+                        viewModel.requestBuyNow(1);
+                    } else {
+                        ARouter.getInstance().build(RouterActivityPath.Order.Pager_Order_Confirm2).navigation();
+                    }
+
                 }
             });
         }

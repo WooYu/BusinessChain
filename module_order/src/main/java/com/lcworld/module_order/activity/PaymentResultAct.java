@@ -1,25 +1,42 @@
 package com.lcworld.module_order.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import com.lcworld.library_base.base.BaseActivityEnhance;
+import com.lcworld.module_order.BR;
 import com.lcworld.module_order.R;
-import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
-import com.qmuiteam.qmui.util.QMUIViewHelper;
-import com.qmuiteam.qmui.widget.QMUITopBarLayout;
+import com.lcworld.module_order.databinding.OrderActivityPaymentResultBinding;
+import com.lcworld.module_order.viewmodel.PaymentResultViewModel;
 
 /**
  * 支付结果
  */
-public class PaymentResultAct extends AppCompatActivity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.order_activity_payment_result);
+public class PaymentResultAct extends BaseActivityEnhance<OrderActivityPaymentResultBinding, PaymentResultViewModel> {
 
-        QMUITopBarLayout qmuiTopBar = findViewById(R.id.qmui_topbar);
-        qmuiTopBar.setTitle(R.string.order_payment_finish_title);
-        qmuiTopBar.addLeftImageButton(R.mipmap.arrow_left1,QMUIViewHelper.generateViewId());
-        QMUIStatusBarHelper.setStatusBarLightMode(this);
+    @Override
+    public int initContentView(Bundle bundle) {
+        return R.layout.order_activity_payment_result;
+    }
+
+    @Override
+    public int initVariableId() {
+        return BR.viewModel;
+    }
+
+    @Override
+    public void initViewObservable() {
+        super.initViewObservable();
+
+        initViewTitle();
+    }
+
+    private void initViewTitle() {
+        binding.qmuiTopbar.setTitle(R.string.order_payment_finish_title);
+        binding.qmuiTopbar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

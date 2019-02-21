@@ -92,6 +92,20 @@ public class ReceiverAddressViewModel extends BaseViewModelEnhance {
                 });
     }
 
+    //请求删除地址
+    public void requestMemberAddressRemove(int id) {
+        RetrofitClient.getInstance().create(ApiServiceInterf.class)
+                .membersAddressDelete(id)
+                .compose(RxUtilsEnhanced.explicitTransform())
+                .subscribe(new ResponseObserver<RequestResultImp>() {
+                    @Override
+                    public void onSuccess(RequestResultImp requestResultImp) {
+
+                    }
+
+                });
+    }
+
     //请求设置收货地址
     public void requestSetMemberAddress(final int position) {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)

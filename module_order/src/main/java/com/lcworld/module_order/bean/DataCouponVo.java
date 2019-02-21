@@ -1,6 +1,9 @@
 package com.lcworld.module_order.bean;
 
-public class DataCouponVo {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class DataCouponVo implements Parcelable {
     private double amount;//金额
     private int coupon_id;//优惠卷id
     private double coupon_threshold_price;//优惠券门槛金额
@@ -82,4 +85,49 @@ public class DataCouponVo {
     public void setUse_term(String use_term) {
         this.use_term = use_term;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(this.amount);
+        dest.writeInt(this.coupon_id);
+        dest.writeDouble(this.coupon_threshold_price);
+        dest.writeInt(this.enable);
+        dest.writeLong(this.end_time);
+        dest.writeInt(this.member_coupon_id);
+        dest.writeInt(this.selected);
+        dest.writeInt(this.seller_id);
+        dest.writeString(this.use_term);
+    }
+
+    public DataCouponVo() {
+    }
+
+    protected DataCouponVo(Parcel in) {
+        this.amount = in.readDouble();
+        this.coupon_id = in.readInt();
+        this.coupon_threshold_price = in.readDouble();
+        this.enable = in.readInt();
+        this.end_time = in.readLong();
+        this.member_coupon_id = in.readInt();
+        this.selected = in.readInt();
+        this.seller_id = in.readInt();
+        this.use_term = in.readString();
+    }
+
+    public static final Parcelable.Creator<DataCouponVo> CREATOR = new Parcelable.Creator<DataCouponVo>() {
+        @Override
+        public DataCouponVo createFromParcel(Parcel source) {
+            return new DataCouponVo(source);
+        }
+
+        @Override
+        public DataCouponVo[] newArray(int size) {
+            return new DataCouponVo[size];
+        }
+    };
 }

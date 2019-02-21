@@ -132,6 +132,7 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
             return;
         }
 
+
         requestConfirmOrder(285, valuesSaleDayList.get(valueSalesDayPosition.get()).getId(), valueQuantityOfGoods.get());
     }
 

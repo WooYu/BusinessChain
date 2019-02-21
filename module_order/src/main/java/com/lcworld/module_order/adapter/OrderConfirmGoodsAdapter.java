@@ -29,6 +29,7 @@ public class OrderConfirmGoodsAdapter extends BaseQuickAdapter<DataSKUVo, BaseVi
         helper.setText(R.id.tv_name, item.getName());
         helper.setText(R.id.tv_price, String.format(mContext.getString(R.string.format_money)
                 , ConvertExUtils.formatMoney(item.getOriginal_price())));
-        helper.setText(R.id.tv_operate_num, String.valueOf(item.getNum()));
+        helper.setText(R.id.tv_operate_num, String.format(
+                mContext.getString(R.string.order_format_purchasequantity), String.valueOf(item.getNum())));
     }
 }

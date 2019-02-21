@@ -16,7 +16,7 @@ import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ScreenUtils;
-import com.lcworld.library_base.base.BaseFragmentEnhance;
+import com.lcworld.library_base.base.BaseRefreshFragment;
 import com.lcworld.library_base.extension.ListChangedCallbackImpl;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.library_base.router.RouterFragmentPath;
@@ -29,6 +29,7 @@ import com.lcworld.module_home.bean.DataGoodsInfo;
 import com.lcworld.module_home.databinding.HomeFragMemberGoodsBinding;
 import com.lcworld.module_home.viewmodel.HomeMemberViewModel;
 import me.goldze.mvvmhabit.BR;
+import me.goldze.mvvmhabit.utils.KLog;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -37,7 +38,7 @@ import java.util.List;
  * 会员专区
  */
 @Route(path = RouterFragmentPath.Home.PAGER_MEMBERAREA)
-public class MemberAreaFrag extends BaseFragmentEnhance<HomeFragMemberGoodsBinding, HomeMemberViewModel> {
+public class MemberAreaFrag extends BaseRefreshFragment<HomeFragMemberGoodsBinding, HomeMemberViewModel> {
 
     private VirtualLayoutManager mVirtualLayoutManager;
     private float mColorOffsetThreshold;//状态栏变色阈值
@@ -65,6 +66,11 @@ public class MemberAreaFrag extends BaseFragmentEnhance<HomeFragMemberGoodsBindi
         initObservable_MemberGoods();
 
         requestData();
+    }
+
+    @Override
+    public void startRefresh() {
+        viewModel.requestMemberGoods(true);
     }
 
     private void initView_GradienColor() {
@@ -106,6 +112,11 @@ public class MemberAreaFrag extends BaseFragmentEnhance<HomeFragMemberGoodsBindi
                 }
                 binding.viewPlaceholder.getBackground().setAlpha(alpha);
                 binding.bgTitle.getBackground().setAlpha(alpha);
+
+                if (!binding.rvMemberarea.canScrollVertically(1)) {
+                    KLog.d("滑动到底部");
+                    viewModel.requestMemberGoods(false);
+                }
             }
         });
 
@@ -188,6 +199,6 @@ public class MemberAreaFrag extends BaseFragmentEnhance<HomeFragMemberGoodsBindi
 
     private void requestData() {
         viewModel.requestFocusPictures();
-        viewModel.requestMemberGoods();
+        viewModel.requestMemberGoods(true);
     }
 }

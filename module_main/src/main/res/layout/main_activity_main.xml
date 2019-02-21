@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="viewModel"
-            type="me.goldze.mvvmhabit.base.BaseViewModel" />
+                name="viewModel"
+                type="me.goldze.mvvmhabit.base.BaseViewModel"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/appbg_color"
-        android:orientation="vertical">
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/appbg_color"
+                android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/flayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/navi_bottom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <FrameLayout
+                    android:id="@+id/flayout"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@id/navi_bottom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <me.majiajie.pagerbottomtabstrip.PageNavigationView
-            android:id="@+id/navi_bottom"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:background="@color/white"
-            android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <me.majiajie.pagerbottomtabstrip.PageNavigationView
+                    android:id="@+id/navi_bottom"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:background="@color/white"
+                    android:elevation="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
-    </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </layout>

@@ -59,75 +59,15 @@
             app:layout_constraintStart_toStartOf="@id/tv_name"
             tools:text="¥152222222222222222"/>
 
-    <View
-            android:id="@+id/bg_num"
-            android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/gap_size17"
-            android:background="@drawable/order_shape_shoppingcart_num"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_price"
-            app:layout_constraintDimensionRatio="63:17"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.18"/>
-
-    <View
-            android:id="@+id/line_sub"
-            android:layout_width="1dp"
-            android:background="@color/line_colorc"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/gap_size18"
-            app:layout_constraintBottom_toBottomOf="@id/bg_num"
-            app:layout_constraintStart_toStartOf="@id/bg_num"
-            app:layout_constraintTop_toTopOf="@id/bg_num"/>
-
-    <View
-            android:id="@+id/line_add"
-            android:layout_width="1dp"
-            android:background="@color/line_colorc"
-            android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/gap_size18"
-            app:layout_constraintBottom_toBottomOf="@id/bg_num"
-            app:layout_constraintEnd_toEndOf="@id/bg_num"
-            app:layout_constraintTop_toTopOf="@id/bg_num"/>
-
-    <TextView
-            android:id="@+id/tv_operate_sub"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@string/order_trolley_sub"
-            android:textSize="@dimen/tx_size15"
-            android:gravity="center"
-            android:textColor="@color/tx_colorc"
-            app:layout_constraintBottom_toBottomOf="@id/bg_num"
-            app:layout_constraintEnd_toEndOf="@id/line_sub"
-            app:layout_constraintStart_toStartOf="@id/bg_num"
-            app:layout_constraintTop_toTopOf="@id/bg_num"/>
-
-    <TextView
-            android:id="@+id/view_operate_add"
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:layout_height="0dp"
-            android:textColor="@color/tx_colorc"
-            android:textSize="@dimen/tx_size15"
-            android:text="@string/order_trolley_add"
-            app:layout_constraintBottom_toBottomOf="@id/bg_num"
-            app:layout_constraintEnd_toEndOf="@id/bg_num"
-            app:layout_constraintStart_toStartOf="@id/line_add"
-            app:layout_constraintTop_toTopOf="@id/bg_num"/>
-
     <TextView
             android:id="@+id/tv_operate_num"
-            android:textSize="@dimen/tx_size11"
-            android:textColor="@color/tx_colorc"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="@id/bg_num"
-            app:layout_constraintEnd_toEndOf="@id/line_add"
-            app:layout_constraintStart_toStartOf="@id/line_sub"
-            app:layout_constraintTop_toTopOf="@id/bg_num"
-            tools:text="11"/>
+            android:textSize="@dimen/tx_size15"
+            android:textColor="@color/tx_colorb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/tv_name"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_price"
+            tools:text="x11"/>
 
     <View
             android:layout_width="0dp"

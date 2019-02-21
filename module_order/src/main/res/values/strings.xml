@@ -24,7 +24,6 @@
     <!--tip-->
     <string name="order_tip_payment_result_success">支付成功</string>
 
-
     <!--hint-->
     <string name="order_hint_receiveraddr_name">请填写真实姓名</string>
     <string name="order_hint_receiveraddr_phone">请输入手机号码</string>

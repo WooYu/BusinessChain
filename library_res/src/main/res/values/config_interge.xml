@@ -10,4 +10,7 @@
     <integer name="config_goodsquantity_maxlimit">200</integer>
     <!--默认地址-->
     <integer name="config_def_address">1</integer>
+    <!--分页-->
+    <integer name="config_pageData_defaultSize">10</integer>
+    <integer name="config_pageData_MaxSize">200</integer>
 </resources>
