@@ -5,13 +5,19 @@ import android.databinding.*;
 import android.databinding.adapters.TextViewBindingAdapter;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.extension.DialogControllTypeInterf;
-import com.lcworld.library_base.http.*;
+import com.lcworld.library_base.http.RequestResult;
+import com.lcworld.library_base.http.ResponseObserver;
+import com.lcworld.library_base.http.RetrofitClient;
+import com.lcworld.library_base.http.RxUtilsEnhanced;
+import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.ApiServiceInterf;
 import com.lcworld.module_order.R;
 import com.lcworld.module_order.bean.DataOrderProfitDiamond;
+import com.lcworld.module_order.bean.DataPintuanPayOrderInfoDTO;
 import com.lcworld.module_order.bean.DataProportionDTO;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
@@ -176,10 +182,11 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .pinTuanOrder(valueSkuId.get(), proportion_id, count)
                 .compose(RxUtilsEnhanced.explicitTransform())
-                .subscribe(new ResponseObserver<RequestResultImp>() {
+                .subscribe(new ResponseObserver<RequestResult<DataPintuanPayOrderInfoDTO>>() {
                     @Override
-                    public void onSuccess(RequestResultImp requestResultImp) {
-
+                    public void onSuccess(RequestResult<DataPintuanPayOrderInfoDTO> dataPintuanPayOrderInfoDTORequestResult) {
+                        ARouter.getInstance().build(RouterActivityPath.Order.Pager_Payment_Choose).navigation();
+                        finish();
                     }
                 });
     }

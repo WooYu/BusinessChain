@@ -1,63 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!--标题-->
-    <com.qmuiteam.qmui.widget.QMUITopBarLayout
-        android:id="@+id/qmui_topbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/navi_top"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/appbg_color_white"
-        android:layout_marginTop="@dimen/gap_size6"
-        app:layout_constraintDimensionRatio="360:43"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/qmui_topbar"
-        app:tabIndicatorColor="@color/tx_colore"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/tx_colore"
-        app:tabTextColor="@color/tx_colorb">
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.lcworld.module_order.viewmodel.OrderReviewViewModel"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <!--标题-->
+        <com.qmuiteam.qmui.widget.QMUITopBarLayout
+                android:id="@+id/qmui_topbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <android.support.design.widget.TabItem
-            android:id="@+id/tab_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/order_list_all" />
+        <android.support.design.widget.TabLayout
+                android:id="@+id/navi_top"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/appbg_color_white"
+                android:layout_marginTop="@dimen/gap_size6"
+                app:layout_constraintDimensionRatio="360:43"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/qmui_topbar"
+                app:tabIndicatorColor="@color/tx_colore"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/tx_colore"
+                app:tabTextColor="@color/tx_colorb">
 
-        <android.support.design.widget.TabItem
-            android:id="@+id/tab_paid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/order_list_paid" />
+            <android.support.design.widget.TabItem
+                    android:id="@+id/tab_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_list_all"/>
 
-        <android.support.design.widget.TabItem
-            android:id="@+id/tab_settled"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/order_list_settled" />
+            <android.support.design.widget.TabItem
+                    android:id="@+id/tab_paid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_list_paid"/>
 
-        <android.support.design.widget.TabItem
-            android:id="@+id/tab_expired"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/order_list_expired" />
-    </android.support.design.widget.TabLayout>
+            <android.support.design.widget.TabItem
+                    android:id="@+id/tab_settled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_list_settled"/>
 
-    <FrameLayout
-        android:id="@+id/flayout_order"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/navi_top" />
-</android.support.constraint.ConstraintLayout>
+            <android.support.design.widget.TabItem
+                    android:id="@+id/tab_expired"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_list_expired"/>
+        </android.support.design.widget.TabLayout>
+
+        <FrameLayout
+                android:id="@+id/flayout_order"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/navi_top"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

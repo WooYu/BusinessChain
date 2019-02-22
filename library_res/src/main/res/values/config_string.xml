@@ -61,4 +61,16 @@
         <item>alipayDirectPlugin</item>
         <item>weixinPayPlugin</item>
     </string-array>
+
+    //ALL:所有订单,WAIT_PAY:待付款,WAIT_SHIP:待发货,WAIT_ROG:待收货," +"CANCELLED:已取消,COMPLETE:已完成,WAIT_COMMENT:待评论,REFUND:售后中"
+    <string-array name="order_status">
+        <item>ALL</item>
+        <item>WAIT_PAY</item>
+        <item>WAIT_SHIP</item>
+        <item>WAIT_ROG</item>
+        <item>CANCELLED</item>
+        <item>COMPLETE</item>
+        <item>WAIT_COMMENT</item>
+        <item>REFUND</item>
+    </string-array>
 </resources>

@@ -3,39 +3,56 @@ package com.lcworld.module_order.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataOrderDTO implements Parcelable {
 
     private int address_id;//收货地址id
     private String admin_remark;//管理员备注
+    private String bill_sn;//结算单号
+    private int bill_status;//结算状态
+    private double cash_back;//返现金额
     private String cancel_reason;//取消原因
     private String client_type;//订单来源
     private String comment_status;//评论状态
+    private long complete_time;//完成时间
+    private double  coupon_price;//优惠卷抵扣金额
     private DataConsigneeVo ConsigneeVO;
     private List<DataCouponVo> coupon_list;//已使用的优惠卷列表
     private long create_time;//创建时间
     private int disabled;//是否已经删除
+    private double discount_price;//优惠金额
+    private double full_minus;// 满减金额
+    private List<DataCouponVo> gift_coupon;//赠送优惠卷列表
     private List<DataCouponVo> gift_coupon_list;//赠送优惠卷列表
     private List<DataGiftVo> gift_list;//赠品列表
     private int gift_point;//赠送积分
     private int goods_num;//商品数量
+    private double goods_price;//商品总额
+    private String  items_json;//货物列表json
     private int invalid;//是否失效：0:正常 1:已失效
     private int logi_id;//物流公司Id
     private String logi_name;//物流公司名称
     private int member_id;//会员id
-    private String member_name;//会员姓名
+    private String member_name;//会员姓名\买家账号
     private double need_pay_money;//应付金额
-    private int need_receipt;//是否需要发票
-    private double order_price;//订单价格
+    private int need_receipt;//是否需要发票,0：否，1：是
+    private DataOrderOperateAllowable order_operate_allowable_vo;
+    private double order_price;//订单价格/订单总额
+    private List<DataSKUVo> order_sku_list;//sku列表
     private String order_status;//订单状态
     private String pay_status;//付款状态
+    private String order_status_text;//订单状态文字
+    private double pay_money;//已支付金额
+    private String pay_order_no;//支付方式返回的交易号
     private String payment_account;//付款账号
     private int payment_method_id;//支付方式id
+    private String payment_name;//支付方式
     private String payment_method_name;//支付方式名称
     private String payment_plugin_id;//支付插件id
+    private long payment_time;//支付时间
     private String payment_type;//支付方式
+    private DataReceiptHistory receipt_history;//
     private DataPriceDetailVo PriceDetailVO;//价格明细
     private String receipt_content;// 内容
     private String receipt_title;//抬头
@@ -46,8 +63,13 @@ public class DataOrderDTO implements Parcelable {
     private int seller_id;//卖家id
     private String seller_name;//卖家店名
     private String service_status;//售后状态
+    private String service_status_text;//售后状态文字
+    private String ship_addr;//收货地址
     private String ship_city;//收货地址市
     private int ship_city_id;//收货地址市Id
+    private String ship_county;//配送地区-城市
+    private int ship_county_id;//配送地区-区(县)ID
+    private String ship_mobile;//收货人手机
     private String ship_name;//收货人姓名
     private String ship_no;//发货单号
     private String ship_province;//收货省
@@ -55,9 +77,12 @@ public class DataOrderDTO implements Parcelable {
     private String ship_region;//收货地址区
     private int ship_region_id;//收货地址区Id
     private String ship_status;//配送状态
+    private String ship_status_text;//发货状态文字
+    private String ship_tel;//收货人电话
     private long ship_time;//发货时间
     private int ship_town;//收货地址街道
     private int ship_town_id;//收货地址街道Id
+    private String ship_zip;//收货人邮编
     private int shipping_id;//配送方式
     private double shipping_price;//配送费
     private String shipping_type;//配送方式名称
@@ -68,6 +93,7 @@ public class DataOrderDTO implements Parcelable {
     private String sn;// 订单编号
     private String the_sign;//签收人姓名
     private String trade_sn;//交易编号
+    private     int use_point;//此订单使用的积分
     private int warehouse_id;//发货仓库id
     private double weight;//购物车重量
 
@@ -86,6 +112,30 @@ public class DataOrderDTO implements Parcelable {
 
     public void setAdmin_remark(String admin_remark) {
         this.admin_remark = admin_remark;
+    }
+
+    public String getBill_sn() {
+        return bill_sn;
+    }
+
+    public void setBill_sn(String bill_sn) {
+        this.bill_sn = bill_sn;
+    }
+
+    public int getBill_status() {
+        return bill_status;
+    }
+
+    public void setBill_status(int bill_status) {
+        this.bill_status = bill_status;
+    }
+
+    public double getCash_back() {
+        return cash_back;
+    }
+
+    public void setCash_back(double cash_back) {
+        this.cash_back = cash_back;
     }
 
     public String getCancel_reason() {
@@ -110,6 +160,22 @@ public class DataOrderDTO implements Parcelable {
 
     public void setComment_status(String comment_status) {
         this.comment_status = comment_status;
+    }
+
+    public long getComplete_time() {
+        return complete_time;
+    }
+
+    public void setComplete_time(long complete_time) {
+        this.complete_time = complete_time;
+    }
+
+    public double getCoupon_price() {
+        return coupon_price;
+    }
+
+    public void setCoupon_price(double coupon_price) {
+        this.coupon_price = coupon_price;
     }
 
     public DataConsigneeVo getConsigneeVO() {
@@ -144,6 +210,30 @@ public class DataOrderDTO implements Parcelable {
         this.disabled = disabled;
     }
 
+    public double getDiscount_price() {
+        return discount_price;
+    }
+
+    public void setDiscount_price(double discount_price) {
+        this.discount_price = discount_price;
+    }
+
+    public double getFull_minus() {
+        return full_minus;
+    }
+
+    public void setFull_minus(double full_minus) {
+        this.full_minus = full_minus;
+    }
+
+    public List<DataCouponVo> getGift_coupon() {
+        return gift_coupon;
+    }
+
+    public void setGift_coupon(List<DataCouponVo> gift_coupon) {
+        this.gift_coupon = gift_coupon;
+    }
+
     public List<DataCouponVo> getGift_coupon_list() {
         return gift_coupon_list;
     }
@@ -174,6 +264,22 @@ public class DataOrderDTO implements Parcelable {
 
     public void setGoods_num(int goods_num) {
         this.goods_num = goods_num;
+    }
+
+    public double getGoods_price() {
+        return goods_price;
+    }
+
+    public void setGoods_price(double goods_price) {
+        this.goods_price = goods_price;
+    }
+
+    public String getItems_json() {
+        return items_json;
+    }
+
+    public void setItems_json(String items_json) {
+        this.items_json = items_json;
     }
 
     public int getInvalid() {
@@ -232,12 +338,28 @@ public class DataOrderDTO implements Parcelable {
         this.need_receipt = need_receipt;
     }
 
+    public DataOrderOperateAllowable getOrder_operate_allowable_vo() {
+        return order_operate_allowable_vo;
+    }
+
+    public void setOrder_operate_allowable_vo(DataOrderOperateAllowable order_operate_allowable_vo) {
+        this.order_operate_allowable_vo = order_operate_allowable_vo;
+    }
+
     public double getOrder_price() {
         return order_price;
     }
 
     public void setOrder_price(double order_price) {
         this.order_price = order_price;
+    }
+
+    public List<DataSKUVo> getOrder_sku_list() {
+        return order_sku_list;
+    }
+
+    public void setOrder_sku_list(List<DataSKUVo> order_sku_list) {
+        this.order_sku_list = order_sku_list;
     }
 
     public String getOrder_status() {
@@ -256,6 +378,30 @@ public class DataOrderDTO implements Parcelable {
         this.pay_status = pay_status;
     }
 
+    public String getOrder_status_text() {
+        return order_status_text;
+    }
+
+    public void setOrder_status_text(String order_status_text) {
+        this.order_status_text = order_status_text;
+    }
+
+    public double getPay_money() {
+        return pay_money;
+    }
+
+    public void setPay_money(double pay_money) {
+        this.pay_money = pay_money;
+    }
+
+    public String getPay_order_no() {
+        return pay_order_no;
+    }
+
+    public void setPay_order_no(String pay_order_no) {
+        this.pay_order_no = pay_order_no;
+    }
+
     public String getPayment_account() {
         return payment_account;
     }
@@ -270,6 +416,14 @@ public class DataOrderDTO implements Parcelable {
 
     public void setPayment_method_id(int payment_method_id) {
         this.payment_method_id = payment_method_id;
+    }
+
+    public String getPayment_name() {
+        return payment_name;
+    }
+
+    public void setPayment_name(String payment_name) {
+        this.payment_name = payment_name;
     }
 
     public String getPayment_method_name() {
@@ -288,12 +442,28 @@ public class DataOrderDTO implements Parcelable {
         this.payment_plugin_id = payment_plugin_id;
     }
 
+    public long getPayment_time() {
+        return payment_time;
+    }
+
+    public void setPayment_time(long payment_time) {
+        this.payment_time = payment_time;
+    }
+
     public String getPayment_type() {
         return payment_type;
     }
 
     public void setPayment_type(String payment_type) {
         this.payment_type = payment_type;
+    }
+
+    public DataReceiptHistory getReceipt_history() {
+        return receipt_history;
+    }
+
+    public void setReceipt_history(DataReceiptHistory receipt_history) {
+        this.receipt_history = receipt_history;
     }
 
     public DataPriceDetailVo getPriceDetailVO() {
@@ -376,6 +546,22 @@ public class DataOrderDTO implements Parcelable {
         this.service_status = service_status;
     }
 
+    public String getService_status_text() {
+        return service_status_text;
+    }
+
+    public void setService_status_text(String service_status_text) {
+        this.service_status_text = service_status_text;
+    }
+
+    public String getShip_addr() {
+        return ship_addr;
+    }
+
+    public void setShip_addr(String ship_addr) {
+        this.ship_addr = ship_addr;
+    }
+
     public String getShip_city() {
         return ship_city;
     }
@@ -390,6 +576,30 @@ public class DataOrderDTO implements Parcelable {
 
     public void setShip_city_id(int ship_city_id) {
         this.ship_city_id = ship_city_id;
+    }
+
+    public String getShip_county() {
+        return ship_county;
+    }
+
+    public void setShip_county(String ship_county) {
+        this.ship_county = ship_county;
+    }
+
+    public int getShip_county_id() {
+        return ship_county_id;
+    }
+
+    public void setShip_county_id(int ship_county_id) {
+        this.ship_county_id = ship_county_id;
+    }
+
+    public String getShip_mobile() {
+        return ship_mobile;
+    }
+
+    public void setShip_mobile(String ship_mobile) {
+        this.ship_mobile = ship_mobile;
     }
 
     public String getShip_name() {
@@ -448,6 +658,22 @@ public class DataOrderDTO implements Parcelable {
         this.ship_status = ship_status;
     }
 
+    public String getShip_status_text() {
+        return ship_status_text;
+    }
+
+    public void setShip_status_text(String ship_status_text) {
+        this.ship_status_text = ship_status_text;
+    }
+
+    public String getShip_tel() {
+        return ship_tel;
+    }
+
+    public void setShip_tel(String ship_tel) {
+        this.ship_tel = ship_tel;
+    }
+
     public long getShip_time() {
         return ship_time;
     }
@@ -470,6 +696,14 @@ public class DataOrderDTO implements Parcelable {
 
     public void setShip_town_id(int ship_town_id) {
         this.ship_town_id = ship_town_id;
+    }
+
+    public String getShip_zip() {
+        return ship_zip;
+    }
+
+    public void setShip_zip(String ship_zip) {
+        this.ship_zip = ship_zip;
     }
 
     public int getShipping_id() {
@@ -552,6 +786,14 @@ public class DataOrderDTO implements Parcelable {
         this.trade_sn = trade_sn;
     }
 
+    public int getUse_point() {
+        return use_point;
+    }
+
+    public void setUse_point(int use_point) {
+        this.use_point = use_point;
+    }
+
     public int getWarehouse_id() {
         return warehouse_id;
     }
@@ -577,17 +819,27 @@ public class DataOrderDTO implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.address_id);
         dest.writeString(this.admin_remark);
+        dest.writeString(this.bill_sn);
+        dest.writeInt(this.bill_status);
+        dest.writeDouble(this.cash_back);
         dest.writeString(this.cancel_reason);
         dest.writeString(this.client_type);
         dest.writeString(this.comment_status);
+        dest.writeLong(this.complete_time);
+        dest.writeDouble(this.coupon_price);
         dest.writeParcelable(this.ConsigneeVO, flags);
-        dest.writeList(this.coupon_list);
+        dest.writeTypedList(this.coupon_list);
         dest.writeLong(this.create_time);
         dest.writeInt(this.disabled);
-        dest.writeList(this.gift_coupon_list);
-        dest.writeList(this.gift_list);
+        dest.writeDouble(this.discount_price);
+        dest.writeDouble(this.full_minus);
+        dest.writeTypedList(this.gift_coupon);
+        dest.writeTypedList(this.gift_coupon_list);
+        dest.writeTypedList(this.gift_list);
         dest.writeInt(this.gift_point);
         dest.writeInt(this.goods_num);
+        dest.writeDouble(this.goods_price);
+        dest.writeString(this.items_json);
         dest.writeInt(this.invalid);
         dest.writeInt(this.logi_id);
         dest.writeString(this.logi_name);
@@ -595,14 +847,22 @@ public class DataOrderDTO implements Parcelable {
         dest.writeString(this.member_name);
         dest.writeDouble(this.need_pay_money);
         dest.writeInt(this.need_receipt);
+        dest.writeParcelable(this.order_operate_allowable_vo, flags);
         dest.writeDouble(this.order_price);
+        dest.writeTypedList(this.order_sku_list);
         dest.writeString(this.order_status);
         dest.writeString(this.pay_status);
+        dest.writeString(this.order_status_text);
+        dest.writeDouble(this.pay_money);
+        dest.writeString(this.pay_order_no);
         dest.writeString(this.payment_account);
         dest.writeInt(this.payment_method_id);
+        dest.writeString(this.payment_name);
         dest.writeString(this.payment_method_name);
         dest.writeString(this.payment_plugin_id);
+        dest.writeLong(this.payment_time);
         dest.writeString(this.payment_type);
+        dest.writeParcelable(this.receipt_history, flags);
         dest.writeParcelable(this.PriceDetailVO, flags);
         dest.writeString(this.receipt_content);
         dest.writeString(this.receipt_title);
@@ -613,8 +873,13 @@ public class DataOrderDTO implements Parcelable {
         dest.writeInt(this.seller_id);
         dest.writeString(this.seller_name);
         dest.writeString(this.service_status);
+        dest.writeString(this.service_status_text);
+        dest.writeString(this.ship_addr);
         dest.writeString(this.ship_city);
         dest.writeInt(this.ship_city_id);
+        dest.writeString(this.ship_county);
+        dest.writeInt(this.ship_county_id);
+        dest.writeString(this.ship_mobile);
         dest.writeString(this.ship_name);
         dest.writeString(this.ship_no);
         dest.writeString(this.ship_province);
@@ -622,19 +887,23 @@ public class DataOrderDTO implements Parcelable {
         dest.writeString(this.ship_region);
         dest.writeInt(this.ship_region_id);
         dest.writeString(this.ship_status);
+        dest.writeString(this.ship_status_text);
+        dest.writeString(this.ship_tel);
         dest.writeLong(this.ship_time);
         dest.writeInt(this.ship_town);
         dest.writeInt(this.ship_town_id);
+        dest.writeString(this.ship_zip);
         dest.writeInt(this.shipping_id);
         dest.writeDouble(this.shipping_price);
         dest.writeString(this.shipping_type);
         dest.writeInt(this.shipping_type_id);
         dest.writeString(this.shipping_type_name);
         dest.writeLong(this.signing_time);
-        dest.writeList(this.sku_list);
+        dest.writeTypedList(this.sku_list);
         dest.writeString(this.sn);
         dest.writeString(this.the_sign);
         dest.writeString(this.trade_sn);
+        dest.writeInt(this.use_point);
         dest.writeInt(this.warehouse_id);
         dest.writeDouble(this.weight);
     }
@@ -645,20 +914,27 @@ public class DataOrderDTO implements Parcelable {
     protected DataOrderDTO(Parcel in) {
         this.address_id = in.readInt();
         this.admin_remark = in.readString();
+        this.bill_sn = in.readString();
+        this.bill_status = in.readInt();
+        this.cash_back = in.readDouble();
         this.cancel_reason = in.readString();
         this.client_type = in.readString();
         this.comment_status = in.readString();
+        this.complete_time = in.readLong();
+        this.coupon_price = in.readDouble();
         this.ConsigneeVO = in.readParcelable(DataConsigneeVo.class.getClassLoader());
-        this.coupon_list = new ArrayList<DataCouponVo>();
-        in.readList(this.coupon_list, DataCouponVo.class.getClassLoader());
+        this.coupon_list = in.createTypedArrayList(DataCouponVo.CREATOR);
         this.create_time = in.readLong();
         this.disabled = in.readInt();
-        this.gift_coupon_list = new ArrayList<DataCouponVo>();
-        in.readList(this.gift_coupon_list, DataCouponVo.class.getClassLoader());
-        this.gift_list = new ArrayList<DataGiftVo>();
-        in.readList(this.gift_list, DataGiftVo.class.getClassLoader());
+        this.discount_price = in.readDouble();
+        this.full_minus = in.readDouble();
+        this.gift_coupon = in.createTypedArrayList(DataCouponVo.CREATOR);
+        this.gift_coupon_list = in.createTypedArrayList(DataCouponVo.CREATOR);
+        this.gift_list = in.createTypedArrayList(DataGiftVo.CREATOR);
         this.gift_point = in.readInt();
         this.goods_num = in.readInt();
+        this.goods_price = in.readDouble();
+        this.items_json = in.readString();
         this.invalid = in.readInt();
         this.logi_id = in.readInt();
         this.logi_name = in.readString();
@@ -666,14 +942,22 @@ public class DataOrderDTO implements Parcelable {
         this.member_name = in.readString();
         this.need_pay_money = in.readDouble();
         this.need_receipt = in.readInt();
+        this.order_operate_allowable_vo = in.readParcelable(DataOrderOperateAllowable.class.getClassLoader());
         this.order_price = in.readDouble();
+        this.order_sku_list = in.createTypedArrayList(DataSKUVo.CREATOR);
         this.order_status = in.readString();
         this.pay_status = in.readString();
+        this.order_status_text = in.readString();
+        this.pay_money = in.readDouble();
+        this.pay_order_no = in.readString();
         this.payment_account = in.readString();
         this.payment_method_id = in.readInt();
+        this.payment_name = in.readString();
         this.payment_method_name = in.readString();
         this.payment_plugin_id = in.readString();
+        this.payment_time = in.readLong();
         this.payment_type = in.readString();
+        this.receipt_history = in.readParcelable(DataReceiptHistory.class.getClassLoader());
         this.PriceDetailVO = in.readParcelable(DataPriceDetailVo.class.getClassLoader());
         this.receipt_content = in.readString();
         this.receipt_title = in.readString();
@@ -684,8 +968,13 @@ public class DataOrderDTO implements Parcelable {
         this.seller_id = in.readInt();
         this.seller_name = in.readString();
         this.service_status = in.readString();
+        this.service_status_text = in.readString();
+        this.ship_addr = in.readString();
         this.ship_city = in.readString();
         this.ship_city_id = in.readInt();
+        this.ship_county = in.readString();
+        this.ship_county_id = in.readInt();
+        this.ship_mobile = in.readString();
         this.ship_name = in.readString();
         this.ship_no = in.readString();
         this.ship_province = in.readString();
@@ -693,25 +982,28 @@ public class DataOrderDTO implements Parcelable {
         this.ship_region = in.readString();
         this.ship_region_id = in.readInt();
         this.ship_status = in.readString();
+        this.ship_status_text = in.readString();
+        this.ship_tel = in.readString();
         this.ship_time = in.readLong();
         this.ship_town = in.readInt();
         this.ship_town_id = in.readInt();
+        this.ship_zip = in.readString();
         this.shipping_id = in.readInt();
         this.shipping_price = in.readDouble();
         this.shipping_type = in.readString();
         this.shipping_type_id = in.readInt();
         this.shipping_type_name = in.readString();
         this.signing_time = in.readLong();
-        this.sku_list = new ArrayList<DataSKUVo>();
-        in.readList(this.sku_list, DataSKUVo.class.getClassLoader());
+        this.sku_list = in.createTypedArrayList(DataSKUVo.CREATOR);
         this.sn = in.readString();
         this.the_sign = in.readString();
         this.trade_sn = in.readString();
+        this.use_point = in.readInt();
         this.warehouse_id = in.readInt();
         this.weight = in.readDouble();
     }
 
-    public static final Parcelable.Creator<DataOrderDTO> CREATOR = new Parcelable.Creator<DataOrderDTO>() {
+    public static final Creator<DataOrderDTO> CREATOR = new Creator<DataOrderDTO>() {
         @Override
         public DataOrderDTO createFromParcel(Parcel source) {
             return new DataOrderDTO(source);

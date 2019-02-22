@@ -2,6 +2,7 @@ package com.lcworld.module_order;
 
 import com.lcworld.library_base.http.RequestResult;
 import com.lcworld.library_base.http.RequestResultImp;
+import com.lcworld.library_base.http.RequestResultPageImp;
 import com.lcworld.module_order.bean.*;
 import io.reactivex.Observable;
 import retrofit2.http.*;
@@ -58,6 +59,16 @@ public interface ApiServiceInterf {
     @POST("trade/checkout-params/address-id/{address_id}")
     Observable<RequestResultImp> tradeCheckoutParamsAddressId(@Path("address_id") int address_id);
 
+    //会员订单API
+    //查询会员订单列表
+    @GET("trade/orders")
+    Observable<RequestResultPageImp<DataOrderDTO>> tradeOrders(@Query("goods_name") String goods_name
+            , @Query("key_words") String key_words, @Query("order_status") String order_status, @Query("page_no") int page_no
+            , @Query("page_size") int page_size, @Query("start_time") String start_time, @Query("end_time") String end_time);
+
+    //查询单个订单明细
+    @GET("trade/orders/{order_sn}")
+    Observable<RequestResult<DataOrderDTO>> tradeOrdersDetail(@Path("order_sn") String order_sn);
 
     //交易接口模块
     //创建交易
@@ -91,12 +102,11 @@ public interface ApiServiceInterf {
     Observable<RequestResultImp> orderShangBiPayInitiate(@Query("sn") String sn, @Query("payment_plugin_id") String payment_plugin_id);
 
 
-
     //拼团采集
     //拼团订单API
     //提交订单
     @POST("pintuan/order")
-    Observable<RequestResultImp> pinTuanOrder(@Query("sku_id") int sku_id, @Query("proportion_id") int proportion_id, @Query("count") int count);
+    Observable<RequestResult<DataPintuanPayOrderInfoDTO>> pinTuanOrder(@Query("sku_id") int sku_id, @Query("proportion_id") int proportion_id, @Query("count") int count);
 
     //计算预期利润和商钻
     @GET("pintuan/order/getProfit")
