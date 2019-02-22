@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.extension.DialogControllTypeInterf;
+import com.lcworld.library_base.extension.EventPayResult;
 import com.lcworld.library_base.http.*;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_goods.ApiServiceInterf;
@@ -17,16 +18,22 @@ import com.lcworld.module_goods.R;
 import com.lcworld.module_goods.bean.DataGoodsDetailInfo;
 import com.lcworld.module_goods.bean.DataGoodsGalleryInfo;
 import com.lcworld.module_goods.bean.DataSKUVo;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import me.goldze.mvvmhabit.binding.command.BindingAction;
+import me.goldze.mvvmhabit.binding.command.BindingCommand;
+import me.goldze.mvvmhabit.bus.RxBus;
+import me.goldze.mvvmhabit.bus.RxSubscriptions;
 
 import java.util.List;
 
 public class ProductDetailViewModel extends BaseViewModelEnhance {
 
-
     public ProductDetailViewModel(@NonNull Application application) {
         super(application);
     }
 
+    private Disposable disposablePayResult;
 
     public ObservableArrayList<DataGoodsGalleryInfo> galleryInfoList = new ObservableArrayList<>();
     public ObservableDouble dPrice = new ObservableDouble();
@@ -35,6 +42,32 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
     public ObservableField<String> productDetail = new ObservableField<>();
     public ObservableField<String> productType = new ObservableField<>();
     public ObservableInt valueSkuId = new ObservableInt();
+
+    public final BindingCommand clickOfBack = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            finish();
+        }
+    });
+
+    @Override
+    public void registerRxBus() {
+        super.registerRxBus();
+        disposablePayResult = RxBus.getDefault().toObservable(EventPayResult.class)
+                .subscribe(new Consumer<EventPayResult>() {
+                    @Override
+                    public void accept(EventPayResult eventPayResult) throws Exception {
+                        finish();
+                    }
+                });
+        RxSubscriptions.add(disposablePayResult);
+    }
+
+    @Override
+    public void removeRxBus() {
+        super.removeRxBus();
+        RxSubscriptions.remove(disposablePayResult);
+    }
 
     //请求商品详情
     public void requestDetail(int goods_id) {
@@ -110,10 +143,17 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResultImp>() {
 
-
                     @Override
                     public void onSuccess(RequestResultImp resultImp) {
-                        ARouter.getInstance().build(RouterActivityPath.Order.Pager_Order_Confirm1).navigation();
+                        String[] configGoodsType = getApplication().getResources().getStringArray(R.array.goods_type);
+                        if (productType.get().equals(configGoodsType[3])) {
+                            ARouter.getInstance().build(RouterActivityPath.Order.Pager_Order_Confirm2)
+                                    .withInt("sku_id", valueSkuId.get())
+                                    .navigation();
+                        } else {
+                            ARouter.getInstance().build(RouterActivityPath.Order.Pager_Order_Confirm1).navigation();
+                        }
+
                     }
                 });
     }

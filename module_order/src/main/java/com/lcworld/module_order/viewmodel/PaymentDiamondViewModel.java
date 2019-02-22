@@ -6,19 +6,18 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.extension.ConvertExUtils;
 import com.lcworld.library_base.http.*;
+import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.ApiServiceInterf;
 import com.lcworld.module_order.R;
-import com.lcworld.module_order.activity.PaymentResultAct;
 import com.lcworld.module_order.bean.DataPaymentMethodVo;
 import com.lcworld.module_order.bean.DataTradeVo;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
-
-import java.util.List;
 
 public class PaymentDiamondViewModel extends BaseViewModelEnhance {
     public PaymentDiamondViewModel(@NonNull Application application) {
@@ -27,7 +26,6 @@ public class PaymentDiamondViewModel extends BaseViewModelEnhance {
         initObservableValue();
 
         requestTradeCreate();
-        requestPayMethod();
     }
 
 
@@ -74,32 +72,21 @@ public class PaymentDiamondViewModel extends BaseViewModelEnhance {
                 });
     }
 
-    //请求获取支付方式
-    private void requestPayMethod() {
-        RetrofitClient.getInstance().create(ApiServiceInterf.class)
-                .orderPayMethod(getApplication().getResources().getStringArray(R.array.client_type)[3])
-                .compose(RxUtilsEnhanced.implicitTransform())
-                .subscribe(new ResponseObserver<RequestResult<List<DataPaymentMethodVo>>>() {
-
-                    @Override
-                    public void onSuccess(RequestResult<List<DataPaymentMethodVo>> listRequestResult) {
-                        valuePayMethodList.addAll(listRequestResult.getData());
-                    }
-                });
-    }
-
     //请求对一个交易发起支付
     private void requestInitiativePay() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .orderShangBiPayInitiate(
                         valueTradeSN.get()
-                        , valuePayMethodList.get(0).getPlugin_id())
+                        , getApplication().getResources().getStringArray(R.array.payment_plugin_id)[0])
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResultImp>() {
 
                     @Override
                     public void onSuccess(RequestResultImp requestResultImp) {
-                        startActivity(PaymentResultAct.class);
+                        ARouter.getInstance().build(RouterActivityPath.Order.Pager_Payment_Result)
+                                .withBoolean("pay_result", true)
+                                .navigation();
+                        finish();
                     }
 
                 });

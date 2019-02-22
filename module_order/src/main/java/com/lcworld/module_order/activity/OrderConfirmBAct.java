@@ -3,7 +3,9 @@ package com.lcworld.module_order.activity;
 import android.databinding.Observable;
 import android.os.Bundle;
 import android.view.View;
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseActivityEnhance;
 import com.lcworld.library_base.extension.ConvertExUtils;
@@ -22,6 +24,9 @@ import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheet;
 @Route(path = RouterActivityPath.Order.Pager_Order_Confirm2)
 public class OrderConfirmBAct extends BaseActivityEnhance<OrderActivityOrderconfirmBBinding, OrderConfirmBViewModel> {
 
+    @Autowired(name = "sku_id")
+    public int mSkuId;
+
     @Override
     public int initContentView(Bundle bundle) {
         return R.layout.order_activity_orderconfirm_b;
@@ -33,14 +38,19 @@ public class OrderConfirmBAct extends BaseActivityEnhance<OrderActivityOrderconf
     }
 
     @Override
+    public void initData() {
+        super.initData();
+        ARouter.getInstance().inject(this);
+        viewModel.valueSkuId.set(mSkuId);
+    }
+
+    @Override
     public void initViewObservable() {
         super.initViewObservable();
         initView_Title();
 
         initObservable_QuantityChange();
         initObservable_SalesCycle();
-
-        viewModel.requestBenefitsList();
     }
 
     private void initView_Title() {

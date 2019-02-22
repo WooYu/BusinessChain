@@ -2,11 +2,15 @@ package com.lcworld.module_order.viewmodel;
 
 import android.app.Application;
 import android.databinding.*;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
+import com.lcworld.library_base.base.BrowseActivity;
 import com.lcworld.library_base.extension.ConvertExUtils;
 import com.lcworld.library_base.http.*;
+import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.ApiServiceInterf;
 import com.lcworld.module_order.R;
 import com.lcworld.module_order.bean.DataPaymentMethodVo;
@@ -33,13 +37,17 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
     public final ObservableField<String> valueTradeSN = new ObservableField<>();
     public final ObservableBoolean valueAgreeProtocol = new ObservableBoolean();
     public final ObservableField<String> valueAlipayOrderInfo = new ObservableField<>();
+    public final ObservableField<String> valueWechatOrderInfo = new ObservableField<>();
 
     public final ObservableBoolean enablePayNow = new ObservableBoolean();
 
     public final BindingCommand clickOfProtocol = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            showDialog("协议");
+            Bundle bundle = new Bundle();
+            bundle.putString("param_url", "https://lanhuapp.com/webapp/#/share?id=25385eb7-246a-4b30-8fd3-f55d1d1c6a8c&team_id=d46f37c5-d1cc-40ce-8532-0ec014ec21d9");
+            bundle.putString("param_title", "银行");
+            startActivity(BrowseActivity.class, bundle);
         }
     });
 
@@ -126,7 +134,35 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
 
                     @Override
                     public void onSuccess(RequestResultImp requestResultImp) {
-                        valueAlipayOrderInfo.set(requestResultImp.getData());
+                        String[] config_plugin_ids = getApplication().getResources().getStringArray(R.array.payment_plugin_id);
+                        if (valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id().equals(config_plugin_ids[1])) {
+                            valueAlipayOrderInfo.set(requestResultImp.getData());
+                        } else if (valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id().equals(config_plugin_ids[2])) {
+                            valueWechatOrderInfo.set(requestResultImp.getData());
+                        }
+
+                    }
+
+                });
+    }
+
+    //请求查询交易结果
+    public void requestQueryTradeResult() {
+        RetrofitClient.getInstance().create(ApiServiceInterf.class)
+                .orderPayQueryResult(
+                        valueTradeSN.get(), getApplication().getResources().getStringArray(R.array.trade_type)[0]
+                        , valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id()
+                        , getApplication().getResources().getStringArray(R.array.pay_mode)[0]
+                        , getApplication().getResources().getStringArray(R.array.client_type)[3])
+                .compose(RxUtilsEnhanced.explicitTransform())
+                .subscribe(new ResponseObserver<RequestResultImp>() {
+
+                    @Override
+                    public void onSuccess(RequestResultImp requestResultImp) {
+                        ARouter.getInstance().build(RouterActivityPath.Order.Pager_Payment_Result)
+                                .withBoolean("pay_result", true)
+                                .navigation();
+                        finish();
                     }
 
                 });

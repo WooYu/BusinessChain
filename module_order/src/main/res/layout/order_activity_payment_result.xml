@@ -5,6 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="viewModel" type="com.lcworld.module_order.viewmodel.PaymentResultViewModel"/>
+        <import type="android.view.View"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -33,9 +34,9 @@
         <ImageView
                 android:id="@+id/iv_picture"
                 android:layout_width="wrap_content"
-                android:src="@mipmap/order_payment_result_success"
                 app:layout_constraintBottom_toTopOf="@id/tv_result"
                 android:layout_height="wrap_content"
+                android:src="@mipmap/order_payment_result_success"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +47,7 @@
                 android:textSize="@dimen/tx_size15"
                 android:textColor="@color/tx_colorc"
                 android:layout_width="wrap_content"
-                android:text="@string/order_tip_payment_result_success"
+                android:text="@{viewModel.valueOfPayResultTip}"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/gap_size14"
                 app:layout_constraintBottom_toTopOf="@id/btn_seelater"
@@ -58,11 +59,13 @@
                 android:id="@+id/btn_seelater"
                 android:layout_width="0dp"
                 android:text="@string/order_payment_seelater"
+                android:visibility="@{viewModel.valueOfPayResult?View.VISIBLE:View.GONE}"
                 android:textSize="@dimen/tx_size15"
                 android:textColor="@color/tx_colorc"
                 android:layout_marginTop="37dp"
                 android:background="@drawable/selector_btnbg_b"
                 android:layout_height="0dp"
+                app:onClickCommand="@{viewModel.clickOfSeeLater}"
                 app:layout_constraintBottom_toBottomOf="@id/bg_result"
                 app:layout_constraintDimensionRatio="137:40"
                 app:layout_constraintEnd_toStartOf="@id/btn_vieworder"
@@ -74,12 +77,14 @@
         <Button
                 android:id="@+id/btn_vieworder"
                 android:layout_width="0dp"
+                android:visibility="@{viewModel.valueOfPayResult?View.VISIBLE:View.GONE}"
                 android:text="@string/order_payment_vieworder"
                 android:layout_marginStart="40dp"
                 android:textSize="@dimen/tx_size15"
                 android:textColor="@color/tx_colorf"
                 android:background="@drawable/selector_btnbg_a"
                 android:layout_height="0dp"
+                app:onClickCommand="@{viewModel.clickOfViewOrder}"
                 app:layout_constraintBaseline_toBaselineOf="@id/btn_seelater"
                 app:layout_constraintDimensionRatio="137:40"
                 app:layout_constraintEnd_toEndOf="parent"

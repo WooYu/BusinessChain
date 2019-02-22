@@ -55,4 +55,10 @@
         <item>order</item>
     </string-array>
 
+    //payment_plugin_id
+    <string-array name="payment_plugin_id">
+        <item>shangbiPlugin</item>
+        <item>alipayDirectPlugin</item>
+        <item>weixinPayPlugin</item>
+    </string-array>
 </resources>

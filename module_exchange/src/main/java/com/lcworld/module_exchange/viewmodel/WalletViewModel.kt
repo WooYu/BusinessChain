@@ -2,10 +2,12 @@ package com.lcworld.module_exchange.viewmodel
 
 import android.app.Application
 import android.databinding.ObservableField
+import com.alibaba.android.arouter.launcher.ARouter
 import com.lcworld.library_base.base.BaseViewModelEnhance
-import com.lcworld.module_exchange.activity.RechargeAct
+import com.lcworld.library_base.router.RouterActivityPath
 import com.lcworld.module_exchange.activity.BankCardListAct
 import com.lcworld.module_exchange.activity.NoBankcardAct
+import com.lcworld.module_exchange.activity.RechargeAct
 import com.lcworld.module_exchange.activity.WithDrawAct
 import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
@@ -37,7 +39,7 @@ class WalletViewModel(application: Application) : BaseViewModelEnhance(applicati
     }
 
     private fun orderItemClick() {
-
+        ARouter.getInstance().build(RouterActivityPath.Order.Pager_Order_Review).navigation();
     }
 
     private fun chainItemClick() {

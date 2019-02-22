@@ -19,6 +19,14 @@ import me.goldze.mvvmhabit.binding.command.BindingCommand;
 import java.util.List;
 
 public class OrderConfirmBViewModel extends BaseViewModelEnhance {
+
+    public OrderConfirmBViewModel(@NonNull Application application) {
+        super(application);
+
+        requestBenefitsList();
+    }
+
+
     //减号的点击事件
     public BindingCommand clickOfMinus = new BindingCommand<>(new BindingAction() {
         @Override
@@ -66,6 +74,8 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
     public ObservableField<String> valueProfitRatio = new ObservableField<>("");
     //结算收益商链钻的值
     public ObservableField<String> valueProfitDiamond = new ObservableField<>("");
+    //skuid
+    public ObservableInt valueSkuId = new ObservableInt();
 
 
     //购买数量输入监听
@@ -93,10 +103,6 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
         public ObservableBoolean checkCompact = new ObservableBoolean(false);
         //销售周期点击减
         public ObservableBoolean showSalesCycle = new ObservableBoolean(false);
-    }
-
-    public OrderConfirmBViewModel(@NonNull Application application) {
-        super(application);
     }
 
     private void checkQuantityGoods() {
@@ -133,7 +139,7 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
         }
 
 
-        requestConfirmOrder(285, valuesSaleDayList.get(valueSalesDayPosition.get()).getId(), valueQuantityOfGoods.get());
+        requestConfirmOrder(valuesSaleDayList.get(valueSalesDayPosition.get()).getId(), valueQuantityOfGoods.get());
     }
 
     //请求获取拼团年化收益率列表
@@ -154,9 +160,8 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
     //请求根据销售周期计算收益商链钻
     public void requestCalculateProfit() {
         DataProportionDTO proportionDTO = valuesSaleDayList.get(valueSalesDayPosition.get());
-        int sku_id = 285;
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
-                .pinTuanOrderGetProfit(sku_id, proportionDTO.getId(), valueQuantityOfGoods.get())
+                .pinTuanOrderGetProfit(valueSkuId.get(), proportionDTO.getId(), valueQuantityOfGoods.get())
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResult<DataOrderProfitDiamond>>() {
                     @Override
@@ -167,9 +172,9 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
     }
 
     //请求提交订单
-    public void requestConfirmOrder(int sku_id, int proportion_id, int count) {
+    public void requestConfirmOrder(int proportion_id, int count) {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
-                .pinTuanOrder(sku_id, proportion_id, count)
+                .pinTuanOrder(valueSkuId.get(), proportion_id, count)
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResultImp>() {
                     @Override

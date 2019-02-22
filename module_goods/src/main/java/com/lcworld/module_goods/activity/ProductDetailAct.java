@@ -167,12 +167,7 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
             btnOperationConfirmBuy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (viewModel.productType.get().equals(configGoodsType[2])) {
-                        viewModel.requestBuyNow(1);
-                    } else {
-                        ARouter.getInstance().build(RouterActivityPath.Order.Pager_Order_Confirm2).navigation();
-                    }
-
+                    viewModel.requestBuyNow(1);
                 }
             });
         }

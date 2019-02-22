@@ -28,5 +28,10 @@
         <activity android:name="com.lcworld.module_order.activity.PaymentDiamondAct"/>
         <activity android:name="com.lcworld.module_order.activity.OrderReviewAct"/>
         <activity android:name="com.lcworld.module_order.activity.OrderDetailAct"/>
+
+        <activity
+                android:name="com.lcworld.businesschain.WXPayEntryActivity"
+                android:exported="true"
+                android:launchMode="singleTop"/>
     </application>
 </manifest>

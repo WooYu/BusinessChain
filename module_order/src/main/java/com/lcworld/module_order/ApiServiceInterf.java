@@ -87,8 +87,8 @@ public interface ApiServiceInterf {
 
     //商币支付API
     //对一个交易发起支付
-    @GET("order/shangbi/pay/{payment_plugin_id}/{sn}")
-    Observable<RequestResultImp> orderShangBiPayInitiate(@Path("sn") String sn, @Path("payment_plugin_id") String payment_plugin_id);
+    @GET("order/shangbi/pay/payTrade")
+    Observable<RequestResultImp> orderShangBiPayInitiate(@Query("sn") String sn, @Query("payment_plugin_id") String payment_plugin_id);
 
 
 

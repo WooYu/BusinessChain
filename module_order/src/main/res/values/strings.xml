@@ -23,6 +23,8 @@
 
     <!--tip-->
     <string name="order_tip_payment_result_success">支付成功</string>
+    <string name="order_tip_payment_result_failed">抱歉，支付失败</string>
+    <string name="order_pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
 
     <!--hint-->
     <string name="order_hint_receiveraddr_name">请填写真实姓名</string>

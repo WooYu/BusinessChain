@@ -18,11 +18,16 @@ import com.lcworld.module_order.adapter.PayMethodAdapter;
 import com.lcworld.module_order.bean.AliPayResult;
 import com.lcworld.module_order.databinding.OrderActivityPaymentChooseBinding;
 import com.lcworld.module_order.viewmodel.PaymentChooseViewModel;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -33,6 +38,7 @@ import java.util.Map;
 public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentChooseBinding, PaymentChooseViewModel> {
 
     private PayMethodAdapter mPayMethodAdapter;
+    private IWXAPI api;
 
     @Override
     public int initContentView(Bundle bundle) {
@@ -47,11 +53,14 @@ public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentCh
     @Override
     public void initViewObservable() {
         super.initViewObservable();
+        //TODO: 微信支付参数
+        api = WXAPIFactory.createWXAPI(this, "wxb4ba3c02aa476ea1");
 
         initViewTitle();
         initViewRecyclerView();
 
         initObservableAlipayOrderInfo();
+        initObservableWechatOrderInfo();
     }
 
     private void initViewTitle() {
@@ -86,6 +95,39 @@ public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentCh
         });
     }
 
+    private void initObservableWechatOrderInfo() {
+        viewModel.valueWechatOrderInfo.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                wechat_sendRequest(viewModel.valueWechatOrderInfo.get());
+            }
+        });
+    }
+
+    //解析微信支付的参数
+    private void wechat_sendRequest(String orderinfo) {
+        try {
+            JSONObject json = new JSONObject(orderinfo);
+            if (!json.has("retcode")) {
+                return;
+            }
+            PayReq req = new PayReq();
+            //req.appId = "wxf8b4f85f3a794e77";  // 测试用appId
+            req.appId = json.getString("appid");
+            req.partnerId = json.getString("partnerid");
+            req.prepayId = json.getString("prepayid");
+            req.nonceStr = json.getString("noncestr");
+            req.timeStamp = json.getString("timestamp");
+            req.packageValue = json.getString("package");
+            req.sign = json.getString("sign");
+            req.extData = "app data"; // optional
+            Toast.makeText(this, "正常调起支付", Toast.LENGTH_SHORT).show();
+            // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+            api.sendReq(req);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     //支付宝发送请求参数
     private void alipay_sendRequest(final String orderinfo) {
@@ -123,28 +165,12 @@ public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentCh
         if (TextUtils.equals(resultStatus, "9000")) {
             // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
             Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show();
-            startActivity(PaymentResultAct.class);
+            viewModel.requestQueryTradeResult();
         } else {
             // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
             Toast.makeText(this, "支付失败", Toast.LENGTH_SHORT).show();
         }
 
     }
-
-    //发送请求到微信
-//    private void sendRequestToWechat(PayParamOfWechatResponse.OrderPayBean orderPayBean) {
-//        if (null == orderPayBean) {
-//            return;
-//        }
-//        PayReq request = new PayReq();
-//        request.appId = orderPayBean.getAppid();
-//        request.partnerId = orderPayBean.getPartnerid();
-//        request.prepayId = orderPayBean.getPrepayid();
-//        request.packageValue = orderPayBean.getPackageX();
-//        request.nonceStr = orderPayBean.getNoncestr();
-//        request.timeStamp = orderPayBean.getTimestamp();
-//        request.sign = orderPayBean.getSign();
-//        msgApi.sendReq(request);
-//    }
 
 }

@@ -132,6 +132,7 @@
                 android:scaleType="centerInside"
                 android:layout_marginTop="@dimen/gap_size26"
                 android:layout_marginStart="@dimen/gap_size7"
+                app:onClickCommand="@{viewModel.clickOfBack}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
