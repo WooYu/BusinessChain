@@ -215,7 +215,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintDimensionRatio="360:43"
-                app:layout_constraintTop_toBottomOf="@id/bg_recharge_input"/>
+                app:layout_constraintTop_toBottomOf="@id/bg_recharge_input"
+                android:tag="0"
+                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"/>
 
         <ImageView
                 android:id="@+id/iv_wechat"
@@ -248,8 +250,6 @@
                 app:layout_constraintTop_toTopOf="@id/bg_wechat"
                 app:layout_constraintEnd_toEndOf="@id/guideline4"
                 android:checked="@{viewModel.payTypeList[0]}"
-                android:tag="0"
-                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"
                 />
 
         <View
@@ -268,7 +268,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintDimensionRatio="360:43"
-                app:layout_constraintTop_toBottomOf="@id/bg_wechat"/>
+                app:layout_constraintTop_toBottomOf="@id/bg_wechat"
+                android:tag="1"
+                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"/>
 
         <ImageView
                 android:id="@+id/iv_ali_pay"
@@ -301,8 +303,6 @@
                 app:layout_constraintTop_toTopOf="@id/bg_ali_pay"
                 app:layout_constraintEnd_toEndOf="@id/guideline4"
                 android:checked="@{viewModel.payTypeList[1]}"
-                android:tag="1"
-                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"
                 />
 
         <View
@@ -321,7 +321,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintDimensionRatio="360:43"
-                app:layout_constraintTop_toBottomOf="@id/bg_ali_pay"/>
+                app:layout_constraintTop_toBottomOf="@id/bg_ali_pay"
+                android:tag="2"
+                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"/>
 
         <ImageView
                 android:id="@+id/iv_bankcard_pay"
@@ -354,8 +356,6 @@
                 app:layout_constraintTop_toTopOf="@id/bg_bankcard_pay"
                 app:layout_constraintEnd_toEndOf="@id/guideline4"
                 android:checked="@{viewModel.payTypeList[2]}"
-                android:tag="2"
-                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"
                 />
 
         <Button

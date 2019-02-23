@@ -61,4 +61,9 @@
     <string name="exchange_bankcard_tips">仅支持储蓄卡</string>
     <string name="exchange_choose_bankcard">选择银行卡</string>
     <string name="exchange_debit_card">储蓄卡</string>
+    <string name="exchange_bill_detail">账单详情</string>
+    <string name="exchange_payment_method">付款方式</string>
+    <string name="exchange_other_account">对方账户</string>
+    <string name="exchange_collection_time">收款时间</string>
+    <string name="exchange_order_number">订单号码</string>
 </resources>

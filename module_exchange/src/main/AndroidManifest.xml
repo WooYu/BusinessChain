@@ -19,6 +19,8 @@
         <activity android:name=".activity.BankCardListAct"/>
         <activity android:name=".activity.SetPwdAct"/>
         <activity android:name=".activity.VerifyPhoneNumberAct"/>
+        <activity android:name=".activity.BillListAct"/>
+        <activity android:name=".activity.BillDetailAct"/>
     </application>
 
 </manifest>

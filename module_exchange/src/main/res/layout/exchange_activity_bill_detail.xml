@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_exchange.viewmodel.BillDetailViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appbg_color">
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/exchange_layout_title"/>
+
+        <ImageView
+                android:id="@+id/iv_pay_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{viewModel.payTypeImage}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                android:layout_marginTop="28dp"
+                android:contentDescription="@string/image_description_default"/>
+
+        <TextView
+                android:id="@+id/tv_pay_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_pay_type"
+                android:layout_marginTop="19dp"
+                style="@style/exchange_text_15_333333_b"
+                android:text="@{viewModel.payTypeTitle}"
+                />
+
+        <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_pay_type"
+                android:layout_marginTop="13dp"
+                android:text="@{viewModel.amount}"
+                android:textSize="@dimen/tx_size20"
+                android:textColor="@{viewModel.amountType ? R.color.tx_colore : R.color.tx_colorb}"
+                />
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/gap_size21"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/gap_size15"/>
+        <!--付款方式-->
+        <View
+                android:id="@+id/bg_pay_way"
+                app:layout_constraintTop_toBottomOf="@id/tv_amount"
+                android:layout_marginTop="@dimen/gap_size22"
+                style="@style/exchange_item_bg"
+                tools:ignore="MissingConstraints"/>
+
+        <TextView
+                style="@style/exchange_text_15_999999"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_pay_way"
+                app:layout_constraintBottom_toBottomOf="@id/bg_pay_way"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                android:text="@string/exchange_payment_method"/>
+
+        <TextView
+                style="@style/exchange_text_15_333333_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_pay_way"
+                app:layout_constraintBottom_toBottomOf="@id/bg_pay_way"
+                app:layout_constraintRight_toRightOf="@id/guideline2"
+                android:text="@{viewModel.payTypeTitle}"
+                />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_size1"
+                android:background="@color/line_colorc"
+                android:layout_marginStart="67dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_pay_way"/>
+
+        <!--对方账户-->
+        <View
+                android:id="@+id/bg_other_account"
+                app:layout_constraintTop_toBottomOf="@id/bg_pay_way"
+                style="@style/exchange_item_bg"
+                tools:ignore="MissingConstraints"/>
+
+        <TextView
+                style="@style/exchange_text_15_999999"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_other_account"
+                app:layout_constraintBottom_toBottomOf="@id/bg_other_account"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                android:text="@string/exchange_other_account"/>
+
+        <TextView
+                style="@style/exchange_text_15_333333_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_other_account"
+                app:layout_constraintBottom_toBottomOf="@id/bg_other_account"
+                app:layout_constraintRight_toRightOf="@id/guideline2"
+                android:text="@{viewModel.account}"
+                />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_size1"
+                android:background="@color/line_colorc"
+                android:layout_marginStart="67dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_other_account"/>
+
+        <!--收款时间-->
+        <View
+                android:id="@+id/bg_collection_time"
+                app:layout_constraintTop_toBottomOf="@id/bg_other_account"
+                style="@style/exchange_item_bg"
+                tools:ignore="MissingConstraints"/>
+
+        <TextView
+                style="@style/exchange_text_15_999999"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_collection_time"
+                app:layout_constraintBottom_toBottomOf="@id/bg_collection_time"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                android:text="@string/exchange_collection_time"/>
+
+        <TextView
+                style="@style/exchange_text_15_333333_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_collection_time"
+                app:layout_constraintBottom_toBottomOf="@id/bg_collection_time"
+                app:layout_constraintRight_toRightOf="@id/guideline2"
+                android:text="@{viewModel.time}"
+                />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_size1"
+                android:background="@color/line_colorc"
+                android:layout_marginStart="67dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_collection_time"/>
+
+        <!--订单号码-->
+        <View
+                android:id="@+id/bg_bill_id"
+                app:layout_constraintTop_toBottomOf="@id/bg_collection_time"
+                style="@style/exchange_item_bg"
+                tools:ignore="MissingConstraints"/>
+
+        <TextView
+                style="@style/exchange_text_15_999999"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_bill_id"
+                app:layout_constraintBottom_toBottomOf="@id/bg_bill_id"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                android:text="@string/exchange_order_number"/>
+
+        <TextView
+                style="@style/exchange_text_15_333333_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/bg_bill_id"
+                app:layout_constraintBottom_toBottomOf="@id/bg_bill_id"
+                app:layout_constraintRight_toRightOf="@id/guideline2"
+                android:text="@{viewModel.billId}"
+                />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_size1"
+                android:background="@color/line_colorc"
+                android:layout_marginStart="67dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_bill_id"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
