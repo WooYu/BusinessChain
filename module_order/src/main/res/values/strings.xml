@@ -10,6 +10,7 @@
     <string name="order_format_earndiamond">%s枚</string>
     <string name="order_format_ordernum">订单编号：%s</string>
     <string name="order_format_purchasequantity">X%s</string>
+    <string name="order_format_purchasequantity_int">X%d</string>
     <string name="order_format_totalamount">¥ %s</string>
 
     <!--error-->

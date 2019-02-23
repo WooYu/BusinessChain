@@ -37,6 +37,8 @@ public class DataOrderDTO implements Parcelable {
     private String member_name;//会员姓名\买家账号
     private double need_pay_money;//应付金额
     private int need_receipt;//是否需要发票,0：否，1：是
+    private double order_amount;//订单总价
+    private int order_id;//订单id
     private DataOrderOperateAllowable order_operate_allowable_vo;
     private double order_price;//订单价格/订单总额
     private List<DataSKUVo> order_sku_list;//sku列表
@@ -96,7 +98,6 @@ public class DataOrderDTO implements Parcelable {
     private     int use_point;//此订单使用的积分
     private int warehouse_id;//发货仓库id
     private double weight;//购物车重量
-
 
     public int getAddress_id() {
         return address_id;
@@ -336,6 +337,22 @@ public class DataOrderDTO implements Parcelable {
 
     public void setNeed_receipt(int need_receipt) {
         this.need_receipt = need_receipt;
+    }
+
+    public double getOrder_amount() {
+        return order_amount;
+    }
+
+    public void setOrder_amount(double order_amount) {
+        this.order_amount = order_amount;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 
     public DataOrderOperateAllowable getOrder_operate_allowable_vo() {
@@ -847,6 +864,8 @@ public class DataOrderDTO implements Parcelable {
         dest.writeString(this.member_name);
         dest.writeDouble(this.need_pay_money);
         dest.writeInt(this.need_receipt);
+        dest.writeDouble(this.order_amount);
+        dest.writeInt(this.order_id);
         dest.writeParcelable(this.order_operate_allowable_vo, flags);
         dest.writeDouble(this.order_price);
         dest.writeTypedList(this.order_sku_list);
@@ -942,6 +961,8 @@ public class DataOrderDTO implements Parcelable {
         this.member_name = in.readString();
         this.need_pay_money = in.readDouble();
         this.need_receipt = in.readInt();
+        this.order_amount = in.readDouble();
+        this.order_id = in.readInt();
         this.order_operate_allowable_vo = in.readParcelable(DataOrderOperateAllowable.class.getClassLoader());
         this.order_price = in.readDouble();
         this.order_sku_list = in.createTypedArrayList(DataSKUVo.CREATOR);

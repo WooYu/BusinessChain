@@ -1,205 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="@dimen/gap_size7"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:ignore="MissingDefaultResource">
+<android.support.constraint.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="@dimen/gap_size7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingDefaultResource">
 
     <android.support.constraint.Guideline
-        android:id="@+id/gline_start"
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_begin="@dimen/gap_size17" />
+            android:id="@+id/gline_start"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="@dimen/gap_size17"/>
 
     <android.support.constraint.Guideline
-        android:id="@+id/gline_end"
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_end="@dimen/gap_size17" />
+            android:id="@+id/gline_end"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_end="@dimen/gap_size17"/>
 
     <!--顶部背景-->
     <View
-        android:id="@+id/bg_top"
-        android:layout_width="0dp"
-        android:background="@color/appbg_color_white"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="360:33"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/bg_top"
+            android:layout_width="0dp"
+            android:background="@color/appbg_color_white"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="360:33"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <!--订单编号-->
     <TextView
-        android:id="@+id/tv_ordernum"
-        android:layout_width="wrap_content"
-        android:textSize="@dimen/tx_size13"
-        android:textColor="@color/tx_colorb"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toBottomOf="@id/bg_top"
-        app:layout_constraintEnd_toStartOf="@id/tv_orderstatus"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@id/gline_start"
-        app:layout_constraintTop_toTopOf="@id/bg_top"
-        tools:text="@string/order_format_ordernum" />
+            android:id="@+id/tv_ordernum"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/tx_size13"
+            android:textColor="@color/tx_colorb"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="@id/bg_top"
+            app:layout_constraintEnd_toStartOf="@id/tv_orderstatus"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/gline_start"
+            app:layout_constraintTop_toTopOf="@id/bg_top"
+            tools:text="@string/order_format_ordernum"/>
 
     <!--订单状态-->
     <TextView
-        android:id="@+id/tv_orderstatus"
-        android:layout_width="wrap_content"
-        android:textSize="@dimen/tx_size13"
-        android:textColor="@color/tx_colorb"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/bg_top"
-        app:layout_constraintEnd_toEndOf="@id/gline_end"
-        app:layout_constraintTop_toTopOf="@id/bg_top"
-        tools:text="@string/order_list_expired" />
+            android:id="@+id/tv_orderstatus"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/tx_size13"
+            android:textColor="@color/tx_colorb"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/bg_top"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:layout_constraintTop_toTopOf="@id/bg_top"
+            tools:text="@string/order_list_expired"/>
 
     <!--商品图片-->
-    <ImageView
-        android:id="@+id/iv_photo"
-        android:layout_width="0dp"
-        android:layout_marginTop="@dimen/gap_size12"
-        android:src="@color/tx_colorb"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="106:82"
-        app:layout_constraintEnd_toEndOf="@id/gline_end"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@id/gline_start"
-        app:layout_constraintTop_toBottomOf="@id/bg_top"
-        app:layout_constraintWidth_percent="0.29" />
+    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/gap_size12"
+            android:src="@color/tx_colorb"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="106:82"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/gline_start"
+            app:layout_constraintTop_toBottomOf="@id/bg_top"
+            app:qmui_border_color="@color/qmui_config_color_transparent"
+            app:qmui_corner_radius="@dimen/gap_size3"
+            app:layout_constraintWidth_percent="0.29"/>
 
     <!--商品名称-->
     <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/gap_size13"
-        android:layout_marginTop="@dimen/gap_size3"
-        android:textSize="@dimen/tx_size13"
-        android:textColor="@color/tx_colorb"
-        android:maxLength="3"
-        android:ellipsize="end"
-        android:layout_marginBottom="@dimen/gap_size5"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/tv_price"
-        app:layout_constraintEnd_toEndOf="@id/gline_end"
-        app:layout_constraintStart_toEndOf="@id/iv_photo"
-        app:layout_constraintTop_toTopOf="@id/iv_photo"
-        tools:text="名字" />
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/gap_size13"
+            android:layout_marginTop="@dimen/gap_size3"
+            android:textSize="@dimen/tx_size13"
+            android:textColor="@color/tx_colorb"
+            android:maxLength="3"
+            android:ellipsize="end"
+            android:layout_marginBottom="@dimen/gap_size5"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_price"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:layout_constraintStart_toEndOf="@id/iv_photo"
+            app:layout_constraintTop_toTopOf="@id/iv_photo"
+            tools:text="名字"/>
 
     <!--商品价格-->
     <TextView
-        android:id="@+id/tv_price"
-        android:layout_width="0dp"
-        android:textColor="@color/tx_colore"
-        android:textSize="@dimen/tx_size15"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:layout_marginEnd="@dimen/gap_size10"
-        android:layout_marginBottom="@dimen/gap_size5"
-        app:layout_constraintBottom_toBottomOf="@id/iv_photo"
-        app:layout_constraintEnd_toStartOf="@id/tv_quantity"
-        app:layout_constraintStart_toStartOf="@id/tv_name"
-        tools:text="¥152222222222222222" />
+            android:id="@+id/tv_price"
+            android:layout_width="0dp"
+            android:textColor="@color/tx_colore"
+            android:textSize="@dimen/tx_size15"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_marginEnd="@dimen/gap_size10"
+            android:layout_marginBottom="@dimen/gap_size5"
+            app:layout_constraintBottom_toBottomOf="@id/iv_photo"
+            app:layout_constraintEnd_toStartOf="@id/tv_quantity"
+            app:layout_constraintStart_toStartOf="@id/tv_name"
+            tools:text="¥152222222222222222"/>
 
     <!--购买数量-->
     <TextView
-        android:id="@+id/tv_quantity"
-        android:layout_width="wrap_content"
-        android:textColor="@color/tx_colorb"
-        android:textSize="@dimen/tx_size15"
-        android:layout_height="wrap_content"
-        app:layout_constraintBaseline_toBaselineOf="@id/tv_price"
-        app:layout_constraintEnd_toEndOf="@id/gline_end"
-        tools:text="@string/order_format_purchasequantity" />
+            android:id="@+id/tv_quantity"
+            android:layout_width="wrap_content"
+            android:textColor="@color/tx_colorb"
+            android:textSize="@dimen/tx_size15"
+            android:layout_height="wrap_content"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_price"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            tools:text="@string/order_format_purchasequantity"/>
 
     <!--底部操作背景-->
     <View
-        android:id="@+id/bg_bottom"
-        android:layout_width="0dp"
-        android:layout_marginTop="@dimen/gap_size19"
-        android:background="@color/appbg_color_white"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="360:44"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_photo" />
+            android:id="@+id/bg_bottom"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/gap_size19"
+            android:background="@color/appbg_color_white"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="360:44"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_photo"/>
 
     <!--分割线-->
     <View
-        android:layout_width="0dp"
-        android:background="@color/line_colorc"
-        android:layout_height="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bg_bottom" />
+            android:layout_width="0dp"
+            android:background="@color/line_colorc"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bg_bottom"/>
 
     <!--已付款的group-->
     <android.support.constraint.Group
-        android:id="@+id/group_paid"
-        app:constraint_referenced_ids="btn_paid_pickup,btn_paid_buyagain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            android:id="@+id/group_paid"
+            app:constraint_referenced_ids="btn_paid_pickup,btn_paid_buyagain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
+    <!--已结算的group-->
     <android.support.constraint.Group
-        android:id="@+id/group_settled"
-        app:constraint_referenced_ids="btn_paid_pickup,btn_paid_buyagain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            android:id="@+id/group_settled"
+            app:constraint_referenced_ids="btn_settled_buyagain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <!--已失效的group-->
+    <android.support.constraint.Group
+            android:id="@+id/group_invalid"
+            app:constraint_referenced_ids="btn_invalid_buyagain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     <!--已付款：申请提货-->
     <Button
-        android:id="@+id/btn_paid_pickup"
-        android:layout_width="0dp"
-        android:background="@drawable/shape_btnbg_e"
-        android:textSize="@dimen/tx_size15"
-        android:text="@string/order_list_operation_pickup"
-        android:layout_marginTop="@dimen/gap_size8"
-        android:textColor="@color/tx_colorc"
-        android:layout_marginBottom="@dimen/gap_size8"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
-        app:layout_constraintDimensionRatio="87:27"
-        app:layout_constraintEnd_toStartOf="@id/btn_paid_buyagain"
-        android:layout_marginEnd="@dimen/gap_size7"
-        app:layout_constraintTop_toTopOf="@id/bg_bottom" />
+            android:id="@+id/btn_paid_pickup"
+            android:layout_width="0dp"
+            android:background="@drawable/shape_btnbg_e"
+            android:textSize="@dimen/tx_size15"
+            android:text="@string/order_list_operation_pickup"
+            android:layout_marginTop="@dimen/gap_size8"
+            android:textColor="@color/tx_colorc"
+            android:layout_marginBottom="@dimen/gap_size8"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
+            app:layout_constraintDimensionRatio="87:27"
+            app:layout_constraintEnd_toStartOf="@id/btn_paid_buyagain"
+            android:layout_marginEnd="@dimen/gap_size7"
+            app:layout_constraintTop_toTopOf="@id/bg_bottom"/>
 
     <!--已付款：再来一单-->
     <Button
-        android:id="@+id/btn_paid_buyagain"
-        android:layout_width="0dp"
-        android:background="@drawable/shape_btnbg_f"
-        android:textSize="@dimen/tx_size15"
-        android:text="@string/order_list_operation_buyagain1"
-        android:layout_marginTop="@dimen/gap_size8"
-        android:textColor="@color/tx_colorf"
-        android:layout_marginBottom="@dimen/gap_size8"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
-        app:layout_constraintDimensionRatio="87:27"
-        app:layout_constraintEnd_toEndOf="@id/gline_end"
-        app:layout_constraintTop_toTopOf="@id/bg_bottom" />
+            android:id="@+id/btn_paid_buyagain"
+            android:layout_width="0dp"
+            android:background="@drawable/shape_btnbg_f"
+            android:textSize="@dimen/tx_size15"
+            android:text="@string/order_list_operation_buyagain1"
+            android:layout_marginTop="@dimen/gap_size8"
+            android:textColor="@color/tx_colorf"
+            android:layout_marginBottom="@dimen/gap_size8"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
+            app:layout_constraintDimensionRatio="87:27"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:layout_constraintTop_toTopOf="@id/bg_bottom"/>
 
-    <!--已结算：再次购买-->
+    <!--已结算：再来一单-->
     <Button
-        android:id="@+id/btn_settled_buyagain"
-        android:layout_width="0dp"
-        android:background="@drawable/shape_btnbg_f"
-        android:textSize="@dimen/tx_size15"
-        android:text="@string/order_list_operation_buyagain2"
-        android:layout_marginTop="@dimen/gap_size8"
-        android:textColor="@color/tx_colorf"
-        android:layout_marginBottom="@dimen/gap_size8"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
-        app:layout_constraintDimensionRatio="87:27"
-        app:layout_constraintEnd_toEndOf="@id/gline_end"
-        app:layout_constraintTop_toTopOf="@id/bg_bottom" />
+            android:id="@+id/btn_settled_buyagain"
+            android:layout_width="0dp"
+            android:background="@drawable/shape_btnbg_f"
+            android:textSize="@dimen/tx_size15"
+            android:text="@string/order_list_operation_buyagain1"
+            android:layout_marginTop="@dimen/gap_size8"
+            android:textColor="@color/tx_colorf"
+            android:layout_marginBottom="@dimen/gap_size8"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
+            app:layout_constraintDimensionRatio="87:27"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:layout_constraintTop_toTopOf="@id/bg_bottom"/>
 
-
+    <!--已失效：再来一单-->
+    <Button
+            android:id="@+id/btn_invalid_buyagain"
+            android:layout_width="0dp"
+            android:background="@drawable/shape_btnbg_f"
+            android:textSize="@dimen/tx_size15"
+            android:text="@string/order_list_operation_buyagain2"
+            android:layout_marginTop="@dimen/gap_size8"
+            android:textColor="@color/tx_colorf"
+            android:layout_marginBottom="@dimen/gap_size8"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
+            app:layout_constraintDimensionRatio="87:27"
+            app:layout_constraintEnd_toEndOf="@id/gline_end"
+            app:layout_constraintTop_toTopOf="@id/bg_bottom"/>
 </android.support.constraint.ConstraintLayout>

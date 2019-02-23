@@ -5,6 +5,7 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.support.annotation.NonNull;
+import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.http.RequestResultPageImp;
 import com.lcworld.library_base.http.ResponseObserver;
@@ -29,6 +30,10 @@ public class OrderListViewModel extends BaseViewModelEnhance {
 
     //请求订单列表
     public void requestOrderList() {
+        if(ObjectUtils.isEmpty(valueOrderStatus.get())){
+            return;
+        }
+
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .tradeOrders("", "", valueOrderStatus.get(), valuePage.get()
                         , getApplication().getResources().getInteger(R.integer.config_pageData_defaultSize)

@@ -7,9 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lcworld.library_base.base.BaseFragmentEnhance;
 import com.lcworld.library_base.extension.ListChangedCallbackImpl;
+import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.BR;
 import com.lcworld.module_order.R;
 import com.lcworld.module_order.activity.OrderDetailAct;
@@ -78,5 +80,31 @@ public class OrderListFrag extends BaseFragmentEnhance<OrderFragMyorderBinding, 
         });
         binding.rvOrder.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvOrder.setAdapter(mOrderAdapter);
+
+        mOrderAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                clickedChildView(viewModelId, mOrderAdapter.getData().get(position).getSku_list().get(0).getGoods_id());
+            }
+        });
+    }
+
+    //更新筛选条件
+    public void updateFilter(String startTime, String endTime) {
+        viewModel.valueStartTime.set(startTime);
+        viewModel.valueEndTime.set(endTime);
+        viewModel.requestOrderList();
+    }
+
+    //点击事件
+    private void clickedChildView(int viewid, int goods_id) {
+        if (viewid == R.id.btn_paid_pickup) {
+            ARouter.getInstance().build(RouterActivityPath.Order.Pager_Order_Confirm2)
+                    .withInt("sku_id", goods_id)
+                    .navigation();
+        } else if (viewid == R.id.btn_paid_buyagain || viewid == R.id.btn_settled_buyagain || viewid == R.id.btn_invalid_buyagain) {
+
+        }
+
     }
 }

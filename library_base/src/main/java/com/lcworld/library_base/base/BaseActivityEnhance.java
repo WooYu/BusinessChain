@@ -5,21 +5,35 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.WindowManager;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.SPUtils;
 import com.lcworld.library_base.R;
 import com.lcworld.library_base.extension.DialogControllTypeInterf;
 import com.lcworld.library_base.extension.EventDialog;
+import com.lcworld.library_base.global.SPKeyGlobal;
+import com.lcworld.library_base.http.ErrorConvention;
+import com.lcworld.library_base.http.EventRequestLoadingBox;
+import com.lcworld.library_base.router.RouterActivityPath;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.base.BaseActivity;
+import me.goldze.mvvmhabit.bus.RxBus;
+import me.goldze.mvvmhabit.bus.RxSubscriptions;
+import me.goldze.mvvmhabit.http.ResponseThrowable;
 import me.goldze.mvvmhabit.utils.KLog;
 
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends BaseViewModelEnhance> extends BaseActivity<V, VM> {
-    private QMUITipDialog mQMuiDialog;
+    private QMUITipDialog mQMuiDialog_LoadingBox;
+    private QMUITipDialog mQMuiDialog_Tip;
+    private boolean bForeground;
+    private Disposable responseThrowableDisposable;
+    private Disposable loadingBoxDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +49,104 @@ public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends 
         super.initData();
         //新增对话框回调
         registorDialogControllLiveDataCallBack();
+        //注册登录失效和接口异常的RxBus
+        registerRxBus();
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        bForeground = true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        bForeground = false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        removeRxBus();
+    }
+
+    private void registerRxBus() {
+        responseThrowableDisposable = RxBus.getDefault().toObservable(ResponseThrowable.class)
+                .subscribe(new Consumer<ResponseThrowable>() {
+                    @Override
+                    public void accept(ResponseThrowable responseThrowable) throws Exception {
+                        KLog.d(BaseActivityEnhance.this.getClass().toString(), responseThrowable.message);
+                        rxBusDispose_ResponseThrowable(responseThrowable);
+                    }
+                });
+
+        loadingBoxDisposable = RxBus.getDefault().toObservable(EventRequestLoadingBox.class)
+                .subscribe(new Consumer<EventRequestLoadingBox>() {
+                    @Override
+                    public void accept(EventRequestLoadingBox eventRequestLoadingBox) throws Exception {
+                        rxBusDispose_EventRequestLoadingBox(eventRequestLoadingBox);
+                    }
+                });
+
+        RxSubscriptions.add(loadingBoxDisposable);
+        RxSubscriptions.add(responseThrowableDisposable);
+    }
+
+    private void removeRxBus() {
+        RxSubscriptions.remove(loadingBoxDisposable);
+        RxSubscriptions.remove(responseThrowableDisposable);
+    }
+
+    private void rxBusDispose_ResponseThrowable(ResponseThrowable responseThrowable) {
+        if (!bForeground) {
+            return;
+        }
+
+        switch (responseThrowable.code) {
+            case ErrorConvention.AUTH_ERROR://重新登录
+                SPUtils.getInstance().remove(SPKeyGlobal.Key_Account_Access_Token);
+                SPUtils.getInstance().remove(SPKeyGlobal.Key_Account_Refresh_Token);
+                ARouter.getInstance().build(RouterActivityPath.Account.PAGER_LOGIN).navigation();
+                break;
+            case ErrorConvention.PARAMS_ERROR://参数错误
+                break;
+            default:
+                break;
+
+        }
+        dialogControllShow(DialogControllTypeInterf.FAILED, responseThrowable.message);
+    }
+
+    private void rxBusDispose_EventRequestLoadingBox(EventRequestLoadingBox eventRequestLoadingBox) {
+        if (!bForeground) {
+            return;
+        }
+
+        if (eventRequestLoadingBox.isbShow()) {
+            showDialog(getResources().getString(R.string.dialog_loading));
+        } else {
+            dismissDialog();
+        }
+    }
+
+
+    @Override
     public void showDialog(String title) {
-        dialogControllShow(DialogControllTypeInterf.LOADING, title);
+        dismissDialog();
+        mQMuiDialog_LoadingBox = new QMUITipDialog.Builder(this)
+                .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
+                .setTipWord(title)
+                .create();
+
     }
 
     @Override
     public void dismissDialog() {
-        dialogControllHide();
+        if (mQMuiDialog_LoadingBox != null && mQMuiDialog_LoadingBox.isShowing()) {
+            mQMuiDialog_LoadingBox.dismiss();
+            mQMuiDialog_LoadingBox = null;
+        }
     }
 
     private void registorDialogControllLiveDataCallBack() {
@@ -64,9 +166,9 @@ public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends 
     }
 
     private void dialogControllHide() {
-        if (mQMuiDialog != null && mQMuiDialog.isShowing()) {
-            mQMuiDialog.dismiss();
-            mQMuiDialog = null;
+        if (mQMuiDialog_Tip != null && mQMuiDialog_Tip.isShowing()) {
+            mQMuiDialog_Tip.dismiss();
+            mQMuiDialog_Tip = null;
         }
     }
 
@@ -74,54 +176,47 @@ public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends 
         dialogControllHide();
 
         switch (position) {
-            case DialogControllTypeInterf.LOADING://加载中
-                mQMuiDialog = new QMUITipDialog.Builder(this)
-                        .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
-                        .setTipWord(content)
-                        .create();
-                mQMuiDialog.show();
-                return;
             case DialogControllTypeInterf.SUCCESS://成功
-                mQMuiDialog = new QMUITipDialog.Builder(this)
+                mQMuiDialog_Tip = new QMUITipDialog.Builder(this)
                         .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
                         .setTipWord(content)
                         .create();
                 break;
             case DialogControllTypeInterf.FAILED://失败
-                mQMuiDialog = new QMUITipDialog.Builder(this)
+                mQMuiDialog_Tip = new QMUITipDialog.Builder(this)
                         .setIconType(QMUITipDialog.Builder.ICON_TYPE_FAIL)
                         .setTipWord(content)
                         .create();
                 break;
             case DialogControllTypeInterf.WARNING://警告
-                mQMuiDialog = new QMUITipDialog.Builder(this)
+                mQMuiDialog_Tip = new QMUITipDialog.Builder(this)
                         .setIconType(QMUITipDialog.Builder.ICON_TYPE_INFO)
                         .setTipWord(content)
                         .create();
                 break;
             case DialogControllTypeInterf.PICTURE://单独图片
-                mQMuiDialog = new QMUITipDialog.Builder(this)
+                mQMuiDialog_Tip = new QMUITipDialog.Builder(this)
                         .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
                         .create();
                 break;
             case DialogControllTypeInterf.TOAST://吐司
-                mQMuiDialog = new QMUITipDialog.Builder(this)
+                mQMuiDialog_Tip = new QMUITipDialog.Builder(this)
                         .setTipWord(content)
                         .create();
                 break;
             case DialogControllTypeInterf.CUSTOM://自定义
-                mQMuiDialog = new QMUITipDialog.CustomBuilder(this)
+                mQMuiDialog_Tip = new QMUITipDialog.CustomBuilder(this)
                         .setContent(R.layout.popup_custom)
                         .create();
                 break;
             default:
-                mQMuiDialog = new QMUITipDialog.Builder(this)
+                mQMuiDialog_Tip = new QMUITipDialog.Builder(this)
                         .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
                         .setTipWord(getString(R.string.dialog_loading))
                         .create();
                 break;
         }
-        mQMuiDialog.show();
+        mQMuiDialog_Tip.show();
 
         Observable.timer(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())

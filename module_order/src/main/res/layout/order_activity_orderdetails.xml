@@ -6,6 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="viewModel" type="com.lcworld.module_order.viewmodel.OrderDetailViewModel"/>
+        <import type="com.lcworld.module_order.bean.DataOrderDTO"/>
     </data>
 
     <LinearLayout
@@ -73,6 +74,7 @@
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="@id/gline_start"
                         app:layout_constraintTop_toTopOf="@id/bg_top"
+                        android:text="@{@string/order_format_ordernum(viewModel.valueDataOrderDetail.get().order_status_text)}"
                         tools:text="@string/order_format_ordernum"/>
 
                 <!--订单状态-->
@@ -85,10 +87,11 @@
                         app:layout_constraintBottom_toBottomOf="@id/bg_top"
                         app:layout_constraintEnd_toEndOf="@id/gline_end"
                         app:layout_constraintTop_toTopOf="@id/bg_top"
+                        android:text="@{viewModel.valueDataOrderDetail.get().order_status}"
                         tools:text="@string/order_list_expired"/>
 
                 <!--商品图片-->
-                <ImageView
+                <com.qmuiteam.qmui.widget.QMUIRadiusImageView
                         android:id="@+id/iv_photo"
                         android:layout_width="0dp"
                         android:layout_marginTop="@dimen/gap_size12"
@@ -98,6 +101,8 @@
                         app:layout_constraintEnd_toEndOf="@id/gline_end"
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="@id/gline_start"
+                        app:qmui_border_color="@color/qmui_config_color_transparent"
+                        app:qmui_corner_radius="@dimen/gap_size3"
                         app:layout_constraintTop_toBottomOf="@id/bg_top"
                         app:layout_constraintWidth_percent="0.29"/>
 
@@ -393,15 +398,23 @@
                 <!--已付款的group-->
                 <android.support.constraint.Group
                         android:id="@+id/group_paid"
+                        app:constraint_referenced_ids="btn_paid_pickup,btn_paid_buyagain"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:constraint_referenced_ids="btn_paid_pickup,btn_paid_buyagain"/>
+                        android:layout_height="wrap_content"/>
 
+                <!--已结算的group-->
                 <android.support.constraint.Group
                         android:id="@+id/group_settled"
+                        app:constraint_referenced_ids="btn_settled_buyagain"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:constraint_referenced_ids="btn_paid_pickup,btn_paid_buyagain"/>
+                        android:layout_height="wrap_content"/>
+
+                <!--已失效的group-->
+                <android.support.constraint.Group
+                        android:id="@+id/group_invalid"
+                        app:constraint_referenced_ids="btn_invalid_buyagain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 <!--已付款：再来一单-->
                 <Button
@@ -416,6 +429,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
                         app:layout_constraintDimensionRatio="327:37"
                         app:layout_constraintEnd_toEndOf="@id/gline_end"
+                        app:onClickCommand="@{viewModel.clickedBuyAgain}"
                         app:layout_constraintStart_toStartOf="@id/gline_start"
                         app:layout_constraintTop_toBottomOf="@id/clayout_address"/>
 
@@ -431,19 +445,39 @@
                         android:layout_marginTop="@dimen/gap_size9"
                         app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
                         app:layout_constraintDimensionRatio="327:37"
+                        app:onClickCommand="@{viewModel.clickedPickUp}"
                         app:layout_constraintEnd_toEndOf="@id/gline_end"
                         app:layout_constraintStart_toStartOf="@id/gline_start"
                         app:layout_constraintTop_toBottomOf="@id/btn_paid_buyagain"/>
 
-                <!--已结算：再次购买-->
+                <!--已结算：再来一单-->
                 <Button
                         android:id="@+id/btn_settled_buyagain"
+                        android:layout_width="0dp"
+                        android:background="@drawable/shape_btnbg_g"
+                        android:textSize="@dimen/tx_size15"
+                        android:text="@string/order_list_operation_buyagain1"
+                        android:layout_marginTop="31dp"
+                        android:textColor="@color/tx_colorf"
+                        android:visibility="gone"
+                        android:layout_height="0dp"
+                        app:onClickCommand="@{viewModel.clickedBuyAgain}"
+                        app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
+                        app:layout_constraintDimensionRatio="327:37"
+                        app:layout_constraintEnd_toEndOf="@id/gline_end"
+                        app:layout_constraintStart_toStartOf="@id/gline_start"
+                        app:layout_constraintTop_toBottomOf="@id/clayout_address"/>
+
+                <!--已失效：再次购买-->
+                <Button
+                        android:id="@+id/btn_invalid_buyagain"
                         android:layout_width="0dp"
                         android:background="@drawable/shape_btnbg_g"
                         android:textSize="@dimen/tx_size15"
                         android:text="@string/order_list_operation_buyagain2"
                         android:layout_marginTop="31dp"
                         android:textColor="@color/tx_colorf"
+                        app:onClickCommand="@{viewModel.clickedBuyAgain}"
                         android:visibility="gone"
                         android:layout_height="0dp"
                         app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
@@ -451,7 +485,6 @@
                         app:layout_constraintEnd_toEndOf="@id/gline_end"
                         app:layout_constraintStart_toStartOf="@id/gline_start"
                         app:layout_constraintTop_toBottomOf="@id/clayout_address"/>
-
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
 

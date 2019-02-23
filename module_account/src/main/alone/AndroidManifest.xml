@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.lcworld.module_account.activity.LoginActivity"/>
+        <activity android:name="com.lcworld.module_account.activity.LoginActivity"
+        android:launchMode="singleTop"/>
         <activity android:name="com.lcworld.module_account.activity.RegistFirstActivity"/>
         <activity android:name="com.lcworld.module_account.activity.SetPasswordActivity"/>
         <activity android:name="com.lcworld.module_account.activity.RetrieveFirstActivity"/>

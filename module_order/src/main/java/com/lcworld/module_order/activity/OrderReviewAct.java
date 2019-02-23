@@ -1,12 +1,13 @@
 package com.lcworld.module_order.activity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseActivityEnhance;
 import com.lcworld.library_base.router.RouterActivityPath;
@@ -17,16 +18,19 @@ import com.lcworld.module_order.fragment.OrderListFrag;
 import com.lcworld.module_order.viewmodel.OrderReviewViewModel;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.util.QMUIViewHelper;
+import me.goldze.mvvmhabit.utils.KLog;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
  * 查看订单
  */
 @Route(path = RouterActivityPath.Order.Pager_Order_Review)
-public class OrderReviewAct extends BaseActivityEnhance<OrderActivityMyorderBinding, OrderReviewViewModel> {
+public class OrderReviewAct extends BaseActivityEnhance<OrderActivityMyorderBinding, OrderReviewViewModel>
+        implements DatePickerDialog.OnDateSetListener {
 
     private List<OrderListFrag> mFragmentList;
     private OrderListFrag mCurFrag;
@@ -50,9 +54,39 @@ public class OrderReviewAct extends BaseActivityEnhance<OrderActivityMyorderBind
         initTablayout();
     }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        KLog.d("" + year + "-" + month + "-" + dayOfMonth);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        viewModel.valueSelectCalendar.set(calendar);
+
+        //获取开始时间、结束时间
+        String starttime = String.valueOf(calendar.getTimeInMillis() / 1000);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        String endtime = String.valueOf(calendar.getTimeInMillis() / 1000);
+        if (null != mCurFrag) {
+            mCurFrag.updateFilter(starttime, endtime);
+        }
+
+    }
+
     private void initViewTitle() {
         binding.qmuiTopbar.setTitle(R.string.order_list_title);
-        binding.qmuiTopbar.addRightImageButton(R.mipmap.order_title_calendar, QMUIViewHelper.generateViewId());
+        binding.qmuiTopbar.addRightImageButton(R.mipmap.order_title_calendar, QMUIViewHelper.generateViewId()).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clickDatePickerDialog();
+                    }
+                }
+        );
         binding.qmuiTopbar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,68 +132,40 @@ public class OrderReviewAct extends BaseActivityEnhance<OrderActivityMyorderBind
         binding.naviTop.post(new Runnable() {
             @Override
             public void run() {
-                LinearLayout mTabStrip = (LinearLayout) binding.naviTop.getChildAt(0);
                 try {
-                    Field mTabs = TabLayout.class.getDeclaredField("mTabs");
-                    mTabs.setAccessible(true);
-                    ArrayList<TabLayout.Tab> tabs = (ArrayList<TabLayout.Tab>) mTabs.get(this);
+                    //拿到tabLayout的mTabStrip属性
+                    LinearLayout mTabStrip = (LinearLayout) binding.naviTop.getChildAt(0);
+
                     for (int i = 0; i < mTabStrip.getChildCount(); i++) {
-                        TabLayout.Tab tab = tabs.get(i);
-                        Field mView = tab.getClass().getDeclaredField("mView");
-                        mView.setAccessible(true);
-                        Object tabView = mView.get(tab);
-                        Field mTextView = getClassLoader().loadClass("android.support.design.widget.TabLayout$TabView").getDeclaredField("mTextView");
-                        mTextView.setAccessible(true);
-                        TextView textView = (TextView) mTextView.get(tabView);
-                        float textWidth = textView.getPaint().measureText(textView.getText().toString());
-                        View child = mTabStrip.getChildAt(i);
-                        child.setPadding(0, 0, 0, 0);
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) textWidth, LinearLayout.LayoutParams.MATCH_PARENT);
-                        params.width = ConvertUtils.dp2px(getResources().getDimension(R.dimen.gap_size20));
-                        params.height = ConvertUtils.dp2px(getResources().getDimension(R.dimen.gap_size2));
-                        child.setLayoutParams(params);
-                        child.invalidate();
+                        View tabView = mTabStrip.getChildAt(i);
+
+                        //拿到tabView的mTextView属性  tab的字数不固定一定用反射取mTextView
+                        Field mTextViewField = tabView.getClass().getDeclaredField("textView");
+                        mTextViewField.setAccessible(true);
+
+                        TextView mTextView = (TextView) mTextViewField.get(tabView);
+                        tabView.setPadding(0, 0, 0, 0);
+
+                        //因为我想要的效果是   字多宽线就多宽，所以测量mTextView的宽度
+                        int width = 0;
+                        width = mTextView.getWidth();
+                        if (width == 0) {
+                            mTextView.measure(0, 0);
+                            width = mTextView.getMeasuredWidth();
+                        }
+                        int tabviewwidth = binding.naviTop.getMeasuredWidth() / binding.naviTop.getTabCount();
+
+                        //设置tab左右间距为10dp  注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
+                        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
+                        params.leftMargin = (tabviewwidth - width) / 2;
+                        params.rightMargin = (tabviewwidth - width) / 2;
+                        tabView.setLayoutParams(params);
+                        tabView.invalidate();
                     }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-//                try {
-//                    //拿到tabLayout的mTabStrip属性
-//                    LinearLayout mTabStrip = (LinearLayout) tabLayout.getChildAt(0);
-//
-//                    for (int i = 0; i < mTabStrip.getChildCount(); i++) {
-//                        View tabView = mTabStrip.getChildAt(i);
-//
-//                        //拿到tabView的mTextView属性  tab的字数不固定一定用反射取mTextView
-//                        Field mTextViewField = tabView.getClass().getDeclaredField("mTextView");
-//                        mTextViewField.setAccessible(true);
-//
-//                        TextView mTextView = (TextView) mTextViewField.get(tabView);
-//                        tabView.setPadding(0, 0, 0, 0);
-//
-//                        //因为我想要的效果是   字多宽线就多宽，所以测量mTextView的宽度
-//                        int width = 0;
-//                        width = mTextView.getWidth();
-//                        if (width == 0) {
-//                            mTextView.measure(0, 0);
-//                            width = mTextView.getMeasuredWidth();
-//                        }
-//                        int tabviewwidth = tabLayout.getMeasuredWidth() / tabLayout.getTabCount();
-//
-//                        //设置tab左右间距为10dp  注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
-//                        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
-//                        params.width = ConvertUtils.dp2px(getResources().getDimension(R.dimen.gap_size20));
-//                        params.height = ConvertUtils.dp2px(getResources().getDimension(R.dimen.gap_size2));
-////                        params.leftMargin = (tabviewwidth - width) / 2;
-////                        params.rightMargin = (tabviewwidth - width) / 2;
-//                        tabView.setLayoutParams(params);
-//                        tabView.invalidate();
-//                    }
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
             }
         });
     }
@@ -193,5 +199,18 @@ public class OrderReviewAct extends BaseActivityEnhance<OrderActivityMyorderBind
         }
 
     }
+
+    private void clickDatePickerDialog() {
+        Calendar calendar = viewModel.valueSelectCalendar.get();
+        if (null == calendar) {
+            calendar = Calendar.getInstance();
+        }
+        DatePickerDialog dialog = new DatePickerDialog(this, this,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
+    }
+
 
 }
