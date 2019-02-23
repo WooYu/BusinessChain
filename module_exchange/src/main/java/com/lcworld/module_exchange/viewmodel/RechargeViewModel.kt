@@ -10,7 +10,6 @@ import com.lcworld.library_base.base.BaseViewModelEnhance
 import com.lcworld.module_exchange.activity.RechargeSuccessAct
 import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
-import me.goldze.mvvmhabit.binding.command.BindingConsumer
 
 class RechargeViewModel(application: Application) : BaseViewModelEnhance(application) {
     private var amountIndex: Int = -1
@@ -23,8 +22,8 @@ class RechargeViewModel(application: Application) : BaseViewModelEnhance(applica
     val amountList = listOf("10", "20", "50", "100", "200", "300", "500", "1000")
     val amount = ObservableField("")
 
-    val onFocusChangeCommand = BindingCommand(BindingConsumer<Boolean> { hasFocus ->
-        if (hasFocus) {
+    val onFocusChangeCommand = BindingCommand<Any>(BindingAction {
+        if (amountIndex != -1) {
             amountObservableList[amountIndex].set(false)
             amountIndex = -1
         }

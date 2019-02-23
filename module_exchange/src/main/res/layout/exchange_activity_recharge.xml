@@ -14,6 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/appbg_color"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             >
 
         <android.support.constraint.Guideline
@@ -203,7 +205,7 @@
                 android:text="@{viewModel.amount}"
                 android:selection="@{viewModel.amount.get().length}"
                 android:afterTextChanged="@{viewModel.amountAfterTextChanged}"
-                app:onFocusChangeCommand="@{viewModel.onFocusChangeCommand}"
+                app:onClickCommand="@{viewModel.onFocusChangeCommand}"
                 tools:ignore="Autofill"/>
         <!--微信支付-->
         <View
