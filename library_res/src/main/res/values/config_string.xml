@@ -62,15 +62,30 @@
         <item>weixinPayPlugin</item>
     </string-array>
 
-    //ALL:所有订单,WAIT_PAY:待付款,WAIT_SHIP:待发货,WAIT_ROG:待收货," +"CANCELLED:已取消,COMPLETE:已完成,WAIT_COMMENT:待评论,REFUND:售后中"
-    <string-array name="order_status">
+    //订单状态（查询）：
+    <string-array name="order_status_query">
         <item>ALL</item>
-        <item>WAIT_PAY</item>
-        <item>WAIT_SHIP</item>
-        <item>WAIT_ROG</item>
-        <item>CANCELLED</item>
-        <item>COMPLETE</item>
+        <item>PAY</item>
         <item>WAIT_COMMENT</item>
-        <item>REFUND</item>
+        <item>CANCELLED</item>
+    </string-array>
+
+
+    //订单状态（展示）：NEW("新订单")0, INTODB_ERROR("出库失败")1,CONFIRM("已确认")2,PAID_OFF("已付款")3, SHIPPED("已发货")4,ROG("已收货")5
+    //, COMPLETE("已完成")6,CANCELLED("已取消")7,AFTER_SERVICE("售后中")8
+    //已付款：3、4、5
+    //已完成：6
+    //已取消：7
+    <string-array name="order_status_display">
+        <item>NEW</item>
+        <item>INTODB_ERROR</item>
+        <item>CONFIRM</item>
+        <item>PAID_OFF</item>
+        <item>SHIPPED</item>
+        <item>ROG</item>
+        <item>COMPLETE</item>
+        <item>CANCELLED</item>
+        <item>AFTER_SERVICE</item>
+        <item>PAY</item>
     </string-array>
 </resources>

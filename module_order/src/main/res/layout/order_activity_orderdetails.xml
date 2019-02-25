@@ -66,15 +66,16 @@
                         android:layout_width="wrap_content"
                         android:textSize="@dimen/tx_size13"
                         android:textColor="@color/tx_colorb"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:maxLines="1"
+                        android:gravity="center_vertical"
                         app:layout_constrainedWidth="true"
                         app:layout_constraintBottom_toBottomOf="@id/bg_top"
                         app:layout_constraintEnd_toStartOf="@id/tv_orderstatus"
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="@id/gline_start"
                         app:layout_constraintTop_toTopOf="@id/bg_top"
-                        android:text="@{@string/order_format_ordernum(viewModel.valueDataOrderDetail.get().order_status_text)}"
+                        android:text="@{@string/order_format_ordernum(viewModel.valueDataOrderDetail.get().sn)}"
                         tools:text="@string/order_format_ordernum"/>
 
                 <!--订单状态-->
@@ -87,7 +88,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/bg_top"
                         app:layout_constraintEnd_toEndOf="@id/gline_end"
                         app:layout_constraintTop_toTopOf="@id/bg_top"
-                        android:text="@{viewModel.valueDataOrderDetail.get().order_status}"
+                        android:text="@{viewModel.valueDataOrderDetail.get().order_status_text}"
                         tools:text="@string/order_list_expired"/>
 
                 <!--商品图片-->
@@ -114,7 +115,7 @@
                         android:layout_marginTop="@dimen/gap_size3"
                         android:textSize="@dimen/tx_size13"
                         android:textColor="@color/tx_colorb"
-                        android:maxLength="3"
+                        android:maxLines="2"
                         android:ellipsize="end"
                         android:layout_marginBottom="@dimen/gap_size5"
                         android:layout_height="0dp"

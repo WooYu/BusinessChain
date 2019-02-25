@@ -15,7 +15,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
+    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
             android:id="@+id/iv_photo"
             android:layout_width="0dp"
             android:src="@color/orange"
@@ -24,22 +24,24 @@
             android:layout_marginTop="@dimen/gap_size19"
             app:layout_constraintDimensionRatio="106:82"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line_top"
+            app:qmui_border_color="@color/qmui_config_color_transparent"
+            app:qmui_corner_radius="@dimen/gap_size3"
             app:layout_constraintWidth_percent="0.30"/>
 
     <TextView
             android:id="@+id/tv_name"
             android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/gap_size17"
-            android:layout_marginStart="@dimen/gap_size12"
-            android:layout_marginTop="@dimen/gap_size4"
-            android:textSize="@dimen/tx_size13"
+            android:layout_marginEnd="@dimen/gap_size19"
+            android:layout_marginStart="@dimen/gap_size13"
+            android:layout_marginTop="@dimen/gap_size2"
+            android:textSize="@dimen/tx_size15"
             android:textColor="@color/tx_colorb"
-            android:maxLength="3"
+            android:maxLines="2"
             android:ellipsize="end"
             android:layout_marginBottom="@dimen/gap_size5"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/bg_num"
+            app:layout_constraintBottom_toTopOf="@id/tv_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_photo"
             app:layout_constraintTop_toTopOf="@id/iv_photo"
@@ -53,9 +55,8 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:layout_marginEnd="@dimen/gap_size10"
-            android:layout_marginBottom="@dimen/gap_size5"
+            android:layout_marginBottom="@dimen/gap_size7"
             app:layout_constraintBottom_toBottomOf="@id/iv_photo"
-            app:layout_constraintEnd_toStartOf="@id/bg_num"
             app:layout_constraintStart_toStartOf="@id/tv_name"
             tools:text="¥152222222222222222"/>
 

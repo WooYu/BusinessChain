@@ -69,6 +69,7 @@ public class OrderConfirmAViewModel extends BaseViewModelEnhance {
     //处理商品展示的数据
     private void processDataGoods(List<DataCartVo> list) {
         if (ObjectUtils.isEmpty(list)) {
+            observableCartVoList.clear();
             return;
         }
 

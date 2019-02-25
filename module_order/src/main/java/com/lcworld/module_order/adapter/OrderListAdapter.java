@@ -35,20 +35,20 @@ public class OrderListAdapter extends BaseQuickAdapter<DataOrderDTO, BaseViewHol
                 , ConvertExUtils.formatMoney(dataSKUVo.getPurchase_price())));
         //购买数量
         helper.setText(R.id.tv_quantity, String.format(mContext.getString(R.string.order_format_purchasequantity_int)
-                , dataSKUVo.getPurchase_num()));
+                , dataSKUVo.getNum()));
         //底部按钮
         String order_status = item.getOrder_status();
         //ALL:所有订单,WAIT_PAY:待付款,WAIT_SHIP:待发货,WAIT_ROG:待收货," +"CANCELLED:已取消,COMPLETE:已完成,WAIT_COMMENT:待评论,REFUND:售后中"
-        String[] statusArr = mContext.getResources().getStringArray(R.array.order_status);
+        String[] statusArr = mContext.getResources().getStringArray(R.array.order_status_display);
 
         helper.setVisible(R.id.group_paid, false);
         helper.setVisible(R.id.group_settled, false);
         helper.setVisible(R.id.group_invalid, false);
-        if (order_status.equals(statusArr[2]) || order_status.equals(statusArr[3])) {
+        if (order_status.equals(statusArr[3]) || order_status.equals(statusArr[4]) || order_status.equals(statusArr[5])) {
             helper.setVisible(R.id.group_paid, true);
-        } else if (order_status.equals(statusArr[5])) {
+        } else if (order_status.equals(statusArr[6])) {
             helper.setVisible(R.id.group_settled, true);
-        } else if (order_status.equals(statusArr[4])) {
+        } else if (order_status.equals(statusArr[7])) {
             helper.setVisible(R.id.group_invalid, true);
         }
 

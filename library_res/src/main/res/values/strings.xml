@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">library_res</string>
 
+    <!--特殊符号-->
+    <string name="symbol_comma">&#044;</string>
+
     <!--StringFormat-->
     <string name="format_money">¥ %s</string>
     <!--imageView 默认描述-->

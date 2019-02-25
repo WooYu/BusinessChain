@@ -46,9 +46,38 @@ public interface ApiServiceInterf {
 
     //交易
     //购物车接口模块
+    //向购物车中添加一个产品
+    @POST("trade/carts")
+    Observable<RequestResult<DataSKUVo>> tradeCarts(@Query("sku_id") int sku_id, @Query("num") int num);
+
+    //清空购物车
+    @DELETE("trade/carts")
+    Observable<RequestResultImp> tradeCartsDeleteAll();
+
+    //获取购物车页面购物车详情
+    @GET("trade/carts/all")
+    Observable<RequestResult<DataCartView>> tradeCartsAll();
+
     //获取结算页面购物车详情
     @GET("trade/carts/checked")
     Observable<RequestResult<DataCartView>> tradeCartsChecked();
+
+    //设置全部商品为选中或不选中
+    @POST("trade/carts/checked")
+    Observable<RequestResultImp> tradeCartsChecked(@Query("checked") int checked);
+
+    //批量设置某商家的商品为选中或不选中
+    @POST("trade/carts/seller/{seller_id}")
+    Observable<RequestResultImp> tradeCartsSellerUpdate(@Path("seller_id") int seller_id, @Query("checked") int checked);
+
+    //更新购物车中的多个产品
+    @POST("trade/carts/sku/{sku_id}")
+    Observable<RequestResultImp> tradeCartsSkuUpdate(@Path("sku_id") int sku_id, @Query("checked") String checked, @Query("num") String num);
+
+    //删除购物车中的一个或多个产品
+    @DELETE("trade/carts/{sku_ids}/sku")
+    Observable<RequestResultImp> tradeCartsSkuDelete(@Path("sku_ids") String sku_ids);
+
 
     //结算参数接口模块
     //获取结算参数

@@ -147,6 +147,13 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
             tvOperationTurn2ShoppingCart = findViewById(R.id.tv_operation_shoppingcart);
             btnOperationAdd2ShoppingCart = findViewById(R.id.btn_operation_addShoppingCart);
             btnOperationPayNow = findViewById(R.id.btn_operation_paynow);
+
+            tvOperationTurn2ShoppingCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ARouter.getInstance().build(RouterActivityPath.Order.Pager_Trolley).navigation();
+                }
+            });
             btnOperationPayNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

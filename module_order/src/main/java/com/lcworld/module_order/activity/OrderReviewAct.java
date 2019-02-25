@@ -65,12 +65,12 @@ public class OrderReviewAct extends BaseActivityEnhance<OrderActivityMyorderBind
         viewModel.valueSelectCalendar.set(calendar);
 
         //获取开始时间、结束时间
-        String starttime = String.valueOf(calendar.getTimeInMillis() / 1000);
+        String endtime = String.valueOf(calendar.getTimeInMillis() / 1000);
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
-        String endtime = String.valueOf(calendar.getTimeInMillis() / 1000);
+        String starttime = String.valueOf(calendar.getTimeInMillis() / 1000);
         if (null != mCurFrag) {
             mCurFrag.updateFilter(starttime, endtime);
         }
@@ -98,12 +98,11 @@ public class OrderReviewAct extends BaseActivityEnhance<OrderActivityMyorderBind
 
     private void initFragment() {
         mFragmentList = new ArrayList<>();
-        //ALL:所有订单,WAIT_PAY:待付款,WAIT_SHIP:待发货,WAIT_ROG:待收货," +"CANCELLED:已取消,COMPLETE:已完成,WAIT_COMMENT:待评论,REFUND:售后中"),
-        String[] configOrderStatus = getResources().getStringArray(R.array.order_status);
-        mFragmentList.add(OrderListFrag.instance(configOrderStatus[0]));
-        mFragmentList.add(OrderListFrag.instance(configOrderStatus[2]));
-        mFragmentList.add(OrderListFrag.instance(configOrderStatus[5]));
-        mFragmentList.add(OrderListFrag.instance(configOrderStatus[4]));
+        String[] configOrderStatus = getResources().getStringArray(R.array.order_status_query);
+        mFragmentList.add(OrderListFrag.instance(configOrderStatus[0]));//ALL
+        mFragmentList.add(OrderListFrag.instance(configOrderStatus[1]));//pay
+        mFragmentList.add(OrderListFrag.instance(configOrderStatus[2]));//WAIT_COMMENT
+        mFragmentList.add(OrderListFrag.instance(configOrderStatus[3]));//
         switchFragment(0);
     }
 

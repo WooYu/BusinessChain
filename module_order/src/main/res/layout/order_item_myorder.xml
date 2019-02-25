@@ -84,7 +84,7 @@
             android:layout_marginTop="@dimen/gap_size3"
             android:textSize="@dimen/tx_size13"
             android:textColor="@color/tx_colorb"
-            android:maxLength="3"
+            android:maxLines="2"
             android:ellipsize="end"
             android:layout_marginBottom="@dimen/gap_size5"
             android:layout_height="0dp"

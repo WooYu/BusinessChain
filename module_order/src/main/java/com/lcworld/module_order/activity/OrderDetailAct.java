@@ -76,26 +76,23 @@ public class OrderDetailAct extends BaseActivityEnhance<OrderActivityOrderdetail
         binding.tvName.setText(skuVo.getName());
         binding.tvPrice.setText(String.format(getString(R.string.format_money)
                 , ConvertExUtils.formatMoney(skuVo.getPurchase_price())));
-        binding.tvQuantity.setText(String.format(getString(R.string.order_format_purchasequantity_int), skuVo.getPurchase_num()));
+        binding.tvQuantity.setText(String.format(getString(R.string.order_format_purchasequantity_int), skuVo.getNum()));
         binding.tvAmountValue.setText(String.format(getString(R.string.format_money)
                 , ConvertExUtils.formatMoney(orderDTO.getOrder_price())));
         binding.tvDeliverymethod.setText(orderDTO.getShip_status_text());
-        binding.tvCreatetime.setText(String.valueOf(orderDTO.getCreate_time()));
+        binding.tvCreatetime.setText(ConvertExUtils.convertTime(orderDTO.getCreate_time()));
         binding.tvPaymethod.setText(orderDTO.getPayment_name());
         binding.tvAddressValue.setText(orderDTO.getShip_addr());
 
         String order_status = orderDTO.getOrder_status();
-        //ALL:所有订单,WAIT_PAY:待付款,WAIT_SHIP:待发货,WAIT_ROG:待收货," +"CANCELLED:已取消,COMPLETE:已完成,WAIT_COMMENT:待评论,REFUND:售后中"
-        String[] statusArr = getResources().getStringArray(R.array.order_status);
+        String[] statusArr = getResources().getStringArray(R.array.order_status_display);
         binding.groupPaid.setVisibility(View.GONE);
         binding.groupSettled.setVisibility(View.GONE);
         binding.groupInvalid.setVisibility(View.GONE);
-        if (order_status.equals(statusArr[2]) || order_status.equals(statusArr[3])) {
+        if (order_status.equals(statusArr[3]) || order_status.equals(statusArr[4]) || order_status.equals(statusArr[5])) {
             binding.groupPaid.setVisibility(View.VISIBLE);
-        } else if (order_status.equals(statusArr[5])) {
+        } else if (order_status.equals(statusArr[6])) {
             binding.groupSettled.setVisibility(View.VISIBLE);
-        } else if (order_status.equals(statusArr[4])) {
-            binding.groupInvalid.setVisibility(View.VISIBLE);
         }
 
     }

@@ -1,8 +1,12 @@
 package com.lcworld.library_base.extension;
 
+import android.content.Context;
 import com.blankj.utilcode.util.ObjectUtils;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 扩展{@link com.blankj.utilcode.util.ConvertUtils}
@@ -75,4 +79,35 @@ public class ConvertExUtils {
         }
         return sBuilder.toString();
     }
+
+    //转换时间：秒-时间
+    public static String convertTime(long second) {
+        return convertTime(second, "yyyy-MM-dd hh:mm:ss");
+    }
+
+    //转换时间：秒-时间
+    public static String convertTime(long second, String patten) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(second * 1000);//转换为毫秒
+        Date date = calendar.getTime();
+        SimpleDateFormat format = new SimpleDateFormat(patten);
+        String dateString = format.format(date);
+        return dateString;
+    }
+
+    //去除末尾的逗号
+    public static String removeLastComma(Context context, String str) {
+        if (ObjectUtils.isEmpty(str)) {
+            return "";
+        }
+
+        String comma = context.getString(com.lcworld.library_res.R.string.symbol_comma);
+        char lastChar = str.charAt(str.length() - 1);
+        if (!comma.equals(lastChar + "")) {
+            return str;
+        }
+
+        return str.substring(0, str.length() - 1);
+    }
+
 }

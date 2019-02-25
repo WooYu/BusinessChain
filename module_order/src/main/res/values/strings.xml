@@ -9,8 +9,8 @@
     <string name="order_format_earnprofit">%s%%</string>
     <string name="order_format_earndiamond">%s枚</string>
     <string name="order_format_ordernum">订单编号：%s</string>
-    <string name="order_format_purchasequantity">X%s</string>
-    <string name="order_format_purchasequantity_int">X%d</string>
+    <string name="order_format_purchasequantity">x%s</string>
+    <string name="order_format_purchasequantity_int">x%d</string>
     <string name="order_format_totalamount">¥ %s</string>
 
     <!--error-->
@@ -34,7 +34,8 @@
     <string name="order_hint_receiveraddr_address">请填写详细地址</string>
 
     <string name="order_trolley_title">购物车</string>
-    <string name="order_trolley_subtitle">编辑</string>
+    <string name="order_trolley_subtitle1">编辑</string>
+    <string name="order_trolley_subtitle2">完成</string>
     <string name="order_trolley_sub">-</string>
     <string name="order_trolley_add">+</string>
     <string name="order_trolley_checkall">全选</string>
