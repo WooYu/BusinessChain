@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorAccent">#FF5234</color>
+    <color name="colorAccent">@color/dominant_hue</color>
 
     <color name="viewLineColor">#F0F0F0</color>
 
@@ -19,6 +19,8 @@
     <color name="txhint_colora">#6c6c6c</color>
     <color name="txhint_colorb">#999999</color>
 
+    <!--应用主色调-->
+    <color name="dominant_hue">#FF5234</color>
 
     <!--页面背景色-->
     <color name="appbg_color">#F8F8F8</color>

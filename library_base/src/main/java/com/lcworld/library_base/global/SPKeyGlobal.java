@@ -8,4 +8,5 @@ public class SPKeyGlobal {
     public static final String SpName_Account = "cache_account";
     public static final String Key_Account_Access_Token = "account_access_token";
     public static final String Key_Account_Refresh_Token = "account_refresh_token";
+    public static final String Key_Search_LocalRecord = "search_local_record";
 }

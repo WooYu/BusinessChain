@@ -88,4 +88,16 @@
         <item>AFTER_SERVICE</item>
         <item>PAY</item>
     </string-array>
+
+    //排序:关键字_排序
+    <string-array name="goods_sort">
+        <item>def_asc</item>
+        <item>def_desc</item>
+        <item>price_asc</item>
+        <item>price_desc</item>
+        <item>buynum_asc</item>
+        <item>buynum_desc</item>
+        <item>grade_asc</item>
+        <item>grade_desc</item>
+    </string-array>
 </resources>

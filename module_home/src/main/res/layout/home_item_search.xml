@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/home_shape_searchlist_bg"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:paddingTop="@dimen/gap_size5"
     android:paddingBottom="@dimen/gap_size5"
     android:paddingStart="@dimen/gap_size14"
@@ -12,7 +12,7 @@
 
     <TextView
         android:id="@+id/tv_content"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:maxLines="1"
         android:textColor="@color/tx_colord"
         android:textSize="@dimen/tx_size13"
