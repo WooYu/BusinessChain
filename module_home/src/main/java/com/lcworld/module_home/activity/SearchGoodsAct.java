@@ -3,7 +3,6 @@ package com.lcworld.module_home.activity;
 import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,7 +35,7 @@ public class SearchGoodsAct extends BaseActivityEnhance<HomeActivitySearchGoodsB
     private EditText etInputText;
 
     private TagAdapter<String> mLocalAdapter;
-    private BaseQuickAdapter<DataHotKeyword, BaseViewHolder> mHotRecomAdapter;
+    private TagAdapter<DataHotKeyword> mHotRecomAdapter;
     private BaseQuickAdapter<DataGoodsWords, BaseViewHolder> mResultSuggestAdapter;
 
     @Override
@@ -64,12 +63,6 @@ public class SearchGoodsAct extends BaseActivityEnhance<HomeActivitySearchGoodsB
         initViewSearchBox();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        viewModel.disposeList2Json();
-    }
-
     private void initViewTitle() {
         findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,13 +77,13 @@ public class SearchGoodsAct extends BaseActivityEnhance<HomeActivitySearchGoodsB
             @Override
             public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
                 super.onItemRangeInserted(sender, positionStart, itemCount);
-                initObservableLocalRecordList();
+                mLocalAdapter.notifyDataChanged();
             }
 
             @Override
             public void onItemRangeRemoved(ObservableList sender, int positionStart, int itemCount) {
                 super.onItemRangeRemoved(sender, positionStart, itemCount);
-                initObservableLocalRecordList();
+                mLocalAdapter.notifyDataChanged();
             }
 
         });
@@ -101,13 +94,13 @@ public class SearchGoodsAct extends BaseActivityEnhance<HomeActivitySearchGoodsB
             @Override
             public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
                 super.onItemRangeInserted(sender, positionStart, itemCount);
-                mHotRecomAdapter.setNewData(viewModel.valueHotRecomList);
+                mHotRecomAdapter.notifyDataChanged();
             }
 
             @Override
             public void onItemRangeRemoved(ObservableList sender, int positionStart, int itemCount) {
                 super.onItemRangeRemoved(sender, positionStart, itemCount);
-                mHotRecomAdapter.setNewData(null);
+                mHotRecomAdapter.notifyDataChanged();
             }
 
         });
@@ -144,29 +137,30 @@ public class SearchGoodsAct extends BaseActivityEnhance<HomeActivitySearchGoodsB
         binding.flowlayoutHistory.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                return false;
+                turn2SearchGoodsDisplay(viewModel.valueLocalList.get(position));
+                return true;
             }
         });
     }
 
     private void initViewHotRecomRecyclerView() {
-        mHotRecomAdapter = new BaseQuickAdapter<DataHotKeyword, BaseViewHolder>(R.layout.home_item_search) {
+        mHotRecomAdapter = new TagAdapter<DataHotKeyword>(viewModel.valueHotRecomList) {
             @Override
-            protected void convert(BaseViewHolder helper, DataHotKeyword item) {
-                helper.setText(R.id.tv_content, item.getHot_name());
+            public View getView(FlowLayout parent, int position, DataHotKeyword bean) {
+                View view = getLayoutInflater().inflate(R.layout.home_item_search, parent, false);
+                TextView textView = view.findViewById(R.id.tv_content);
+                textView.setText(bean.getHot_name());
+                return view;
             }
         };
-        mHotRecomAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        binding.flowlayoutHotRecom.setAdapter(mHotRecomAdapter);
+        binding.flowlayoutHotRecom.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Bundle bundle = new Bundle();
-                bundle.putString("searchkey", mHotRecomAdapter.getData().get(position).getHot_name());
-                startActivity(SearchGoodsResultAct.class, bundle);
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                turn2SearchGoodsDisplay(viewModel.valueHotRecomList.get(position).getHot_name());
+                return true;
             }
         });
-        binding.rvRecommend.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL));
-        binding.rvRecommend.setAdapter(mHotRecomAdapter);
-
     }
 
     private void initViewResultSuggestRecyclerView() {
@@ -179,9 +173,7 @@ public class SearchGoodsAct extends BaseActivityEnhance<HomeActivitySearchGoodsB
         mResultSuggestAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Bundle bundle = new Bundle();
-                bundle.putString("searchkey", mResultSuggestAdapter.getData().get(position).getWords());
-                startActivity(SearchGoodsResultAct.class, bundle);
+                turn2SearchGoodsDisplay(mResultSuggestAdapter.getData().get(position).getWords());
             }
         });
         binding.rvResult.setLayoutManager(new LinearLayoutManager(this));
@@ -191,6 +183,7 @@ public class SearchGoodsAct extends BaseActivityEnhance<HomeActivitySearchGoodsB
     private void initViewSearchBox() {
         etInputText = findViewById(R.id.et_search);
         RxTextView.textChanges(etInputText)
+                .debounce(500, TimeUnit.MILLISECONDS)
                 .filter(new Predicate<CharSequence>() {
                     @Override
                     public boolean test(CharSequence charSequence) throws Exception {
@@ -200,8 +193,7 @@ public class SearchGoodsAct extends BaseActivityEnhance<HomeActivitySearchGoodsB
                         }
                         return !isEmpty;
                     } // 过滤，把输入字符串长度为0时过滤掉
-                }).debounce(500, TimeUnit.MILLISECONDS)
-
+                })
                 .subscribe(new Consumer<CharSequence>() {
                     @Override
                     public void accept(CharSequence charSequence) throws Exception {
@@ -209,6 +201,13 @@ public class SearchGoodsAct extends BaseActivityEnhance<HomeActivitySearchGoodsB
                     }
                 });
 
+    }
+
+    private void turn2SearchGoodsDisplay(String key) {
+        viewModel.updateLocalRecord(key);
+        Bundle bundle = new Bundle();
+        bundle.putString("searchkey", key);
+        startActivity(SearchGoodsResultAct.class, bundle);
     }
 
 }

@@ -68,7 +68,7 @@ public class MemberAreaGoodsAdapter extends DelegateAdapter.Adapter<MemberAreaGo
                 .error(R.mipmap.def_circle_a)
                 .into(holder.ivPhoto);
         holder.tvName.setText(bean.getGoods_name());
-        holder.tvOriginalprice.setText(ConvertExUtils.formatMoney(bean.getPrice()));
+        holder.tvOriginalprice.setText(ConvertExUtils.formatMoney(bean.getSprice()));
         holder.tvDicountprice.setText(ConvertExUtils.formatMoney(bean.getPrice()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

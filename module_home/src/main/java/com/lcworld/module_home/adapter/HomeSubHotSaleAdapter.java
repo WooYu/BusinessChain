@@ -19,7 +19,7 @@ import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
 import java.util.List;
 
 /**
- * 首页爆品抢购
+ * 首页自由购
  */
 public class HomeSubHotSaleAdapter extends DelegateAdapter.Adapter<HomeSubHotSaleAdapter.HotSaleViewHolder> {
     private Context mContext;
@@ -68,8 +68,10 @@ public class HomeSubHotSaleAdapter extends DelegateAdapter.Adapter<HomeSubHotSal
                 .error(R.mipmap.def_circle_a)
                 .into(holder.ivPhoto);
         holder.tvName.setText(bean.getGoods_name());
-        holder.tvOriginalprice.setText(ConvertExUtils.formatMoney(bean.getPrice()));
-        holder.tvDicountprice.setText(ConvertExUtils.formatMoney(bean.getPrice()));
+        holder.tvOriginalprice.setText(String.format(mContext.getString(R.string.format_money)
+                , ConvertExUtils.formatMoney(bean.getSprice())));
+        holder.tvDicountprice.setText(String.format(mContext.getString(R.string.format_money)
+                , ConvertExUtils.formatMoney(bean.getPrice())));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

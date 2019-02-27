@@ -30,10 +30,10 @@
     <string name="home_hotsale">自由购</string>
     <string name="home_spellpurchase">如意赚</string>
     <string name="home_viewmore">查看更多</string>
-    <string name="home_invest">经纪人召集令</string>
+    <string name="home_invest">召集令</string>
     <string name="home_searchhistory">搜索历史</string>
     <string name="home_searchrecommend">搜索推荐</string>
-    <string name="home_filtrate_recommend">推荐爆品</string>
+    <string name="home_filtrate_recommend">推荐</string>
     <string name="home_filtrate_sales">销量</string>
     <string name="home_filtrate_price">价格</string>
     <string name="home_filtrate_discount">折扣</string>

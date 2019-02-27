@@ -5,6 +5,7 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 import android.support.annotation.NonNull;
+import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.http.*;
 import com.lcworld.module_home.ApiServiceInterf;
@@ -21,7 +22,7 @@ public class HomeMemberViewModel extends BaseViewModelEnhance {
 
     //分页大小
     public final ObservableInt observablePage = new ObservableInt(1);
-    public final ObservableBoolean observableEnableLoadMore = new ObservableBoolean(true);
+    public final ObservableBoolean observableEnableLoadMore = new ObservableBoolean(true);//到底部触发加载更多
 
     public UIChangeObservable uc = new UIChangeObservable();
 
@@ -59,8 +60,9 @@ public class HomeMemberViewModel extends BaseViewModelEnhance {
             return;
         }
 
-        final int newPage = isRefresh ? 1 : (observablePage.get() + 1);
+        int newPage = isRefresh ? 1 : (observablePage.get() + 1);
         int pageSize = getApplication().getResources().getInteger(R.integer.config_pageData_defaultSize);
+
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .goodsSearchQueryGoods(newPage, pageSize)
                 .compose(RxUtilsEnhanced.explicitTransform())
@@ -68,24 +70,23 @@ public class HomeMemberViewModel extends BaseViewModelEnhance {
 
                     @Override
                     public void onSuccess(RequestResultPageImp<DataGoodsInfo> dataGoodsInfoRequestResultPageImp) {
-                        //请求成功了就去设置页码
-                        observablePage.set(newPage);
-                        if (dataGoodsInfoRequestResultPageImp.getData().getData_total() < getApplication().getResources().getInteger(R.integer.config_pageData_defaultSize)) {
-                            //不够一页
-                            observableEnableLoadMore.set(false);
-                        } else {
-                            observableEnableLoadMore.set(true);
-                        }
-
-                        //没有数据
-                        if (dataGoodsInfoRequestResultPageImp.getData().getData_total() == 0) {
-                            return;
-                        }
-
-                        if (1 == newPage) {
+                        DataPage<DataGoodsInfo> dataPage = dataGoodsInfoRequestResultPageImp.getData();
+                        int curReturnDataSize = ObjectUtils.isEmpty(dataPage.getData()) ? 0 : dataPage.getData().size();
+                        if (dataPage.getPage_no() == 1) {
+                            observableEnableLoadMore.set(dataPage.getPage_size() == curReturnDataSize);
+                            observablePage.set(dataPage.getPage_no());
                             uc.memberGoodsObserableList.clear();
+                            if (curReturnDataSize != 0 ) {
+                                uc.memberGoodsObserableList.addAll(dataPage.getData());
+                            }
+
+                        } else {
+                            observableEnableLoadMore.set((dataPage.getPage_size() * (dataPage.getPage_no() - 1) + curReturnDataSize) < dataPage.getData_total());
+                            if (curReturnDataSize != 0) {
+                                observablePage.set(dataPage.getPage_no());
+                                uc.memberGoodsObserableList.addAll(dataPage.getData());
+                            }
                         }
-                        uc.memberGoodsObserableList.addAll(dataGoodsInfoRequestResultPageImp.getData().getData());
 
                     }
                 });

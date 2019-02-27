@@ -31,6 +31,12 @@ public class SearchGoodsViewModel extends BaseViewModelEnhance {
         requestHotSearchRecom();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposeList2Json();
+    }
+
     //最大的历史记录数量
     public final int SearchMaxSize = 10;
 
@@ -65,21 +71,32 @@ public class SearchGoodsViewModel extends BaseViewModelEnhance {
         }
     });
 
+    //更新本地历史记录
+    public void updateLocalRecord(String key) {
+        if (localRecordHashMap.containsKey(key)) {
+            localRecordHashMap.get(key);
+        } else {
+            localRecordHashMap.put(key, key);
+        }
+        disposeMap2List();
+    }
+
     //遍历Map获取本地数据List
-    public void disposeMap2List() {
+    private void disposeMap2List() {
         if (localRecordHashMap.isEmpty()) {
             valueLocalList.clear();
             return;
         }
 
-        ArrayList<String> list = new ArrayList();
+        ArrayList<String> list = new ArrayList<>();
         for (Map.Entry<String, String> entry : localRecordHashMap.entrySet()) {
             list.add(entry.getValue());
         }
+        valueLocalList.clear();
         valueLocalList.addAll(list);
     }
 
-    public void disposeList2Json() {
+    private void disposeList2Json() {
         if (valueLocalList.isEmpty()) {
             return;
         }
@@ -130,20 +147,13 @@ public class SearchGoodsViewModel extends BaseViewModelEnhance {
     }
 
     //请求搜索结果
-    public void requestSearchResult(final String key) {
+    public void requestSearchResult(String key) {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .goodsSearchWords(key)
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResult<List<DataGoodsWords>>>() {
                     @Override
                     public void onSuccess(RequestResult<List<DataGoodsWords>> listRequestResult) {
-                        if (localRecordHashMap.containsKey(key)) {
-                            localRecordHashMap.get(key);
-                        } else {
-                            localRecordHashMap.put(key, key);
-                        }
-                        disposeMap2List();
-
                         valueSuggestList.clear();
                         valueSuggestList.addAll(listRequestResult.getData());
 

@@ -9,6 +9,7 @@
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
+            android:background="@color/appbg_color_white"
             android:layout_height="match_parent">
 
         <android.support.constraint.Guideline
@@ -26,7 +27,62 @@
                 app:layout_constraintGuide_end="@dimen/gap_size10"/>
 
         <!--标题-->
-        <include layout="@layout/home_layout_search_title"/>
+        <ImageView
+                android:id="@+id/iv_back"
+                android:src="@mipmap/home_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:paddingStart="@dimen/gap_size13"
+                android:paddingEnd="@dimen/gap_size20"
+                app:layout_constraintBottom_toBottomOf="@id/bg_searchbox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:onClickCommand="@{viewModel.clickBack}"
+                app:layout_constraintTop_toTopOf="@id/bg_searchbox"/>
+
+        <View
+                android:id="@+id/bg_searchbox"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/gap_size10"
+                android:background="@drawable/home_shape_searchbox_bg2"
+                app:layout_constraintWidth_percent="0.77"
+                app:layout_constraintDimensionRatio="277:27"
+                app:layout_constraintEnd_toStartOf="@id/cbox_displaymode"
+                app:layout_constraintStart_toEndOf="@id/iv_back"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="0dp"
+                android:textSize="@dimen/tx_size13"
+                android:textColor="@color/tx_colorb"
+                android:drawableStart="@mipmap/home_searchbox_search"
+                android:maxLines="1"
+                app:onClickCommand="@{viewModel.clickBack}"
+                android:textColorHint="@color/txhint_colorb"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/gap_size20"
+                android:layout_marginStart="@dimen/gap_size20"
+                android:hint="@string/home_hint_search"
+                android:text="@={viewModel.valueSearchKey}"
+                android:drawablePadding="@dimen/gap_size5"
+                app:layout_constraintBottom_toBottomOf="@id/bg_searchbox"
+                app:layout_constraintEnd_toEndOf="@id/bg_searchbox"
+                app:layout_constraintStart_toStartOf="@id/bg_searchbox"
+                app:layout_constraintTop_toTopOf="@id/bg_searchbox"/>
+
+        <CheckBox
+                android:id="@+id/cbox_displaymode"
+                android:button="@drawable/home_selector_switchdisplay"
+                android:paddingEnd="@dimen/gap_size13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@={viewModel.checkStatusDisplayMode}"
+                app:layout_constraintBottom_toBottomOf="@id/bg_searchbox"
+                app:layout_constraintTop_toTopOf="@id/bg_searchbox"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         <!--筛选项-->
         <android.support.constraint.ConstraintLayout
@@ -38,7 +94,61 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bg_searchbox">
 
-            <include layout="@layout/home_layout_filtrate"/>
+            <CheckBox
+                    android:id="@+id/cbox_filtrate_recom"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/gap_size20"
+                    android:drawablePadding="@dimen/gap_size4"
+                    android:text="@string/home_filtrate_recommend"
+                    android:textColor="@drawable/selector_txcolor_a"
+                    android:textSize="@dimen/tx_size14"
+                    android:checked="@={viewModel.checkStatusRecom}"
+                    app:onClickCommand="@{viewModel.clickRecom}"
+                    android:button="@null"
+                    android:drawableEnd="@drawable/selector_cbox_b"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/cbox_filtrate_sales"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <CheckBox
+                    android:id="@+id/cbox_filtrate_sales"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/gap_size20"
+                    android:drawablePadding="@dimen/gap_size4"
+                    android:text="@string/home_filtrate_sales"
+                    android:textColor="@drawable/selector_txcolor_a"
+                    android:textSize="@dimen/tx_size14"
+                    android:button="@null"
+                    android:checked="@={viewModel.checkStatusSalesVolume}"
+                    app:onClickCommand="@{viewModel.clickSalesVolume}"
+                    android:drawableEnd="@drawable/selector_cbox_b"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/cbox_filtrate_price"
+                    app:layout_constraintStart_toEndOf="@id/cbox_filtrate_recom"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <CheckBox
+                    android:id="@+id/cbox_filtrate_price"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/gap_size20"
+                    android:drawablePadding="@dimen/gap_size4"
+                    android:text="@string/home_filtrate_price"
+                    android:textColor="@drawable/selector_txcolor_a"
+                    android:textSize="@dimen/tx_size14"
+                    android:checked="@={viewModel.checkStatusPrice}"
+                    app:onClickCommand="@{viewModel.clickPrice}"
+                    android:button="@null"
+                    android:drawableEnd="@drawable/selector_cbox_b"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="@dimen/gap_size13"
+                    app:layout_constraintStart_toEndOf="@id/cbox_filtrate_sales"
+                    app:layout_constraintTop_toTopOf="parent"/>
         </android.support.constraint.ConstraintLayout>
 
         <!--列表-->

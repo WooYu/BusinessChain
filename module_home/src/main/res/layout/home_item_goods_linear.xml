@@ -45,6 +45,7 @@
         android:textSize="@dimen/tx_size13"
         android:textColor="@color/tx_colorb"
         android:layout_height="0dp"
+        android:maxLines="2"
         android:gravity="top"
         android:layout_marginTop="@dimen/gap_size5"
         android:ellipsize="end"
@@ -61,12 +62,11 @@
         android:id="@+id/tv_dicountprice"
         android:layout_width="wrap_content"
         android:textColor="@color/tx_colore"
-        android:textSize="@dimen/tx_size16"
-        android:drawablePadding="@dimen/gap_size3"
+        android:textSize="@dimen/tx_size15"
         android:layout_height="wrap_content"
         android:text="@string/home_defaultprice"
         android:maxLines="1"
-        android:drawableStart="@mipmap/home_diamon_orange"
+        android:layout_marginBottom="@dimen/gap_size4"
         app:layout_constraintBottom_toBottomOf="@id/iv_photo"
         app:layout_constraintStart_toStartOf="@id/tv_name" />
 
@@ -76,18 +76,14 @@
         android:layout_width="wrap_content"
         android:textColor="@color/tx_colord"
         android:textSize="@dimen/tx_size12"
-        android:drawablePadding="@dimen/gap_size3"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/gap_size5"
         android:maxLines="1"
         android:text="@string/home_defaultprice"
         android:textStyle="italic"
-        android:drawableStart="@mipmap/home_diamon_gray"
-        app:layout_constraintBaseline_toBaselineOf="@id/tv_dicountprice"
+        app:layout_constraintBottom_toBottomOf="@id/tv_dicountprice"
         app:layout_constraintEnd_toEndOf="@id/gline_end"
         app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toEndOf="@id/tv_dicountprice"
-        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+        app:layout_constraintStart_toEndOf="@id/tv_dicountprice" />
 
     <!--原价删除线-->
     <View

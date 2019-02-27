@@ -11,7 +11,7 @@ import com.alibaba.android.vlayout.LayoutHelper;
 import com.lcworld.module_home.R;
 
 /**
- * 首页爆品抢购标题
+ * 首页自由购标题
  */
 public class HomeSubHotSaleTitleAdapter extends DelegateAdapter.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;

@@ -4,7 +4,7 @@ import android.databinding.Observable;
 import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -23,6 +23,7 @@ import com.lcworld.module_home.viewmodel.SearchGoodsResultViewModel;
 public class SearchGoodsResultAct extends BaseActivityEnhance<HomeActivitySearchGoodsresultBinding, SearchGoodsResultViewModel> {
 
     private SearchGoodsAdapter mGoodsAdapter;
+    private GridLayoutManager mGoodsLayoutManger;
 
     @Override
     public int initContentView(Bundle bundle) {
@@ -54,6 +55,7 @@ public class SearchGoodsResultAct extends BaseActivityEnhance<HomeActivitySearch
         initObservableEnableLoadMore();
         initObservableEnableRefresh();
         initObservableGoodsList();
+        initObservableSwitchDisplayMode();
     }
 
     private void initViewRefreshLayout() {
@@ -74,6 +76,7 @@ public class SearchGoodsResultAct extends BaseActivityEnhance<HomeActivitySearch
                 viewModel.requestGoodsList(viewModel.valuePage.get() + 1);
             }
         }, binding.rvGoods);
+        mGoodsAdapter.setEnableLoadMore(false);
         mGoodsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -82,7 +85,7 @@ public class SearchGoodsResultAct extends BaseActivityEnhance<HomeActivitySearch
                         .navigation();
             }
         });
-        binding.rvGoods.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvGoods.setLayoutManager(mGoodsLayoutManger = new GridLayoutManager(this, 1));
         binding.rvGoods.setAdapter(mGoodsAdapter);
     }
 
@@ -110,12 +113,25 @@ public class SearchGoodsResultAct extends BaseActivityEnhance<HomeActivitySearch
             public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
                 super.onItemRangeInserted(sender, positionStart, itemCount);
                 mGoodsAdapter.setNewData(viewModel.valueGoodsList);
+                mGoodsAdapter.setEnableLoadMore(viewModel.valueEnableLoadMore.get());
             }
 
             @Override
             public void onItemRangeRemoved(ObservableList sender, int positionStart, int itemCount) {
                 super.onItemRangeRemoved(sender, positionStart, itemCount);
                 mGoodsAdapter.setNewData(null);
+                mGoodsAdapter.setEnableLoadMore(viewModel.valueEnableLoadMore.get());
+            }
+        });
+    }
+
+    private void initObservableSwitchDisplayMode() {
+        viewModel.checkStatusDisplayMode.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                mGoodsLayoutManger.setSpanCount(viewModel.checkStatusDisplayMode.get() ? 1 : 2);
+                mGoodsAdapter.switchDisplayMode(viewModel.checkStatusDisplayMode.get() ? R.layout.home_item_goods_linear : R.layout.home_item_goods_grid);
+                mGoodsAdapter.setNewData(viewModel.valueGoodsList);
             }
         });
     }

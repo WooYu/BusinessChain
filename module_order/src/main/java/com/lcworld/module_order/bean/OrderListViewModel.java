@@ -24,7 +24,7 @@ public class OrderListViewModel extends BaseViewModelEnhance {
     public final ObservableField<String> valueStartTime = new ObservableField();
     public final ObservableField<String> valueEndTime = new ObservableField();
     public final ObservableArrayList<DataOrderDTO> valueOrderList = new ObservableArrayList<>();
-    public final ObservableBoolean valueEnableLoadMore = new ObservableBoolean();
+    public final ObservableBoolean valueEnableLoadMore = new ObservableBoolean();//一直可以加载更多
     public final ObservableBoolean valueEnableRefresh = new ObservableBoolean();
 
 
@@ -56,7 +56,7 @@ public class OrderListViewModel extends BaseViewModelEnhance {
                                 valueOrderList.addAll(dataPage.getData());
                             }
                         } else {
-                            if (dataPage.getData_total() != 0) {
+                            if (ObjectUtils.isNotEmpty(dataPage.getData())) {
                                 valuePage.set(dataPage.getPage_no());
                                 valueOrderList.addAll(dataPage.getData());
                             }

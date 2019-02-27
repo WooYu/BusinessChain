@@ -47,5 +47,4 @@
         app:layout_constraintStart_toStartOf="@id/bg_searchbox"
         app:layout_constraintTop_toTopOf="@id/bg_searchbox" />
 
-
 </merge>

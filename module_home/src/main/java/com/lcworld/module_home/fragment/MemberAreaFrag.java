@@ -186,6 +186,12 @@ public class MemberAreaFrag extends BaseRefreshFragment<HomeFragMemberGoodsBindi
                 super.onItemRangeInserted(sender, positionStart, itemCount);
                 updateView_MemberGoods(sender);
             }
+
+            @Override
+            public void onItemRangeRemoved(ObservableList sender, int positionStart, int itemCount) {
+                super.onItemRangeRemoved(sender, positionStart, itemCount);
+                mMemberGoodsAdapter.setmDatas(null);
+            }
         });
     }
 

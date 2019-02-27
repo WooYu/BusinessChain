@@ -17,7 +17,7 @@ import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
 import java.util.List;
 
 /**
- * 首页拼团采集
+ * 首页如意赚
  */
 public class HomeSubSpellPurchaseAdapter extends DelegateAdapter.Adapter<HomeSubSpellPurchaseAdapter.SpellBuyViewHolder> {
     private Context mContext;

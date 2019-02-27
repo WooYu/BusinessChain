@@ -73,14 +73,15 @@
                 app:layout_constraintStart_toStartOf="@id/gline_start"
                 app:layout_constraintTop_toBottomOf="@id/flowlayout_history"/>
 
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_recommend"
+        <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/flowlayout_hotRecom"
                 android:layout_width="0dp"
                 android:layout_marginTop="@dimen/gap_size16"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@id/gline_end"
                 app:layout_constraintStart_toStartOf="@id/gline_start"
-                app:layout_constraintTop_toBottomOf="@id/tv_recommend"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_recommend"
+                app:max_select="1"/>
 
         <!--搜索推荐-->
         <android.support.v7.widget.RecyclerView

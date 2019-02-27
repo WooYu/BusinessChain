@@ -11,7 +11,7 @@ import com.alibaba.android.vlayout.LayoutHelper;
 import com.lcworld.module_home.R;
 
 /**
- * 首页招商加盟
+ * 首页召集令
  */
 public class HomeSubInvestAdapter extends DelegateAdapter.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;

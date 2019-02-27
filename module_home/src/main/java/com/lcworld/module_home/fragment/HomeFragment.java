@@ -20,11 +20,11 @@ import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.lcworld.library_base.base.BaseRefreshFragment;
-import com.lcworld.library_base.extension.DialogControllTypeInterf;
 import com.lcworld.library_base.extension.ListChangedCallbackImpl;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.module_home.R;
+import com.lcworld.module_home.activity.GoodsHotSaleListAct;
 import com.lcworld.module_home.activity.OperatorApplyAct;
 import com.lcworld.module_home.adapter.*;
 import com.lcworld.module_home.bean.DataFocusPictures;
@@ -176,19 +176,19 @@ public class HomeFragment extends BaseRefreshFragment<HomeFragEntranceBinding, H
             adapters.add(mTopBannerAdapter = new HomeSubTopBannerAdapter(getActivity(), topBannerLayoutHelper, null));
         }
 
-        //爆品抢购标题
+        //自由购
         {
             LinearLayoutHelper hotSaleTitleLayoutHelper = new LinearLayoutHelper();
             hotSaleTitleLayoutHelper.setMargin(margin, 0, margin, 0);
             adapters.add(new HomeSubHotSaleTitleAdapter(getActivity(), hotSaleTitleLayoutHelper, new HomeSubHotSaleTitleAdapter.ItemClickListener() {
                 @Override
                 public void clickedMore() {
-                    viewModel.dialogControll_show(DialogControllTypeInterf.TOAST, "查看更多");
+                    startActivity(GoodsHotSaleListAct.class);
                 }
             }));
         }
 
-        //爆品抢购列表
+        //自由购列表
         {
             GridLayoutHelper hotSaleLayoutHelper = new GridLayoutHelper(2);
             hotSaleLayoutHelper.setAutoExpand(false);
@@ -209,14 +209,14 @@ public class HomeFragment extends BaseRefreshFragment<HomeFragEntranceBinding, H
             adapters.add(new HomeSubAdapter(getActivity(), gapLayoutHelper, R.layout.home_item_sub_line, 1));
         }
 
-        //拼团采集
+        //如意赚
         {
             LinearLayoutHelper spellBuyTitleLayoutHelper = new LinearLayoutHelper();
             spellBuyTitleLayoutHelper.setMargin(margin, 0, margin, 0);
             adapters.add(new HomeSubAdapter(getActivity(), spellBuyTitleLayoutHelper, R.layout.home_item_sub_spellpurchase_title, 1));
         }
 
-        //拼团采集列表
+        //如意赚列表
         {
             LinearLayoutHelper spellBuyLayoutHelper = new LinearLayoutHelper();
             int marginBottom = (int) getResources().getDimension(R.dimen.gap_size13);
@@ -239,14 +239,14 @@ public class HomeFragment extends BaseRefreshFragment<HomeFragEntranceBinding, H
             adapters.add(new HomeSubAdapter(getActivity(), gapLayoutHelper, R.layout.home_item_sub_line, 1));
         }
 
-        //招商加盟标题
+        //召集令标题
         {
             LinearLayoutHelper investTitleLayoutHelper = new LinearLayoutHelper();
             investTitleLayoutHelper.setMargin(margin, 0, margin, 0);
             adapters.add(new HomeSubAdapter(getActivity(), investTitleLayoutHelper, R.layout.home_item_sub_invest_title, 1));
         }
 
-        //招商加盟
+        //召集令加盟
         {
             LinearLayoutHelper investLayoutHelper = new LinearLayoutHelper();
             int size = 1;
