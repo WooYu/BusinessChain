@@ -17,7 +17,7 @@
             android:gravity="center_vertical"
             android:paddingStart="@dimen/gap_size15"
             android:text="@{viewModel.text}"
-            style="@style/exchange_text_15_333333"
+            style="@style/text_15_333333"
             android:background="@color/appbg_color"
             tools:ignore="RtlSymmetry">
 

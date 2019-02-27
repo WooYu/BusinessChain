@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_backstage.viewmodel.FanListViewModel"/>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/back_layout_title"/>
+
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                android:layout_marginTop="@dimen/gap_size7"
+                app:items="@{viewModel.observableList}"
+                app:adapter="@{viewModel.adapter}"
+                app:itemBinding="@{viewModel.itemBinding}"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                />
+    </android.support.constraint.ConstraintLayout>
+</layout>

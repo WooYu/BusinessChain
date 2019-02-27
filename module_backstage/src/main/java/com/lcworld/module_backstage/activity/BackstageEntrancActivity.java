@@ -7,6 +7,9 @@ import com.lcworld.module_backstage.BR;
 import com.lcworld.module_backstage.R;
 import com.lcworld.module_backstage.databinding.BackAcitivityEntranceBinding;
 
+/**
+ * 后台
+ */
 public class BackstageEntrancActivity extends BaseActivityEnhance<BackAcitivityEntranceBinding, BaseViewModelEnhance> {
     @Override
     public int initContentView(Bundle bundle) {

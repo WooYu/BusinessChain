@@ -13,7 +13,7 @@
         <!--标题-->
         <TextView
                 android:id="@+id/tv_title"
-                style="@style/exchange_text_15_333333"
+                style="@style/text_15_333333"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -35,7 +35,7 @@
 
         <TextView
                 android:id="@+id/tv_right"
-                style="@style/exchange_text_13_333333"
+                style="@style/text_13_333333"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintRight_toRightOf="parent"

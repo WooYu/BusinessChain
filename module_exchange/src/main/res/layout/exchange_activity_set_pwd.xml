@@ -29,7 +29,7 @@
 
         <EditText
                 android:id="@+id/et_pwd"
-                style="@style/exchange_text_14_333333"
+                style="@style/text_14_333333"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/bg_pwd"
@@ -60,7 +60,7 @@
 
         <EditText
                 android:id="@+id/et_pwd_again"
-                style="@style/exchange_text_14_333333"
+                style="@style/text_14_333333"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/bg_pwd_again"

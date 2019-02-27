@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_system.viewmodel.QuestionDetailViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appbg_color_white"
+            >
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/system_layout_title"
+                />
+
+        <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_size7"
+                android:background="@color/appbg_color"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"/>
+
+        <TextView
+                android:id="@+id/tv_title"
+                style="@style/text_15_333333_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/line1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/gap_size21"
+                android:layout_marginStart="@dimen/gap_size14"
+                android:text="@{viewModel.title}"/>
+
+        <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_colorc"
+                android:layout_marginTop="@dimen/gap_size12"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+
+        <TextView
+                android:id="@+id/tv_content"
+                style="@style/text_13_333333"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/line2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/gap_size13"
+                android:layout_marginStart="@dimen/gap_size13"
+                android:layout_marginEnd="@dimen/gap_size10"
+                android:text="@{viewModel.content}"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

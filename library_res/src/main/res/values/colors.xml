@@ -25,6 +25,8 @@
     <!--页面背景色-->
     <color name="appbg_color">#F8F8F8</color>
     <color name="appbg_color_white">#FFFFFF</color>
+    <color name="appbg_color_yellow">#FBD52B</color>
+    <color name="bg_color_000B1E">#000B1E</color>
 
     <!--分割线颜色-->
     <color name="line_colora">#ECECEC</color>

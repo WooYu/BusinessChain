@@ -36,7 +36,7 @@
                 tools:ignore="MissingConstraints"/>
 
         <TextView
-                style="@style/exchange_text_14_333333_b"
+                style="@style/text_14_333333_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/bg_choose_card_type"
@@ -68,7 +68,7 @@
 
         <TextView
                 android:id="@+id/tv_card_number"
-                style="@style/exchange_text_14_333333_b"
+                style="@style/text_14_333333_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/bg_card_name"
@@ -78,7 +78,7 @@
 
         <EditText
                 android:id="@+id/et_card_number"
-                style="@style/exchange_text_14_333333"
+                style="@style/text_14_333333"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/bg_card_name"

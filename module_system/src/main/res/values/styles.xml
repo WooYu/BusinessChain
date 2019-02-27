@@ -1,0 +1,32 @@
+<resources>
+
+    <style name="system_tab_row_item" parent="text_13_333333">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/appbg_color_white</item>
+        <item name="android:layout_marginEnd">1dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="system_item_bg">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintDimensionRatio">360:43</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="android:background">@color/appbg_color_white</item>
+    </style>
+
+    <style name="system_btn_confirm" parent="text_15_FFFFFF_b">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintDimensionRatio">327:40</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="android:layout_marginStart">@dimen/gap_size16</item>
+        <item name="android:layout_marginEnd">@dimen/gap_size16</item>
+        <item name="android:text">@string/system_next</item>
+        <item name="android:background">@drawable/selector_btnbg_a</item>
+    </style>
+</resources>

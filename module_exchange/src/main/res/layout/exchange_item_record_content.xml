@@ -32,7 +32,7 @@
                 android:id="@+id/tv_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/exchange_text_13_333333"
+                style="@style/text_13_333333"
                 app:layout_constraintLeft_toRightOf="@id/iv_pay_type"
                 android:layout_marginStart="@dimen/gap_size15"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,7 +45,7 @@
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/exchange_text_12_999999"
+                style="@style/text_12_999999"
                 app:layout_constraintLeft_toLeftOf="@id/tv_type"
                 app:layout_constraintTop_toBottomOf="@id/tv_type"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +54,7 @@
 
         <TextView
                 android:id="@+id/tv_amount"
-                style="@style/exchange_text_15_333333"
+                style="@style/text_15_333333"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-100.00"

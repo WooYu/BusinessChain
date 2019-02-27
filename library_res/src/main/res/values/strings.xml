@@ -9,4 +9,5 @@
     <!--imageView 默认描述-->
     <string name="image_description_back">返回</string>
     <string name="image_description_default">图片</string>
+    <string name="confirm">确认</string>
 </resources>

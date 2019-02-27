@@ -1,3 +1,9 @@
 <resources>
     <string name="back_name">module_backstage</string>
+    <string name="back_fan_all">全部粉丝</string>
+    <string name="back_fan_indirect">间接粉丝</string>
+    <string name="back_fan_direct">直接粉丝</string>
+    <string name="back_7th_member_added">7日新增会员</string>
+    <string name="back_fan_manage">粉丝管理</string>
+    <string name="back_bill">账单</string>
 </resources>

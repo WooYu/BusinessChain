@@ -1,25 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="viewModel"
-            type="me.goldze.mvvmhabit.base.BaseViewModel" />
+                name="viewModel"
+                type="com.lcworld.module_backstage.viewmodel.BackEntranceViewModel"/>
 
     </data>
 
-    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="后台"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/appbg_color_white"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
-    </android.support.constraint.ConstraintLayout>
+            <include
+                    android:id="@+id/layout_title"
+                    layout="@layout/back_layout_title"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/dp_10"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/dp_10"/>
+            <!--全部粉丝-->
+            <View
+                    android:id="@+id/bg_fan_all"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="105:80"
+                    app:layout_constraintTop_toBottomOf="@id/layout_title"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintRight_toLeftOf="@+id/bg_fan_direct"
+                    android:layout_marginEnd="@dimen/gap_size12"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    android:background="@drawable/shape_btnbg_ff7b61_7"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_15_FFFFFF"
+                    android:text="@string/back_fan_all"
+                    app:layout_constraintTop_toTopOf="@id/bg_fan_all"
+                    app:layout_constraintLeft_toLeftOf="@id/bg_fan_all"
+                    app:layout_constraintRight_toRightOf="@id/bg_fan_all"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_27_FFFFFF"
+                    android:text="@{viewModel.allFan}"
+                    app:layout_constraintLeft_toLeftOf="@id/bg_fan_all"
+                    app:layout_constraintRight_toRightOf="@id/bg_fan_all"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_fan_all"
+                    android:layout_marginBottom="@dimen/gap_size14"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    />
+
+            <!--直接粉丝-->
+            <View
+                    android:id="@+id/bg_fan_direct"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="105:80"
+                    app:layout_constraintTop_toTopOf="@id/bg_fan_all"
+                    app:layout_constraintLeft_toRightOf="@id/bg_fan_all"
+                    app:layout_constraintRight_toLeftOf="@+id/bg_fan_indirect"
+                    android:layout_marginEnd="@dimen/gap_size12"
+                    android:background="@drawable/shape_btnbg_ffaf60_7"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_15_FFFFFF"
+                    android:text="@string/back_fan_direct"
+                    app:layout_constraintTop_toTopOf="@id/bg_fan_direct"
+                    app:layout_constraintLeft_toLeftOf="@id/bg_fan_direct"
+                    app:layout_constraintRight_toRightOf="@id/bg_fan_direct"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_27_FFFFFF"
+                    android:text="@{viewModel.directFan}"
+                    app:layout_constraintLeft_toLeftOf="@id/bg_fan_direct"
+                    app:layout_constraintRight_toRightOf="@id/bg_fan_direct"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_fan_direct"
+                    android:layout_marginBottom="@dimen/gap_size14"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    />
+            <!--间接粉丝-->
+            <View
+                    android:id="@+id/bg_fan_indirect"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="105:80"
+                    app:layout_constraintTop_toTopOf="@id/bg_fan_all"
+                    app:layout_constraintLeft_toRightOf="@id/bg_fan_direct"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    android:background="@drawable/shape_btnbg_ffaf60_7"/>
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_15_FFFFFF"
+                    android:text="@string/back_fan_indirect"
+                    app:layout_constraintTop_toTopOf="@id/bg_fan_indirect"
+                    app:layout_constraintLeft_toLeftOf="@id/bg_fan_indirect"
+                    app:layout_constraintRight_toRightOf="@id/bg_fan_indirect"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_27_FFFFFF"
+                    android:text="@{viewModel.indirectFan}"
+                    app:layout_constraintLeft_toLeftOf="@id/bg_fan_indirect"
+                    app:layout_constraintRight_toRightOf="@id/bg_fan_indirect"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_fan_indirect"
+                    android:layout_marginBottom="@dimen/gap_size14"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    />
+
+            <View
+                    android:id="@+id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:background="@color/appbg_color"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    app:layout_constraintTop_toBottomOf="@id/bg_fan_all"/>
+
+            <TextView
+                    android:id="@+id/tv_fan_add_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_15_333333_b"
+                    android:text="@string/back_7th_member_added"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toBottomOf="@id/line1"
+                    android:layout_marginTop="@dimen/gap_size21"/>
+
+            <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_char"
+                    android:layout_width="0dp"
+                    android:layout_height="165dp"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fan_add_title"
+                    android:layout_marginTop="@dimen/dp_10"
+                    />
+
+            <View
+                    android:id="@+id/line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:background="@color/appbg_color"
+                    android:layout_marginTop="@dimen/gap_size20"
+                    app:layout_constraintTop_toBottomOf="@id/line_char"/>
+
+            <TextView
+                    android:id="@+id/tv_fan_manage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_15_333333_b"
+                    android:text="@string/back_fan_manage"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toBottomOf="@id/line2"
+                    android:layout_marginTop="@dimen/gap_size21"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/appbg_color"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fan_manage"
+                    app:items="@{viewModel.observableList}"
+                    app:adapter="@{viewModel.adapter}"
+                    app:itemBinding="@{viewModel.itemBinding}"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 </layout>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_backstage.viewmodel.FanDeatilViewModel"/>
+
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/appbg_color_white"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+            <include
+                    android:id="@+id/layout_title"
+                    layout="@layout/back_layout_title"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/dp_10"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/dp_10"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="103dp"/>
+
+            <View
+                    android:id="@+id/bg_fan"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="340:178"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@id/layout_title"
+                    android:layout_marginTop="13dp"
+                    android:background="@drawable/shape_bg_gradient_7"/>
+
+            <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_launcher_round"
+                    app:layout_constraintLeft_toLeftOf="@id/bg_fan"
+                    app:layout_constraintTop_toTopOf="@id/bg_fan"
+                    android:layout_marginStart="@dimen/gap_size20"
+                    android:layout_marginTop="@dimen/gap_size27"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+                    app:layout_constraintLeft_toLeftOf="@id/bg_fan"
+                    android:layout_marginTop="@dimen/gap_size9"
+                    android:layout_marginStart="@dimen/gap_size29"
+                    style="@style/text_13_ffffff"
+                    android:text="sss"/>
+
+            <TextView
+                    android:id="@+id/tv_nick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/iv_avatar"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline3"
+                    style="@style/text_20_FFFFFF_b"
+                    android:text="sss"/>
+
+            <TextView
+                    android:id="@+id/tv_chain_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_nick"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline3"
+                    android:layout_marginTop="@dimen/gap_size18"
+                    style="@style/text_15_FFFFFF_b"
+                    android:text="sss"/>
+
+            <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_chain_id"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline3"
+                    android:layout_marginTop="@dimen/gap_size14"
+                    style="@style/text_15_FFFFFF"
+                    android:text="sss"/>
+
+            <TextView
+                    android:id="@+id/tv_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_phone"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline3"
+                    android:layout_marginTop="@dimen/gap_size11"
+                    style="@style/text_15_FFFFFF"
+                    android:text="sss"/>
+
+            <TextView
+                    android:id="@+id/tv_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/tv_income"
+                    app:layout_constraintLeft_toRightOf="@id/tv_income"
+                    android:layout_marginStart="36dp"
+                    style="@style/text_15_FFFFFF"
+                    android:text="sss"/>
+
+            <TextView
+                    android:id="@+id/tv_join_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_income"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline3"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    style="@style/text_15_FFFFFF"
+                    android:text="sss"/>
+
+            <TextView
+                    android:id="@+id/tv_bill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_15_333333_b"
+                    android:text="@string/back_bill"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toBottomOf="@id/bg_fan"
+                    android:layout_marginTop="@dimen/gap_size20"/>
+
+
+            <View
+                    android:id="@+id/line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:background="@color/appbg_color"
+                    android:layout_marginTop="@dimen/gap_size13"
+                    app:layout_constraintTop_toBottomOf="@id/tv_bill"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/appbg_color"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/line2"
+                    app:items="@{viewModel.observableList}"
+                    app:adapter="@{viewModel.adapter}"
+                    app:itemBinding="@{viewModel.itemBinding}"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>

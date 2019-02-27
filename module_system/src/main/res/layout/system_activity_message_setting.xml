@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
+    <data/>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/system_layout_title"
+                />
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/gap_size17"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/gap_size17"/>
+
+        <View
+                android:id="@+id/bg_receiver_message"
+                style="@style/system_item_bg"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                android:layout_marginTop="7dp"
+                tools:ignore="MissingConstraints"
+                />
+
+        <TextView
+                android:id="@+id/tv_receiver_message"
+                style="@style/text_15_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/bg_receiver_message"
+                app:layout_constraintBottom_toBottomOf="@id/bg_receiver_message"
+                android:text="@string/system_receive_message_notifications"/>
+
+        <android.support.v7.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/system_switch_thumb"
+                app:switchMinWidth="27dp"
+                app:track="@drawable/system_switch_track"
+                app:layout_constraintRight_toRightOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/bg_receiver_message"
+                app:layout_constraintBottom_toBottomOf="@id/bg_receiver_message"
+                android:contentDescription="@string/image_description_default"/>
+        <!--收益提现-->
+        <View
+                android:id="@+id/bg_cash_withdrawal"
+                style="@style/system_item_bg"
+                app:layout_constraintTop_toBottomOf="@id/bg_receiver_message"
+                android:layout_marginTop="7dp"
+                tools:ignore="MissingConstraints"
+                />
+
+        <TextView
+                android:id="@+id/tv_cash_withdrawal"
+                style="@style/text_15_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/bg_cash_withdrawal"
+                app:layout_constraintBottom_toBottomOf="@id/bg_cash_withdrawal"
+                android:text="@string/system_cash_withdrawal"/>
+
+        <android.support.v7.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/system_switch_thumb"
+                app:switchMinWidth="27dp"
+                app:track="@drawable/system_switch_track"
+                app:layout_constraintRight_toRightOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/bg_cash_withdrawal"
+                app:layout_constraintBottom_toBottomOf="@id/bg_cash_withdrawal"
+                android:contentDescription="@string/image_description_default"/>
+        <!--新粉丝提醒-->
+        <View
+                android:id="@+id/bg_new_fan_reminder"
+                style="@style/system_item_bg"
+                app:layout_constraintTop_toBottomOf="@id/bg_cash_withdrawal"
+                android:layout_marginTop="7dp"
+                tools:ignore="MissingConstraints"
+                />
+
+        <TextView
+                android:id="@+id/tv_new_fan_reminder"
+                style="@style/text_15_333333"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/bg_new_fan_reminder"
+                app:layout_constraintBottom_toBottomOf="@id/bg_new_fan_reminder"
+                android:text="@string/system_new_fan_reminder"/>
+
+        <android.support.v7.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/system_switch_thumb"
+                app:switchMinWidth="27dp"
+                app:track="@drawable/system_switch_track"
+                app:layout_constraintRight_toRightOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/bg_new_fan_reminder"
+                app:layout_constraintBottom_toBottomOf="@id/bg_new_fan_reminder"
+                android:contentDescription="@string/image_description_default"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

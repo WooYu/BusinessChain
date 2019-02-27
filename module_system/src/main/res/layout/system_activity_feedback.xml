@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_system.viewmodel.FeedBackViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/appbg_color_white"
+            >
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/system_layout_title"
+                />
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/gap_size13"/>
+
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/gap_size13"/>
+
+        <EditText
+                android:id="@+id/et_input"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintRight_toRightOf="@id/guideline2"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                app:layout_constraintDimensionRatio="333:190"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                android:background="@drawable/shape_btnbg_o"
+                android:gravity="top|left"
+                android:maxLength="300"
+                style="@style/text_13_333333"
+                tools:ignore="Autofill,LabelFor,TextFields"/>
+
+        <TextView
+                style="@style/text_13_999999"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="@id/et_input"
+                app:layout_constraintBottom_toBottomOf="@id/et_input"
+                android:layout_marginEnd="@dimen/gap_size12"
+                android:layout_marginBottom="@dimen/gap_size11"
+                android:text="@{viewModel.inputLengthTips}"/>
+
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_15_333333_b"
+                app:layout_constraintTop_toBottomOf="@id/et_input"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="@dimen/gap_size14"
+                android:layout_marginTop="@dimen/gap_size18"
+                android:text="@string/system_upload_photo"/>
+
+        <ImageView
+                android:id="@+id/iv_photo1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="93:93"
+                android:layout_marginTop="@dimen/gap_size21"
+                android:layout_marginStart="@dimen/gap_size26"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                app:layout_constraintRight_toLeftOf="@id/iv_photo2"
+                android:background="@mipmap/system_rectangle"
+                android:contentDescription="@string/image_description_default"/>
+
+        <ImageView
+                android:id="@+id/iv_photo2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="93:93"
+                app:layout_constraintLeft_toRightOf="@id/iv_photo1"
+                app:layout_constraintRight_toLeftOf="@+id/iv_photo3"
+                app:layout_constraintTop_toTopOf="@id/iv_photo1"
+                android:layout_marginStart="@dimen/gap_size13"
+                android:background="@mipmap/system_rectangle"
+                android:contentDescription="@string/image_description_default"/>
+
+        <ImageView
+                android:id="@+id/iv_photo3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="93:93"
+                app:layout_constraintTop_toTopOf="@id/iv_photo1"
+                app:layout_constraintLeft_toRightOf="@id/iv_photo2"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="@dimen/gap_size26"
+                android:layout_marginStart="@dimen/gap_size13"
+                android:background="@mipmap/system_rectangle"
+                android:contentDescription="@string/image_description_default"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/system_add"
+                app:layout_constraintTop_toTopOf="@id/iv_photo1"
+                app:layout_constraintBottom_toBottomOf="@id/iv_photo1"
+                app:layout_constraintLeft_toLeftOf="@id/iv_photo1"
+                app:layout_constraintRight_toRightOf="@id/iv_photo1"
+                android:contentDescription="@string/image_description_default"
+                android:visibility="@{viewModel.showAdd1? 0 : 8}"
+                />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/system_add"
+                app:layout_constraintTop_toTopOf="@id/iv_photo2"
+                app:layout_constraintBottom_toBottomOf="@id/iv_photo2"
+                app:layout_constraintLeft_toLeftOf="@id/iv_photo2"
+                app:layout_constraintRight_toRightOf="@id/iv_photo2"
+                android:contentDescription="@string/image_description_default"
+                android:visibility="@{viewModel.showAdd2 ? 0 : 8}"
+                />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/system_add"
+                app:layout_constraintTop_toTopOf="@id/iv_photo3"
+                app:layout_constraintBottom_toBottomOf="@id/iv_photo3"
+                app:layout_constraintLeft_toLeftOf="@id/iv_photo3"
+                app:layout_constraintRight_toRightOf="@id/iv_photo3"
+                android:contentDescription="@string/image_description_default"
+                android:visibility="@{viewModel.showAdd3 ? 0 : 8}"
+                />
+
+        <Button
+                style="@style/system_btn_confirm"
+                android:text="@string/system_submit"
+                app:layout_constraintTop_toBottomOf="@id/iv_photo1"
+                android:layout_marginTop="87dp"
+                android:layout_marginStart="@dimen/gap_size29"
+                android:layout_marginEnd="@dimen/gap_size29"
+                tools:ignore="MissingConstraints"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

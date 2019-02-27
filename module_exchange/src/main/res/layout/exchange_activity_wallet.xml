@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -219,14 +219,11 @@
                 <!--银行卡-->
                 <View
                         android:id="@+id/bg_bankcard"
-                        android:layout_width="0dp"
-                        android:layout_height="47dp"
+                        style="@style/exchange_item_bg"
                         android:layout_marginTop="@dimen/gap_size3"
-                        android:background="@color/appbg_color_white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/bg_withdraw"
-                        app:onClickCommand="@{viewModel.bankcardOnClickCommand}"/>
+                        app:onClickCommand="@{viewModel.bankcardOnClickCommand}"
+                        tools:ignore="MissingConstraints"/>
 
                 <ImageView
                         android:id="@+id/iv_bankcard"
@@ -271,13 +268,10 @@
                 <!--账单-->
                 <View
                         android:id="@+id/bg_bill"
-                        android:layout_width="0dp"
-                        android:layout_height="47dp"
-                        android:background="@color/appbg_color_white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        style="@style/exchange_item_bg"
                         app:layout_constraintTop_toBottomOf="@id/bg_bankcard"
-                        app:onClickCommand="@{viewModel.billOnClickCommand}"/>
+                        app:onClickCommand="@{viewModel.billOnClickCommand}"
+                        tools:ignore="MissingConstraints"/>
 
                 <ImageView
                         android:id="@+id/iv_bill"
@@ -321,13 +315,10 @@
                 <!--订单-->
                 <View
                         android:id="@+id/bg_order"
-                        android:layout_width="0dp"
-                        android:layout_height="47dp"
-                        android:background="@color/appbg_color_white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        style="@style/exchange_item_bg"
                         app:layout_constraintTop_toBottomOf="@id/bg_bill"
-                        app:onClickCommand="@{viewModel.orderOnClickCommand}"/>
+                        app:onClickCommand="@{viewModel.orderOnClickCommand}"
+                        tools:ignore="MissingConstraints"/>
 
                 <ImageView
                         android:id="@+id/iv_order"
@@ -371,14 +362,11 @@
                 <!--商品链-->
                 <View
                         android:id="@+id/bg_commodity_chain"
-                        android:layout_width="0dp"
-                        android:layout_height="47dp"
-                        android:background="@color/appbg_color_white"
                         android:layout_marginTop="@dimen/gap_size8"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/bg_order"
-                        app:onClickCommand="@{viewModel.chainOnClickCommand}"/>
+                        style="@style/exchange_item_bg"
+                        app:onClickCommand="@{viewModel.chainOnClickCommand}"
+                        tools:ignore="MissingConstraints"/>
 
                 <ImageView
                         android:id="@+id/iv_commodity_chain"

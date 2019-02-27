@@ -23,7 +23,7 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/exchange_text_15_333333_b"
+                style="@style/text_15_333333_b"
                 app:layout_constraintTop_toBottomOf="@id/layout_title"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:paddingStart="@dimen/gap_size15"
@@ -36,7 +36,7 @@
                 android:id="@+id/tv_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/exchange_text_13_999999"
+                style="@style/text_13_999999"
                 app:layout_constraintLeft_toLeftOf="@id/tv_date"
                 app:layout_constraintTop_toBottomOf="@id/tv_date"
                 android:text="@{viewModel.totalIncome}"/>

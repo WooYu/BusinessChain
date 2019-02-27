@@ -12,7 +12,7 @@ class BillListItemViewModel<VM : BaseViewModel>(viewModel: VM) : ItemViewModel<V
     val payTypeText = ObservableField("微信支付")
     val amount = ObservableField("-100")
     val date = ObservableField("1月21日 16:22")
-    val isIncome = ObservableBoolean(false)
+    val isIncome: ObservableBoolean = ObservableBoolean(false)
     val payTextImage = ObservableInt(R.mipmap.exchange_weixin)
 
 }

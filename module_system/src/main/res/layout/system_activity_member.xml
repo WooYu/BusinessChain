@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data/>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/system_layout_title"
+                />
+
+        <View
+                android:id="@+id/bg_member"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:255"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                android:background="@color/bg_color_000B1E"/>
+
+        <cn.bingoogolapple.bgabanner.BGAViewPager
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="360:133"
+                app:layout_constraintTop_toTopOf="@id/bg_member"
+                android:layout_marginTop="@dimen/gap_size22"
+                android:background="@color/appbg_color_white"
+                />
+
+        <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/text_13_ffffff"
+                android:text="我的成长值560点，超过64.66%的用户"
+                app:layout_constraintTop_toTopOf="@id/btn_do_task"
+                app:layout_constraintLeft_toLeftOf="@+id/bg_member"
+                app:layout_constraintRight_toLeftOf="@+id/btn_do_task"
+                android:layout_marginEnd="@dimen/gap_size8"
+                android:layout_marginStart="@dimen/gap_size10"
+                android:maxLines="2"
+                />
+
+        <Button
+                android:id="@+id/btn_do_task"
+                android:layout_width="73dp"
+                android:layout_height="@dimen/gap_size30"
+                style="@style/text_13_333333"
+                android:background="@drawable/shape_ffffff_15"
+                android:text="@string/system_do_task"
+                app:layout_constraintBottom_toBottomOf="@id/bg_member"
+                app:layout_constraintRight_toRightOf="@id/bg_member"
+                app:layout_constraintLeft_toRightOf="@id/tv_status"
+                android:layout_marginEnd="@dimen/gap_size10"
+                android:layout_marginBottom="@dimen/gap_size20"/>
+
+        <TextView
+                android:id="@+id/tv_growth_value_introduction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_15_333333"
+                app:layout_constraintTop_toBottomOf="@id/bg_member"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="@dimen/gap_size11"
+                android:layout_marginTop="@dimen/gap_size18"
+                android:text="@string/system_growth_value_introduction"/>
+
+        <TextView
+                android:id="@+id/tv_growth_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_13_333333"
+                android:layout_marginStart="@dimen/gap_size10"
+                android:layout_marginEnd="@dimen/gap_size10"
+                app:layout_constraintTop_toBottomOf="@id/tv_growth_value_introduction"
+                android:layout_marginTop="18dp"
+                android:text="ssss"/>
+
+        <TextView
+                android:id="@+id/tv_level_privilege_introduction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_15_333333"
+                app:layout_constraintTop_toBottomOf="@id/tv_growth_value"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="@dimen/gap_size11"
+                android:layout_marginTop="@dimen/gap_size20"
+                android:text="@string/system_level_privilege_introduction"/>
+
+        <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_level_privilege_introduction"
+                android:layout_marginTop="18dp"
+                android:background="@color/line_colorc">
+
+            <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/gap_size1"
+                    tools:ignore="UselessParent">
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_level"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_silver"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_gold"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_red_diamond"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_blue_diamond"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_black_diamond"/>
+
+
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/gap_size1"
+                    tools:ignore="UselessParent">
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_growth_value"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_300"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_1600"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_3500"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_6000"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_10000"/>
+
+
+            </TableRow>
+
+            <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/gap_size1"
+                    android:layout_marginBottom="@dimen/gap_size1"
+                    tools:ignore="UselessParent">
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_privilege"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_ellipsis"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_ellipsis"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_ellipsis"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_ellipsis"/>
+
+                <TextView
+                        style="@style/system_tab_row_item"
+                        android:text="@string/system_ellipsis"/>
+
+
+            </TableRow>
+        </TableLayout>
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data/>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/gap_size16"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/gap_size16"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="51dp"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline4"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="51dp"/>
+            <!--头像-->
+            <View
+                    android:id="@+id/bg_avatar"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_avatar"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_avatar"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_avatar"
+                    android:text="@string/system_avatar"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_launcher_round"
+                    app:layout_constraintTop_toTopOf="@id/bg_avatar"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_avatar"
+                    app:layout_constraintRight_toLeftOf="@+id/iv_arrow_right"
+                    android:layout_marginEnd="@dimen/gap_size9"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <ImageView
+                    android:id="@+id/iv_arrow_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_avatar"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_avatar"
+                    android:contentDescription="@string/image_description_default"/>
+            <!--真实姓名-->
+            <View
+                    android:id="@+id/bg_real_name"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_avatar"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_real_name"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_real_name"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_real_name"
+                    android:text="@string/system_real_name"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_real_name"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_real_name"
+                    android:contentDescription="@string/image_description_default"/>
+            <!--身份证号-->
+            <View
+                    android:id="@+id/bg_id_card_number"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_real_name"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_id_card_number"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_id_card_number"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_id_card_number"
+                    android:text="@string/system_id_card_number"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_id_card_number"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_id_card_number"
+                    android:contentDescription="@string/image_description_default"/>
+            <!--身份证照片-->
+            <View
+                    android:id="@+id/bg_id_card_photo"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_id_card_number"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_id_card_photo"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_id_card_photo"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_id_card_photo"
+                    android:text="@string/system_id_card_photo"/>
+            <!--身份证正面照-->
+            <ImageView
+                    android:id="@+id/iv_front_photo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="256:162"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline3"
+                    app:layout_constraintRight_toRightOf="@id/guideline4"
+                    app:layout_constraintTop_toBottomOf="@id/bg_id_card_photo"
+                    android:layout_marginTop="@dimen/gap_size22"
+                    android:background="@drawable/shape_btnbg_f"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <TextView
+                    android:id="@+id/tv_front_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_14_666666"
+                    android:text="@string/system_id_card_front_photo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_front_photo"
+                    android:layout_marginTop="35dp"/>
+            <!--身份证反面照-->
+            <ImageView
+                    android:id="@+id/iv_reverse_photo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="256:162"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline3"
+                    app:layout_constraintRight_toRightOf="@id/guideline4"
+                    app:layout_constraintTop_toBottomOf="@id/tv_front_photo"
+                    android:layout_marginTop="49dp"
+                    android:background="@drawable/shape_btnbg_f"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <TextView
+                    android:id="@+id/tv_reverse_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_14_666666"
+                    android:text="@string/system_id_card_reverse_photo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_reverse_photo"
+                    android:layout_marginTop="35dp"/>
+            <!--身份证手持照-->
+            <ImageView
+                    android:id="@+id/iv_handheld_photo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="256:162"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline3"
+                    app:layout_constraintRight_toRightOf="@id/guideline4"
+                    app:layout_constraintTop_toBottomOf="@id/tv_reverse_photo"
+                    android:layout_marginTop="49dp"
+                    android:background="@drawable/shape_btnbg_f"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <TextView
+                    android:id="@+id/tv_handheld_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_14_666666"
+                    android:text="@string/system_id_card_handheld_photo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_handheld_photo"
+                    android:layout_marginTop="35dp"/>
+
+            <Button
+                    android:id="@+id/btn_submit"
+                    style="@style/system_btn_confirm"
+                    android:text="@string/system_submit_to_check"
+                    app:layout_constraintTop_toBottomOf="@id/tv_handheld_photo"
+                    android:layout_marginTop="43dp"
+                    tools:ignore="MissingConstraints"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:background="@color/appbg_color_white"
+                    app:layout_constraintTop_toBottomOf="@id/btn_submit"/>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</layout>

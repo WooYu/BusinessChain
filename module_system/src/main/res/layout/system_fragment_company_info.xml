@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data/>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/gap_size16"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/gap_size16"/>
+
+            <!--企业LOGO-->
+            <View
+                    android:id="@+id/bg_company_logo"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_company_logo"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_company_logo"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_company_logo"
+                    android:text="@string/system_company_logo"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_launcher_round"
+                    app:layout_constraintTop_toTopOf="@id/bg_company_logo"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_company_logo"
+                    app:layout_constraintRight_toLeftOf="@+id/iv_arrow_right1"
+                    android:layout_marginEnd="@dimen/gap_size9"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <ImageView
+                    android:id="@+id/iv_arrow_right1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_company_logo"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_company_logo"
+                    android:contentDescription="@string/image_description_default"/>
+            <!--企业名称-->
+            <View
+                    android:id="@+id/bg_company_name"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_company_logo"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_company_name"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_company_name"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_company_name"
+                    android:text="@string/system_company_name"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_real_name"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_real_name"
+                    android:contentDescription="@string/image_description_default"/>
+            <!--所属行业-->
+            <View
+                    android:id="@+id/bg_industry"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_company_name"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_industry"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_industry"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_industry"
+                    android:text="@string/system_industry"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_industry"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_industry"
+                    android:contentDescription="@string/image_description_default"/>
+            <!--联系人-->
+            <View
+                    android:id="@+id/bg_contact"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_industry"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_contact"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_contact"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_contact"
+                    android:text="@string/system_contact"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_contact"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_contact"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <!--职务-->
+            <View
+                    android:id="@+id/bg_position"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_contact"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_position"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_position"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_position"
+                    android:text="@string/system_position"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_position"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_position"
+                    android:contentDescription="@string/image_description_default"/>
+            <!--手机号-->
+            <View
+                    android:id="@+id/bg_phone_number"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_position"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_phone_number"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_phone_number"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_phone_number"
+                    android:text="@string/system_phone_number"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_phone_number"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_phone_number"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <!--统一信用代码-->
+            <View
+                    android:id="@+id/bg_unified_credit_code"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_phone_number"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    android:id="@+id/tv_unified_credit_code"
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_unified_credit_code"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_unified_credit_code"
+                    android:text="@string/system_unified_credit_code"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_unified_credit_code"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_unified_credit_code"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <!--办公地址-->
+            <View
+                    android:id="@+id/bg_office_address"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_unified_credit_code"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_office_address"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_office_address"
+                    android:text="@string/system_office_address"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right2"
+                    app:layout_constraintRight_toRightOf="@id/guideline2"
+                    app:layout_constraintTop_toTopOf="@id/bg_office_address"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_office_address"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <!--营业执照-->
+            <View
+                    android:id="@+id/bg_business_license"
+                    style="@style/system_item_bg"
+                    app:layout_constraintTop_toBottomOf="@id/bg_office_address"
+                    android:layout_marginTop="0.5dp"
+                    tools:ignore="MissingConstraints"
+                    />
+
+            <TextView
+                    style="@style/text_15_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                    app:layout_constraintTop_toTopOf="@id/bg_business_license"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_business_license"
+                    android:text="@string/system_business_license"/>
+
+            <ImageView
+                    android:id="@+id/iv_business_license"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="360:147"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bg_business_license"
+                    android:background="@drawable/shape_btnbg_f"
+                    android:contentDescription="@string/image_description_default"/>
+
+            <Button
+                    android:id="@+id/btn_submit"
+                    style="@style/system_btn_confirm"
+                    android:text="@string/system_submit_to_check"
+                    app:layout_constraintTop_toBottomOf="@id/iv_business_license"
+                    android:layout_marginTop="53dp"
+                    tools:ignore="MissingConstraints"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="33dp"
+                    android:background="@color/appbg_color_white"
+                    app:layout_constraintTop_toBottomOf="@id/btn_submit"/>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</layout>

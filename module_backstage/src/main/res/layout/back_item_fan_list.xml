@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_backstage.viewmodel.recyclerItem.FanItemViewModel"/>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/appbg_color_white"
+            android:layout_marginTop="@dimen/gap_size1"
+            tools:ignore="RtlSymmetry">
+
+        <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_marginStart="@dimen/dp_10"
+                android:contentDescription="@string/image_description_default"/>
+
+        <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_phone"
+                app:layout_constraintLeft_toRightOf="@id/iv_avatar"
+                android:layout_marginStart="@dimen/dp_10"
+                style="@style/text_15_333333_b"
+                android:text="@{viewModel.name}"
+                app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                app:layout_constraintLeft_toLeftOf="@id/tv_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/text_14_666666"
+                android:text="@{viewModel.phone}"
+                />
+
+        <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/gap_size17"
+                android:layout_marginEnd="@dimen/dp_10"
+                style="@style/text_12_999999"
+                android:text="@{viewModel.date}"
+                />
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_date"
+                android:layout_marginTop="@dimen/dp_10"
+                android:contentDescription="@string/image_description_default"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

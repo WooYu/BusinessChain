@@ -3,7 +3,7 @@
     <application>
         <!--在自己组件中注册Activity-->
         <activity
-            android:name="com.lcworld.module_system.activity.ToolEntranceActiviy" />
+                android:name="com.lcworld.module_system.activity.ToolEntranceActivity"/>
     </application>
 
 </manifest>

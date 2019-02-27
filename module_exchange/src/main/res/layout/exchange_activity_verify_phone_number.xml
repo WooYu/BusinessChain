@@ -29,7 +29,7 @@
 
         <EditText
                 android:id="@+id/et_phone_number"
-                style="@style/exchange_text_14_333333"
+                style="@style/text_14_333333"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/bg_phone_number"
@@ -45,7 +45,7 @@
                 android:inputType="number"/>
 
         <Button
-                style="@style/exchange_text_13_ffffff"
+                style="@style/text_13_ffffff"
                 android:id="@+id/bt_verify_code"
                 android:layout_width="73dp"
                 android:layout_height="@dimen/gap_size22"
@@ -75,7 +75,7 @@
 
         <EditText
                 android:id="@+id/et_verify_code"
-                style="@style/exchange_text_14_333333"
+                style="@style/text_14_333333"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/bg_verify_code"

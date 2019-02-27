@@ -45,7 +45,7 @@
 
         <TextView
                 android:id="@+id/tv_tips_bankcard"
-                style="@style/exchange_text_13_666666"
+                style="@style/text_13_666666"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="@id/guideline1"
@@ -63,7 +63,7 @@
 
         <TextView
                 android:id="@+id/tv_card_type_title"
-                style="@style/exchange_text_14_333333_b"
+                style="@style/text_14_333333_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/bg_card_type"
@@ -73,7 +73,7 @@
 
         <TextView
                 android:id="@+id/tv_card_type"
-                style="@style/exchange_text_14_333333_b"
+                style="@style/text_14_333333_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/bg_card_type"
@@ -93,7 +93,7 @@
 
         <TextView
                 android:id="@+id/tv_tips_info"
-                style="@style/exchange_text_13_666666"
+                style="@style/text_13_666666"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="@id/guideline1"
@@ -110,7 +110,7 @@
 
         <TextView
                 android:id="@+id/tv_name"
-                style="@style/exchange_text_14_333333_b"
+                style="@style/text_14_333333_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/bg_name"
@@ -120,7 +120,7 @@
 
         <EditText
                 android:id="@+id/et_name"
-                style="@style/exchange_text_14_333333"
+                style="@style/text_14_333333"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/bg_name"
@@ -160,7 +160,7 @@
 
         <TextView
                 android:id="@+id/tv_certificate_type_title"
-                style="@style/exchange_text_14_333333_b"
+                style="@style/text_14_333333_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/bg_certificate_type"
@@ -170,7 +170,7 @@
 
         <TextView
                 android:id="@+id/tv_certificate_type"
-                style="@style/exchange_text_14_333333_b"
+                style="@style/text_14_333333_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/bg_certificate_type"
@@ -202,7 +202,7 @@
 
         <TextView
                 android:id="@+id/tv_license_number"
-                style="@style/exchange_text_14_333333_b"
+                style="@style/text_14_333333_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/bg_license_number"
@@ -212,7 +212,7 @@
 
         <EditText
                 android:id="@+id/et_license_number"
-                style="@style/exchange_text_14_333333"
+                style="@style/text_14_333333"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/bg_license_number"
@@ -252,7 +252,7 @@
 
         <TextView
                 android:id="@+id/tv_phone_number"
-                style="@style/exchange_text_14_333333_b"
+                style="@style/text_14_333333_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/bg_phone_number"
@@ -262,7 +262,7 @@
 
         <EditText
                 android:id="@+id/et_phone_number"
-                style="@style/exchange_text_14_333333"
+                style="@style/text_14_333333"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/bg_phone_number"
@@ -296,7 +296,7 @@
 
         <TextView
                 android:id="@+id/tv_tips"
-                style="@style/exchange_text_13_666666"
+                style="@style/text_13_666666"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="@id/guideline1"
