@@ -12,23 +12,22 @@ import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
 import java.util.List;
 
 public class SearchGoodsAdapter extends BaseQuickAdapter<DataGoodsInfo, BaseViewHolder> {
-    private boolean mCheckLinear = true;
-    private final int Type_Linear = 0x00001111;
-    private final int Type_Grid = 0x00002222;
 
     public void switchDisplayMode(int layoutResId) {
         mLayoutResId = layoutResId;
-        notifyItemRangeChanged(0, mData.size());
     }
-
-//    @Override
-//    public int getItemViewType(int position) {
-//        super.getItemViewType(position);
-//        return mCheckLinear ? Type_Linear : Type_Grid;
-//    }
 
     public SearchGoodsAdapter(int layoutResId, @Nullable List<DataGoodsInfo> data) {
         super(layoutResId, data);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        int viewType = super.getItemViewType(position);
+        if (viewType == 0) {
+            return mLayoutResId;
+        }
+        return viewType;
     }
 
     @Override
@@ -43,4 +42,5 @@ public class SearchGoodsAdapter extends BaseQuickAdapter<DataGoodsInfo, BaseView
                 , ConvertExUtils.formatMoney(item.getPrice())));
 
     }
+
 }

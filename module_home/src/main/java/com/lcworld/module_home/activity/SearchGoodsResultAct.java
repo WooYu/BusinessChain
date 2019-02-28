@@ -131,7 +131,6 @@ public class SearchGoodsResultAct extends BaseActivityEnhance<HomeActivitySearch
             public void onPropertyChanged(Observable sender, int propertyId) {
                 mGoodsLayoutManger.setSpanCount(viewModel.checkStatusDisplayMode.get() ? 1 : 2);
                 mGoodsAdapter.switchDisplayMode(viewModel.checkStatusDisplayMode.get() ? R.layout.home_item_goods_linear : R.layout.home_item_goods_grid);
-                mGoodsAdapter.setNewData(viewModel.valueGoodsList);
             }
         });
     }

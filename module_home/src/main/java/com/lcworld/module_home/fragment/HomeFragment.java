@@ -252,7 +252,7 @@ public class HomeFragment extends BaseRefreshFragment<HomeFragEntranceBinding, H
             int size = 1;
             int marginBottom = (int) getResources().getDimension(R.dimen.gap_size13);
             investLayoutHelper.setMargin(margin, 0, margin, marginBottom);
-            investLayoutHelper.setAspectRatio(3.5f);
+            investLayoutHelper.setAspectRatio(2.4f);
             investLayoutHelper.setDividerHeight(marginBottom);
             adapters.add(new HomeSubInvestAdapter(getActivity(), investLayoutHelper, size, new HomeSubInvestAdapter.ItemClickListener() {
                 @Override

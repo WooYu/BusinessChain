@@ -90,14 +90,13 @@ public class SearchGoodsResultViewModel extends BaseViewModelEnhance {
             valueSort.set(sortArr[2]);
         }
 
+        valueGoodsList.clear();
+        valuePage.set(1);
         requestGoodsList(valuePage.get());
     }
 
     //请求商品列表
     public void requestGoodsList(int requestPageNo) {
-        if (ObjectUtils.isEmpty(valueSearchKey.get())) {
-            return;
-        }
 
         if (requestPageNo == 1) {
             valueEnableRefresh.set(true);
