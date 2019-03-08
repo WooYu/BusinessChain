@@ -252,6 +252,8 @@
                 app:layout_constraintTop_toTopOf="@id/bg_wechat"
                 app:layout_constraintEnd_toEndOf="@id/guideline4"
                 android:checked="@{viewModel.payTypeList[0]}"
+                android:tag="0"
+                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"
                 />
 
         <View
@@ -315,6 +317,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tv_ali_pay"/>
         <!--银行卡支付-->
+        <android.support.constraint.Group
+                android:id="@+id/group1"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="bg_bankcard_pay,iv_bankcard_pay,tv_bankcard_pay,cb_bankcard_pay"/>
         <View
                 android:id="@+id/bg_bankcard_pay"
                 android:layout_width="0dp"

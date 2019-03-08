@@ -24,5 +24,7 @@ class WalletAct : BaseActivityEnhance<ExchangeActivityWalletBinding, WalletViewM
         super.initData()
         binding.layoutTitle.tvTitle.text = getString(R.string.exchange_wallet)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
+        viewModel.requestBalance()
     }
+
 }

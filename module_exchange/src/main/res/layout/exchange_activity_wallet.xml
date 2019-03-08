@@ -48,6 +48,14 @@
                         />
 
                 <android.support.constraint.Guideline
+                        android:id="@+id/guideline5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="42dp"
+                        />
+
+                <android.support.constraint.Guideline
                         android:id="@+id/guideline3"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -60,6 +68,21 @@
                         android:layout_height="0dp"
                         android:orientation="horizontal"
                         app:layout_constraintGuide_begin="104dp"/>
+
+                <android.support.constraint.Group
+                        android:id="@+id/group1"
+                        android:layout_width="wrap_content"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        app:constraint_referenced_ids="bg_bankcard,iv_bankcard,tv_bankcard,iv_arrow_1,line_wallet1"/>
+
+                <android.support.constraint.Group
+                        android:id="@+id/group2"
+                        android:layout_width="wrap_content"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        app:constraint_referenced_ids="bg_commodity_chain,iv_commodity_chain,tv_commodity_chain,iv_arrow_4"/>
+
                 <!--账户余额-->
                 <View
                         android:id="@+id/bg_balance"
@@ -138,7 +161,7 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/bg_withdraw"
                         app:layout_constraintTop_toBottomOf="@id/bg_balance"
-                        android:background="@drawable/selector_btnbg_c"
+                        android:background="@color/appbg_color_white"
                         app:onClickCommand="@{viewModel.rechargeOnClickCommand}"
                         />
 
@@ -187,7 +210,7 @@
                         app:layout_constraintLeft_toRightOf="@+id/bg_recharge"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/bg_balance"
-                        android:background="@drawable/selector_btnbg_c"
+                        android:background="@color/appbg_color_white"
                         app:onClickCommand="@{viewModel.withDrawOnClickCommand}"
                         />
 
@@ -216,13 +239,19 @@
                         android:textColor="@color/tx_colorb"
                         android:textSize="@dimen/tx_size15"
                         />
+
+                <View
+                        android:id="@+id/divide1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/gap_size3"
+                        app:layout_constraintTop_toBottomOf="@id/bg_withdraw"/>
                 <!--银行卡-->
                 <View
                         android:id="@+id/bg_bankcard"
                         style="@style/exchange_item_bg"
-                        android:layout_marginTop="@dimen/gap_size3"
-                        app:layout_constraintTop_toBottomOf="@id/bg_withdraw"
+                        app:layout_constraintTop_toBottomOf="@id/divide1"
                         app:onClickCommand="@{viewModel.bankcardOnClickCommand}"
+                        android:visibility="gone"
                         tools:ignore="MissingConstraints"/>
 
                 <ImageView
@@ -243,11 +272,12 @@
                         android:text="@string/exchange_bankcard"
                         android:layout_marginStart="@dimen/gap_size11"
                         android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@id/guideline5"
                         app:layout_constraintBottom_toBottomOf="@id/bg_bankcard"
-                        app:layout_constraintStart_toEndOf="@id/iv_bankcard"
                         app:layout_constraintTop_toTopOf="@id/bg_bankcard"/>
 
                 <ImageView
+                        android:id="@+id/iv_arrow_1"
                         android:layout_width="wrap_content"
                         android:src="@mipmap/arrow_right2"
                         android:layout_height="wrap_content"
@@ -257,7 +287,7 @@
                         android:contentDescription="@string/image_description_default"/>
 
                 <View
-                        android:id="@+id/line_wallet"
+                        android:id="@+id/line_wallet1"
                         android:layout_width="0dp"
                         android:background="@color/line_colorc"
                         android:layout_height="1px"
@@ -292,7 +322,7 @@
                         android:layout_marginStart="@dimen/gap_size11"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="@id/bg_bill"
-                        app:layout_constraintStart_toEndOf="@id/iv_bill"
+                        app:layout_constraintStart_toStartOf="@id/guideline5"
                         app:layout_constraintTop_toTopOf="@id/bg_bill"/>
 
                 <ImageView
@@ -339,7 +369,7 @@
                         android:layout_marginStart="@dimen/gap_size11"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="@id/bg_order"
-                        app:layout_constraintStart_toEndOf="@id/iv_order"
+                        app:layout_constraintStart_toStartOf="@id/guideline5"
                         app:layout_constraintTop_toTopOf="@id/bg_order"/>
 
                 <ImageView
@@ -387,10 +417,11 @@
                         android:layout_marginStart="@dimen/gap_size11"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="@id/bg_commodity_chain"
-                        app:layout_constraintStart_toEndOf="@id/iv_commodity_chain"
+                        app:layout_constraintStart_toStartOf="@id/guideline5"
                         app:layout_constraintTop_toTopOf="@id/bg_commodity_chain"/>
 
                 <ImageView
+                        android:id="@+id/iv_arrow_4"
                         android:layout_width="wrap_content"
                         android:src="@mipmap/arrow_right2"
                         android:layout_height="wrap_content"
