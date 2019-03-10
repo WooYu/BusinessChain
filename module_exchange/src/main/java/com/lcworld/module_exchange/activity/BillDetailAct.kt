@@ -6,9 +6,15 @@ import com.lcworld.library_base.base.BaseActivityEnhance
 import com.lcworld.module_exchange.BR
 import com.lcworld.module_exchange.R
 import com.lcworld.module_exchange.databinding.ExchangeActivityBillDetailBinding
+import com.lcworld.module_exchange.model.BillListItem
 import com.lcworld.module_exchange.viewmodel.BillDetailViewModel
 
 class BillDetailAct : BaseActivityEnhance<ExchangeActivityBillDetailBinding, BillDetailViewModel>() {
+
+    companion object {
+        const val ITEM = "ITEM"
+    }
+
     override fun initVariableId(): Int = BR.viewModel
 
     override fun initContentView(p0: Bundle?): Int = R.layout.exchange_activity_bill_detail
@@ -19,5 +25,6 @@ class BillDetailAct : BaseActivityEnhance<ExchangeActivityBillDetailBinding, Bil
         super.initData()
         binding.layoutTitle.tvTitle.text = getString(R.string.exchange_bill_detail)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
+        val item  = intent.getParcelableExtra<BillListItem>(ITEM)?:finish()
     }
 }

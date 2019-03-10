@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.Observable;
 import android.os.Bundle;
 import android.view.View;
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lcworld.library_base.base.BaseActivityEnhance;
 import com.lcworld.library_base.router.RouterActivityPath;
@@ -18,6 +19,9 @@ import com.qmuiteam.qmui.widget.QMUITopBarLayout;
  */
 @Route(path = RouterActivityPath.Account.PAGER_LOGIN)
 public class LoginActivity extends BaseActivityEnhance<AccountActivityLoginBinding, LoginViewModel> {
+
+    @Autowired()
+    boolean isAuthError;
 
     @Override
     public int initContentView(Bundle bundle) {
@@ -62,6 +66,14 @@ public class LoginActivity extends BaseActivityEnhance<AccountActivityLoginBindi
                 updateView();
             }
         });
+        viewModel.uc.isLoginSuccess.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                boolean isLoginSuccess = viewModel.uc.isLoginSuccess.get();
+                if (isAuthError) setResult(isLoginSuccess ? LOGIN_SUCCESS : LOGIN_FAIL);
+
+            }
+        });
     }
 
     private void updateView() {
@@ -81,4 +93,5 @@ public class LoginActivity extends BaseActivityEnhance<AccountActivityLoginBindi
             binding.cboxSwitchLoginmode.setText(R.string.account_login_textlogin);
         }
     }
+
 }

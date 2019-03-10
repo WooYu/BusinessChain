@@ -4,19 +4,17 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.databinding.ObservableField
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.ToastUtils
 import com.lcworld.library_base.base.BaseViewModelEnhance
-import com.lcworld.library_base.http.RequestResult
-import com.lcworld.library_base.http.RetrofitClient
-import com.lcworld.library_base.http.RxUtilsEnhanced
+import com.lcworld.library_base.http.*
 import com.lcworld.library_base.router.RouterActivityPath
 import com.lcworld.module_exchange.ApiServiceInterf
 import com.lcworld.module_exchange.activity.BillListAct
 import com.lcworld.module_exchange.activity.RechargeAct
-import com.lcworld.module_exchange.activity.WithDrawAct
 import com.lcworld.module_exchange.model.AccountBalance
+import com.lcworld.module_exchange.wrapSubscribe
 import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
-import me.goldze.mvvmhabit.utils.KLog
 
 class WalletViewModel(application: Application) : BaseViewModelEnhance(application) {
     val balance = ObservableField("￥")
@@ -35,7 +33,8 @@ class WalletViewModel(application: Application) : BaseViewModelEnhance(applicati
 
     //提现点击跳转
     private fun doWithDraw() {
-        startActivity(WithDrawAct::class.java)
+        ToastUtils.showShort("暂不支持此功能")
+//        startActivity(WithDrawAct::class.java)
     }
 
     private fun bankcardItemClick() {
@@ -59,14 +58,14 @@ class WalletViewModel(application: Application) : BaseViewModelEnhance(applicati
     //请求余额
     @SuppressLint("CheckResult")
     fun requestBalance() {
+
         RetrofitClient.getInstance().create<ApiServiceInterf>(ApiServiceInterf::class.java)
             .requestBalance()
             .compose(RxUtilsEnhanced.explicitTransform())
-            .subscribe({
+            .wrapSubscribe(onNext = {
                 val result = it as RequestResult<AccountBalance>
                 balance.set("￥${result.data.totle_price}")
                 income.set("结算收益￥${result.data.account_price}")
-            }) { KLog.e(it.message.toString()) }
-
+            })
     }
 }

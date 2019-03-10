@@ -70,4 +70,8 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["badgeview-compiler"]
     //flowlayout-lib
     api rootProject.ext.dependencies["flowlayout"]
+    //支付宝支付
+    api files('libs/alipaySdk-20180601.jar')
+    //微信支付
+    api rootProject.ext.dependencies["paysdk_wechat"]
 }

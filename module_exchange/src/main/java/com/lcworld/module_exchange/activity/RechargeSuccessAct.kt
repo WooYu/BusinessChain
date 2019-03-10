@@ -9,6 +9,12 @@ import com.lcworld.module_exchange.databinding.ExchangeActivityRechangeSuccessBi
 import com.lcworld.module_exchange.viewmodel.RechargeSuccessViewModel
 
 class RechargeSuccessAct : BaseActivityEnhance<ExchangeActivityRechangeSuccessBinding, RechargeSuccessViewModel>() {
+
+    companion object {
+        const val PAY_TYPE = "payType"
+    }
+    private val payType:String
+        get() = intent.getStringExtra(PAY_TYPE)?:""
     override fun initVariableId(): Int = BR.viewModel
 
     override fun initContentView(p0: Bundle?): Int = R.layout.exchange_activity_rechange_success
@@ -21,5 +27,6 @@ class RechargeSuccessAct : BaseActivityEnhance<ExchangeActivityRechangeSuccessBi
         binding.layoutTitle.tvRight.text = getString(R.string.exchange_finish)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
         binding.layoutTitle.tvRight.setOnClickListener { finish() }
+        binding.tvPayType.text = payType
     }
 }

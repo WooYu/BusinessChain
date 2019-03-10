@@ -1,5 +1,6 @@
 package com.lcworld.module_order.activity;
 
+import android.annotation.SuppressLint;
 import android.databinding.Observable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -86,7 +87,7 @@ public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentCh
         binding.rvPaymethod.setAdapter(mPayMethodAdapter);
     }
 
-    private void initObservableAlipayOrderInfo() {
+    private void  initObservableAlipayOrderInfo() {
         viewModel.valueAlipayOrderInfo.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
@@ -130,6 +131,7 @@ public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentCh
     }
 
     //支付宝发送请求参数
+    @SuppressLint("CheckResult")
     private void alipay_sendRequest(final String orderinfo) {
         if (ObjectUtils.isEmpty(orderinfo)) {
             return;

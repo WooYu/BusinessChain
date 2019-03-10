@@ -26,5 +26,8 @@ class WalletAct : BaseActivityEnhance<ExchangeActivityWalletBinding, WalletViewM
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
         viewModel.requestBalance()
     }
-
+    override fun onLoginSuccess() {
+        super.onLoginSuccess()
+        viewModel.requestBalance()
+    }
 }

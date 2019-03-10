@@ -107,6 +107,7 @@ public class LoginViewModel extends BaseViewModelEnhance {
         public ObservableBoolean nextEnableObservable = new ObservableBoolean(false);
         //验证码是否可以点击观察者
         public ObservableBoolean authcodeEnableObservable = new ObservableBoolean(false);
+        public ObservableBoolean isLoginSuccess = new ObservableBoolean(false);
     }
 
     public LoginViewModel(@NonNull Application application) {
@@ -192,9 +193,15 @@ public class LoginViewModel extends BaseViewModelEnhance {
                                 .put(SPKeyGlobal.Key_Account_Access_Token, result.getData().getAccess_token());
                         SPUtils.getInstance()
                                 .put(SPKeyGlobal.Key_Account_Refresh_Token, result.getData().getRefresh_token());
+                        uc.isLoginSuccess.set(true);
                         finish();
                     }
 
+                    @Override
+                    public void onError(Throwable t) {
+                        super.onError(t);
+                        uc.isLoginSuccess.set(false);
+                    }
                 });
 
     }

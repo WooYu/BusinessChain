@@ -71,6 +71,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/bg_pay_way"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginEnd="@dimen/gap_size20"
-                android:text="@{viewModel.payType}"/>
+                />
     </android.support.constraint.ConstraintLayout>
 </layout>

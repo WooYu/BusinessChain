@@ -1,6 +1,7 @@
 package com.lcworld.library_base.base;
 
 import android.arch.lifecycle.Observer;
+import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,6 +35,9 @@ public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends 
     private boolean bForeground;
     private Disposable responseThrowableDisposable;
     private Disposable loadingBoxDisposable;
+    protected static final int LOGIN_REQUEST_CODE = 888;
+    protected static final int LOGIN_SUCCESS = 200;
+    protected static final int LOGIN_FAIL = 404;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +111,9 @@ public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends 
             case ErrorConvention.AUTH_ERROR://重新登录
                 SPUtils.getInstance().remove(SPKeyGlobal.Key_Account_Access_Token);
                 SPUtils.getInstance().remove(SPKeyGlobal.Key_Account_Refresh_Token);
-                ARouter.getInstance().build(RouterActivityPath.Account.PAGER_LOGIN).navigation();
+                ARouter.getInstance().build(RouterActivityPath.Account.PAGER_LOGIN)
+                        .withBoolean("isAuthError", true)
+                        .navigation(this, LOGIN_REQUEST_CODE);
                 break;
             case ErrorConvention.PARAMS_ERROR://参数错误
                 break;
@@ -116,6 +122,34 @@ public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends 
 
         }
         dialogControllShow(DialogControllTypeInterf.FAILED, responseThrowable.message);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case LOGIN_REQUEST_CODE:
+                switch (resultCode) {
+                    case LOGIN_SUCCESS:
+                        onLoginSuccess();
+                        break;
+                    default:
+                        onLoginFail();
+                        break;
+                }
+
+            default:
+                break;
+        }
+
+    }
+
+    protected void onLoginSuccess() {
+
+    }
+
+    protected void onLoginFail() {
+        finish();
     }
 
     private void rxBusDispose_EventRequestLoadingBox(EventRequestLoadingBox eventRequestLoadingBox) {

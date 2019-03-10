@@ -12,6 +12,9 @@ android {
     //统一资源前缀，规范资源引用
     resourcePrefix "exchange_"
 }
+androidExtensions {
+    experimental = true
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //组件依赖基础库
@@ -22,5 +25,5 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.4.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.anko:anko-commons:0.10.8"
-    //单组件依赖的第三方库，这里不能用implementation，否则宿主项目会因为databinding运行时不能找到第三方类报编译错误
+    implementation 'com.contrarywind:Android-PickerView:4.1.7'
 }

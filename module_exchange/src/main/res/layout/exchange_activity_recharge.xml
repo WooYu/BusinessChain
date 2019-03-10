@@ -252,8 +252,7 @@
                 app:layout_constraintTop_toTopOf="@id/bg_wechat"
                 app:layout_constraintEnd_toEndOf="@id/guideline4"
                 android:checked="@{viewModel.payTypeList[0]}"
-                android:tag="0"
-                android:onClick="@{(view)->viewModel.onPayTypeSelect(view)}"
+                android:clickable="false"
                 />
 
         <View
@@ -306,6 +305,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/bg_ali_pay"
                 app:layout_constraintTop_toTopOf="@id/bg_ali_pay"
                 app:layout_constraintEnd_toEndOf="@id/guideline4"
+                android:clickable="false"
                 android:checked="@{viewModel.payTypeList[1]}"
                 />
 
