@@ -33,14 +33,14 @@
                 app:layout_constraintBottom_toBottomOf="@id/bg_input"
                 android:layout_marginStart="@dimen/gap_size17"
                 android:layout_marginEnd="@dimen/gap_size17"
-                android:hint="@string/system_company_name"
                 android:background="@null"
                 style="@style/text_14_333333"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                tools:ignore="Autofill,TextFields"/>
+                tools:ignore="Autofill,LabelFor,TextFields"/>
 
         <Button
+                android:id="@+id/bt_confirm"
                 style="@style/system_btn_confirm"
                 android:text="@string/confirm"
                 app:layout_constraintBottom_toBottomOf="parent"

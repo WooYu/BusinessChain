@@ -11,13 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="label">
-        <activity
-            android:name="com.lcworld.module_backstage.activity.BackstageEntrancActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 </manifest>

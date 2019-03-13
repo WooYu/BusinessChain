@@ -31,4 +31,22 @@ public class MineViewModel extends BaseViewModelEnhance {
             ARouter.getInstance().build(RouterActivityPath.Exchange.PAGER_WALLET).navigation();
         }
     });
+    public BindingCommand backstageOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(RouterActivityPath.Backstage.PAGER_ENTRANCE).navigation();
+        }
+    });
+    public BindingCommand toolOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(RouterActivityPath.Tool.PAGER_ENTRANCE).navigation();
+        }
+    });
+    public BindingCommand settingOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(RouterActivityPath.System.PAGER_SYSTEM).navigation();
+        }
+    });
 }

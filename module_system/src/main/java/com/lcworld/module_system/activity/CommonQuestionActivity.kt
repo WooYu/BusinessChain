@@ -11,7 +11,7 @@ import me.goldze.mvvmhabit.BR
  * 常见问题
  */
 class CommonQuestionActivity : BaseActivityEnhance<SystemActivityQuestionBinding, QuestionViewModel>() {
-    override fun initContentView(bundle: Bundle): Int = R.layout.system_activity_question
+    override fun initContentView(bundle: Bundle?): Int = R.layout.system_activity_question
 
     override fun initVariableId(): Int = BR.viewModel
 
@@ -19,5 +19,6 @@ class CommonQuestionActivity : BaseActivityEnhance<SystemActivityQuestionBinding
         super.initData()
         binding.layoutTitle.tvTitle.text = getString(R.string.system_question)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
+        viewModel.loadData()
     }
 }

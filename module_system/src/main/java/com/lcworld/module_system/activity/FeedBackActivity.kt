@@ -11,7 +11,7 @@ import me.goldze.mvvmhabit.BR
  * 意见反馈
  */
 class FeedBackActivity : BaseActivityEnhance<SystemActivityFeedbackBinding, FeedBackViewModel>() {
-    override fun initContentView(bundle: Bundle): Int = R.layout.system_activity_feedback
+    override fun initContentView(bundle: Bundle?): Int = R.layout.system_activity_feedback
 
     override fun initVariableId(): Int = BR.viewModel
 

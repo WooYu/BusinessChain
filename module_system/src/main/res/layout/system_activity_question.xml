@@ -30,5 +30,14 @@
                 app:itemBinding="@{viewModel.itemBinding}"
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                 />
+
+        <TextView
+                android:id="@+id/emptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/system_default_error"
+                android:visibility="@{viewModel.showError ? 0 : 8}"
+                />
     </android.support.constraint.ConstraintLayout>
 </layout>

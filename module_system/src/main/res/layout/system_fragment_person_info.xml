@@ -4,7 +4,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
 
-    <data/>
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_system.viewmodel.PersonInfoViewModel"/>
+    </data>
 
     <ScrollView
             android:layout_width="match_parent"
@@ -50,6 +55,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="0"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -63,8 +70,8 @@
                     android:text="@string/system_avatar"/>
 
             <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="41dp"
+                    android:layout_height="41dp"
                     android:src="@mipmap/ic_launcher_round"
                     app:layout_constraintTop_toTopOf="@id/bg_avatar"
                     app:layout_constraintBottom_toBottomOf="@id/bg_avatar"
@@ -88,6 +95,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_avatar"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="1"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -115,6 +124,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_real_name"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="2"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -142,6 +153,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_id_card_number"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="3"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -229,7 +242,8 @@
                     android:text="@string/system_submit_to_check"
                     app:layout_constraintTop_toBottomOf="@id/tv_handheld_photo"
                     android:layout_marginTop="43dp"
-                    tools:ignore="MissingConstraints"/>
+                    tools:ignore="MissingConstraints"
+                    app:onClickCommand="@{viewModel.submit}"/>
 
             <View
                     android:layout_width="match_parent"

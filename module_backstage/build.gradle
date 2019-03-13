@@ -12,13 +12,19 @@ android {
     //统一资源前缀，规范资源引用
     resourcePrefix "back_"
 }
-
+androidExtensions {
+    experimental = true
+}
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //组件依赖基础库
-    api project(':library_base')
+    api project(':library_base_kotlin')
     kapt 'com.alibaba:arouter-compiler:1.2.2'
-    implementation 'com.alibaba:arouter-api:1.4.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 

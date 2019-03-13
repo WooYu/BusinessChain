@@ -1,6 +1,7 @@
 package com.lcworld.module_exchange
 
 import android.annotation.SuppressLint
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,13 +29,13 @@ object TimeUtil{
     }
 
      @SuppressLint("SimpleDateFormat")
-     fun formatData(date: Date): String {
-        val format = SimpleDateFormat("yyyy年MM月")
+     fun formatData(date: Date, pattern: String = "yyyy年MM月"): String {
+         val format = SimpleDateFormat(pattern)
         return format.format(date)
     }
-    @SuppressLint("SimpleDateFormat")
-    fun formatDataType1(date: Date): String {
-        val format = SimpleDateFormat("MM月dd日 HH:mm")
-        return format.format(date)
+
+    fun formatAmount(d: Double, pattern: String = "#0.00"): String {
+        val format = DecimalFormat(pattern)
+        return format.format(d)
     }
 }

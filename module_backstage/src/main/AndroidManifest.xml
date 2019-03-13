@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lcworld.module_backstage" >
     <application>
-        <!--在自己组件中注册Activity-->
-        <activity
-            android:name="com.lcworld.module_backstage.activity.BackstageEntrancActivity" />
+        <activity android:name=".activity.BackstageEntranceActivity"/>
+        <activity android:name=".activity.FanSearchActivity"/>
+        <activity android:name=".activity.FanListActivity"/>
+        <activity android:name=".activity.FansDetailActivity"/>
     </application>
 </manifest>

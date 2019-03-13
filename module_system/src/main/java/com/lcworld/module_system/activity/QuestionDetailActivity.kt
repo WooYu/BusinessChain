@@ -11,7 +11,12 @@ import me.goldze.mvvmhabit.BR
  * 常见问题
  */
 class QuestionDetailActivity : BaseActivityEnhance<SystemActivityQuestionDetailBinding, QuestionDetailViewModel>() {
-    override fun initContentView(bundle: Bundle): Int = R.layout.system_activity_question_detail
+    companion object {
+        const val TITLE = "title"
+        const val CONTENT = "content"
+    }
+
+    override fun initContentView(bundle: Bundle?): Int = R.layout.system_activity_question_detail
 
     override fun initVariableId(): Int = BR.viewModel
 
@@ -19,5 +24,7 @@ class QuestionDetailActivity : BaseActivityEnhance<SystemActivityQuestionDetailB
         super.initData()
         binding.layoutTitle.tvTitle.text = getString(R.string.system_question)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
+        viewModel.title.set(intent.getStringExtra(TITLE) ?: "")
+        viewModel.content.set(intent.getStringExtra(CONTENT) ?: "")
     }
 }

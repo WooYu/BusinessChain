@@ -2,8 +2,15 @@
     package="com.lcworld.module_system" >
     <application>
         <!--在自己组件中注册Activity-->
-        <activity
-                android:name="com.lcworld.module_system.activity.ToolEntranceActivity"/>
+        <activity android:name=".activity.ToolEntranceActivity"/>
+        <activity android:name=".activity.AboutUsActivity"/>
+        <activity android:name=".activity.CommonQuestionActivity"/>
+        <activity android:name=".activity.FeedBackActivity"/>
+        <activity android:name=".activity.InviteFriendActivity"/>
+        <activity android:name=".activity.QuestionDetailActivity"/>
+        <activity android:name=".activity.SettingActivity"/>
+        <activity android:name=".activity.InfoInputActivity"/>
+        <activity android:name=".activity.CheckStatusActivity"/>
     </application>
 
 </manifest>

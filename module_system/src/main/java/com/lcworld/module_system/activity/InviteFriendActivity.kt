@@ -11,7 +11,7 @@ import me.goldze.mvvmhabit.BR
  * 邀请好友
  */
 class InviteFriendActivity : BaseActivityEnhance<SystemActivityInviteBinding, InviteViewModel>() {
-    override fun initContentView(bundle: Bundle): Int = R.layout.system_activity_invite
+    override fun initContentView(bundle: Bundle?): Int = R.layout.system_activity_invite
 
     override fun initVariableId(): Int = BR.viewModel
     override fun initData() {

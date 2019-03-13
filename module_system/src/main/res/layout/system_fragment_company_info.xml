@@ -4,7 +4,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
 
-    <data/>
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_system.viewmodel.CompanyInfoViewModel"/>
+    </data>
 
     <ScrollView
             android:layout_width="match_parent"
@@ -37,6 +42,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="0"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -50,8 +57,8 @@
                     android:text="@string/system_company_logo"/>
 
             <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="41dp"
+                    android:layout_height="41dp"
                     android:src="@mipmap/ic_launcher_round"
                     app:layout_constraintTop_toTopOf="@id/bg_company_logo"
                     app:layout_constraintBottom_toBottomOf="@id/bg_company_logo"
@@ -75,6 +82,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_company_logo"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="1"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -92,8 +101,8 @@
                     android:layout_height="wrap_content"
                     android:src="@mipmap/arrow_right2"
                     app:layout_constraintRight_toRightOf="@id/guideline2"
-                    app:layout_constraintTop_toTopOf="@id/bg_real_name"
-                    app:layout_constraintBottom_toBottomOf="@id/bg_real_name"
+                    app:layout_constraintTop_toTopOf="@id/bg_company_name"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_company_name"
                     android:contentDescription="@string/image_description_default"/>
             <!--所属行业-->
             <View
@@ -102,6 +111,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_company_name"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="2"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -129,6 +140,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_industry"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="3"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -157,6 +170,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_contact"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="4"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -184,6 +199,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_position"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="5"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -212,6 +229,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_phone_number"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="6"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -240,6 +259,8 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_unified_credit_code"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
+                    android:tag="7"
+                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -295,7 +316,8 @@
                     android:text="@string/system_submit_to_check"
                     app:layout_constraintTop_toBottomOf="@id/iv_business_license"
                     android:layout_marginTop="53dp"
-                    tools:ignore="MissingConstraints"/>
+                    tools:ignore="MissingConstraints"
+                    app:onClickCommand="@{viewModel.submit}"/>
 
             <View
                     android:layout_width="match_parent"

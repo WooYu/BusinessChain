@@ -74,7 +74,7 @@ public class RouterActivityPath {
      */
     public static class Backstage {
         private static final String BACKSTAGE = "/backstage";
-        public static final String PAGER_ENTRANCE = BACKSTAGE + "/backstage";
+        public static final String PAGER_ENTRANCE = BACKSTAGE + "/entrance";
     }
 
     /**
@@ -83,5 +83,13 @@ public class RouterActivityPath {
     public static class Exchange {
         private static final String EXCHANGE = "/exchange";
         public static final String PAGER_WALLET = EXCHANGE + "/wallet";
+    }
+
+    /**
+     * 工具
+     */
+    public static class Tool {
+        private static final String TOOL = "/tool";
+        public static final String PAGER_ENTRANCE = TOOL + "/entrance";
     }
 }

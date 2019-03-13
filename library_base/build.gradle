@@ -74,4 +74,5 @@ dependencies {
     api files('libs/alipaySdk-20180601.jar')
     //微信支付
     api rootProject.ext.dependencies["paysdk_wechat"]
+    api 'com.lcodecorex:tkrefreshlayout:1.0.7'
 }

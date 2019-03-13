@@ -60,4 +60,5 @@
     <string name="system_6000">6000</string>
     <string name="system_10000">10000</string>
     <string name="system_ellipsis">...</string>
+    <string name="system_default_error">没有数据</string>
 </resources>

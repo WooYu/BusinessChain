@@ -98,6 +98,10 @@ dependencies {
 //        implementation project(':module_other')
         //分享模块
         implementation project(':module_share')
+        //后台模块
+        implementation project(':module_backstage')
+        //设置模块
+        implementation project(':module_system')
     }
 
 }

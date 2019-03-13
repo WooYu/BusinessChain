@@ -49,7 +49,8 @@
                     app:layout_constraintRight_toLeftOf="@+id/bg_fan_direct"
                     android:layout_marginEnd="@dimen/gap_size12"
                     android:layout_marginTop="@dimen/gap_size13"
-                    android:background="@drawable/shape_btnbg_ff7b61_7"/>
+                    android:background="@drawable/shape_btnbg_ff7b61_7"
+                    app:onClickCommand="@{viewModel.allOnClickCommand}"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -84,7 +85,8 @@
                     app:layout_constraintLeft_toRightOf="@id/bg_fan_all"
                     app:layout_constraintRight_toLeftOf="@+id/bg_fan_indirect"
                     android:layout_marginEnd="@dimen/gap_size12"
-                    android:background="@drawable/shape_btnbg_ffaf60_7"/>
+                    android:background="@drawable/shape_btnbg_ffaf60_7"
+                    app:onClickCommand="@{viewModel.directOnClickCommand}"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -117,7 +119,8 @@
                     app:layout_constraintTop_toTopOf="@id/bg_fan_all"
                     app:layout_constraintLeft_toRightOf="@id/bg_fan_direct"
                     app:layout_constraintRight_toRightOf="@id/guideline2"
-                    android:background="@drawable/shape_btnbg_ffaf60_7"/>
+                    android:background="@drawable/shape_btnbg_ffaf60_7"
+                    app:onClickCommand="@{viewModel.indirectOnClickCommand}"/>
 
 
             <TextView

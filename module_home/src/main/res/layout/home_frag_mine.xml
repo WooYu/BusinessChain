@@ -258,7 +258,8 @@
                         app:layout_constraintDimensionRatio="360:47"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/line_wallet"/>
+                        app:layout_constraintTop_toBottomOf="@id/line_wallet"
+                        app:onClickCommand="@{viewModel.backstageOnClickCommand}"/>
 
                 <ImageView
                         android:id="@+id/iv_background"
@@ -307,7 +308,8 @@
                         app:layout_constraintDimensionRatio="360:47"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/line_background"/>
+                        app:layout_constraintTop_toBottomOf="@id/line_background"
+                        app:onClickCommand="@{viewModel.toolOnClickCommand}"/>
 
                 <ImageView
                         android:id="@+id/iv_toolkit"
@@ -415,9 +417,10 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="@dimen/gap_size20"
                 android:paddingEnd="@dimen/gap_size10"
-                android:layout_marginTop="33dp"
+                android:paddingTop="33dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:onClickCommand="@{viewModel.settingOnClickCommand}"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

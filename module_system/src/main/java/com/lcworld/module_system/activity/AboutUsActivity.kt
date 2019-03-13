@@ -11,12 +11,18 @@ import me.goldze.mvvmhabit.BR
  * 邀请好友
  */
 class AboutUsActivity : BaseActivityEnhance<SystemActivityAboutusBinding, BaseViewModelEnhance>() {
-    override fun initContentView(bundle: Bundle): Int = R.layout.system_activity_aboutus
+    override fun initContentView(bundle: Bundle?): Int = R.layout.system_activity_aboutus
 
     override fun initVariableId(): Int = BR.viewModel
     override fun initData() {
         super.initData()
         binding.layoutTitle.tvTitle.text = getString(R.string.system_about_us)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
+        binding.tvAboutUs.text = "商链说明文字说明文字说明文字说明文字说明文字说明文说明文字字明文字商链说明文字说明文字说明文字说明文字说明文字说明文说明文字字明文字\n" +
+                "商链说明文字说明文字说明文字说明文字说明文字说明文说明文字字明文字商链说明文字说明文字说明文字说明文字说明文字说明文说明文字字明文字商链说明文字说明文字说明文字说明文字说明文字说明文说明文字字明文字商链说明文字说明文字说明文字说明文字说明文字说明文说明文字字明文字\n" +
+                "商链说明文字说明文字说明文字说明文字说明文字说明文说明文字字明文字\n" +
+                "商链说明文字说明文字说明文字说明文字说明文字说明文说明文字字明文字\n" +
+                "商链说明文字说明文字说明文字说明文字说明文字说明文说明文字字明文字\n" +
+                "                        "
     }
 }

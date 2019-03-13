@@ -3,6 +3,8 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">@color/dominant_hue</color>
+    <color name="color_fc501c">#fc501c</color>
+    <color name="color_e6e6e6">#e6e6e6</color>
 
     <color name="viewLineColor">#F0F0F0</color>
 

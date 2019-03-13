@@ -1,6 +1,5 @@
 package com.lcworld.module_backstage.viewmodel.recyclerItem
 
-import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import me.goldze.mvvmhabit.base.BaseViewModel
 import me.goldze.mvvmhabit.base.ItemViewModel
@@ -14,6 +13,7 @@ class FanBillItemViewModel<VM : BaseViewModel>(viewModel: VM) : ItemViewModel<VM
     val consumerType = ObservableField("日用")
     val consumerAmount = ObservableField("-15.1")
     val itemOnClickCommand = BindingCommand<Any>(BindingAction {
+
     })
 
 
