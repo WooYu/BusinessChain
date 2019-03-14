@@ -81,7 +81,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title"
                 app:layout_constraintRight_toLeftOf="@id/iv_photo2"
-                android:background="@mipmap/system_rectangle"
+                app:url="@{viewModel.photo1}"
+                app:placeholderRes="@mipmap/system_rectangle"
                 android:contentDescription="@string/image_description_default"/>
 
         <ImageView
@@ -93,7 +94,8 @@
                 app:layout_constraintRight_toLeftOf="@+id/iv_photo3"
                 app:layout_constraintTop_toTopOf="@id/iv_photo1"
                 android:layout_marginStart="@dimen/gap_size13"
-                android:background="@mipmap/system_rectangle"
+                app:url="@{viewModel.photo2}"
+                app:placeholderRes="@mipmap/system_rectangle"
                 android:contentDescription="@string/image_description_default"/>
 
         <ImageView
@@ -106,7 +108,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginEnd="@dimen/gap_size26"
                 android:layout_marginStart="@dimen/gap_size13"
-                android:background="@mipmap/system_rectangle"
+                app:url="@{viewModel.photo3}"
+                app:placeholderRes="@mipmap/system_rectangle"
                 android:contentDescription="@string/image_description_default"/>
 
         <ImageView

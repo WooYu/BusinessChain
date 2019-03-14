@@ -44,7 +44,6 @@ class BillListAct : BaseActivityEnhance<ExchangeActivityBillListBinding, BillLis
         }
         initRefreshLayout()
         initObservable()
-        viewModel.doRefresh()
     }
 
     private fun initRefreshLayout() {
@@ -63,6 +62,7 @@ class BillListAct : BaseActivityEnhance<ExchangeActivityBillListBinding, BillLis
                 viewModel.doRefresh()
             }
         })
+        binding.refreshLayout.startRefresh()
     }
 
     private fun initObservable() {

@@ -36,5 +36,14 @@
                 app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                 />
         </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+
+        <TextView
+                android:id="@+id/emptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{viewModel.loadErrorStr}"
+                android:visibility="@{viewModel.showError ? 0 : 8}"
+                />
     </android.support.constraint.ConstraintLayout>
 </layout>

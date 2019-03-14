@@ -60,9 +60,11 @@ class BackEntranceViewModel(application: Application) : BaseViewModelEnhance(app
                     allFan.set(entity.total_count)
                     directFan.set(entity.direct_count)
                     indirectFan.set(entity.in_direct_count)
-                    fansCharList.clear()
-                    fansCharList.addAll(entity.day_list)
-                    getfansCharData.set(true)
+                    if (!entity.day_list.isNullOrEmpty()) {
+                        fansCharList.clear()
+                        fansCharList.addAll(entity.day_list)
+                        getfansCharData.set(true)
+                    }
                     observableList.addAll(entity.members.map { item -> FanItemViewModel(this, item) })
                 }
 

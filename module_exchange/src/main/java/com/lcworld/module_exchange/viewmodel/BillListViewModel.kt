@@ -24,7 +24,7 @@ class BillListViewModel(application: Application) : BaseViewModelEnhance(applica
     val observableList: ObservableList<BillListItemViewModel> = ObservableArrayList<BillListItemViewModel>()
     val itemBinding: ItemBinding<BillListItemViewModel> = ItemBinding.of(BR.viewModel, R.layout.exchange_item_bill_list)
     val adapter = BindingRecyclerViewAdapter<BillListItemViewModel>()
-    val loadErrorStr = ObservableField("")
+    val loadErrorStr = ObservableField("您该月没有账单数据")
     val showError = ObservableBoolean(false)
 
     private val pageNo = ObservableInt(1)
@@ -37,10 +37,14 @@ class BillListViewModel(application: Application) : BaseViewModelEnhance(applica
     //下拉刷新
     fun doRefresh() {
         pageNo.set(1)
-        getBillListRequest().compose(RxUtilsEnhanced.explicitTransform())
+        RetrofitClient.getInstance().create<ApiServiceInterf>(ApiServiceInterf::class.java)
+            .getBillList(
+                pageNo.get(),
+                TimeUtil.getMonthBegin(currentDate.get()!!),
+                TimeUtil.getMonthEnd(currentDate.get()!!)
+            ).compose(RxUtilsEnhanced.explicitTransform())
             .wrapSubscribe(
                 onStart = {
-                    loadErrorStr.set("")
                     showError.set(false)
                 },
                 onNext = {
@@ -51,13 +55,11 @@ class BillListViewModel(application: Application) : BaseViewModelEnhance(applica
                 },
                 onError = {
                     finishRefreshing.set(!finishRefreshing.get())
+                    showError.set(false)
                     showShort("数据加载失败")
                 },
                 onComplete = {
-                    if (observableList.isEmpty()) {
-                        loadErrorStr.set("您该月没有账单数据")
-                        showError.set(true)
-                    }
+                    showError.set(observableList.isEmpty())
                     finishRefreshing.set(!finishRefreshing.get())
                 })
     }
@@ -66,7 +68,7 @@ class BillListViewModel(application: Application) : BaseViewModelEnhance(applica
     fun loadMore() {
         RetrofitClient.getInstance().create<ApiServiceInterf>(ApiServiceInterf::class.java)
             .getBillList(
-                pageNo.get() + 1,
+                pageNo.get(),
                 TimeUtil.getMonthBegin(currentDate.get()!!),
                 TimeUtil.getMonthEnd(currentDate.get()!!)
             )
@@ -89,17 +91,6 @@ class BillListViewModel(application: Application) : BaseViewModelEnhance(applica
                 onComplete = {
                     finishLoadMore.set(!finishLoadMore.get())
                 })
-    }
-
-    private fun getBillListRequest(): io.reactivex.Observable<RequestResult<BillListEntity>> {
-        return RetrofitClient.getInstance().create<ApiServiceInterf>(ApiServiceInterf::class.java)
-            .getBillList(
-                pageNo.get(),
-                TimeUtil.getMonthBegin(currentDate.get()!!),
-                TimeUtil.getMonthEnd(currentDate.get()!!)
-            )
-
-
     }
 
     private fun getTotalData(data: ObservableList<BillListItemViewModel>): String {

@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 
 /**
- * 账户余额
+ * 后台首页
  */
 data class BackIndexEntity(
     val day_list: List<FansCharItem> = listOf(), val direct_count: String = "",
@@ -14,6 +14,7 @@ data class BackIndexEntity(
 )
 
 data class FansCharItem(val time_key: String = "", val count: String = "")
+data class FansListEntity(val list: List<FansItem> = listOf(), val page_no: Int = 1, val page_size: String = "")
 @Parcelize
 data class FansItem(
     val address: String = "",

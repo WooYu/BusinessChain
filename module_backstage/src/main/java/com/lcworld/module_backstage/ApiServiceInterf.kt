@@ -3,6 +3,8 @@ package com.lcworld.module_backstage
 import com.lcworld.library_base.http.RequestResult
 import com.lcworld.library_base.http.RequestResultImp
 import com.lcworld.module_backstage.model.BackIndexEntity
+import com.lcworld.module_backstage.model.FansItem
+import com.lcworld.module_backstage.model.FansListEntity
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -28,6 +30,6 @@ interface ApiServiceInterf {
         @Query("disabled") disabled: Int = 0, @Query("fansType") fansType: Int = 0,
         @Query("memberId") memberId: Int = 0, @Query("page_no") page_no: Int = 1,
         @Query("page_size") page_size: Int = 10
-    ): Observable<RequestResultImp>
+    ): Observable<FansListEntity>
 
 }

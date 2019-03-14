@@ -7,12 +7,12 @@ import com.lcworld.module_backstage.BR
 import com.lcworld.module_backstage.R
 import com.lcworld.module_backstage.databinding.BackAcitivityFanDetailBinding
 import com.lcworld.module_backstage.model.FansItem
-import com.lcworld.module_backstage.viewmodel.FanListViewModel
+import com.lcworld.module_backstage.viewmodel.FanDeatilViewModel
 
 /**
  * 后台
  */
-class FansDetailActivity : BaseActivityEnhance<BackAcitivityFanDetailBinding, FanListViewModel>() {
+class FansDetailActivity : BaseActivityEnhance<BackAcitivityFanDetailBinding, FanDeatilViewModel>() {
     companion object {
         const val FANS_DETAIL = "FANS_DETAIL"
     }

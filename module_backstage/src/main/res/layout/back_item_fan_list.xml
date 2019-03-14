@@ -15,18 +15,21 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@color/appbg_color_white"
-            android:layout_marginTop="@dimen/gap_size1"
+            android:layout_marginBottom="@dimen/gap_size1"
             tools:ignore="RtlSymmetry"
             app:onClickCommand="@{viewModel.itemOnClickCommand}">
 
-        <ImageView
+        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
                 android:id="@+id/iv_avatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:src="@mipmap/ic_launcher_round"
+                app:url="@{viewModel.faceUrl}"
+                app:placeholderRes="@mipmap/def_circle_a"
+                app:qmui_is_circle="true"
+                app:qmui_is_touch_select_mode_enabled="false"
                 android:layout_marginStart="@dimen/dp_10"
                 android:contentDescription="@string/image_description_default"/>
 
