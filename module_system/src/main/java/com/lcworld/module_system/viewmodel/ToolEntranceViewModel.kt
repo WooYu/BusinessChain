@@ -1,6 +1,7 @@
 package com.lcworld.module_system.viewmodel
 
 import android.app.Application
+import android.databinding.ObservableBoolean
 import com.lcworld.library_base.base.BaseViewModelEnhance
 import com.lcworld.module_system.activity.AboutUsActivity
 import com.lcworld.module_system.activity.CommonQuestionActivity
@@ -10,6 +11,12 @@ import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
 
 class ToolEntranceViewModel(application: Application) : BaseViewModelEnhance(application) {
+
+    val showFansManager = ObservableBoolean(false)
+
+    val fansOnClickCommand = BindingCommand<Any>(BindingAction {
+        //        startActivity(InviteFriendActivity::class.java)
+    })
 
     val shareOnClickCommand = BindingCommand<Any>(BindingAction {
         startActivity(InviteFriendActivity::class.java)

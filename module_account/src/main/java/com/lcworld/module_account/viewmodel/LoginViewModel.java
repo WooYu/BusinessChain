@@ -10,14 +10,15 @@ import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.SPUtils;
+import com.google.gson.Gson;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.extension.RegexExUtil;
 import com.lcworld.library_base.global.SPKeyGlobal;
 import com.lcworld.library_base.http.*;
+import com.lcworld.library_base.model.DataLogin;
 import com.lcworld.module_account.ApiServiceInterf;
 import com.lcworld.module_account.R;
 import com.lcworld.module_account.activity.RetrieveFirstActivity;
-import com.lcworld.module_account.bean.DataLogin;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -27,6 +28,7 @@ import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
 import me.goldze.mvvmhabit.binding.command.BindingConsumer;
+import me.goldze.mvvmhabit.bus.RxBus;
 
 import java.util.concurrent.TimeUnit;
 
@@ -193,6 +195,9 @@ public class LoginViewModel extends BaseViewModelEnhance {
                                 .put(SPKeyGlobal.Key_Account_Access_Token, result.getData().getAccess_token());
                         SPUtils.getInstance()
                                 .put(SPKeyGlobal.Key_Account_Refresh_Token, result.getData().getRefresh_token());
+                        SPUtils.getInstance()
+                                .put(SPKeyGlobal.KEY_LOGIN_INFO, new Gson().toJson(result.getData()));
+                        RxBus.getDefault().post(result.getData());
                         uc.isLoginSuccess.set(true);
                         finish();
                     }

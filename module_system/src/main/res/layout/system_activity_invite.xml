@@ -49,7 +49,7 @@
                 app:layout_constraintTop_toBottomOf="@id/layout_title"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:scaleType="fitXY"
-                android:src="@color/colorAccent"
+                android:src="@mipmap/system_invite"
                 android:contentDescription="@string/image_description_default"/>
 
         <TextView

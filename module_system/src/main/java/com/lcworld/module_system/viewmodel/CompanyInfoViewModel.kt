@@ -1,6 +1,8 @@
 package com.lcworld.module_system.viewmodel
 
 import android.app.Application
+import android.databinding.ObservableBoolean
+import android.databinding.ObservableField
 import android.os.Bundle
 import android.view.View
 import com.blankj.utilcode.util.ToastUtils
@@ -22,6 +24,9 @@ import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
 
 class CompanyInfoViewModel(application: Application) : BaseViewModelEnhance(application) {
+
+    val companyInfo = ObservableField("")
+    val showAdd = ObservableBoolean(true)//0 可见 8 不可见
     val submit = BindingCommand<Any>(BindingAction {
         val bundle = Bundle()
         bundle.putString(CheckStatusActivity.STATUS_TYPE, CheckStatusActivity.FAIL)

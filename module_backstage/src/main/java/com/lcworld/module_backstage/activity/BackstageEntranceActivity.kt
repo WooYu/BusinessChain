@@ -41,7 +41,7 @@ class BackstageEntranceActivity : BaseActivityEnhance<BackAcitivityEntranceBindi
         super.initViewObservable()
         viewModel.getfansCharData.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                setLineCharData(viewModel.fansCharList)
+//                setLineCharData(viewModel.fansCharList)
             }
 
         })

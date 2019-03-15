@@ -15,8 +15,6 @@
                 android:layout_height="match_parent"
                 app:banner_pageChangeDuration="1000"
                 app:banner_pointAutoPlayAble="false"
-                app:banner_pointContainerBackground="@android:color/transparent"
-                app:banner_pointDrawable="@drawable/main_selector_banner_unequal"
                 app:banner_pointTopBottomMargin="15dp"
                 app:banner_transitionEffect="fade"/>
 
@@ -28,6 +26,7 @@
                 app:banner_pointAutoPlayAble="false"
                 app:banner_pointContainerBackground="@android:color/transparent"
                 app:banner_pointDrawable="@drawable/main_selector_banner_unequal"
+                android:visibility="gone"
                 app:banner_pointTopBottomMargin="15dp"
                 app:banner_transitionEffect="alpha"/>
     </cn.bingoogolapple.bgabanner.BGAGuideLinkageLayout>

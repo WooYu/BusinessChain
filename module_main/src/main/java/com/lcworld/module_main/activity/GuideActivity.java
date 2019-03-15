@@ -49,14 +49,14 @@ public class GuideActivity extends Activity {
         BGALocalImageSize localImageSize = new BGALocalImageSize(720, 1280, 320, 640);
         // 设置数据源
         mBackgroundBanner.setData(localImageSize, ImageView.ScaleType.CENTER_CROP,
-                R.mipmap.main_temp_uoko_guide_background_1,
-                R.mipmap.main_temp_uoko_guide_background_1,
-                R.mipmap.main_temp_uoko_guide_background_1);
+                R.mipmap.main_guide1,
+                R.mipmap.main_guide2,
+                R.mipmap.main_guide3);
 
-        mForegroundBanner.setData(localImageSize, ImageView.ScaleType.CENTER_CROP,
+        /*mForegroundBanner.setData(localImageSize, ImageView.ScaleType.CENTER_CROP,
                 R.mipmap.main_temp_uoko_guide_foreground_1,
                 R.mipmap.main_temp_uoko_guide_foreground_1,
-                R.mipmap.main_temp_uoko_guide_foreground_1);
+                R.mipmap.main_temp_uoko_guide_foreground_1);*/
     }
 
     @Override

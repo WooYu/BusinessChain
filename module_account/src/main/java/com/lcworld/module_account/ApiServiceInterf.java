@@ -2,7 +2,7 @@ package com.lcworld.module_account;
 
 import com.lcworld.library_base.http.RequestResult;
 import com.lcworld.library_base.http.RequestResultImp;
-import com.lcworld.module_account.bean.DataLogin;
+import com.lcworld.library_base.model.DataLogin;
 import io.reactivex.Observable;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;

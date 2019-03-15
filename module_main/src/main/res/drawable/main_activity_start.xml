@@ -3,10 +3,11 @@
     android:opacity="opaque">
 
     <item android:drawable="@android:color/transparent" />
+
     <item>
         <bitmap
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/splash" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/main_start"/>
     </item>
 </layer-list>

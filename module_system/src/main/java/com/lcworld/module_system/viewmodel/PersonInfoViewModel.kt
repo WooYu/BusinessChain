@@ -1,6 +1,7 @@
 package com.lcworld.module_system.viewmodel
 
 import android.app.Application
+import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import android.os.Bundle
 import android.view.View
@@ -16,7 +17,12 @@ import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
 
 class PersonInfoViewModel(application: Application) : BaseViewModelEnhance(application) {
-
+    val front = ObservableField("")
+    val reverse = ObservableField("")
+    val handheld = ObservableField("")
+    val showAdd1 = ObservableBoolean(true)//0 可见 8 不可见
+    val showAdd2 = ObservableBoolean(true)
+    val showAdd3 = ObservableBoolean(true)
     val submit = BindingCommand<Any>(BindingAction {
         val bundle = Bundle()
         bundle.putString(STATUS_TYPE, SUCCESS)
@@ -34,7 +40,6 @@ class PersonInfoViewModel(application: Application) : BaseViewModelEnhance(appli
             }
             PersonInfoFrag.INDEX_1 -> gotoInfoInput("真实姓名", "输入真实姓名", CompanyInfoFrag.INDEX_1)
             PersonInfoFrag.INDEX_2 -> gotoInfoInput("身份证号", "输入身份证号", CompanyInfoFrag.INDEX_2)
-            PersonInfoFrag.INDEX_3 -> gotoInfoInput("身份证照片", "输入身份证照片", CompanyInfoFrag.INDEX_3)
             else -> {
             }
         }

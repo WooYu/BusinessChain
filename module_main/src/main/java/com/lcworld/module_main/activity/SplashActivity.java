@@ -18,7 +18,7 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                inMain();
+                inGuide();
             }
         }, 1000);
     }
@@ -28,6 +28,14 @@ public class SplashActivity extends Activity {
      */
     private void inMain() {
         startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    /**
+     * 进入引导页
+     */
+    private void inGuide() {
+        startActivity(new Intent(this, GuideActivity.class));
         finish();
     }
 }

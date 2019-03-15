@@ -28,7 +28,9 @@
                 android:textSize="@dimen/tx_size15"
                 app:tabIndicatorHeight="0dp"
                 app:tabSelectedTextColor="@color/tx_colore"
-                app:tabTextColor="@color/tx_colorb">
+                app:tabTextColor="@color/tx_colorb"
+                app:tabBackground="@android:color/transparent"
+                app:tabRippleColor="@android:color/transparent">
 
             <android.support.design.widget.TabItem
                     android:id="@+id/tab_person"

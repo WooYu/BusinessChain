@@ -153,8 +153,6 @@
                     app:layout_constraintTop_toBottomOf="@id/bg_id_card_number"
                     android:layout_marginTop="0.5dp"
                     tools:ignore="MissingConstraints"
-                    android:tag="3"
-                    android:onClick="@{(view)->viewModel.onItemClick(view)}"
                     />
 
             <TextView
@@ -176,8 +174,19 @@
                     app:layout_constraintRight_toRightOf="@id/guideline4"
                     app:layout_constraintTop_toBottomOf="@id/bg_id_card_photo"
                     android:layout_marginTop="@dimen/gap_size22"
-                    android:background="@drawable/shape_btnbg_f"
+                    android:src="@{viewModel.front}"
                     android:contentDescription="@string/image_description_default"/>
+
+            <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintLeft_toLeftOf="@id/iv_front_photo"
+                    app:layout_constraintRight_toRightOf="@id/iv_front_photo"
+                    app:layout_constraintTop_toTopOf="@+id/iv_front_photo"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_front_photo"
+                    android:src="@mipmap/system_idcard_font"
+                    android:contentDescription="@string/image_description_default"
+                    android:visibility="@{viewModel.showAdd1 ?0: 8}"/>
 
             <TextView
                     android:id="@+id/tv_front_photo"
@@ -199,8 +208,20 @@
                     app:layout_constraintRight_toRightOf="@id/guideline4"
                     app:layout_constraintTop_toBottomOf="@id/tv_front_photo"
                     android:layout_marginTop="49dp"
-                    android:background="@drawable/shape_btnbg_f"
+                    android:src="@{viewModel.reverse}"
                     android:contentDescription="@string/image_description_default"/>
+
+            <ImageView
+                    android:id="@+id/bg_reverse_photo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintLeft_toLeftOf="@id/iv_reverse_photo"
+                    app:layout_constraintRight_toRightOf="@id/iv_reverse_photo"
+                    app:layout_constraintTop_toTopOf="@+id/iv_reverse_photo"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_reverse_photo"
+                    android:src="@mipmap/system_idcard_back"
+                    android:contentDescription="@string/image_description_default"
+                    android:visibility="@{viewModel.showAdd2? 0: 8}"/>
 
             <TextView
                     android:id="@+id/tv_reverse_photo"
@@ -222,8 +243,19 @@
                     app:layout_constraintRight_toRightOf="@id/guideline4"
                     app:layout_constraintTop_toBottomOf="@id/tv_reverse_photo"
                     android:layout_marginTop="49dp"
-                    android:background="@drawable/shape_btnbg_f"
+                    android:src="@{viewModel.handheld}"
                     android:contentDescription="@string/image_description_default"/>
+
+            <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintLeft_toLeftOf="@id/iv_handheld_photo"
+                    app:layout_constraintRight_toRightOf="@id/iv_handheld_photo"
+                    app:layout_constraintTop_toTopOf="@+id/iv_handheld_photo"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_handheld_photo"
+                    android:src="@mipmap/system_idcard_handle"
+                    android:contentDescription="@string/image_description_default"
+                    android:visibility="@{viewModel.showAdd3? 0: 8}"/>
 
             <TextView
                     android:id="@+id/tv_handheld_photo"

@@ -32,12 +32,71 @@
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="@dimen/gap_size16"/>
+
+        <View
+                android:id="@+id/line1"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_size7"
+                android:background="@color/appbg_color"/>
+
+        <android.support.constraint.Group
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.showFansManager ? 0 :8}"
+                app:constraint_referenced_ids="bg_fans_manager,iv_fans_manager,tv_fans_manager,iv_arrow_fans_manager,line_arrow_fans_manager"/>
+        <!--粉丝管理-->
+        <View
+                android:id="@+id/bg_fans_manager"
+                style="@style/system_item_bg"
+                app:layout_constraintTop_toBottomOf="@id/line1"
+                app:onClickCommand="@{viewModel.fansOnClickCommand}"
+                tools:ignore="MissingConstraints"/>
+
+        <ImageView
+                android:id="@+id/iv_fans_manager"
+                android:layout_width="wrap_content"
+                android:src="@mipmap/system_share"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/bg_fans_manager"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="@id/bg_fans_manager"
+                android:contentDescription="@string/image_description_default"/>
+
+        <TextView
+                android:id="@+id/tv_fans_manager"
+                android:layout_width="wrap_content"
+                style="@style/text_15_333333_b"
+                android:text="@string/system_share"
+                android:layout_marginStart="@dimen/gap_size11"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/bg_fans_manager"
+                app:layout_constraintStart_toEndOf="@id/iv_fans_manager"
+                app:layout_constraintTop_toTopOf="@id/bg_fans_manager"/>
+
+        <ImageView
+                android:id="@+id/iv_arrow_fans_manager"
+                android:layout_width="wrap_content"
+                android:src="@mipmap/arrow_right2"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/bg_fans_manager"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/bg_fans_manager"
+                android:contentDescription="@string/image_description_default"/>
+
+        <View
+                android:id="@+id/line_arrow_fans_manager"
+                android:layout_width="0dp"
+                android:background="@color/line_colorc"
+                android:layout_height="1px"
+                app:layout_constraintBottom_toBottomOf="@id/bg_fans_manager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_fans_manager"/>
         <!--分享邀请-->
         <View
                 android:id="@+id/bg_share"
                 style="@style/system_item_bg"
-                android:layout_marginTop="@dimen/gap_size7"
-                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                app:layout_constraintTop_toBottomOf="@id/bg_fans_manager"
                 app:onClickCommand="@{viewModel.shareOnClickCommand}"
                 tools:ignore="MissingConstraints"/>
 

@@ -299,22 +299,43 @@
                     app:layout_constraintBottom_toBottomOf="@id/bg_business_license"
                     android:text="@string/system_business_license"/>
 
-            <ImageView
-                    android:id="@+id/iv_business_license"
+            <View
+                    android:id="@+id/bg_iv_business_license"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintDimensionRatio="360:147"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bg_business_license"
-                    android:background="@drawable/shape_btnbg_f"
+                    app:layout_constraintTop_toBottomOf="@id/bg_business_license"/>
+
+            <ImageView
+                    android:id="@+id/iv_business_license"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:src="@{viewModel.companyInfo}"
+                    app:layout_constraintTop_toTopOf="@+id/bg_iv_business_license"
+                    app:layout_constraintBottom_toBottomOf="@+id/bg_iv_business_license"
+                    app:layout_constraintLeft_toLeftOf="@+id/bg_iv_business_license"
+                    app:layout_constraintRight_toRightOf="@+id/bg_iv_business_license"
+                    android:layout_marginStart="@dimen/gap_size15"
+                    android:layout_marginEnd="@dimen/gap_size15"
                     android:contentDescription="@string/image_description_default"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/system_company_add"
+                    app:layout_constraintTop_toTopOf="@+id/iv_business_license"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_business_license"
+                    app:layout_constraintLeft_toLeftOf="@+id/iv_business_license"
+                    app:layout_constraintRight_toRightOf="@+id/iv_business_license"
+                    android:visibility="@{viewModel.showAdd ? 0 : 8}"/>
 
             <Button
                     android:id="@+id/btn_submit"
                     style="@style/system_btn_confirm"
                     android:text="@string/system_submit_to_check"
-                    app:layout_constraintTop_toBottomOf="@id/iv_business_license"
+                    app:layout_constraintTop_toBottomOf="@id/bg_iv_business_license"
                     android:layout_marginTop="53dp"
                     tools:ignore="MissingConstraints"
                     app:onClickCommand="@{viewModel.submit}"/>

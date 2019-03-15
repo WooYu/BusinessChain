@@ -11,6 +11,8 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
+import android.text.Editable
+import android.text.TextWatcher
 import com.blankj.utilcode.util.ToastUtils
 import com.lcworld.library_base.base.BaseActivityEnhance
 import com.lcworld.library_base_kotlin.util.StorageUtils
@@ -46,8 +48,19 @@ class FeedBackActivity : BaseActivityEnhance<SystemActivityFeedbackBinding, Feed
 
     override fun initData() {
         super.initData()
-        binding.layoutTitle.tvTitle.text = getString(R.string.system_tool)
+        binding.layoutTitle.tvTitle.text = getString(R.string.system_feedback)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
+        binding.etInput.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                viewModel.inputLengthTips.set(s.toString().length.toString() + "/300")
+                viewModel.btnEnable.set(s.toString().isNotEmpty())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+        })
         binding.ivPhoto1.setOnClickListener {
             clickPosition = CLICK_POSITION_1
             doOnclick(viewModel.photo1)
@@ -275,7 +288,6 @@ class FeedBackActivity : BaseActivityEnhance<SystemActivityFeedbackBinding, Feed
                 } else cursor.close()
             } else {
                 photoPath = originalUri.toString()
-                val path = originalUri.path ?: return
             }
 
         }

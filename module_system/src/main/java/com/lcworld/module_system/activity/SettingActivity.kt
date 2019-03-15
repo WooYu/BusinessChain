@@ -1,5 +1,6 @@
 package com.lcworld.module_system.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -7,7 +8,6 @@ import com.lcworld.library_base.base.BaseActivityEnhance
 import com.lcworld.library_base.base.BaseViewModelEnhance
 import com.lcworld.library_base.router.RouterActivityPath
 import com.lcworld.module_system.R
-import com.lcworld.module_system.databinding.SystemActivityAboutusBinding
 import com.lcworld.module_system.databinding.SystemActivitySettingBinding
 import com.lcworld.module_system.fragment.CompanyInfoFrag
 import com.lcworld.module_system.fragment.PersonInfoFrag
@@ -61,6 +61,10 @@ class SettingActivity : BaseActivityEnhance<SystemActivitySettingBinding, BaseVi
             transaction.add(R.id.fl_info, fragment, tags[position])
         }
         transaction.commit()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 }
