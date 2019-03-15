@@ -60,7 +60,7 @@
                 <android.support.constraint.Group
                         android:id="@+id/group_notlogin"
                         android:layout_width="wrap_content"
-                        android:visibility="gone"
+                        android:visibility="@{viewModel.isLogin? 0:8 }"
                         android:layout_height="wrap_content"
                         app:constraint_referenced_ids="tv_levels,bg_logout,iv_logout,tv_logout,iv_logout_arrow"/>
 
@@ -74,14 +74,15 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:onClickCommand="@{viewModel.loginOnClickCommand}"
                         />
 
-                <!--头像//@mipmap/def_circle_a-->
+                <!--头像-->
                 <com.qmuiteam.qmui.widget.QMUIRadiusImageView
                         android:id="@+id/iv_avatar"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@{viewModel.image}"
+                        app:url="@{viewModel.image}"
                         android:clickable="true"
                         android:focusable="true"
                         android:layout_marginStart="@dimen/gap_size8"
@@ -196,8 +197,11 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_margin="@dimen/gap_size10"
-                        android:background="@color/tx_colore"
                         app:layout_constraintDimensionRatio="340:103"
+                        app:banner_pointAutoPlayInterval="@integer/config_banner_pointAutoPlayInterval"
+                        app:banner_transitionEffect="depth"
+                        app:banner_pointContainerBackground="@android:color/transparent"
+                        app:banner_pointDrawable="@drawable/home_selector_banner_point"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/bg_top"/>
@@ -354,7 +358,8 @@
                         app:layout_constraintDimensionRatio="360:47"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/bg_toolkit"/>
+                        app:layout_constraintTop_toBottomOf="@id/bg_toolkit"
+                        app:onClickCommand="@{viewModel.loginOutOnClickCommand}"/>
 
                 <ImageView
                         android:id="@+id/iv_logout"
