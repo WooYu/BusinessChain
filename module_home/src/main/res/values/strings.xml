@@ -8,7 +8,14 @@
     <string name="home_hint_linkman">请输入联系人</string>
     <string name="home_hint_companyprofile">请输入企业介绍</string>
     <string name="home_hint_arealocation">附近位置</string>
-    
+    <string name="home_hint_company_name">请输入企业名称</string>
+    <string name="home_hint_company_industry">请输入所属行业</string>
+    <string name="home_hint_company_contactname">请输入联系人姓名</string>
+    <string name="home_hint_company_contactposition">请输入联系人职位</string>
+    <string name="home_hint_compnay_phone">请填入手机号码</string>
+    <string name="home_hint_company_creditnum">请输入统一信用代码</string>
+    <string name="home_hint_company_address">请输入办公地址</string>
+
     <!--空提示-->
     <string name="home_empty_phone">电话号码不能为空！</string>
     <string name="home_empty_wechat">微信号码不能为空！</string>
@@ -40,8 +47,12 @@
     <string name="home_msg_earnings">收益消息</string>
     <string name="home_msg_other">其他消息</string>
     <string name="home_member_title">会员专区</string>
-    <string name="home_provider_title">经纪人召集令</string>
-    <string name="home_provider_applicant">申请企业</string>
+    <string name="home_provider_title">召集令</string>
+    <string name="home_provider_applicant">企业申请表</string>
+    <string name="home_provider_license">营业执照及LOGO上传</string>
+    <string name="home_provider_license_tip">企业营业执照上传</string>
+    <string name="home_provider_logo_tip">企业LOGO上传</string>
+    <string name="home_provider_submitaudit">提交审核</string>
     <string name="home_provider_tell">电话号码</string>
     <string name="home_provider_wechat">微信号码</string>
     <string name="home_provider_linkman">联系人</string>

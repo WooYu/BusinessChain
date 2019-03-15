@@ -10,4 +10,8 @@
     <string name="image_description_back">返回</string>
     <string name="image_description_default">图片</string>
     <string name="confirm">确认</string>
+    
+    <!--权限-->
+    <string name="permission_photoalbum_denied">访问相册需要您开启“相机”、“存储”权限！</string>
+    <string name="permission_photoalbum_denied_neverask">访问相册需要您开启“相机”、“存储”权限，请到“设置-应用程序”中开启！</string>
 </resources>

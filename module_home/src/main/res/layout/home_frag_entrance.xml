@@ -64,6 +64,7 @@
             android:layout_width="0dp"
             android:background="@drawable/home_shape_searchbox_bg"
             android:layout_height="30dp"
+            app:onClickCommand="@{viewModel.clickBgSearch}"
             app:layout_constraintBottom_toBottomOf="@id/bg_title"
             app:layout_constraintEnd_toStartOf="@id/iv_msg"
             app:layout_constraintStart_toStartOf="@id/gline_start"
@@ -97,6 +98,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             app:layout_constraintBottom_toBottomOf="@id/bg_title"
+            app:onClickCommand="@{viewModel.clickMessage}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/bg_title" />
 

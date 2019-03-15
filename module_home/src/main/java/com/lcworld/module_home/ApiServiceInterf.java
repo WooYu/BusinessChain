@@ -4,13 +4,23 @@ import com.lcworld.library_base.http.RequestResult;
 import com.lcworld.library_base.http.RequestResultPageImp;
 import com.lcworld.module_home.bean.*;
 import io.reactivex.Observable;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import okhttp3.MultipartBody;
+import retrofit2.http.*;
 
 import java.util.List;
 
 public interface ApiServiceInterf {
+    //会员
+    //会员站内消息历史相关API
+    //查询会员站内消息历史列表
+    @GET("members/member-nocice-logs")
+    Observable<RequestResultPageImp<DataMessageNoticeLog>> membersMemberNociceLogs(@Query("read") int read
+            , @Query("page_no") int page_no, @Query("page_size") int page_size, @Query("type") int type);
+
+    //删除会员站内消息历史
+//    @Delete("members/member-nocice-logs/{ids}")
+
+
     //楼层
     //焦点图相关API
     //查询焦点图列表
@@ -24,6 +34,21 @@ public interface ApiServiceInterf {
 
 
     //首页
+    //招商加盟
+    //获取审核信息
+    @GET("home/carrier-operator")
+    Observable<RequestResult<DataCarrieroperatorCheckDTO>> homeCarrierOperator();
+
+    //申请加盟
+    @GET("home/carrier-operator")
+    Observable<RequestResult<DataCarrieroperatorCheckDTO>> homeCarrierOperator(
+            @Query("id") Integer id, @Query("mobile") String mobile, @Query("wechat") String wechat
+            , @Query("contactMobile") String contactMobile, @Query("provinceName") String provinceName
+            , @Query("cityName") String cityName, @Query("countyName") String countyName);
+
+    //修改招商加盟信息
+
+
     //拼团采集
     //广告图列表
     @GET("home/pintuan")
@@ -51,5 +76,14 @@ public interface ApiServiceInterf {
     //查询标签商品列表
     @GET("goods/tags/{mark}/goods")
     Observable<RequestResult<List<DataGoodsInfo>>> tagGoods(@Path("mark") String mark, @Query("num") int num);
+
+
+    //default
+    //上传图片api
+    //文件上传
+    @Headers({"url_name:module_base"})
+    @Multipart
+    @POST("uploaders")
+    Observable<RequestResult<DataFileVo>> fileUploaders(@Part MultipartBody.Part file, @Query("scene") String scene);
 
 }

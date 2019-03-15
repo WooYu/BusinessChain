@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="home_et_enterprise_apply">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">#f5f5f5</item>
+        <item name="android:paddingStart">@dimen/gap_size11</item>
+        <item name="android:paddingTop">@dimen/gap_size10</item>
+        <item name="android:textColor">@color/tx_colorc</item>
+        <item name="android:textColorHint">@color/tx_colord</item>
+        <item name="android:textSize">@dimen/tx_size15</item>
+        <item name="android:paddingBottom">@dimen/gap_size10</item>
+        <item name="android:paddingEnd">@dimen/gap_size11</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+</resources>

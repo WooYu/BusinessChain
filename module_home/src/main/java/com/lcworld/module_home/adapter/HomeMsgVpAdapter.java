@@ -2,6 +2,8 @@ package com.lcworld.module_home.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +15,26 @@ import java.util.List;
 /**
  * 消息ViewPage的Adapter
  */
-public class HomeMsgVpAdapter extends PagerAdapter {
-    private List<Fragment> fragments;
+public class HomeMsgVpAdapter extends FragmentPagerAdapter {
+    private List<HomeMsgListFrag> fragments;
+
+    public HomeMsgVpAdapter(FragmentManager fm) {
+        super(fm);
+    }
+
+    public HomeMsgVpAdapter(FragmentManager fm, List<HomeMsgListFrag> fragments) {
+        super(fm);
+        this.fragments = fragments;
+    }
 
     @Override
     public int getCount() {
         return ObjectUtils.isEmpty(fragments) ? 0 : fragments.size();
     }
 
-    @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        return new HomeMsgListFrag();
-    }
-
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-        return view == o;
+    public Fragment getItem(int i) {
+        return fragments.get(i);
     }
 
 }

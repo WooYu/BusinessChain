@@ -75,4 +75,6 @@ dependencies {
     //微信支付
     api rootProject.ext.dependencies["paysdk_wechat"]
     api 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    //picture_selector
+    api rootProject.ext.dependencies["picture_selector"]
 }

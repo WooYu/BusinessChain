@@ -18,4 +18,14 @@
         <item>0</item>
         <item>1</item>
     </integer-array>
+    <!--消息类型 0其他 10收益-->
+    <integer-array name="config_msgtype">
+        <item>0</item>
+        <item>10</item>
+    </integer-array>
+    <!--is_read 是否已读，0未读，1已读-->
+    <integer-array name="config_isread">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
 </resources>

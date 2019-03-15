@@ -60,12 +60,6 @@ public class HomeFragment extends BaseRefreshFragment<HomeFragEntranceBinding, H
     @Override
     public void initViewObservable() {
         super.initViewObservable();
-        binding.bgSearchbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build(RouterActivityPath.Home.Pager_Home_Search).navigation();
-            }
-        });
 
         initObservable_FoucsPicture();
         initObservable_FreeBuy();

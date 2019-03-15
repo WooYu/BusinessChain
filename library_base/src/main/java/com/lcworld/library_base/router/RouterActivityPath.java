@@ -22,6 +22,7 @@ public class RouterActivityPath {
     public static class Home {
         private static final String Home = "/home";
         public static final String Pager_Home_Search = Home + "/search";
+        public static final String Pager_Message_Detail = Home + "message/datail";
     }
 
     /**

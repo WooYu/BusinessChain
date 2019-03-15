@@ -1,395 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+<layout>
 
-    <!--标题-->
-    <com.qmuiteam.qmui.widget.QMUITopBarLayout
-        android:id="@+id/qmui_topbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_home.viewmodel.OperatorApplyViewModel"/>
+    </data>
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:background="#e32921"
+                  android:layout_height="match_parent">
 
-            <android.support.constraint.Guideline
-                android:id="@+id/gline_start"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_begin="@dimen/gap_size15" />
+        <!--标题-->
+        <com.qmuiteam.qmui.widget.QMUITopBarLayout
+                android:id="@+id/qmui_topbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-            <android.support.constraint.Guideline
-                android:id="@+id/gline_middle"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.3" />
+        <ScrollView
+                android:layout_width="match_parent"
+                android:scrollbars="none"
+                android:layout_height="match_parent">
 
-            <android.support.constraint.Guideline
-                android:id="@+id/gline_end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/gap_size15" />
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <!--申请企业-->
-            <View
-                android:id="@+id/bg_applydesc"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <android.support.constraint.Guideline
+                        android:id="@+id/gline_partingline_topbg"
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="255dp"
+                        android:layout_height="wrap_content"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/tx_colorb"
-                android:textSize="@dimen/tx_size15"
-                android:layout_height="wrap_content"
-                android:text="@string/home_provider_applicant"
-                app:layout_constraintBottom_toBottomOf="@id/bg_applydesc"
-                app:layout_constraintStart_toStartOf="@id/gline_start"
-                app:layout_constraintTop_toTopOf="@id/bg_applydesc" />
+                <!--内容-->
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="235dp"
+                        android:layout_marginStart="@dimen/gap_size16"
+                        android:layout_marginEnd="@dimen/gap_size18"
+                        android:paddingTop="@dimen/gap_size30"
+                        android:layout_marginBottom="@dimen/gap_size30"
+                        android:background="@drawable/shape_white_rounded"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_height="wrap_content">
 
-            <View
-                android:id="@+id/line_applydesc"
-                android:layout_width="0dp"
-                android:background="@color/line_colorc"
-                android:layout_height="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bg_applydesc" />
+                    <android.support.constraint.Guideline
+                            android:id="@+id/gline_start"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_begin="13dp"
+                            android:layout_height="wrap_content"/>
 
-            <!--电话号码-->
-            <View
-                android:id="@+id/bg_tell"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_applydesc" />
+                    <android.support.constraint.Guideline
+                            android:id="@+id/gline_end"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_end="13dp"
+                            android:layout_height="wrap_content"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/tx_colorc"
-                android:textSize="@dimen/tx_size14"
-                android:layout_height="wrap_content"
-                android:text="@string/home_provider_tell"
-                app:layout_constraintBottom_toBottomOf="@id/bg_tell"
-                app:layout_constraintStart_toStartOf="@id/gline_start"
-                app:layout_constraintTop_toTopOf="@id/bg_tell" />
+                    <!--企业申请表-->
+                    <TextView
+                            android:id="@+id/tv_subtitle_1"
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/tx_size15"
+                            android:textColor="@color/tx_colorb"
+                            android:textStyle="bold"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            app:layout_constraintEnd_toEndOf="@id/gline_end"
+                            android:text="@string/home_provider_applicant"
+                            android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/et_phone_value"
-                tools:text=""
-                android:layout_width="0dp"
-                android:textSize="@dimen/tx_size14"
-                android:maxLines="1"
-                android:maxLength="11"
-                android:textColor="@color/tx_colorb"
-                android:background="@null"
-                android:layout_height="wrap_content"
-                android:hint="@string/home_hint_phone"
-                android:gravity="end"
-                android:textColorHint="@color/tx_colorc"
-                android:inputType="phone"
-                app:layout_constraintBottom_toBottomOf="@id/bg_tell"
-                app:layout_constraintEnd_toEndOf="@id/gline_end"
-                app:layout_constraintStart_toStartOf="@id/gline_middle"
-                app:layout_constraintTop_toTopOf="@id/bg_tell" />
+                    <!--企业名称-->
+                    <EditText
+                            android:id="@+id/et_company_name"
+                            android:layout_marginTop="@dimen/gap_size20"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            app:layout_constraintEnd_toEndOf="@id/gline_end"
+                            android:maxLines="3"
+                            android:text="@={viewModel.valueCompanyName}"
+                            android:afterTextChanged="@{viewModel.textChangeInput()}"
+                            android:inputType="text"
+                            android:hint="@string/home_hint_company_name"
+                            app:layout_constraintTop_toBottomOf="@id/tv_subtitle_1"
+                            style="@style/home_et_enterprise_apply"/>
 
-            <View
-                android:id="@+id/line_tell"
-                android:layout_width="0dp"
-                android:background="@color/line_colorc"
-                android:layout_height="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bg_tell" />
+                    <!--所属行业-->
+                    <EditText
+                            android:id="@+id/et_company_industry"
+                            android:layout_marginTop="@dimen/gap_size7"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            app:layout_constraintEnd_toEndOf="@id/gline_end"
+                            android:maxLines="3"
+                            android:text="@={viewModel.valueIndustry}"
+                            android:afterTextChanged="@{viewModel.textChangeInput()}"
+                            android:inputType="text"
+                            android:hint="@string/home_hint_company_industry"
+                            app:layout_constraintTop_toBottomOf="@id/et_company_name"
+                            style="@style/home_et_enterprise_apply"/>
 
-            <!--微信号码-->
-            <View
-                android:id="@+id/bg_wechat"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_tell" />
+                    <!--联系人姓名-->
+                    <EditText
+                            android:id="@+id/et_contact_name"
+                            android:layout_marginTop="@dimen/gap_size7"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            app:layout_constraintEnd_toEndOf="@id/gline_end"
+                            android:maxLines="1"
+                            android:inputType="text"
+                            android:hint="@string/home_hint_company_contactname"
+                            app:layout_constraintTop_toBottomOf="@id/et_company_industry"
+                            android:text="@={viewModel.valueLinkManName}"
+                            android:afterTextChanged="@{viewModel.textChangeInput()}"
+                            style="@style/home_et_enterprise_apply"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/tx_colorc"
-                android:textSize="@dimen/tx_size14"
-                android:layout_height="wrap_content"
-                android:text="@string/home_provider_wechat"
-                app:layout_constraintBottom_toBottomOf="@id/bg_wechat"
-                app:layout_constraintStart_toStartOf="@id/gline_start"
-                app:layout_constraintTop_toTopOf="@id/bg_wechat" />
+                    <!--联系人职位-->
+                    <EditText
+                            android:id="@+id/et_contact_position"
+                            android:layout_marginTop="@dimen/gap_size7"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            app:layout_constraintEnd_toEndOf="@id/gline_end"
+                            android:maxLines="3"
+                            android:inputType="text"
+                            android:afterTextChanged="@{viewModel.textChangeInput()}"
+                            android:text="@={viewModel.valueJobTitle}"
+                            android:hint="@string/home_hint_company_contactposition"
+                            app:layout_constraintTop_toBottomOf="@id/et_contact_name"
+                            style="@style/home_et_enterprise_apply"/>
 
-            <EditText
-                android:id="@+id/et_wechat_value"
-                tools:text=""
-                android:layout_width="0dp"
-                android:inputType="text"
-                android:textSize="@dimen/tx_size14"
-                android:maxLines="1"
-                android:textColor="@color/tx_colorb"
-                android:background="@null"
-                android:layout_height="wrap_content"
-                android:hint="@string/home_hint_wechat"
-                android:gravity="end"
-                android:textColorHint="@color/tx_colorc"
-                app:layout_constraintBottom_toBottomOf="@id/bg_wechat"
-                app:layout_constraintEnd_toEndOf="@id/gline_end"
-                app:layout_constraintStart_toStartOf="@id/gline_middle"
-                app:layout_constraintTop_toTopOf="@id/bg_wechat" />
+                    <!--手机号码-->
+                    <EditText
+                            android:id="@+id/et_contact_phone"
+                            android:layout_marginTop="@dimen/gap_size7"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            app:layout_constraintEnd_toEndOf="@id/gline_end"
+                            android:maxLines="1"
+                            android:inputType="phone"
+                            android:text="@={viewModel.valuePhone}"
+                            android:afterTextChanged="@{viewModel.textChangeInput()}"
+                            android:hint="@string/home_hint_compnay_phone"
+                            app:layout_constraintTop_toBottomOf="@id/et_contact_position"
+                            style="@style/home_et_enterprise_apply"/>
 
-            <View
-                android:id="@+id/line_wechat"
-                android:layout_width="0dp"
-                android:background="@color/line_colorc"
-                android:layout_height="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bg_wechat" />
+                    <!--统一信用代码-->
+                    <EditText
+                            android:id="@+id/et_company_creditnum"
+                            android:layout_marginTop="@dimen/gap_size7"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            app:layout_constraintEnd_toEndOf="@id/gline_end"
+                            android:maxLines="2"
+                            android:text="@={viewModel.valueCreditNum}"
+                            android:afterTextChanged="@{viewModel.textChangeInput()}"
+                            android:hint="@string/home_hint_company_creditnum"
+                            app:layout_constraintTop_toBottomOf="@id/et_contact_phone"
+                            style="@style/home_et_enterprise_apply"/>
 
-            <!--联系人-->
-            <View
-                android:id="@+id/bg_linkman"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_wechat" />
+                    <!--办公地址-->
+                    <EditText
+                            android:id="@+id/et_company_addr"
+                            android:layout_marginTop="@dimen/gap_size7"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            app:layout_constraintEnd_toEndOf="@id/gline_end"
+                            android:inputType="text"
+                            android:afterTextChanged="@{viewModel.textChangeInput()}"
+                            android:hint="@string/home_hint_company_address"
+                            android:text="@={viewModel.valueCompanyAddr}"
+                            app:layout_constraintTop_toBottomOf="@id/et_company_creditnum"
+                            style="@style/home_et_enterprise_apply"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/tx_colorc"
-                android:textSize="@dimen/tx_size14"
-                android:layout_height="wrap_content"
-                android:text="@string/home_provider_linkman"
-                app:layout_constraintBottom_toBottomOf="@id/bg_linkman"
-                app:layout_constraintStart_toStartOf="@id/gline_start"
-                app:layout_constraintTop_toTopOf="@id/bg_linkman" />
+                    <!--营业执照及LOGO上传-->
+                    <TextView
+                            android:id="@+id/tv_subtitle_2"
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/tx_size15"
+                            android:textColor="@color/tx_colorb"
+                            android:textStyle="bold"
+                            app:layout_constraintTop_toBottomOf="@id/et_company_addr"
+                            android:layout_marginStart="@dimen/gap_size11"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            android:layout_marginTop="@dimen/gap_size19"
+                            android:text="@string/home_provider_license"
+                            android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/et_linkman_value"
-                tools:text=""
-                android:layout_width="0dp"
-                android:inputType="text"
-                android:textSize="@dimen/tx_size14"
-                android:maxLines="1"
-                android:textColor="@color/tx_colorb"
-                android:background="@null"
-                android:layout_height="wrap_content"
-                android:hint="@string/home_hint_linkman"
-                android:gravity="end"
-                android:textColorHint="@color/tx_colorc"
-                app:layout_constraintBottom_toBottomOf="@id/bg_linkman"
-                app:layout_constraintEnd_toEndOf="@id/gline_end"
-                app:layout_constraintStart_toStartOf="@id/gline_middle"
-                app:layout_constraintTop_toTopOf="@id/bg_linkman" />
+                    <!--营业执照图-->
+                    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                            android:id="@+id/iv_license"
+                            android:layout_width="0dp"
+                            android:src="@mipmap/home_provider_add"
+                            app:layout_constraintTop_toBottomOf="@id/tv_subtitle_2"
+                            app:layout_constraintEnd_toStartOf="@id/iv_logo"
+                            android:layout_marginTop="@dimen/gap_size30"
+                            app:layout_constraintWidth_percent="0.26"
+                            app:qmui_corner_radius="@dimen/gap_size3"
+                            app:qmui_border_color="@color/tx_colorg"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            android:layout_height="0dp"/>
 
-            <View
-                android:id="@+id/line_linkman"
-                android:layout_width="0dp"
-                android:background="@color/line_colorc"
-                android:layout_height="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bg_linkman" />
+                    <!--企业Logo图-->
+                    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                            android:id="@+id/iv_logo"
+                            android:layout_width="0dp"
+                            app:qmui_corner_radius="@dimen/gap_size3"
+                            app:qmui_border_color="@color/tx_colorg"
+                            app:layout_constraintDimensionRatio="1:1"
+                            android:src="@mipmap/home_provider_add"
+                            android:layout_marginStart="@dimen/gap_size30"
+                            app:layout_constraintTop_toTopOf="@id/iv_license"
+                            app:layout_constraintWidth_percent="0.26"
+                            app:layout_constraintStart_toEndOf="@id/iv_license"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_height="0dp"/>
 
-            <!--所在地区-->
-            <View
-                android:id="@+id/bg_region"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_linkman" />
+                    <TextView
+                            android:id="@+id/tv_license_tip"
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/tx_size13"
+                            android:textColor="@color/tx_colorg"
+                            app:layout_constraintStart_toStartOf="@id/iv_license"
+                            app:layout_constraintEnd_toEndOf="@id/iv_license"
+                            android:text="@string/home_provider_license_tip"
+                            app:layout_constraintTop_toBottomOf="@id/iv_license"
+                            android:layout_marginTop="@dimen/gap_size15"
+                            android:layout_height="wrap_content"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/tx_colorc"
-                android:textSize="@dimen/tx_size14"
-                android:layout_height="wrap_content"
-                android:text="@string/home_provider_region"
-                app:layout_constraintBottom_toBottomOf="@id/bg_region"
-                app:layout_constraintStart_toStartOf="@id/gline_start"
-                app:layout_constraintTop_toTopOf="@id/bg_region" />
+                    <TextView
+                            android:id="@+id/tv_logo_tip"
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/tx_size13"
+                            android:textColor="@color/tx_colorg"
+                            app:layout_constraintStart_toStartOf="@id/iv_logo"
+                            app:layout_constraintEnd_toEndOf="@id/iv_logo"
+                            app:layout_constraintBaseline_toBaselineOf="@id/tv_license_tip"
+                            android:text="@string/home_provider_logo_tip"
+                            android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/iv_region_arrow"
-                android:layout_width="wrap_content"
-                android:src="@mipmap/arrow_right2"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/bg_region"
-                app:layout_constraintEnd_toEndOf="@id/gline_end"
-                app:layout_constraintTop_toTopOf="@id/bg_region" />
+                    <!--提交审核-->
+                    <Button
+                            android:id="@+id/btn_submit"
+                            android:layout_width="0dp"
+                            android:layout_marginTop="@dimen/gap_size28"
+                            android:textColor="@color/white"
+                            android:layout_marginStart="@dimen/gap_size10"
+                            android:layout_marginEnd="@dimen/gap_size10"
+                            android:textSize="@dimen/tx_size15"
+                            android:enabled="@{viewModel.enableBtnSubmit}"
+                            app:onClickCommand="@{viewModel.clickBtnSubmit}"
+                            android:gravity="center"
+                            android:text="@string/home_provider_submitaudit"
+                            android:background="@drawable/shape_btnbg_a"
+                            android:layout_height="0dp"
+                            app:layout_constraintDimensionRatio="300:37"
+                            app:layout_constraintStart_toStartOf="@id/gline_start"
+                            app:layout_constraintEnd_toEndOf="@id/gline_end"
+                            app:layout_constraintTop_toBottomOf="@id/tv_license_tip"/>
 
-            <TextView
-                android:id="@+id/tv_region_value"
-                tools:text="北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京北京"
-                android:layout_width="0dp"
-                android:textSize="@dimen/tx_size14"
-                android:maxLines="1"
-                android:textColor="@color/tx_colorb"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:layout_marginEnd="@dimen/gap_size9"
-                app:layout_constraintBottom_toBottomOf="@id/bg_region"
-                app:layout_constraintEnd_toStartOf="@id/iv_region_arrow"
-                app:layout_constraintStart_toStartOf="@id/gline_middle"
-                app:layout_constraintTop_toTopOf="@id/bg_region" />
+                    <View
+                            android:layout_width="0dp"
+                            app:layout_constraintTop_toBottomOf="@id/btn_submit"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_height="@dimen/gap_size15"/>
+                </android.support.constraint.ConstraintLayout>
 
-            <View
-                android:id="@+id/line_region"
-                android:layout_width="0dp"
-                android:background="@color/line_colorc"
-                android:layout_height="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bg_region" />
+                <!--顶部背景图-->
+                <ImageView
+                        android:id="@+id/iv_topbg"
+                        android:layout_width="0dp"
+                        android:src="@mipmap/home_provider_topbg"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="@dimen/gap_size13"
+                        app:layout_constraintBottom_toBottomOf="@id/gline_partingline_topbg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_height="0dp"/>
 
-            <!--企业介绍-->
-            <View
-                android:id="@+id/bg_profile"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_region" />
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/tx_colorc"
-                android:textSize="@dimen/tx_size14"
-                android:layout_height="wrap_content"
-                android:text="@string/home_provider_companyprofile"
-                app:layout_constraintBottom_toBottomOf="@id/bg_profile"
-                app:layout_constraintStart_toStartOf="@id/gline_start"
-                app:layout_constraintTop_toTopOf="@id/bg_profile" />
-
-            <ImageView
-                android:id="@+id/iv_profile_arrow"
-                android:layout_width="wrap_content"
-                android:src="@mipmap/arrow_right2"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/bg_profile"
-                app:layout_constraintEnd_toEndOf="@id/gline_end"
-                app:layout_constraintTop_toTopOf="@id/bg_profile" />
-
-            <TextView
-                android:id="@+id/tv_profile_value"
-                android:layout_width="0dp"
-                android:textSize="@dimen/tx_size14"
-                android:maxLines="1"
-                android:textColor="@color/tx_colorb"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:layout_marginEnd="@dimen/gap_size9"
-                app:layout_constraintBottom_toBottomOf="@id/bg_profile"
-                app:layout_constraintEnd_toStartOf="@id/iv_region_arrow"
-                app:layout_constraintStart_toStartOf="@id/gline_middle"
-                app:layout_constraintTop_toTopOf="@id/bg_profile" />
-
-            <View
-                android:id="@+id/line_profile"
-                android:layout_width="0dp"
-                android:background="@color/line_colorc"
-                android:layout_height="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bg_profile" />
-
-            <!--微信二维码-->
-            <View
-                android:id="@+id/bg_qrcode"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_profile" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/tx_colorb"
-                android:textSize="@dimen/tx_size15"
-                android:layout_height="wrap_content"
-                android:text="@string/home_provider_qrcode"
-                app:layout_constraintBottom_toBottomOf="@id/bg_qrcode"
-                app:layout_constraintStart_toStartOf="@id/gline_start"
-                app:layout_constraintTop_toTopOf="@id/bg_qrcode" />
-
-            <View
-                android:id="@+id/line_qrcode"
-                android:layout_width="0dp"
-                android:background="@color/line_colorc"
-                android:layout_height="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bg_qrcode" />
-
-            <!--图片-->
-            <View
-                android:id="@+id/bg_qrcode_photo"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/white"
-                app:layout_constraintDimensionRatio="360:147"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_qrcode" />
-
-            <ImageView
-                android:id="@+id/iv_qrcode_add"
-                android:layout_width="wrap_content"
-                android:src="@mipmap/home_provider_add"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/bg_qrcode_photo"
-                app:layout_constraintEnd_toEndOf="@id/bg_qrcode_photo"
-                app:layout_constraintStart_toStartOf="@id/bg_qrcode_photo"
-                app:layout_constraintTop_toTopOf="@id/bg_qrcode_photo" />
-
-            <!--提交-->
-            <TextView
-                android:id="@+id/tv_submit"
-                android:layout_width="0dp"
-                android:layout_marginTop="@dimen/gap_size28"
-                android:textColor="@color/white"
-                android:layout_marginStart="@dimen/gap_size10"
-                android:layout_marginEnd="@dimen/gap_size10"
-                android:textSize="@dimen/tx_size15"
-                android:gravity="center"
-                android:text="@string/home_provider_submit"
-                android:background="@drawable/shape_btnbg_a"
-                android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="370:37"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bg_qrcode_photo" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="58dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_submit" />
-
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
-</LinearLayout>
