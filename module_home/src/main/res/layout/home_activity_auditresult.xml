@@ -1,53 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_home.viewmodel.OperatorAuditResultViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-    <com.qmuiteam.qmui.widget.QMUITopBarLayout
-        android:id="@+id/qmui_topbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.qmuiteam.qmui.widget.QMUITopBarLayout
+                android:id="@+id/qmui_topbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
-        android:id="@+id/iv_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:src="@mipmap/home_audit_ing"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/qmui_topbar" />
+        <ImageView
+                android:id="@+id/iv_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:src="@mipmap/home_audit_ing"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/qmui_topbar"/>
 
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
-        android:textSize="@dimen/tx_size15"
-        android:layout_marginTop="@dimen/gap_size22"
-        android:textColor="@color/tx_colorc"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/gap_size10"
-        android:layout_marginEnd="@dimen/gap_size10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_result"
-        tools:text="抱歉，审核失败" />
+        <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/tx_size15"
+                android:layout_marginTop="@dimen/gap_size22"
+                android:textColor="@color/tx_colorc"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap_size10"
+                android:layout_marginEnd="@dimen/gap_size10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_result"
+                android:text="审核中"/>
 
-    <TextView
-        android:id="@+id/tv_reason"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/gap_size19"
-        android:layout_height="wrap_content"
-        android:textColor="@color/tx_colorc"
-        android:layout_marginStart="@dimen/gap_size10"
-        android:layout_marginEnd="@dimen/gap_size10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_result"
-        tools:text="您的审批未通过" />
-</android.support.constraint.ConstraintLayout>
+        <TextView
+                android:id="@+id/tv_reason"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/gap_size19"
+                android:layout_height="wrap_content"
+                android:textColor="@color/tx_colorc"
+                android:layout_marginStart="@dimen/gap_size10"
+                android:layout_marginEnd="@dimen/gap_size10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_result"
+                android:text="我们将在48小时内进行审核，如若超时请联系客服!"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

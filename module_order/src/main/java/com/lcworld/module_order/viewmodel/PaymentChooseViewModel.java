@@ -54,7 +54,12 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
     public final BindingCommand clickOfPayNow = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            requestInitiativePay();
+            String[] config_plugin_ids = getApplication().getResources().getStringArray(R.array.payment_plugin_id);
+            if (valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id().equals(config_plugin_ids[3])) {
+                requestInitiativePayBalance();
+            } else {
+                requestInitiativePay();
+            }
         }
     });
 
@@ -121,7 +126,26 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
                 });
     }
 
-    //请求对一个交易发起支付
+    //请求对一个交易发起支付(余额)
+    private void requestInitiativePayBalance() {
+        RetrofitClient.getInstance().create(ApiServiceInterf.class)
+                .balancePayTrade(valueTradeSN.get()
+                        , valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id())
+                .compose(RxUtilsEnhanced.explicitTransform())
+                .subscribe(new ResponseObserver<RequestResultImp>() {
+
+                    @Override
+                    public void onSuccess(RequestResultImp requestResultImp) {
+                        ARouter.getInstance().build(RouterActivityPath.Order.Pager_Payment_Result)
+                                .withBoolean("pay_result", true)
+                                .navigation();
+                        finish();
+                    }
+
+                });
+    }
+
+    //请求对一个交易发起支付（微信、支付宝）
     private void requestInitiativePay() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .orderPayInitiate(
@@ -139,6 +163,8 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
                             valueAlipayOrderInfo.set(requestResultImp.getData());
                         } else if (valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id().equals(config_plugin_ids[2])) {
                             valueWechatOrderInfo.set(requestResultImp.getData());
+                        } else if (valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id().equals(config_plugin_ids[3])) {
+                            requestQueryTradeResult();
                         }
 
                     }

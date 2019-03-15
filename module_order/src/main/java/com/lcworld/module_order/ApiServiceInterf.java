@@ -107,6 +107,11 @@ public interface ApiServiceInterf {
 
 
     //支付
+    //余额API
+    //对一个交易发起支付
+    @GET("order/balance/pay/payTrade")
+    Observable<RequestResultImp> balancePayTrade(@Query("sn") String sn, @Query("payment_plugin_id") String payment_plugin_id);
+
     //订单支付API
     //APP对一个交易发起支付
     @GET("order/pay/app/{trade_type}/{sn}")

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.lcworld.businesschain.GlideApp;
 import com.lcworld.library_base.base.BaseActivityEnhance;
 import com.lcworld.module_home.BR;
 import com.lcworld.module_home.R;
@@ -20,6 +21,7 @@ import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.functions.Consumer;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -57,13 +59,21 @@ public class OperatorApplyAct extends BaseActivityEnhance<HomeActivityApplyprovi
                 return;
             }
 
+            File file = new File(selectList.get(0).getPath());
             if (mPhotoAlbum_RequestCode == RequestCode_SelectLicense) {
                 viewModel.valueLicenseLocalPath.set(selectList.get(0).getPath());
+                GlideApp.with(OperatorApplyAct.this)
+                        .load(file)
+                        .into(binding.ivLicense);
             } else {
                 viewModel.valueLogoLocalPath.set(selectList.get(0).getPath());
+                GlideApp.with(OperatorApplyAct.this)
+                        .load(file)
+                        .into(binding.ivLogo);
             }
 
-            viewModel.requetUploadPicture(mPhotoAlbum_RequestCode == RequestCode_SelectLicense);
+
+//            viewModel.requetUploadPicture(mPhotoAlbum_RequestCode == RequestCode_SelectLicense);
         }
 
     }

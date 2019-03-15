@@ -35,7 +35,7 @@ public class GuideActivity extends Activity {
          * 在 BGABanner 里已经帮开发者处理了防止重复点击事件
          * 在 BGABanner 里已经帮开发者处理了「跳过按钮」和「进入按钮」的显示与隐藏
          */
-        mForegroundBanner.setEnterSkipViewIdAndDelegate(R.id.btn_guide_enter, R.id.tv_guide_skip, new BGABanner.GuideDelegate() {
+        mForegroundBanner.setEnterSkipViewIdAndDelegate(R.id.btn_guide_into, R.id.tv_guide_skip, new BGABanner.GuideDelegate() {
             @Override
             public void onClickEnterOrSkip() {
                 startActivity(new Intent(GuideActivity.this, MainActivity.class));
@@ -53,10 +53,10 @@ public class GuideActivity extends Activity {
                 R.mipmap.main_guide2,
                 R.mipmap.main_guide3);
 
-        /*mForegroundBanner.setData(localImageSize, ImageView.ScaleType.CENTER_CROP,
-                R.mipmap.main_temp_uoko_guide_foreground_1,
-                R.mipmap.main_temp_uoko_guide_foreground_1,
-                R.mipmap.main_temp_uoko_guide_foreground_1);*/
+        mForegroundBanner.setData(localImageSize, ImageView.ScaleType.CENTER_CROP,
+                R.mipmap.main_guide1,
+                R.mipmap.main_guide2,
+                R.mipmap.main_guide3);
     }
 
     @Override

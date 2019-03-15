@@ -8,6 +8,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/app_icon"
             android:supportsRtl="true"
+            android:networkSecurityConfig="@xml/app_network_security_config"
             android:theme="@style/AppTheme">
         <activity
             android:name="com.lcworld.module_main.activity.SplashActivity"

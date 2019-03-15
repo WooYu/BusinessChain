@@ -35,18 +35,17 @@ public interface ApiServiceInterf {
 
     //首页
     //招商加盟
-    //获取审核信息
-    @GET("home/carrier-operator")
-    Observable<RequestResult<DataCarrieroperatorCheckDTO>> homeCarrierOperator();
+    //获取招商加盟信息
+    @GET("home/group")
+    Observable<RequestResult<DataGroupDTO>> homeGroup();
 
     //申请加盟
-    @GET("home/carrier-operator")
-    Observable<RequestResult<DataCarrieroperatorCheckDTO>> homeCarrierOperator(
-            @Query("id") Integer id, @Query("mobile") String mobile, @Query("wechat") String wechat
-            , @Query("contactMobile") String contactMobile, @Query("provinceName") String provinceName
-            , @Query("cityName") String cityName, @Query("countyName") String countyName);
-
-    //修改招商加盟信息
+    @GET("home/group")
+    Observable<RequestResult<DataGroupDTO>> homeGroup(
+            @Query("groupName") String groupName, @Query("groupPhone") String groupPhone, @Query("userName") String userName
+            , @Query("userPosition") String userPosition, @Query("userPhone") String userPhone
+            , @Query("creditCode") String creditCode, @Query("groupAddress") String groupAddress
+            , @Query("businessLicense") String businessLicense, @Query("groupLog") String groupLog);
 
 
     //拼团采集

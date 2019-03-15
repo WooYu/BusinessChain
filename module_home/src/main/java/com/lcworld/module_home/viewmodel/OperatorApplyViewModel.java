@@ -16,7 +16,9 @@ import com.lcworld.library_base.http.RetrofitClient;
 import com.lcworld.library_base.http.RxUtilsEnhanced;
 import com.lcworld.module_home.ApiServiceInterf;
 import com.lcworld.module_home.R;
+import com.lcworld.module_home.activity.OperatorAuditResultAct;
 import com.lcworld.module_home.bean.DataFileVo;
+import com.lcworld.module_home.bean.DataGroupDTO;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
 import okhttp3.MediaType;
@@ -74,6 +76,8 @@ public class OperatorApplyViewModel extends BaseViewModelEnhance {
             dialogControll_show(DialogControllTypeInterf.WARNING, getApplication().getResources().getString(R.string.home_error_phone));
             return;
         }
+
+        requestApply();
     }
 
     private void updateViewEnableBtnSubmit() {
@@ -112,5 +116,19 @@ public class OperatorApplyViewModel extends BaseViewModelEnhance {
 
     }
 
+    public void requestApply() {
+        RetrofitClient.getInstance().create(ApiServiceInterf.class)
+                .homeGroup(valueCompanyName.get(), valuePhone.get(), valuePhone.get(), valueLinkManName.get(), valueJobTitle.get()
+                        , valueCreditNum.get(), valueCompanyAddr.get(), "", "")
+                .compose(RxUtilsEnhanced.implicitTransform())
+                .subscribe(new ResponseObserver<RequestResult<DataGroupDTO>>() {
 
+                    @Override
+                    public void onSuccess(RequestResult<DataGroupDTO> dataGroupDTORequestResult) {
+                        startActivity(OperatorAuditResultAct.class);
+                        finish();
+                    }
+                });
+
+    }
 }

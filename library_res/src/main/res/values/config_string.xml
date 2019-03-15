@@ -60,6 +60,7 @@
         <item>shangbiPlugin</item>
         <item>alipayDirectPlugin</item>
         <item>weixinPayPlugin</item>
+        <item>yuePlugin</item>
     </string-array>
 
     //订单状态（查询）：

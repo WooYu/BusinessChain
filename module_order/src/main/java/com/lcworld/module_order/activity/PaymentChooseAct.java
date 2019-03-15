@@ -2,6 +2,7 @@ package com.lcworld.module_order.activity;
 
 import android.annotation.SuppressLint;
 import android.databinding.Observable;
+import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import com.alipay.sdk.app.PayTask;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lcworld.library_base.base.BaseActivityEnhance;
+import com.lcworld.library_base.extension.ListChangedCallbackImpl;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.BR;
 import com.lcworld.module_order.R;
@@ -62,6 +64,7 @@ public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentCh
 
         initObservableAlipayOrderInfo();
         initObservableWechatOrderInfo();
+        initObservablePayMethodReturn();
     }
 
     private void initViewTitle() {
@@ -87,7 +90,17 @@ public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentCh
         binding.rvPaymethod.setAdapter(mPayMethodAdapter);
     }
 
-    private void  initObservableAlipayOrderInfo() {
+    private void initObservablePayMethodReturn() {
+        viewModel.valuePayMethodList.addOnListChangedCallback(new ListChangedCallbackImpl() {
+            @Override
+            public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
+                super.onItemRangeInserted(sender, positionStart, itemCount);
+                mPayMethodAdapter.setNewData(viewModel.valuePayMethodList);
+            }
+        });
+    }
+
+    private void initObservableAlipayOrderInfo() {
         viewModel.valueAlipayOrderInfo.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
