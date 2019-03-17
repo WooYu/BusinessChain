@@ -6,10 +6,12 @@ import android.databinding.ObservableField;
 import android.databinding.adapters.TextViewBindingAdapter;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.blankj.utilcode.util.RegexUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.extension.DialogControllTypeInterf;
+import com.lcworld.library_base.extension.utils.ImageExUtils;
 import com.lcworld.library_base.http.RequestResult;
 import com.lcworld.library_base.http.ResponseObserver;
 import com.lcworld.library_base.http.RetrofitClient;
@@ -51,8 +53,14 @@ public class OperatorApplyViewModel extends BaseViewModelEnhance {
     public final ObservableField<String> valueLicenseLocalPath = new ObservableField<>();
     //企业LOGO本地图片路径
     public final ObservableField<String> valueLogoLocalPath = new ObservableField<>();
+    //企业营业执照网络图片路径
+    public final ObservableField<String> valueLicenseNetworkPath = new ObservableField<>();
+    //企业LOGO网络图片路径
+    public final ObservableField<String> valueLogoNetworkPath = new ObservableField<>();
+
     //提交审核是否可以点击
     public final ObservableBoolean enableBtnSubmit = new ObservableBoolean();
+
     //点击提交审核
     public final BindingCommand clickBtnSubmit = new BindingCommand(new BindingAction() {
         @Override
@@ -77,6 +85,16 @@ public class OperatorApplyViewModel extends BaseViewModelEnhance {
             return;
         }
 
+        if (ObjectUtils.isEmpty(valueLicenseNetworkPath.get())) {
+            dialogControll_show(DialogControllTypeInterf.WARNING, getApplication().getResources().getString(R.string.home_error_license));
+            return;
+        }
+
+        if (ObjectUtils.isEmpty(valueLogoNetworkPath.get())) {
+            dialogControll_show(DialogControllTypeInterf.WARNING, getApplication().getResources().getString(R.string.home_error_logo));
+            return;
+        }
+
         requestApply();
     }
 
@@ -93,24 +111,31 @@ public class OperatorApplyViewModel extends BaseViewModelEnhance {
         );
     }
 
-    public void requetUploadPicture(boolean bLicense) {
-        File file = null;
+    public void requetUploadPicture(final boolean bLicense) {
+        File file;
         if (bLicense) {
             file = new File(valueLicenseLocalPath.get());
         } else {
             file = new File(valueLogoLocalPath.get());
         }
-        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        MultipartBody.Part body =
-                MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
+        String contentType = ImageExUtils.contentType(FileUtils.getFileExtension(file));
+        contentType = ObjectUtils.isEmpty(contentType) ? "image/jpg" : contentType;
+        RequestBody requestBody = RequestBody.create(MediaType.parse(contentType), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
-                .fileUploaders(body, "other")
+                .fileUploaders(getApplication().getResources().getStringArray(R.array.scene_type)[3], body)
                 .compose(RxUtilsEnhanced.implicitTransform())
                 .subscribe(new ResponseObserver<RequestResult<DataFileVo>>() {
 
                     @Override
                     public void onSuccess(RequestResult<DataFileVo> dataFileVoRequestResult) {
-
+                        if (bLicense) {
+                            valueLicenseNetworkPath.set(dataFileVoRequestResult.getData().getUrl());
+                        } else {
+                            valueLogoNetworkPath.set(dataFileVoRequestResult.getData().getUrl());
+                        }
                     }
                 });
 
@@ -119,7 +144,8 @@ public class OperatorApplyViewModel extends BaseViewModelEnhance {
     public void requestApply() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .homeGroup(valueCompanyName.get(), valuePhone.get(), valuePhone.get(), valueLinkManName.get(), valueJobTitle.get()
-                        , valueCreditNum.get(), valueCompanyAddr.get(), "", "")
+                        , valueCreditNum.get(), valueCompanyAddr.get(), valueLicenseNetworkPath.get()
+                        , valueLogoNetworkPath.get())
                 .compose(RxUtilsEnhanced.implicitTransform())
                 .subscribe(new ResponseObserver<RequestResult<DataGroupDTO>>() {
 

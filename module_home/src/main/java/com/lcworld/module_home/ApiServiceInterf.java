@@ -83,6 +83,9 @@ public interface ApiServiceInterf {
     @Headers({"url_name:module_base"})
     @Multipart
     @POST("uploaders")
-    Observable<RequestResult<DataFileVo>> fileUploaders(@Part MultipartBody.Part file, @Query("scene") String scene);
+    Observable<RequestResult<DataFileVo>> fileUploaders(
+            @Part("scene") String scene,
+            @Part MultipartBody.Part file);
 
+//    @Part MultipartBody.Part file, @Query("scene") String scene
 }

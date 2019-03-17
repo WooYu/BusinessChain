@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.lcworld.businesschain">
 
     <application
@@ -9,14 +10,15 @@
             android:roundIcon="@mipmap/app_icon"
             android:supportsRtl="true"
             android:networkSecurityConfig="@xml/app_network_security_config"
-            android:theme="@style/AppTheme">
+            tools:replace="android:theme"
+            android:theme="@style/AppMainTheme">
         <activity
-            android:name="com.lcworld.module_main.activity.SplashActivity"
+                android:name="com.lcworld.module_main.activity.SplashActivity"
                 android:theme="@style/MainAppTheme.Start">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity

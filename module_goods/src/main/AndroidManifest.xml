@@ -3,7 +3,7 @@
 
     <application>
         <activity android:name="com.lcworld.module_goods.activity.ProductDetailAct"
-                  android:theme="@style/MainTheme.TranslucentTheme"/>
+                android:theme="@style/AppMainTheme"/>
     </application>
 
 </manifest>

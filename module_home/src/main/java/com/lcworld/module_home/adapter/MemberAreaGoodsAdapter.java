@@ -11,7 +11,7 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.businesschain.GlideApp;
-import com.lcworld.library_base.extension.ConvertExUtils;
+import com.lcworld.library_base.extension.utils.ConvertExUtils;
 import com.lcworld.module_home.R;
 import com.lcworld.module_home.bean.DataGoodsInfo;
 import com.qmuiteam.qmui.widget.QMUIRadiusImageView;

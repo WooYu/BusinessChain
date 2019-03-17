@@ -3,7 +3,7 @@ package com.lcworld.module_home.adapter;
 import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.lcworld.library_base.extension.ConvertExUtils;
+import com.lcworld.library_base.extension.utils.ConvertExUtils;
 import com.lcworld.module_home.R;
 import com.lcworld.module_home.bean.DataMessageNoticeLog;
 

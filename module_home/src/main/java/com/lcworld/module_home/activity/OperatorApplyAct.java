@@ -73,7 +73,7 @@ public class OperatorApplyAct extends BaseActivityEnhance<HomeActivityApplyprovi
             }
 
 
-//            viewModel.requetUploadPicture(mPhotoAlbum_RequestCode == RequestCode_SelectLicense);
+            viewModel.requetUploadPicture(mPhotoAlbum_RequestCode == RequestCode_SelectLicense);
         }
 
     }
@@ -130,7 +130,6 @@ public class OperatorApplyAct extends BaseActivityEnhance<HomeActivityApplyprovi
                 .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
                 .previewImage(true)// 是否可预览图片 true or false
                 .isCamera(true)// 是否显示拍照按钮 true or false
-                .imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
                 .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
                 .previewEggs(true)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中) true or false
                 .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code

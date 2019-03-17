@@ -4,13 +4,16 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
                 name="viewModel"
                 type="com.lcworld.module_goods.viewmodel.ProductDetailViewModel"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
+            android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -158,22 +161,25 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-        <FrameLayout android:layout_width="0dp"
-                     android:background="@color/white"
-                     android:layout_height="0dp"
-                     app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
-                     app:layout_constraintEnd_toEndOf="parent"
-                     app:layout_constraintStart_toStartOf="parent"
-                     app:layout_constraintTop_toTopOf="@id/bg_bottom">
+        <FrameLayout
+                android:layout_width="0dp"
+                android:background="@color/white"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/bg_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bg_bottom">
 
             <ViewStub
                     android:id="@+id/vStub_bottomA"
-                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout="@layout/goods_layout_productdetail_bottom_a"/>
 
             <ViewStub
                     android:id="@+id/vStub_bottomB"
-                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout="@layout/goods_layout_productdetail_bottom_b"/>
         </FrameLayout>
 

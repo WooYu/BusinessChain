@@ -18,7 +18,7 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                inGuide();
+                inMain();
             }
         }, 1000);
     }

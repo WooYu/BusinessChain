@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.extension.DialogControllTypeInterf;
-import com.lcworld.library_base.extension.RegexExUtil;
+import com.lcworld.library_base.extension.utils.RegexExUtil;
 import com.lcworld.library_base.http.RequestResultImp;
 import com.lcworld.library_base.http.ResponseObserver;
 import com.lcworld.library_base.http.RetrofitClient;

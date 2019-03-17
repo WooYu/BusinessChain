@@ -94,6 +94,7 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
                 binding.wvDetail.loadDataWithBaseURL(null, viewModel.productDetail.get(), "text/html", "utf-8", null);
+//                binding.wvDetail.loadUrl("http://www.baidu.com");
             }
         });
     }
@@ -116,7 +117,7 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setUseWideViewPort(true);
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);//把html中的内容放大webview等宽的一列中
+//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);//把html中的内容放大webview等宽的一列中
         webSettings.setLoadWithOverviewMode(true);
 
     }

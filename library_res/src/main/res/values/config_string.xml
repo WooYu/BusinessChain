@@ -101,4 +101,12 @@
         <item>grade_asc</item>
         <item>grade_desc</item>
     </string-array>
+
+    //上传图片的业务场景
+    <string-array name="scene_type">
+        <item>goods</item>
+        <item>shop</item>
+        <item>member</item>
+        <item>other</item>
+    </string-array>
 </resources>

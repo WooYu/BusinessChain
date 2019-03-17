@@ -7,8 +7,7 @@
         <activity
             android:name="com.lcworld.module_main.activity.GuideActivity"
             android:theme="@style/MainTheme.FullScreen" />
-        <activity android:name="com.lcworld.module_main.activity.MainActivity"
-            android:theme="@style/MainTheme.TranslucentTheme"/>
+        <activity android:name="com.lcworld.module_main.activity.MainActivity"/>
     </application>
 
 </manifest>

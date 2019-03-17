@@ -26,6 +26,8 @@
 
     <!--错误提示-->
     <string name="home_error_phone">请输入正确的电话号码！</string>
+    <string name="home_error_license">请重新选择企业营业执照！</string>
+    <string name="home_error_logo">请重新选择企业LOGO！</string>
 
     <!--StringFormat-->
     <string name="home_format_chainid">商链号：%s</string>

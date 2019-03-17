@@ -12,7 +12,7 @@ import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
-import com.lcworld.library_base.extension.RegexExUtil;
+import com.lcworld.library_base.extension.utils.RegexExUtil;
 import com.lcworld.library_base.global.SPKeyGlobal;
 import com.lcworld.library_base.http.*;
 import com.lcworld.library_base.model.DataLogin;

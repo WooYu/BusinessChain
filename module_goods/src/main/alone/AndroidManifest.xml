@@ -9,7 +9,7 @@
         android:label="@string/goods_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppMainTheme"
         tools:replace="label">
         <activity android:name="com.lcworld.module_goods.debug.DebugActivity">
             <intent-filter>
@@ -18,7 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.lcworld.module_goods.activity.ProductDetailAct"
-                  android:theme="@style/MainTheme.TranslucentTheme"/>
+        <activity android:name="com.lcworld.module_goods.activity.ProductDetailAct"/>
     </application>
 </manifest>

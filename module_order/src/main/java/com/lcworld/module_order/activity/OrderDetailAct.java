@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import com.lcworld.businesschain.GlideApp;
 import com.lcworld.library_base.base.BaseActivityEnhance;
-import com.lcworld.library_base.extension.ConvertExUtils;
+import com.lcworld.library_base.extension.utils.ConvertExUtils;
 import com.lcworld.module_order.BR;
 import com.lcworld.module_order.R;
 import com.lcworld.module_order.bean.DataOrderDTO;

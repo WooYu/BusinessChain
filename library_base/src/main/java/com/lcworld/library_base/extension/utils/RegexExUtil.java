@@ -1,4 +1,4 @@
-package com.lcworld.library_base.extension;
+package com.lcworld.library_base.extension.utils;
 
 /**
  * 扩展{@link com.blankj.utilcode.util.RegexUtils}

@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.lcworld.library_base.extension.ConvertExUtils"/>
+        <import type="com.lcworld.library_base.extension.utils.ConvertExUtils"/>
         <variable name="viewModel" type="com.lcworld.module_order.viewmodel.OrderConfirmAViewModel"/>
     </data>
 
