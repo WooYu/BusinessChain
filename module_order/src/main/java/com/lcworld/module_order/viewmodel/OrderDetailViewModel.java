@@ -27,7 +27,7 @@ public class OrderDetailViewModel extends BaseViewModelEnhance {
         @Override
         public void call() {
             ARouter.getInstance().build(RouterActivityPath.Product.PAGER_PRODUCTDETAIL)
-                    .withInt("goods_id", valueDataOrderDetail.get().getSku_list().get(0).getGoods_id())
+                    .withInt("goods_id", valueDataOrderDetail.get().getOrder_sku_list().get(0).getGoods_id())
                     .navigation();
         }
     });

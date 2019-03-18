@@ -107,7 +107,7 @@ public class OrderListFrag extends BaseFragmentEnhance<OrderFragMyorderBinding, 
         mOrderAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                clickedChildView(viewModelId, mOrderAdapter.getData().get(position).getSku_list().get(0).getGoods_id());
+                clickedChildView(view.getId(), mOrderAdapter.getData().get(position).getSku_list().get(0).getGoods_id());
             }
         });
     }
@@ -160,7 +160,9 @@ public class OrderListFrag extends BaseFragmentEnhance<OrderFragMyorderBinding, 
                     .withInt("sku_id", goods_id)
                     .navigation();
         } else if (viewid == R.id.btn_paid_buyagain || viewid == R.id.btn_settled_buyagain || viewid == R.id.btn_invalid_buyagain) {
-
+            ARouter.getInstance().build(RouterActivityPath.Product.PAGER_PRODUCTDETAIL)
+                    .withInt("goods_id", goods_id)
+                    .navigation();
         }
 
     }
