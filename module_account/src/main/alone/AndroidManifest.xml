@@ -24,5 +24,6 @@
         <activity android:name="com.lcworld.module_account.activity.RegistFirstActivity"/>
         <activity android:name="com.lcworld.module_account.activity.SetPasswordActivity"/>
         <activity android:name="com.lcworld.module_account.activity.RetrieveFirstActivity"/>
+        <activity android:name="com.lcworld.module_account.activity.BrowseTextActivity"/>
     </application>
 </manifest>

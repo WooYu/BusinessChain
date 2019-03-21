@@ -99,13 +99,9 @@ public class RequestExceptionHandle {
                     ex = new ResponseThrowable(e, ErrorConvention.AUTH_ERROR);
                     ex.message = paramsException.getMessage();
                     break;
-                case PARAMSERROR:
+                default:
                     ex = new ResponseThrowable(e, ErrorConvention.PARAMS_ERROR);
                     ex.message = paramsException.getMessage();
-                    break;
-                default:
-                    ex = new ResponseThrowable(e, ErrorConvention.UNKNOWN);
-                    ex.message = "网络错误";
                     break;
             }
         } else {

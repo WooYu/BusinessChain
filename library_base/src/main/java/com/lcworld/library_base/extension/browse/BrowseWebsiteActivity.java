@@ -1,4 +1,4 @@
-package com.lcworld.library_base.base;
+package com.lcworld.library_base.extension.browse;
 
 import android.net.http.SslError;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 /**
  * 只加载网页的activity
  */
-public class BrowseActivity extends AppCompatActivity {
+public class BrowseWebsiteActivity extends AppCompatActivity {
 
     public final static String PARAM_URL = "param_url";
     public final static String PARAM_TITLE = "param_title";
@@ -30,8 +30,7 @@ public class BrowseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browse);
-
+        setContentView(R.layout.activity_browse_website);
         QMUIStatusBarHelper.setStatusBarLightMode(this);
 
         initData();

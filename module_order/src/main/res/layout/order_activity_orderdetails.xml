@@ -4,8 +4,13 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <variable name="viewModel" type="com.lcworld.module_order.viewmodel.OrderDetailViewModel"/>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_order.viewmodel.OrderDetailViewModel"/>
+
         <import type="com.lcworld.module_order.bean.DataOrderDTO"/>
     </data>
 
@@ -21,11 +26,11 @@
 
         <ScrollView
                 android:layout_width="match_parent"
-                android:paddingBottom="61dp"
                 android:layout_height="match_parent">
 
             <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
+                    android:paddingBottom="61dp"
                     android:layout_height="wrap_content">
 
                 <android.support.constraint.Guideline

@@ -94,7 +94,6 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
                 binding.wvDetail.loadDataWithBaseURL(null, viewModel.productDetail.get(), "text/html", "utf-8", null);
-//                binding.wvDetail.loadUrl("http://www.baidu.com");
             }
         });
     }
@@ -103,6 +102,7 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
         viewModel.productType.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
+                updateView_PriceUnit();
                 updateView_BottomOperation();
             }
         });
@@ -136,6 +136,17 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
 
         binding.viewBanner.setAutoPlayAble(viewModel.galleryInfoList.size() > 1);
         binding.viewBanner.setData(viewModel.galleryInfoList, null);
+    }
+
+    private void updateView_PriceUnit(){
+        String[] configGoodsType = getResources().getStringArray(R.array.goods_type);
+        if(viewModel.productType.get().equals(configGoodsType[2])){
+            binding.ivFlagPrice1.setImageResource(R.mipmap.goods_detail_diamond_a);
+            binding.ivFlagPrice2.setImageResource(R.mipmap.goods_detail_diamond_b);
+        }else{
+            binding.ivFlagPrice1.setImageResource(R.mipmap.goods_detail_money_a);
+            binding.ivFlagPrice2.setImageResource(R.mipmap.goods_detail_money_b);
+        }
     }
 
     private void updateView_BottomOperation() {

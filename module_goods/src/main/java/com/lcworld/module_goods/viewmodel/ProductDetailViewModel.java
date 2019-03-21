@@ -89,7 +89,7 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
                             oPrice.set(detailInfo.getSprice());
                         }
                         prodouctName.set(detailInfo.getGoods_name());
-                        productDetail.set("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />"+detailInfo.getIntro());
+                        productDetail.set("<meta name=\"viewport\" content=\"width=device-width, initial-scale=0.45\" />"+detailInfo.getIntro());
 
                         if (ObjectUtils.isEmpty(detailInfo.getGoods_type())) {
                             productType.set(getApplication().getResources().getStringArray(R.array.goods_type)[0]);

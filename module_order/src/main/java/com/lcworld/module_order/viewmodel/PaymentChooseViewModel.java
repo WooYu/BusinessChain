@@ -7,12 +7,12 @@ import android.support.annotation.NonNull;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
-import com.lcworld.library_base.base.BrowseActivity;
 import com.lcworld.library_base.extension.utils.ConvertExUtils;
 import com.lcworld.library_base.http.*;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.ApiServiceInterf;
 import com.lcworld.module_order.R;
+import com.lcworld.module_order.activity.BrowseTextActivity;
 import com.lcworld.module_order.bean.DataPaymentMethodVo;
 import com.lcworld.module_order.bean.DataTradeVo;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
@@ -45,9 +45,8 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
         @Override
         public void call() {
             Bundle bundle = new Bundle();
-            bundle.putString("param_url", "https://lanhuapp.com/webapp/#/share?id=25385eb7-246a-4b30-8fd3-f55d1d1c6a8c&team_id=d46f37c5-d1cc-40ce-8532-0ec014ec21d9");
-            bundle.putString("param_title", "银行");
-            startActivity(BrowseActivity.class, bundle);
+            bundle.putInt(BrowseTextActivity.PARAM_SYSTXT, getApplication().getResources().getIntArray(R.array.config_systxt)[3]);
+            startActivity(BrowseTextActivity.class, bundle);
         }
     });
 

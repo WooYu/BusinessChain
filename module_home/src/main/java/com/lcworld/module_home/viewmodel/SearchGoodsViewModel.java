@@ -93,6 +93,7 @@ public class SearchGoodsViewModel extends BaseViewModelEnhance {
             list.add(entry.getValue());
         }
         valueLocalList.clear();
+        Collections.reverse(list);
         valueLocalList.addAll(list);
     }
 

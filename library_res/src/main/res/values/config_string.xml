@@ -35,7 +35,7 @@
         <item>recommend</item>
     </string-array>
 
-    //商品类型NORMAL普通POINT积分SHANGBI商币PINTUAN拼团
+    //商品类型:NORMAL普通\POINT积分\SHANGBI商币\PINTUAN拼团
     <string-array name="goods_type">
         <item>normal</item>
         <item>point</item>

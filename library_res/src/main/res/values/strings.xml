@@ -14,4 +14,12 @@
     <!--权限-->
     <string name="permission_photoalbum_denied">访问相册需要您开启“相机”、“存储”权限！</string>
     <string name="permission_photoalbum_denied_neverask">访问相册需要您开启“相机”、“存储”权限，请到“设置-应用程序”中开启！</string>
+
+
+    <string name="title_aboutus">关于我们</string>
+    <string name="title_spellgroupcontract">拼团合同</string>
+    <string name="title_payAgreement">拼团支付协议</string>
+    <string name="title_faq">常见问题</string>
+    <string name="title_registProtocol">注册协议</string>
+    <string name="title_upgradeIntro">成长值介绍</string>
 </resources>

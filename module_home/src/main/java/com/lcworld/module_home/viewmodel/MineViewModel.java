@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.SPUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
+import com.lcworld.library_base.global.SPKeyGlobal;
 import com.lcworld.library_base.http.RequestResult;
 import com.lcworld.library_base.http.ResponseObserver;
 import com.lcworld.library_base.http.RetrofitClient;
@@ -69,8 +70,10 @@ public class MineViewModel extends BaseViewModelEnhance {
     public BindingCommand loginOutOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            SPUtils.getInstance().clear();
+            SPUtils.getInstance().remove(SPKeyGlobal.KEY_LOGIN_INFO);
+            SPUtils.getInstance().remove(SPKeyGlobal.Key_Account_Access_Token);
             isLogin.set(false);
+            ARouter.getInstance().build(RouterActivityPath.Account.PAGER_LOGIN).navigation();
         }
     });
 

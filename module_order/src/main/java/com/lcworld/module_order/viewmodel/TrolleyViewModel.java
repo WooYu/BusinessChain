@@ -28,6 +28,11 @@ public class TrolleyViewModel extends BaseViewModelEnhance {
         super(application);
 
         valueTitleRight.set(application.getString(R.string.order_trolley_subtitle1));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         requestShoppingCartList();
     }
 
@@ -86,7 +91,7 @@ public class TrolleyViewModel extends BaseViewModelEnhance {
     public void requestShoppingCartList() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .tradeCartsAll()
-                .compose(RxUtilsEnhanced.implicitTransform())
+                .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResult<DataCartView>>() {
 
                     @Override
@@ -131,7 +136,7 @@ public class TrolleyViewModel extends BaseViewModelEnhance {
 
     //点击了全选按钮
     public void requestUpdateAllCheckStatus() {
-        int checked = getApplication().getResources().getIntArray(R.array.config_trolley_checkstatus)[valueAllChecked.get() ? 1 : 0];
+        int checked = getApplication().getResources().getIntArray(R.array.config_trolley_checkstatus)[valueAllChecked.get() ? 0 : 1];
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .tradeCartsChecked(checked)
                 .compose(RxUtilsEnhanced.explicitTransform())
@@ -139,6 +144,7 @@ public class TrolleyViewModel extends BaseViewModelEnhance {
 
                     @Override
                     public void onSuccess(RequestResultImp requestResultImp) {
+                        valueAllChecked.set(!valueAllChecked.get());
                         requestShoppingCartList();
                     }
                 });

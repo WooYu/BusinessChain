@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout>
+
     <data>
-        <variable name="viewModel" type="com.lcworld.module_order.viewmodel.TrolleyViewModel"/>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_order.viewmodel.TrolleyViewModel"/>
+
         <import type="android.view.View"/>
     </data>
 
@@ -57,11 +62,20 @@
                         android:textColor="@color/tx_colorb"
                         android:text="@string/order_trolley_checkall"
                         android:textSize="@dimen/tx_size13"
-                        app:onClickCommand="@{viewModel.clickedAllChecked}"
                         android:checked="@={viewModel.valueAllChecked}"
+                        android:enabled="false"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
+
+                <View
+                        android:layout_width="0dp"
+                        app:layout_constraintStart_toStartOf="@id/cbox_checkall"
+                        app:layout_constraintEnd_toEndOf="@id/cbox_checkall"
+                        app:layout_constraintTop_toTopOf="@id/cbox_checkall"
+                        app:onClickCommand="@{viewModel.clickedAllChecked}"
+                        app:layout_constraintBottom_toBottomOf="@id/cbox_checkall"
+                        android:layout_height="0dp"/>
 
                 <TextView
                         android:id="@+id/tv_total_desc"
@@ -131,10 +145,20 @@
                         android:text="@string/order_trolley_checkall"
                         app:onClickCommand="@{viewModel.clickedAllChecked}"
                         android:checked="@={viewModel.valueAllChecked}"
+                        android:enabled="false"
                         android:textSize="@dimen/tx_size13"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
+
+                <View
+                        android:layout_width="0dp"
+                        app:layout_constraintStart_toStartOf="@id/cbox_edit_checkall"
+                        app:layout_constraintEnd_toEndOf="@id/cbox_edit_checkall"
+                        app:layout_constraintTop_toTopOf="@id/cbox_edit_checkall"
+                        app:onClickCommand="@{viewModel.clickedAllChecked}"
+                        app:layout_constraintBottom_toBottomOf="@id/cbox_edit_checkall"
+                        android:layout_height="0dp"/>
 
                 <Button
                         android:id="@+id/btn_edit_settle"

@@ -1,6 +1,7 @@
 package com.lcworld.module_order.adapter;
 
 import android.support.annotation.Nullable;
+import com.blankj.utilcode.util.ObjectUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.lcworld.businesschain.GlideApp;
@@ -46,6 +47,9 @@ public class OrderListAdapter extends BaseQuickAdapter<DataOrderDTO, BaseViewHol
         helper.setVisible(R.id.group_invalid, false);
         if (order_status.equals(statusArr[3]) || order_status.equals(statusArr[4]) || order_status.equals(statusArr[5])) {
             helper.setVisible(R.id.group_paid, true);
+            helper.setVisible(R.id.btn_paid_pickup
+                    , (ObjectUtils.isNotEmpty(dataSKUVo.getGoods_type()) &&
+                            dataSKUVo.getGoods_type().equals(mContext.getResources().getStringArray(R.array.goods_type)[3])));
         } else if (order_status.equals(statusArr[6])) {
             helper.setVisible(R.id.group_settled, true);
         } else if (order_status.equals(statusArr[7])) {

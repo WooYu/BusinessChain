@@ -203,7 +203,6 @@
             android:text="@={viewModel.referralcode}"
             android:hint="@string/account_hint_referralcode"
             android:textSize="@dimen/tx_size15"
-            android:afterTextChanged="@{viewModel.referralcodeAfterTextChanged()}"
             android:textColorHint="@color/tx_colord"
             android:textColor="@color/tx_colorb"
             android:inputType="text"

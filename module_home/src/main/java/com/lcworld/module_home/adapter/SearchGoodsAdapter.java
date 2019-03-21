@@ -40,7 +40,10 @@ public class SearchGoodsAdapter extends BaseQuickAdapter<DataGoodsInfo, BaseView
                 , ConvertExUtils.formatMoney(item.getSprice())));
         helper.setText(R.id.tv_dicountprice, String.format(mContext.getString(R.string.format_money)
                 , ConvertExUtils.formatMoney(item.getPrice())));
-
+//        ((TextView)helper.getView(R.id.tv_originalprice)).setCompoundDrawablesWithIntrinsicBounds(null,
+//               mContext.getResources().getDrawable(R.mipmap.home_filtrate_grid, null), null, null);
+//        ((TextView)helper.getView(R.id.tv_dicountprice)).setCompoundDrawablesWithIntrinsicBounds(null,
+//                mContext.getResources().getDrawable(R.mipmap.home_filtrate_grid, null), null, null);
     }
 
 }

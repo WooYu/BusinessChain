@@ -10,13 +10,13 @@ import android.text.Editable;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.blankj.utilcode.util.RegexUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
-import com.lcworld.library_base.base.BrowseActivity;
 import com.lcworld.library_base.http.RequestResultImp;
 import com.lcworld.library_base.http.ResponseObserver;
 import com.lcworld.library_base.http.RetrofitClient;
 import com.lcworld.library_base.http.RxUtilsEnhanced;
 import com.lcworld.module_account.ApiServiceInterf;
 import com.lcworld.module_account.R;
+import com.lcworld.module_account.activity.BrowseTextActivity;
 import com.lcworld.module_account.activity.SetPasswordActivity;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -45,7 +45,7 @@ public class RegistViewModel extends BaseViewModelEnhance {
 
                 if (ObjectUtils.isEmpty(s)) {
                     uc.authcodeEnableObservable.set(false);
-                }else{
+                } else {
                     uc.authcodeEnableObservable.set(RegexUtils.isMobileSimple(s.toString()));
                 }
 
@@ -78,16 +78,6 @@ public class RegistViewModel extends BaseViewModelEnhance {
     //推荐码的绑定
     public ObservableField<String> referralcode = new ObservableField<>("");
 
-    //推荐码的输入监听
-    public TextViewBindingAdapter.AfterTextChanged referralcodeAfterTextChanged() {
-        return new TextViewBindingAdapter.AfterTextChanged() {
-            @Override
-            public void afterTextChanged(Editable s) {
-                nextbtn_enable();
-            }
-        };
-    }
-
     //协议同意的监听
     private ObservableField<Boolean> protocol = new ObservableField<>(false);
     //协议同意的选择
@@ -104,9 +94,8 @@ public class RegistViewModel extends BaseViewModelEnhance {
                 @Override
                 public void call() {
                     Bundle bundle = new Bundle();
-                    bundle.putString(BrowseActivity.PARAM_URL, "http://www.baidu.com");
-                    bundle.putString(BrowseActivity.PARAM_TITLE, getApplication().getString(R.string.account_regist_protocol_title));
-                    startActivity(BrowseActivity.class, bundle);
+                    bundle.putInt(BrowseTextActivity.PARAM_SYSTXT, getApplication().getResources().getIntArray(R.array.config_systxt)[5]);
+                    startActivity(BrowseTextActivity.class, bundle);
                 }
             });
 
@@ -144,9 +133,8 @@ public class RegistViewModel extends BaseViewModelEnhance {
     private void nextbtn_enable() {
         boolean validPhone = RegexUtils.isMobileSimple(telephone.get());
         boolean validAuthcode = ObjectUtils.isNotEmpty(authcodeValue.get());
-        boolean validReferralcode = ObjectUtils.isNotEmpty(referralcode.get());
         boolean agreeProtocol = protocol.get();
-        uc.nextEnableObservable.set(validPhone && validAuthcode && validReferralcode && agreeProtocol);
+        uc.nextEnableObservable.set(validPhone && validAuthcode && agreeProtocol);
     }
 
     //验证码倒计时
@@ -191,7 +179,7 @@ public class RegistViewModel extends BaseViewModelEnhance {
     //校验验证码
     private void requestCheckAuthcode() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
-                .registerSmscodeCheck(telephone.get(), authcodeValue.get(),referralcode.get())
+                .registerSmscodeCheck(telephone.get(), authcodeValue.get(), referralcode.get())
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResultImp>() {
                     @Override
@@ -199,7 +187,7 @@ public class RegistViewModel extends BaseViewModelEnhance {
                         Bundle bundle = new Bundle();
                         bundle.putString("mobile", telephone.get());
                         bundle.putString("referralcode", referralcode.get());
-                        startActivity(SetPasswordActivity.class,bundle);
+                        startActivity(SetPasswordActivity.class, bundle);
                     }
                 });
 

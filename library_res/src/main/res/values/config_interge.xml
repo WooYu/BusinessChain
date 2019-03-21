@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--验证码失效时间-->
-    <integer name="config_validtime_authcode">3</integer>
+    <integer name="config_validtime_authcode">60</integer>
     <!--自动轮播时间间隔-->
     <integer name="config_banner_pointAutoPlayInterval">3000</integer>
     <!--首页自由购数量-->
@@ -27,5 +27,16 @@
     <integer-array name="config_isread">
         <item>0</item>
         <item>1</item>
+    </integer-array>
+    
+    <!--0拼团客服电话 10关于我们 20拼团合同 30拼团支付协议 40 常见问题 50注册协议 60成长值介绍-->
+    <integer-array name="config_systxt">
+        <item>0</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
     </integer-array>
 </resources>

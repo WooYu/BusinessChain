@@ -3,6 +3,7 @@ package com.lcworld.module_order.viewmodel;
 import android.app.Application;
 import android.databinding.*;
 import android.databinding.adapters.TextViewBindingAdapter;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -16,6 +17,7 @@ import com.lcworld.library_base.http.RxUtilsEnhanced;
 import com.lcworld.library_base.router.RouterActivityPath;
 import com.lcworld.module_order.ApiServiceInterf;
 import com.lcworld.module_order.R;
+import com.lcworld.module_order.activity.BrowseTextActivity;
 import com.lcworld.module_order.bean.DataOrderProfitDiamond;
 import com.lcworld.module_order.bean.DataPintuanPayOrderInfoDTO;
 import com.lcworld.module_order.bean.DataProportionDTO;
@@ -65,6 +67,15 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
             uc.showSalesCycle.set(!uc.showSalesCycle.get());
         }
     });
+    //合同明细的点击事件
+    public BindingCommand clickOfContractDetail = new BindingCommand<>(new BindingAction() {
+        @Override
+        public void call() {
+            Bundle bundle = new Bundle();
+            bundle.putInt(BrowseTextActivity.PARAM_SYSTXT, getApplication().getResources().getIntArray(R.array.config_systxt)[3]);
+            startActivity(BrowseTextActivity.class, bundle);
+        }
+    });
 
     //销售商品件数的值
     public ObservableInt valueQuantityOfGoods = new ObservableInt();
@@ -105,8 +116,6 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
         public ObservableBoolean enableSub = new ObservableBoolean(false);
         //加号是否可以点击
         public ObservableBoolean enableAdd = new ObservableBoolean(false);
-        //合同明细的选中监听
-        public ObservableBoolean checkCompact = new ObservableBoolean(false);
         //销售周期点击减
         public ObservableBoolean showSalesCycle = new ObservableBoolean(false);
     }
@@ -138,12 +147,6 @@ public class OrderConfirmBViewModel extends BaseViewModelEnhance {
             dialogControll_show(DialogControllTypeInterf.WARNING, getApplication().getString(R.string.order_error_salesday));
             return;
         }
-
-        if (!uc.checkCompact.get()) {
-            dialogControll_show(DialogControllTypeInterf.WARNING, getApplication().getString(R.string.order_error_compact));
-            return;
-        }
-
 
         requestConfirmOrder(valuesSaleDayList.get(valueSalesDayPosition.get()).getId(), valueQuantityOfGoods.get());
     }
