@@ -88,10 +88,11 @@ ext {
             //流式布局  https://github.com/hongyangAndroid/FlowLayout
             "flowlayout"                           : "com.hyman:flowlayout-lib:1.1.2",
             //微信支付
-            "paysdk_wechat"                        :"com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+",
+            "paysdk_wechat"                        : "com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+",
             //图片选择器 https://github.com/LuckSiege/PictureSelector
-            "picture_selector"                     :"com.github.LuckSiege.PictureSelector:picture_library:v2.2.3"
-
+            "picture_selector"                     : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.3",
+            //对话框 https://github.com/H07000223/FlycoDialog_Master
+            "flycodialog"                          : "com.flyco.dialog:FlycoDialog_Lib:1.3.2@aar"
     ]
 
 }

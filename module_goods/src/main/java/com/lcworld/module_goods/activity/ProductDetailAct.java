@@ -1,11 +1,15 @@
 package com.lcworld.module_goods.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.databinding.Observable;
 import android.databinding.ObservableList;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -17,15 +21,25 @@ import cn.bingoogolapple.bgabanner.BGABanner;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.ObjectUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.flyco.animation.BounceEnter.BounceTopEnter;
+import com.flyco.animation.SlideExit.SlideBottomExit;
+import com.flyco.dialog.listener.OnBtnClickL;
+import com.flyco.dialog.widget.NormalDialog;
 import com.lcworld.businesschain.GlideApp;
 import com.lcworld.library_base.base.BaseActivityEnhance;
 import com.lcworld.library_base.extension.ListChangedCallbackImpl;
 import com.lcworld.library_base.router.RouterActivityPath;
+import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.module_goods.BR;
 import com.lcworld.module_goods.R;
 import com.lcworld.module_goods.bean.DataGoodsGalleryInfo;
 import com.lcworld.module_goods.databinding.GoodsActivityProductDetailsBinding;
+import com.lcworld.module_goods.fragment.GoodsPropertyFrag;
 import com.lcworld.module_goods.viewmodel.ProductDetailViewModel;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.utils.KLog;
 
 /**
@@ -64,10 +78,12 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
     public void initViewObservable() {
         super.initViewObservable();
 
+        initView_Share();
         initView_Webview();
         initObservable_TopBanner();
         initObservable_DetailIntro();
         initObservable_GoodsType();
+        initObservable_ServiceTel();
 
         viewModel.requestDetail(mGoodsID);
         viewModel.requestDetailSKU(mGoodsID);
@@ -108,6 +124,25 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
         });
     }
 
+    private void initObservable_ServiceTel() {
+        viewModel.valueServiceTel.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                dialog_showServiceTel();
+            }
+        });
+    }
+
+    private void initView_Share() {
+        binding.ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment fragment = (DialogFragment) ARouter.getInstance().build(RouterFragmentPath.Share.Pager_Entrance).navigation();
+                fragment.show(getSupportFragmentManager(), RouterFragmentPath.Share.Pager_Entrance);
+            }
+        });
+    }
+
     @SuppressLint("JavascriptInterface")
     private void initView_Webview() {
         binding.wvDetail.setWebViewClient(webViewClient);
@@ -138,19 +173,19 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
         binding.viewBanner.setData(viewModel.galleryInfoList, null);
     }
 
-    private void updateView_PriceUnit(){
+    private void updateView_PriceUnit() {
         String[] configGoodsType = getResources().getStringArray(R.array.goods_type);
-        if(viewModel.productType.get().equals(configGoodsType[2])){
+        if (viewModel.productType.get().equals(configGoodsType[2])) {
             binding.ivFlagPrice1.setImageResource(R.mipmap.goods_detail_diamond_a);
             binding.ivFlagPrice2.setImageResource(R.mipmap.goods_detail_diamond_b);
-        }else{
+        } else {
             binding.ivFlagPrice1.setImageResource(R.mipmap.goods_detail_money_a);
             binding.ivFlagPrice2.setImageResource(R.mipmap.goods_detail_money_b);
         }
     }
 
     private void updateView_BottomOperation() {
-        //商品类型NORMAL普通POINT积分SHANGBI商币PINTUAN拼团
+        //商品类型:NORMAL普通\POINT积分\SHANGBI商币\PINTUAN拼团
         final String[] configGoodsType = getResources().getStringArray(R.array.goods_type);
         if ((viewModel.productType.get().equals(configGoodsType[0]) || viewModel.productType.get().equals(configGoodsType[1]))
                 && null != binding.vStubBottomA.getViewStub()) {
@@ -160,6 +195,12 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
             btnOperationAdd2ShoppingCart = findViewById(R.id.btn_operation_addShoppingCart);
             btnOperationPayNow = findViewById(R.id.btn_operation_paynow);
 
+            tvOperationServiceA.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickedServiceTel();
+                }
+            });
             tvOperationTurn2ShoppingCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -169,13 +210,15 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
             btnOperationPayNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    viewModel.requestBuyNow(1);
+                    viewModel.valueIsBuyNow.set(true);
+                    dialog_showProductChoose();
                 }
             });
             btnOperationAdd2ShoppingCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    viewModel.requestAdd2ShoppingCart(1);
+                    viewModel.valueIsBuyNow.set(false);
+                    dialog_showProductChoose();
                 }
             });
         } else if ((viewModel.productType.get().equals(configGoodsType[2]) || viewModel.productType.get().equals(configGoodsType[3]))
@@ -183,10 +226,17 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
             binding.vStubBottomB.getViewStub().inflate();
             tvOperationServiceB = findViewById(R.id.tv_operation_service_b);
             btnOperationConfirmBuy = findViewById(R.id.btn_operation_confirmbuy);
+            tvOperationServiceB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickedServiceTel();
+                }
+            });
             btnOperationConfirmBuy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    viewModel.requestBuyNow(1);
+                    viewModel.valueIsBuyNow.set(true);
+                    dialog_showProductChoose();
                 }
             });
         }
@@ -209,5 +259,82 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
         }
 
     };
+
+    private void clickedServiceTel() {
+        if (ObjectUtils.isEmpty(viewModel.valueServiceTel.get())) {
+            viewModel.requestServiceTel();
+            return;
+        }
+
+        dialog_showServiceTel();
+    }
+
+    private void dialog_showServiceTel() {
+
+        final NormalDialog dialog = new NormalDialog(this);
+        dialog.content("确定拨打客户热线")//
+                .style(NormalDialog.STYLE_TWO)//
+                .titleTextSize(15)
+                .titleTextColor(getResources().getColor(R.color.tx_colorb))
+                .contentTextColor(getResources().getColor(R.color.tx_colore))
+                .content(viewModel.valueServiceTel.get())
+                .contentTextSize(15)
+                .btnTextColor(getResources().getColor(R.color.tx_colorb), getResources().getColor(R.color.tx_colorb))
+                .btnTextSize(15, 15)
+                .btnText("取消", "确定")
+                .showAnim(new BounceTopEnter())//
+                .dismissAnim(new SlideBottomExit())//
+                .show();
+
+        dialog.setOnBtnClickL(
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClick() {
+                        dialog.dismiss();
+                    }
+                },
+                new OnBtnClickL() {
+                    @Override
+                    public void onBtnClick() {
+                        requestPermission_CallPhone();
+                        dialog.dismiss();
+                    }
+                });
+
+    }
+
+    private void dialog_showProductChoose() {
+        if (viewModel.valueSKUVoList.isEmpty()) {
+            return;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("skulist", viewModel.valueSKUVoList);
+        GoodsPropertyFrag productFrag = GoodsPropertyFrag.getIntance(bundle);
+        productFrag.show(getSupportFragmentManager(), GoodsPropertyFrag.class.getSimpleName());
+    }
+
+    private void requestPermission_CallPhone() {
+        //请求打开相机权限
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.CALL_PHONE)
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean granted) throws Exception {
+                        if (granted) {
+                            makeACall();
+                        } else {
+                            ToastUtils.showLong(R.string.permission_callphone_denied);
+                        }
+                    }
+                });
+    }
+
+    private void makeACall() {
+        //打电话
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + viewModel.valueServiceTel.get());
+        intent.setData(data);
+        startActivity(intent);
+    }
 
 }

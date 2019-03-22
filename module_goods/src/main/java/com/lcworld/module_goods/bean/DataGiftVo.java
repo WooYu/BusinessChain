@@ -1,6 +1,9 @@
 package com.lcworld.module_goods.bean;
 
-public class DataGiftVo {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class DataGiftVo implements Parcelable {
     private int actual_store;//库存
     private long create_time;//活动时间
     private int disabled;//是否禁用
@@ -109,4 +112,55 @@ public class DataGiftVo {
     public void setGift_num(int gift_num) {
         this.gift_num = gift_num;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.actual_store);
+        dest.writeLong(this.create_time);
+        dest.writeInt(this.disabled);
+        dest.writeInt(this.enable_store);
+        dest.writeString(this.gift_img);
+        dest.writeString(this.gift_name);
+        dest.writeDouble(this.gift_price);
+        dest.writeInt(this.gift_type);
+        dest.writeInt(this.goods_id);
+        dest.writeInt(this.seller_id);
+        dest.writeInt(this.gift_id);
+        dest.writeInt(this.gift_num);
+    }
+
+    public DataGiftVo() {
+    }
+
+    protected DataGiftVo(Parcel in) {
+        this.actual_store = in.readInt();
+        this.create_time = in.readLong();
+        this.disabled = in.readInt();
+        this.enable_store = in.readInt();
+        this.gift_img = in.readString();
+        this.gift_name = in.readString();
+        this.gift_price = in.readDouble();
+        this.gift_type = in.readInt();
+        this.goods_id = in.readInt();
+        this.seller_id = in.readInt();
+        this.gift_id = in.readInt();
+        this.gift_num = in.readInt();
+    }
+
+    public static final Parcelable.Creator<DataGiftVo> CREATOR = new Parcelable.Creator<DataGiftVo>() {
+        @Override
+        public DataGiftVo createFromParcel(Parcel source) {
+            return new DataGiftVo(source);
+        }
+
+        @Override
+        public DataGiftVo[] newArray(int size) {
+            return new DataGiftVo[size];
+        }
+    };
 }

@@ -1,3 +1,12 @@
 <resources>
     <string name="share_name">module_share</string>
+
+    <string-array name="share_category">
+        <item>微信好友</item>
+        <item>朋友圈</item>
+        <item>QQ好友</item>
+        <item>QQ空间</item>
+    </string-array>
+
+    <string name="share_cancel">取消</string>
 </resources>

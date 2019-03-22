@@ -14,6 +14,7 @@
     <!--权限-->
     <string name="permission_photoalbum_denied">访问相册需要您开启“相机”、“存储”权限！</string>
     <string name="permission_photoalbum_denied_neverask">访问相册需要您开启“相机”、“存储”权限，请到“设置-应用程序”中开启！</string>
+    <string name="permission_callphone_denied">拨打电话需要您开启“电话”权限</string>
 
 
     <string name="title_aboutus">关于我们</string>

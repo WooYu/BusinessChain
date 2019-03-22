@@ -1,8 +1,12 @@
 package com.lcworld.module_goods.bean;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * 商品属性下的分类信息
  */
-public class DataSpecValueVo {
+public class DataSpecValueVo implements Parcelable {
 
     /**
      * spec_id : 0
@@ -67,4 +71,43 @@ public class DataSpecValueVo {
     public void setSpec_value_id(int spec_value_id) {
         this.spec_value_id = spec_value_id;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.spec_id);
+        dest.writeString(this.spec_image);
+        dest.writeString(this.spec_name);
+        dest.writeInt(this.spec_type);
+        dest.writeString(this.spec_value);
+        dest.writeInt(this.spec_value_id);
+    }
+
+    public DataSpecValueVo() {
+    }
+
+    protected DataSpecValueVo(Parcel in) {
+        this.spec_id = in.readInt();
+        this.spec_image = in.readString();
+        this.spec_name = in.readString();
+        this.spec_type = in.readInt();
+        this.spec_value = in.readString();
+        this.spec_value_id = in.readInt();
+    }
+
+    public static final Parcelable.Creator<DataSpecValueVo> CREATOR = new Parcelable.Creator<DataSpecValueVo>() {
+        @Override
+        public DataSpecValueVo createFromParcel(Parcel source) {
+            return new DataSpecValueVo(source);
+        }
+
+        @Override
+        public DataSpecValueVo[] newArray(int size) {
+            return new DataSpecValueVo[size];
+        }
+    };
 }

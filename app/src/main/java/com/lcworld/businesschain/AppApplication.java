@@ -3,6 +3,7 @@ package com.lcworld.businesschain;
 import android.app.Application;
 import com.blankj.utilcode.util.Utils;
 import com.lcworld.library_base.config.ModuleLifecycleConfig;
+import com.mob.MobSDK;
 import me.goldze.mvvmhabit.base.BaseApplication;
 
 /**
@@ -22,6 +23,8 @@ public class AppApplication extends BaseApplication {
         //....
         //初始化组件(靠后)
         ModuleLifecycleConfig.getInstance().initModuleLow(this);
+        //ShareSDK
+        MobSDK.init(this);
     }
 
     public static Application getInstance() {

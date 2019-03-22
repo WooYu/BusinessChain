@@ -1,10 +1,13 @@
 package com.lcworld.module_goods.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  *
  * 购物车中活动Vo
  */
-public class DataCartPromotionVo {
+public class DataCartPromotionVo implements Parcelable {
     private int activity_id;//活动id
     private long end_time;//活动结束时间
     private int is_check;//是否选中参与这个活动,1为是 0为否
@@ -68,4 +71,45 @@ public class DataCartPromotionVo {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.activity_id);
+        dest.writeLong(this.end_time);
+        dest.writeInt(this.is_check);
+        dest.writeString(this.promotion_type);
+        dest.writeInt(this.remian_quantity);
+        dest.writeLong(this.start_time);
+        dest.writeString(this.title);
+    }
+
+    public DataCartPromotionVo() {
+    }
+
+    protected DataCartPromotionVo(Parcel in) {
+        this.activity_id = in.readInt();
+        this.end_time = in.readLong();
+        this.is_check = in.readInt();
+        this.promotion_type = in.readString();
+        this.remian_quantity = in.readInt();
+        this.start_time = in.readLong();
+        this.title = in.readString();
+    }
+
+    public static final Parcelable.Creator<DataCartPromotionVo> CREATOR = new Parcelable.Creator<DataCartPromotionVo>() {
+        @Override
+        public DataCartPromotionVo createFromParcel(Parcel source) {
+            return new DataCartPromotionVo(source);
+        }
+
+        @Override
+        public DataCartPromotionVo[] newArray(int size) {
+            return new DataCartPromotionVo[size];
+        }
+    };
 }

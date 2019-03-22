@@ -1,10 +1,7 @@
 package com.lcworld.module_goods.viewmodel;
 
 import android.app.Application;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableDouble;
-import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
+import android.databinding.*;
 import android.support.annotation.NonNull;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ObjectUtils;
@@ -18,6 +15,7 @@ import com.lcworld.module_goods.R;
 import com.lcworld.module_goods.bean.DataGoodsDetailInfo;
 import com.lcworld.module_goods.bean.DataGoodsGalleryInfo;
 import com.lcworld.module_goods.bean.DataSKUVo;
+import com.lcworld.module_goods.bean.EventReturnProductInfo;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
@@ -34,6 +32,7 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
     }
 
     private Disposable disposablePayResult;
+    private Disposable disposableProductInfo;
 
     public ObservableArrayList<DataGoodsGalleryInfo> galleryInfoList = new ObservableArrayList<>();
     public ObservableDouble dPrice = new ObservableDouble();
@@ -42,6 +41,10 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
     public ObservableField<String> productDetail = new ObservableField<>();
     public ObservableField<String> productType = new ObservableField<>();
     public ObservableInt valueSkuId = new ObservableInt();
+    public ObservableInt valueBuyNum = new ObservableInt();
+    public ObservableField<String> valueServiceTel = new ObservableField<>();
+    public ObservableArrayList<DataSKUVo> valueSKUVoList = new ObservableArrayList<>();
+    public final ObservableBoolean valueIsBuyNow = new ObservableBoolean();
 
     public final BindingCommand clickOfBack = new BindingCommand(new BindingAction() {
         @Override
@@ -61,12 +64,28 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
                     }
                 });
         RxSubscriptions.add(disposablePayResult);
+
+        disposableProductInfo = RxBus.getDefault().toObservable(EventReturnProductInfo.class)
+                .subscribe(new Consumer<EventReturnProductInfo>() {
+                    @Override
+                    public void accept(EventReturnProductInfo eventReturnProductInfo) throws Exception {
+                        valueSkuId.set(eventReturnProductInfo.getSkuid());
+                        valueBuyNum.set(eventReturnProductInfo.getBuynum());
+                        if (valueIsBuyNow.get()) {
+                            requestBuyNow();
+                        } else {
+                            requestAdd2ShoppingCart();
+                        }
+                    }
+                });
+        RxSubscriptions.add(disposableProductInfo);
     }
 
     @Override
     public void removeRxBus() {
         super.removeRxBus();
         RxSubscriptions.remove(disposablePayResult);
+        RxSubscriptions.remove(disposableProductInfo);
     }
 
     //请求商品详情
@@ -89,7 +108,7 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
                             oPrice.set(detailInfo.getSprice());
                         }
                         prodouctName.set(detailInfo.getGoods_name());
-                        productDetail.set("<meta name=\"viewport\" content=\"width=device-width, initial-scale=0.45\" />"+detailInfo.getIntro());
+                        productDetail.set(detailInfo.getIntro());
 
                         if (ObjectUtils.isEmpty(detailInfo.getGoods_type())) {
                             productType.set(getApplication().getResources().getStringArray(R.array.goods_type)[0]);
@@ -114,7 +133,8 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
                         if (null == listRequestResult.getData()) {
                             return;
                         }
-                        valueSkuId.set(listRequestResult.getData().get(0).getSku_id());
+                        valueSKUVoList.clear();
+                        valueSKUVoList.addAll(listRequestResult.getData());
                     }
                 });
 
@@ -122,10 +142,9 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
     }
 
     //请求加入购物车
-    public void requestAdd2ShoppingCart(int num) {
-        int sku_id = valueSkuId.get();
+    public void requestAdd2ShoppingCart() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
-                .tradeCarts(sku_id, num)
+                .tradeCarts(valueSkuId.get(), valueBuyNum.get())
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResult<DataSKUVo>>() {
 
@@ -137,10 +156,9 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
     }
 
     //请求立即购买
-    public void requestBuyNow(int num) {
-        int sku_id = valueSkuId.get();
+    public void requestBuyNow() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
-                .tradeCartsBuy(sku_id, num)
+                .tradeCartsBuy(valueSkuId.get(), valueBuyNum.get())
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResultImp>() {
 
@@ -159,4 +177,16 @@ public class ProductDetailViewModel extends BaseViewModelEnhance {
                 });
     }
 
+    //请求客服电话
+    public void requestServiceTel() {
+        RetrofitClient.getInstance().create(com.lcworld.library_base.http.ApiServiceInterf.class)
+                .sysTxt(getApplication().getResources().getIntArray(R.array.config_systxt)[0])
+                .compose(RxUtilsEnhanced.explicitTransform())
+                .subscribe(new ResponseObserver<RequestResultImp>() {
+                    @Override
+                    public void onSuccess(RequestResultImp requestResultImp) {
+                        valueServiceTel.set(requestResultImp.getData());
+                    }
+                });
+    }
 }

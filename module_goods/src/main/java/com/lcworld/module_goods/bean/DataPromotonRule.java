@@ -1,6 +1,9 @@
 package com.lcworld.module_goods.bean;
 
-public class DataPromotonRule {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class DataPromotonRule implements Parcelable {
 
     private DataCouponVo coupon_gift;
     private boolean free_shipping;
@@ -119,4 +122,57 @@ public class DataPromotonRule {
     public void setUse_point(int use_point) {
         this.use_point = use_point;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.coupon_gift, flags);
+        dest.writeByte(this.free_shipping ? (byte) 1 : (byte) 0);
+        dest.writeParcelable(this.goods_gift, flags);
+        dest.writeByte(this.invalid ? (byte) 1 : (byte) 0);
+        dest.writeString(this.invalid_reason);
+        dest.writeInt(this.point_gift);
+        dest.writeDouble(this.reduced_price);
+        dest.writeDouble(this.reduced_total_price);
+        dest.writeString(this.tag);
+        dest.writeString(this.target);
+        dest.writeString(this.tips);
+        dest.writeParcelable(this.use_coupon, flags);
+        dest.writeInt(this.use_point);
+    }
+
+    public DataPromotonRule() {
+    }
+
+    protected DataPromotonRule(Parcel in) {
+        this.coupon_gift = in.readParcelable(DataCouponVo.class.getClassLoader());
+        this.free_shipping = in.readByte() != 0;
+        this.goods_gift = in.readParcelable(DataGiftVo.class.getClassLoader());
+        this.invalid = in.readByte() != 0;
+        this.invalid_reason = in.readString();
+        this.point_gift = in.readInt();
+        this.reduced_price = in.readDouble();
+        this.reduced_total_price = in.readDouble();
+        this.tag = in.readString();
+        this.target = in.readString();
+        this.tips = in.readString();
+        this.use_coupon = in.readParcelable(DataCouponVo.class.getClassLoader());
+        this.use_point = in.readInt();
+    }
+
+    public static final Parcelable.Creator<DataPromotonRule> CREATOR = new Parcelable.Creator<DataPromotonRule>() {
+        @Override
+        public DataPromotonRule createFromParcel(Parcel source) {
+            return new DataPromotonRule(source);
+        }
+
+        @Override
+        public DataPromotonRule[] newArray(int size) {
+            return new DataPromotonRule[size];
+        }
+    };
 }

@@ -48,7 +48,7 @@ public class RouterFragmentPath {
      */
     public static class Share {
         private static final String SHARE = "/share";
-        public static final String PAGER_ENTRANCE = SHARE + "/entrance";
+        public static final String Pager_Entrance = SHARE + "/entrance";
 
     }
 
