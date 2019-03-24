@@ -11,6 +11,7 @@
         <activity android:name=".activity.SettingActivity"/>
         <activity android:name=".activity.InfoInputActivity"/>
         <activity android:name=".activity.CheckStatusActivity"/>
+        <activity android:name=".activity.MemberActivity"/>
     </application>
 
 </manifest>

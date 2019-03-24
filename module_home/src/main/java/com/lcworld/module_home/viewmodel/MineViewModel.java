@@ -35,7 +35,8 @@ public class MineViewModel extends BaseViewModelEnhance {
 
     public ObservableBoolean isLogin = new ObservableBoolean();
     public ObservableField<String> loginName = new ObservableField<String>("");
-    public ObservableField<String> chainid = new ObservableField<String>("商链号：");
+    public ObservableField<String> chainid = new ObservableField<String>("");
+    public ObservableField<String> chainStr = new ObservableField<String>("商链号："+chainid.get());
     public ObservableField<String> fans = new ObservableField<String>("粉丝0人");
     public ObservableField<String> image = new ObservableField<String>("");
     public BindingCommand loginOnClickCommand = new BindingCommand(new BindingAction() {
@@ -57,6 +58,12 @@ public class MineViewModel extends BaseViewModelEnhance {
         @Override
         public void call() {
             ARouter.getInstance().build(RouterActivityPath.Backstage.PAGER_ENTRANCE).navigation();
+        }
+    });
+    public BindingCommand memberOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(RouterActivityPath.Tool.PAGER_MEMBER).navigation();
         }
     });
     public BindingCommand toolOnClickCommand = new BindingCommand(new BindingAction() {

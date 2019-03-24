@@ -3,6 +3,7 @@ package com.lcworld.module_system
 import com.lcworld.library_base.http.RequestResult
 import com.lcworld.library_base.http.RequestResultImp
 import com.lcworld.module_backstage.model.QuestionItem
+import com.lcworld.module_backstage.model.VipMsgEntity
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -28,5 +29,11 @@ interface ApiServiceInterf {
      */
     @GET("ucenter/tool/getProblems")
     fun getProblems(): Observable<RequestResult<List<QuestionItem>>>
+
+    /**
+     *  查询会员VIP信息
+     */
+    @GET("members/vip/get")
+    fun getVipMsg(): Observable<RequestResult<VipMsgEntity>>
 
 }

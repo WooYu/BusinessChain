@@ -18,6 +18,7 @@ public class DataLogin {
     private String refresh_token;
     private int uid;
     private String username;
+    private String member_num;
 
     public String getAccess_token() {
         return access_token;
@@ -65,5 +66,13 @@ public class DataLogin {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getMember_num() {
+        return member_num;
+    }
+
+    public void setMember_num(String member_num) {
+        this.member_num = member_num;
     }
 }

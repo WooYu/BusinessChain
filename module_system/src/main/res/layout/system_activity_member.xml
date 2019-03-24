@@ -4,7 +4,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
 
-    <data/>
+    <data>
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_system.viewmodel.MemberViewModel"/>
+    </data>
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -16,23 +20,129 @@
                 layout="@layout/system_layout_title"
                 />
 
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="42dp"
+                />
+        <android.support.constraint.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="42dp"
+                />
+
         <View
                 android:id="@+id/bg_member"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="360:255"
+                app:layout_constraintDimensionRatio="360:225"
                 app:layout_constraintTop_toBottomOf="@id/layout_title"
                 android:background="@color/bg_color_000B1E"/>
-
-        <cn.bingoogolapple.bgabanner.BGAViewPager
-                android:layout_width="match_parent"
+        <ImageView
+                android:id="@+id/iv_member"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="360:133"
+                app:layout_constraintDimensionRatio="277:133"
+                android:scaleType="fitXY"
+                app:layout_constraintLeft_toLeftOf="@id/guideline1"
+                app:layout_constraintRight_toRightOf="@id/guideline2"
                 app:layout_constraintTop_toTopOf="@id/bg_member"
                 android:layout_marginTop="@dimen/gap_size22"
-                android:background="@color/appbg_color_white"
+                android:src="@mipmap/system_mem_black_select"
+                android:contentDescription="@string/image_description_default"/>
+        <TextView
+                android:id="@+id/tv_member_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/iv_member"
+                app:layout_constraintLeft_toLeftOf="@id/iv_member"
+                android:layout_marginStart="@dimen/gap_size16"
+                android:layout_marginTop="@dimen/gap_size14"
+                style="@style/text_12_ffffff"
+                android:text="sdds"
+                />
+        <TextView
+                android:id="@+id/tv_fans_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_member_type"
+                app:layout_constraintLeft_toLeftOf="@id/iv_member"
+                android:layout_marginStart="@dimen/gap_size15"
+                android:layout_marginTop="@dimen/gap_size10"
+                style="@style/text_12_ffffff"
+                android:text="sdds"
+                />
+        <TextView
+                android:id="@+id/tv_member_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/iv_member"
+                app:layout_constraintRight_toRightOf="@id/iv_member"
+                app:layout_constraintTop_toTopOf="@id/iv_member"
+                android:layout_marginTop="@dimen/dp_40"
+                style="@style/text_18_ffffff_b"
+                android:text="sdds"
+                />
+        <TextView
+                android:id="@+id/tv_invitation_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/iv_member"
+                app:layout_constraintRight_toRightOf="@id/iv_member"
+                app:layout_constraintBottom_toTopOf="@+id/pb"
+                android:layout_marginBottom="@dimen/gap_size20"
+                style="@style/text_13_ffffff"
+                android:text="sdds"
+                />
+        <TextView
+                android:id="@+id/tv_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/tv_invitation_code"
+                app:layout_constraintTop_toTopOf="@id/tv_invitation_code"
+                app:layout_constraintBottom_toBottomOf="@id/tv_invitation_code"
+                android:layout_marginStart="@dimen/gap_size7"
+                android:background="@drawable/shape_ffffff_1"
+                style="@style/text_9_ffffff"
+                android:padding="@dimen/gap_size3"
+                android:text="@string/system_copy"
                 />
 
+        <ProgressBar
+                android:id="@+id/pb"
+                android:layout_width="148dp"
+                android:layout_height="4dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                app:layout_constraintLeft_toLeftOf="@id/iv_member"
+                app:layout_constraintRight_toRightOf="@id/iv_member"
+                app:layout_constraintBottom_toBottomOf="@id/iv_member"
+                android:layout_marginBottom="@dimen/gap_size15"
+                />
+        <TextView
+                android:id="@+id/tv_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/pb"
+                app:layout_constraintBottom_toBottomOf="@id/pb"
+                app:layout_constraintRight_toLeftOf="@id/pb"
+                android:layout_marginEnd="@dimen/gap_size12"
+                style="@style/text_13_ffffff"
+                android:text="0"/>
+        <TextView
+                android:id="@+id/tv_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/pb"
+                app:layout_constraintBottom_toBottomOf="@id/pb"
+                app:layout_constraintLeft_toRightOf="@id/pb"
+                android:layout_marginStart="@dimen/gap_size12"
+                style="@style/text_13_ffffff"
+                android:text="1000"
+                />
         <TextView
                 android:id="@+id/tv_status"
                 android:layout_width="0dp"
@@ -44,7 +154,6 @@
                 app:layout_constraintRight_toLeftOf="@+id/btn_do_task"
                 android:layout_marginEnd="@dimen/gap_size8"
                 android:layout_marginStart="@dimen/gap_size10"
-                android:maxLines="2"
                 />
 
         <Button
@@ -93,112 +202,124 @@
                 android:layout_marginTop="@dimen/gap_size20"
                 android:text="@string/system_level_privilege_introduction"/>
 
-        <TableLayout
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_level"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_level_privilege_introduction"
                 android:layout_marginTop="18dp"
-                android:background="@color/line_colorc">
-
-            <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="@dimen/gap_size1"
-                    tools:ignore="UselessParent">
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_level"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_silver"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_gold"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_red_diamond"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_blue_diamond"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_black_diamond"/>
+                android:background="@color/appbg_color_white"
+                app:items="@{viewModel.observableList}"
+                app:adapter="@{viewModel.adapter}"
+                app:itemBinding="@{viewModel.itemBinding}"
+                />
 
 
-            </TableRow>
+        <!--<TableLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/tv_level_privilege_introduction"-->
+                <!--android:layout_marginTop="18dp"-->
+                <!--android:background="@color/line_colorc">-->
 
-            <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="@dimen/gap_size1"
-                    tools:ignore="UselessParent">
+            <!--<TableRow-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="60dp"-->
+                    <!--android:layout_marginTop="@dimen/gap_size1"-->
+                    <!--tools:ignore="UselessParent">-->
 
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_growth_value"/>
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_level"/>-->
 
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_300"/>
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_silver"/>-->
 
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_1600"/>
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_gold"/>-->
 
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_3500"/>
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_red_diamond"/>-->
 
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_6000"/>
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_blue_diamond"/>-->
 
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_10000"/>
-
-
-            </TableRow>
-
-            <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="@dimen/gap_size1"
-                    android:layout_marginBottom="@dimen/gap_size1"
-                    tools:ignore="UselessParent">
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_privilege"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_ellipsis"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_ellipsis"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_ellipsis"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_ellipsis"/>
-
-                <TextView
-                        style="@style/system_tab_row_item"
-                        android:text="@string/system_ellipsis"/>
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_black_diamond"/>-->
 
 
-            </TableRow>
-        </TableLayout>
+            <!--</TableRow>-->
+
+            <!--<TableRow-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="60dp"-->
+                    <!--android:layout_marginTop="@dimen/gap_size1"-->
+                    <!--tools:ignore="UselessParent">-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_growth_value"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_300"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_1600"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_3500"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_6000"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_10000"/>-->
+
+
+            <!--</TableRow>-->
+
+            <!--<TableRow-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="60dp"-->
+                    <!--android:layout_marginTop="@dimen/gap_size1"-->
+                    <!--android:layout_marginBottom="@dimen/gap_size1"-->
+                    <!--tools:ignore="UselessParent">-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_privilege"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_ellipsis"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_ellipsis"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_ellipsis"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_ellipsis"/>-->
+
+                <!--<TextView-->
+                        <!--style="@style/system_tab_row_item"-->
+                        <!--android:text="@string/system_ellipsis"/>-->
+
+            <!--</TableRow>-->
+        <!--</TableLayout>-->
     </android.support.constraint.ConstraintLayout>
 </layout>

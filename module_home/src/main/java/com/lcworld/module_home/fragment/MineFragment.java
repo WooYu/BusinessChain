@@ -127,7 +127,9 @@ public class MineFragment extends BaseRefreshFragment<HomeFragMineBinding, MineV
         boolean isLogin = viewModel.isLogin.get();
         DataLogin loginData = LoginCache.INSTANCE.getLoginData();
         String userName = loginData == null ? "null" : loginData.getUsername();
+        String fanNum = loginData == null ? "0" : loginData.getMember_num() == null ?"0":loginData.getMember_num();
         String loginName = isLogin ? userName : "未登录";
+        viewModel.fans.set("粉丝"+fanNum+"人");
         viewModel.loginName.set(loginName);
         if (isLogin && loginData != null && loginData.getFace() != null && loginData.getFace().length() != 0) {
             viewModel.image.set(loginData.getFace());

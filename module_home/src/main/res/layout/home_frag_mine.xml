@@ -129,6 +129,7 @@
                         app:layout_constraintEnd_toEndOf="@id/gline_end1"
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toEndOf="@id/tv_loginname"
+                        app:onClickCommand="@{viewModel.memberOnClickCommand}"
                         />
 
                 <!--商链号-->
@@ -163,7 +164,7 @@
                             app:layout_constraintEnd_toStartOf="@id/tv_chainnum_tip"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:text="@{viewModel.chainid}"
+                            android:text="@{viewModel.chainStr}"
                             tools:text="@string/home_format_chainid"/>
 
                     <TextView

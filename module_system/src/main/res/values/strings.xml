@@ -62,4 +62,5 @@
     <string name="system_ellipsis">...</string>
     <string name="system_default_error">没有数据</string>
     <string name="system_feedback_input_hint">请输入你的建议吧</string>
+    <string name="system_copy">复制</string>
 </resources>

@@ -92,5 +92,6 @@ public class RouterActivityPath {
     public static class Tool {
         private static final String TOOL = "/tool";
         public static final String PAGER_ENTRANCE = TOOL + "/entrance";
+        public static final String PAGER_MEMBER = TOOL + "/member";
     }
 }
