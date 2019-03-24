@@ -179,6 +179,7 @@ public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends 
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
                 .setTipWord(title)
                 .create();
+        mQMuiDialog_LoadingBox.show();
 
     }
 

@@ -64,6 +64,8 @@
     <string name="order_receiveraddr_modify_phone">手机号</string>
     <string name="order_receiveraddr_modify_area">所在区域</string>
     <string name="order_receiveraddr_modify_detailaddr">详细地址</string>
+    <string name="order_receiveraddr_choose_destination">配送至</string>
+    <string name="order_receiveraddr_choose">请选择</string>
     <string name="order_payment_title">支付</string>
     <string name="order_payment_diamond">商链钻支付</string>
     <string name="order_payment_amount">支付金额</string>

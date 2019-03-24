@@ -3,6 +3,8 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:orientation="vertical"
+              android:paddingTop="@dimen/gap_size6"
+              android:paddingEnd="@dimen/gap_size6"
               android:layout_height="wrap_content">
 
     <TextView

@@ -1,12 +1,22 @@
 package com.lcworld.module_order.bean;
 
 public class DataRegions {
+    private int id;
     private int cod;//是否支持货到付款,1支持，0不支持
     private String local_name;//名称
     private int parent_id;//父地区id
     private int region_grade;//级别
     private String region_path;//路径
     private String zipcode;
+    private boolean beChosen;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getCod() {
         return cod;
@@ -54,5 +64,13 @@ public class DataRegions {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public boolean isBeChosen() {
+        return beChosen;
+    }
+
+    public void setBeChosen(boolean beChosen) {
+        this.beChosen = beChosen;
     }
 }

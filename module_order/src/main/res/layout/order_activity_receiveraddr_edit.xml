@@ -2,9 +2,16 @@
 
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
     <data>
-        <variable name="viewModel" type="com.lcworld.module_order.viewmodel.ReceiverAddressEditViewModel"/>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_order.viewmodel.ReceiverAddressEditViewModel"/>
+
         <import type="com.blankj.utilcode.util.ObjectUtils"/>
     </data>
 
@@ -136,43 +143,55 @@
                 app:layout_constraintTop_toBottomOf="@id/bg_phone"/>
 
         <!--所在区域-->
-        <View
+        <android.support.constraint.ConstraintLayout
                 android:id="@+id/bg_area"
                 android:layout_width="0dp"
                 android:background="@color/white"
-                android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="360:47"
+                android:paddingTop="@dimen/gap_size15"
+                android:paddingBottom="@dimen/gap_size15"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_phone"/>
+                app:layout_constraintTop_toBottomOf="@id/line_phone">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:textColor="@color/tx_colorb"
-                android:textSize="@dimen/tx_size15"
-                android:text="@string/order_receiveraddr_modify_area"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/bg_area"
-                app:layout_constraintStart_toStartOf="@id/gline_start"
-                app:layout_constraintTop_toTopOf="@id/bg_area"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/tx_colorb"
+                    android:textSize="@dimen/tx_size15"
+                    android:text="@string/order_receiveraddr_modify_area"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="@dimen/gap_size17"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-                android:id="@+id/tv_area"
-                android:layout_width="0dp"
-                android:textColor="@color/tx_colorc"
-                android:textColorHint="@color/tx_colord"
-                android:inputType="text"
-                android:textSize="@dimen/tx_size15"
-                android:text="@={viewModel.valueRegisons}"
-                android:background="@null"
-                app:onClickCommand="@{viewModel.clickOfRegion}"
-                android:maxLines="1"
-                android:drawableEnd="@mipmap/arrow_right1"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/bg_area"
-                app:layout_constraintEnd_toEndOf="@id/gline_end"
-                app:layout_constraintStart_toStartOf="@id/gline_middle"
-                app:layout_constraintTop_toTopOf="@id/bg_area"/>
+            <View
+                    android:layout_width="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/line_region_middle"
+                    app:layout_constraintHorizontal_bias="0.24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="0dp"/>
+
+            <TextView
+                    android:id="@+id/tv_area"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/line_region_middle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/tx_colorc"
+                    android:textColorHint="@color/tx_colord"
+                    android:textSize="@dimen/tx_size15"
+                    android:layout_marginEnd="@dimen/gap_size17"
+                    android:text="@={viewModel.valueRegisons}"
+                    android:layout_width="0dp"
+                    android:drawablePadding="@dimen/gap_size6"
+                    android:drawableEnd="@mipmap/arrow_right1"
+                    tools:text=""
+                    android:layout_height="wrap_content"/>
+
+        </android.support.constraint.ConstraintLayout>
 
         <View
                 android:id="@+id/line_area"
