@@ -66,4 +66,5 @@
     <string name="exchange_other_account">对方账户</string>
     <string name="exchange_collection_time">收款时间</string>
     <string name="exchange_order_number">订单号码</string>
+    <string name="exchange_pay_pwd">支付密码</string>
 </resources>

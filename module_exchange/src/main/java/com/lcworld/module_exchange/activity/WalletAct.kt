@@ -23,7 +23,11 @@ class WalletAct : BaseActivityEnhance<ExchangeActivityWalletBinding, WalletViewM
     override fun initData() {
         super.initData()
         binding.layoutTitle.tvTitle.text = getString(R.string.exchange_wallet)
+        binding.layoutTitle.tvRight.text = getString(R.string.exchange_pay_pwd)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
+        binding.layoutTitle.tvRight.setOnClickListener {
+            //todo 支付密码页面开发
+        }
         viewModel.requestBalance()
     }
     override fun onLoginSuccess() {

@@ -35,6 +35,9 @@ class RechargeAct : BaseActivityEnhance<ExchangeActivityRechargeBinding, Recharg
         binding.layoutTitle.tvRight.text = getString(R.string.exchange_recharge_record)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
         binding.layoutTitle.tvRight.setOnClickListener { startActivity<RechargeRecordAct>() }
+        binding.etRechargeInput.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) viewModel.onFocusChange()
+        }
     }
 
     override fun initViewObservable() {

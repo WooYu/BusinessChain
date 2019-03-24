@@ -1,11 +1,14 @@
 package com.lcworld.module_home.fragment;
 
 import android.animation.ArgbEvaluator;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.databinding.Observable;
 import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import cn.bingoogolapple.bgabanner.BGABanner;
@@ -142,6 +145,7 @@ public class MineFragment extends BaseRefreshFragment<HomeFragMineBinding, MineV
     private void initView_GradienColor() {
         binding.bgTitle.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         binding.bgTitle.getBackground().setAlpha(0);
+
     }
 
     private void initView_ScrollView() {

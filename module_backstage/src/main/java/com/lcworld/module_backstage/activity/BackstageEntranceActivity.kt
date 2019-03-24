@@ -10,6 +10,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.lcworld.library_base.base.BaseActivityEnhance
 import com.lcworld.library_base.router.RouterActivityPath
 import com.lcworld.module_backstage.BR
@@ -41,7 +42,7 @@ class BackstageEntranceActivity : BaseActivityEnhance<BackAcitivityEntranceBindi
         super.initViewObservable()
         viewModel.getfansCharData.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-//                setLineCharData(viewModel.fansCharList)
+                setLineCharData(viewModel.fansCharList)
             }
 
         })
@@ -81,8 +82,15 @@ class BackstageEntranceActivity : BaseActivityEnhance<BackAcitivityEntranceBindi
 
     private fun setLineCharData(fansCharList: List<FansCharItem>) {
         if (fansCharList.isEmpty()) return
-        fansCharList.map { Entry(it.time_key.toFloat(), it.count.toFloat()) }
-        val lineDataSet = LineDataSet(listOf(), "")
+        val yMax = fansCharList.map { it.count.toIntOrNull() ?: 0 }.max() ?: return
+        val entrys = fansCharList.mapIndexed { index, fansCharItem ->
+            Entry(
+                index.toFloat(),
+                fansCharItem.count.toFloatOrNull() ?: 0f
+            )
+        }
+        val xVals = fansCharList.map { it.time_key }
+        val lineDataSet = LineDataSet(entrys, "")
         lineDataSet.setCircleColor(ContextCompat.getColor(this, R.color.color_fc501c))
         lineDataSet.circleRadius = 4.5f
         lineDataSet.setDrawCircleHole(false)
@@ -95,11 +103,25 @@ class BackstageEntranceActivity : BaseActivityEnhance<BackAcitivityEntranceBindi
         val lineData = LineData(lineDataSet)
         binding.lineChar.xAxis.apply {
             setLabelCount(fansCharList.size, false)
+            granularity = 1.0f
+            valueFormatter = IAxisValueFormatter { value, _ ->
+                val str = xVals[value.toInt()]
+                if (str.length > 5) {
+                    str.substring(str.length - 5 until str.length)
+                } else {
+                    str
+                }
+            }
         }
         binding.lineChar.axisLeft.apply {
             setLabelCount(fansCharList.size, false)
+            granularity = 1.0f
+            axisMaximum = yMax.toFloat()
+//            valueFormatter = IAxisValueFormatter{ value, _ ->  value.toInt().toString()}
         }
         binding.lineChar.data = lineData
         binding.lineChar.invalidate()
     }
+
 }
+

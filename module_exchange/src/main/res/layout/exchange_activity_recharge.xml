@@ -205,7 +205,7 @@
                 android:text="@{viewModel.amount}"
                 android:selection="@{viewModel.amount.get().length}"
                 android:afterTextChanged="@{viewModel.amountAfterTextChanged}"
-                app:onClickCommand="@{viewModel.onFocusChangeCommand}"
+                android:onClick="@{(view)->viewModel.onFocusChange()}"
                 tools:ignore="Autofill"/>
         <!--微信支付-->
         <View

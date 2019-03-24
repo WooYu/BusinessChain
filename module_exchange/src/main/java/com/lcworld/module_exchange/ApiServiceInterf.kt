@@ -26,6 +26,13 @@ interface ApiServiceInterf {
     @GET("order/balance/pay/recharge")
     fun recharge(@Query("order_id") orderId: String, @Query("type") type: Int): Observable<RequestResult<RechargeResult>>
 
+    //充值记录
+    @GET("order/balance/pay")
+    fun getRechargeRecord(
+        @Query("page_no") pageNo: Int, @Query("start_time") startTime: Int,
+        @Query("end_time") endTime: Int, @Query("page_size") pageSize: Int
+    ): Observable<RequestResult<RechargeResult>>
+
     //微信回调
     @GET("order/balance/pay/wxCallback")
     fun wxCallback(): Observable<RequestResultImp>

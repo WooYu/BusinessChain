@@ -120,6 +120,7 @@
                         android:drawableStart="@mipmap/home_mine_memberlevel"
                         android:maxLines="1"
                         android:layout_marginStart="@dimen/gap_size15"
+                        android:text="@string/home_mine_member"
                         android:textColor="@color/tx_colorf"
                         android:textSize="@dimen/tx_size14"
                         android:drawablePadding="@dimen/gap_size3"
@@ -128,11 +129,11 @@
                         app:layout_constraintEnd_toEndOf="@id/gline_end1"
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toEndOf="@id/tv_loginname"
-                        tools:layout_editor_absoluteY="80dp"
-                        tools:text="会员"/>
+                        />
 
                 <!--商链号-->
                 <android.support.constraint.ConstraintLayout
+                        android:id="@+id/cl_chainnum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_btnbg_c"
@@ -146,7 +147,8 @@
                         app:layout_constraintEnd_toEndOf="@id/gline_end1"
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toEndOf="@id/iv_avatar"
-                        app:layout_constraintTop_toBottomOf="@id/tv_loginname">
+                        app:layout_constraintTop_toBottomOf="@id/tv_loginname"
+                        app:onClickCommand="@{viewModel.copyOnClickCommand}">
 
                     <TextView
                             android:id="@+id/tv_chainnum"

@@ -69,5 +69,6 @@
     <string name="home_mine_tool">工具</string>
     <string name="home_mine_quit">退出</string>
     <string name="home_mine_notlogin">未登录</string>
+    <string name="home_mine_member">会员</string>
 
 </resources>

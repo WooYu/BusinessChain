@@ -29,18 +29,20 @@ class RechargeViewModel(application: Application) : BaseViewModelEnhance(applica
     val payTypeList = listOf(ObservableBoolean(true), ObservableBoolean(false))
     private val amountList = listOf("10", "20", "50", "100", "200", "300", "500", "1000")
     val amount = ObservableField("")
-
-    val onFocusChangeCommand = BindingCommand<Any>(BindingAction {
+    fun onFocusChange() {
         if (amountIndex != -1) {
             amountObservableList[amountIndex].set(false)
             amountIndex = -1
         }
-    })
+    }
 
     val isBtnEnable = ObservableBoolean(false)
 
     val amountAfterTextChanged = TextViewBindingAdapter.AfterTextChanged {
         isBtnEnable.set(it.toString().isNotEmpty())
+        if (amountIndex != -1 && amountList[amountIndex] != it.toString()) {
+            onFocusChange()
+        }
     }
     val confirmOnClickCommand = BindingCommand<Any>(BindingAction { doConfirm() })
 
@@ -54,7 +56,6 @@ class RechargeViewModel(application: Application) : BaseViewModelEnhance(applica
         amountObservableList.find { it.get() }?.set(false)
         amountObservableList[index].set(true)
         amount.set(amountList[index])
-
     }
 
     fun onPayTypeSelect(view: View) {

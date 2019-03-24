@@ -1,12 +1,16 @@
 package com.lcworld.module_home.viewmodel;
 
 import android.app.Application;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.lcworld.library_base.base.BaseViewModelEnhance;
 import com.lcworld.library_base.global.SPKeyGlobal;
 import com.lcworld.library_base.http.RequestResult;
@@ -74,6 +78,20 @@ public class MineViewModel extends BaseViewModelEnhance {
             SPUtils.getInstance().remove(SPKeyGlobal.Key_Account_Access_Token);
             isLogin.set(false);
             ARouter.getInstance().build(RouterActivityPath.Account.PAGER_LOGIN).navigation();
+        }
+    });
+    public BindingCommand copyOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            if (chainid.get().isEmpty()) {
+                ToastUtils.showShort("没找到商链号");
+            } else {
+                ClipboardManager clipboard = (ClipboardManager) getApplication().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("chainNum", chainid.get());
+                clipboard.setPrimaryClip(clip);
+                ToastUtils.showShort("已复制");
+            }
+
         }
     });
 
