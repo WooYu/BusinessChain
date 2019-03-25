@@ -52,7 +52,7 @@
                 app:layout_constraintRight_toRightOf="@id/guideline2"
                 app:layout_constraintTop_toTopOf="@id/bg_member"
                 android:layout_marginTop="@dimen/gap_size22"
-                android:src="@mipmap/system_mem_black_select"
+                android:src="@{viewModel.imageType}"
                 android:contentDescription="@string/image_description_default"/>
         <TextView
                 android:id="@+id/tv_member_type"
@@ -63,7 +63,7 @@
                 android:layout_marginStart="@dimen/gap_size16"
                 android:layout_marginTop="@dimen/gap_size14"
                 style="@style/text_12_ffffff"
-                android:text="sdds"
+                android:text="@{viewModel.memberType}"
                 />
         <TextView
                 android:id="@+id/tv_fans_num"
@@ -74,7 +74,7 @@
                 android:layout_marginStart="@dimen/gap_size15"
                 android:layout_marginTop="@dimen/gap_size10"
                 style="@style/text_12_ffffff"
-                android:text="sdds"
+                android:text="@{viewModel.fansNum}"
                 />
         <TextView
                 android:id="@+id/tv_member_name"
@@ -85,7 +85,7 @@
                 app:layout_constraintTop_toTopOf="@id/iv_member"
                 android:layout_marginTop="@dimen/dp_40"
                 style="@style/text_18_ffffff_b"
-                android:text="sdds"
+                android:text="@{viewModel.name}"
                 />
         <TextView
                 android:id="@+id/tv_invitation_code"
@@ -96,7 +96,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/pb"
                 android:layout_marginBottom="@dimen/gap_size20"
                 style="@style/text_13_ffffff"
-                android:text="sdds"
+                android:text="@{viewModel.invitationCodeStr}"
                 />
         <TextView
                 android:id="@+id/tv_copy"
@@ -110,6 +110,7 @@
                 style="@style/text_9_ffffff"
                 android:padding="@dimen/gap_size3"
                 android:text="@string/system_copy"
+                app:onClickCommand="@{viewModel.copyOnClickCommand}"
                 />
 
         <ProgressBar
@@ -121,6 +122,8 @@
                 app:layout_constraintRight_toRightOf="@id/iv_member"
                 app:layout_constraintBottom_toBottomOf="@id/iv_member"
                 android:layout_marginBottom="@dimen/gap_size15"
+                android:max="@{viewModel.growthValueMax}"
+                android:progress="@{viewModel.growthValueProgress}"
                 />
         <TextView
                 android:id="@+id/tv_start"
@@ -141,14 +144,14 @@
                 app:layout_constraintLeft_toRightOf="@id/pb"
                 android:layout_marginStart="@dimen/gap_size12"
                 style="@style/text_13_ffffff"
-                android:text="1000"
+                android:text="@{viewModel.growthValueMaxStr}"
                 />
         <TextView
                 android:id="@+id/tv_status"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 style="@style/text_13_ffffff"
-                android:text="我的成长值560点，超过64.66%的用户"
+                android:text="@{viewModel.statusStr}"
                 app:layout_constraintTop_toTopOf="@id/btn_do_task"
                 app:layout_constraintLeft_toLeftOf="@+id/bg_member"
                 app:layout_constraintRight_toLeftOf="@+id/btn_do_task"
@@ -167,7 +170,8 @@
                 app:layout_constraintRight_toRightOf="@id/bg_member"
                 app:layout_constraintLeft_toRightOf="@id/tv_status"
                 android:layout_marginEnd="@dimen/gap_size10"
-                android:layout_marginBottom="@dimen/gap_size20"/>
+                android:layout_marginBottom="@dimen/gap_size20"
+                app:onClickCommand="@{viewModel.doTaskOnClickCommand}"/>
 
         <TextView
                 android:id="@+id/tv_growth_value_introduction"
@@ -189,7 +193,7 @@
                 android:layout_marginEnd="@dimen/gap_size10"
                 app:layout_constraintTop_toBottomOf="@id/tv_growth_value_introduction"
                 android:layout_marginTop="18dp"
-                android:text="ssss"/>
+                android:text="@{viewModel.growthValueTips}"/>
 
         <TextView
                 android:id="@+id/tv_level_privilege_introduction"
@@ -202,124 +206,21 @@
                 android:layout_marginTop="@dimen/gap_size20"
                 android:text="@string/system_level_privilege_introduction"/>
 
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gap_size1"
+                android:background="@color/tx_colorb"
+                app:layout_constraintTop_toTopOf="@+id/recycler_level"/>
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_level"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_level_privilege_introduction"
                 android:layout_marginTop="18dp"
-                android:background="@color/appbg_color_white"
                 app:items="@{viewModel.observableList}"
                 app:adapter="@{viewModel.adapter}"
                 app:itemBinding="@{viewModel.itemBinding}"
                 />
 
-
-        <!--<TableLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--app:layout_constraintTop_toBottomOf="@id/tv_level_privilege_introduction"-->
-                <!--android:layout_marginTop="18dp"-->
-                <!--android:background="@color/line_colorc">-->
-
-            <!--<TableRow-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="60dp"-->
-                    <!--android:layout_marginTop="@dimen/gap_size1"-->
-                    <!--tools:ignore="UselessParent">-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_level"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_silver"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_gold"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_red_diamond"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_blue_diamond"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_black_diamond"/>-->
-
-
-            <!--</TableRow>-->
-
-            <!--<TableRow-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="60dp"-->
-                    <!--android:layout_marginTop="@dimen/gap_size1"-->
-                    <!--tools:ignore="UselessParent">-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_growth_value"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_300"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_1600"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_3500"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_6000"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_10000"/>-->
-
-
-            <!--</TableRow>-->
-
-            <!--<TableRow-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="60dp"-->
-                    <!--android:layout_marginTop="@dimen/gap_size1"-->
-                    <!--android:layout_marginBottom="@dimen/gap_size1"-->
-                    <!--tools:ignore="UselessParent">-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_privilege"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_ellipsis"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_ellipsis"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_ellipsis"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_ellipsis"/>-->
-
-                <!--<TextView-->
-                        <!--style="@style/system_tab_row_item"-->
-                        <!--android:text="@string/system_ellipsis"/>-->
-
-            <!--</TableRow>-->
-        <!--</TableLayout>-->
     </android.support.constraint.ConstraintLayout>
 </layout>

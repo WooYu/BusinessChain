@@ -1,6 +1,8 @@
 package com.lcworld.module_system.activity
 
+import android.databinding.Observable
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -24,11 +26,26 @@ class MemberActivity : BaseActivityEnhance<SystemActivityMemberBinding, MemberVi
         binding.layoutTitle.tvTitle.text = getString(R.string.system_member)
         binding.layoutTitle.ivBack.setOnClickListener { finish() }
         initLevelRecycler()
+        viewModel.getVipMsg()
     }
 
     private fun initLevelRecycler() {
-        val manager = GridLayoutManager(this,3)
-        manager.orientation = LinearLayoutManager.HORIZONTAL
+        setLayoutManager()
+    }
+
+    private fun setLayoutManager(spanCount: Int = 6) {
+        val manager = GridLayoutManager(this, spanCount)
         binding.recyclerLevel.layoutManager = manager
+        binding.recyclerLevel.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL))
+        binding.recyclerLevel.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+    }
+
+    override fun initViewObservable() {
+        super.initViewObservable()
+        viewModel.listSizeObservable.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                setLayoutManager(viewModel.listSizeObservable.get() / 3)
+            }
+        })
     }
 }

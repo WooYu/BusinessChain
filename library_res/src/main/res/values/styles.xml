@@ -14,6 +14,7 @@
         <!--导航栏颜色-->
         <item name="android:navigationBarColor">@color/colorAccent</item>
         <item name="android:windowBackground">@color/appbg_color</item>
+        <item name="android:listDivider">@drawable/shape_list_divider</item>
 
         <!-- 配置qmui提供的theme -->
         <item name="QMUITopBarStyle">@style/QDTopBar</item>
