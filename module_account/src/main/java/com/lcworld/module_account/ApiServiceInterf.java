@@ -4,10 +4,7 @@ import com.lcworld.library_base.http.RequestResult;
 import com.lcworld.library_base.http.RequestResultImp;
 import com.lcworld.library_base.model.DataLogin;
 import io.reactivex.Observable;
-import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 public interface ApiServiceInterf {
     //会员找回密码API
@@ -48,4 +45,22 @@ public interface ApiServiceInterf {
     //验证手机验证码
     @POST("passport/register/smscode/{mobile}/check")
     Observable<RequestResultImp> registerSmscodeCheck(@Path("mobile") String mobile, @Query("code") String code, @Query("recommend_code") String recommend_code);
+
+    //会员
+    //会员安全API
+    //判断支付密码
+    @POST("members/security/pay/check")
+    Observable<RequestResultImp> membersPayPswCheck(@Query("password") String password);
+
+    //验证支付密码验证码
+    @GET("members/security/pay/password")
+    Observable<RequestResultImp> membersPayAuthCodeCheck(@Query("code") String code);
+
+    //发送支付密码验证码
+    @POST("members/security/pay/send/{mobile}")
+    Observable<RequestResultImp> membersPayAuthCodeSend(@Path("mobile") String mobile);
+
+    //修改支付密码
+    @POST("members/security/pay/update")
+    Observable<RequestResultImp> membersPayPswUpdate(@Query("password") String password, @Query("code") String code);
 }

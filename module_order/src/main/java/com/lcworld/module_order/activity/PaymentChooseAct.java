@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.alipay.sdk.app.PayTask;
 import com.blankj.utilcode.util.ObjectUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -20,6 +21,7 @@ import com.lcworld.module_order.R;
 import com.lcworld.module_order.adapter.PayMethodAdapter;
 import com.lcworld.module_order.bean.AliPayResult;
 import com.lcworld.module_order.databinding.OrderActivityPaymentChooseBinding;
+import com.lcworld.module_order.fragment.PayPasswordFrag;
 import com.lcworld.module_order.viewmodel.PaymentChooseViewModel;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -61,10 +63,29 @@ public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentCh
 
         initViewTitle();
         initViewRecyclerView();
+        initViewListener();
 
         initObservableAlipayOrderInfo();
         initObservableWechatOrderInfo();
         initObservablePayMethodReturn();
+    }
+
+    private void initViewListener() {
+        binding.btnPaynow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] config_plugin_ids = getResources().getStringArray(R.array.payment_plugin_id);
+                if (viewModel.valuePayMethodList
+                        .get(viewModel.valueSelectPayMethodPosition.get())
+                        .getPlugin_id().equals(config_plugin_ids[3])) {
+                    balance_showPasswordBox();
+//                    requestInitiativePayBalance();
+                } else {
+                    viewModel.requestInitiativePay();
+                }
+            }
+        });
+
     }
 
     private void initViewTitle() {
@@ -186,6 +207,22 @@ public class PaymentChooseAct extends BaseActivityEnhance<OrderActivityPaymentCh
             Toast.makeText(this, "支付失败", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void balance_showPasswordBox() {
+        PayPasswordFrag payPasswordFrag = new PayPasswordFrag();
+        payPasswordFrag.setInputListener(new PayPasswordFrag.PasswordCallback() {
+            @Override
+            public void inputFinish(String pwd) {
+                viewModel.requestBalance_InitiativePay(pwd);
+            }
+
+            @Override
+            public void retrievePsw() {
+                ARouter.getInstance().build(RouterActivityPath.Account.PAGER_Payment_Psw_Modify).navigation();
+            }
+        });
+        payPasswordFrag.show(getSupportFragmentManager(), payPasswordFrag.getTag());
     }
 
 }

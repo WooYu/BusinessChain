@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_account.viewmodel.PaymentPswModifyViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+
+        <com.qmuiteam.qmui.widget.QMUITopBarLayout
+                android:id="@+id/qmui_topbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <android.support.constraint.ConstraintLayout
+                android:background="@color/tx_colorf"
+                android:id="@+id/clayout_middle"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/gap_size6"
+                app:layout_constraintTop_toBottomOf="@id/qmui_topbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="wrap_content">
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/gline_start1"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintGuide_begin="@dimen/gap_size17"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/gline_start2"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintGuide_begin="41dp"/>
+
+            <android.support.constraint.Guideline
+                    android:id="@+id/gline_end"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintGuide_end="@dimen/gap_size23"/>
+
+            <!--手机号-->
+            <View
+                    android:id="@+id/bg_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="360:47"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/account_login_phone"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/gap_size2"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_phone"
+                    app:layout_constraintStart_toStartOf="@id/gline_start1"
+                    app:layout_constraintTop_toTopOf="@id/bg_phone"/>
+
+            <EditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@null"
+                    android:hint="@string/account_hint_phone2"
+                    android:textSize="@dimen/tx_size15"
+                    android:textColorHint="@color/tx_colord"
+                    android:textColor="@color/tx_colorb"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:afterTextChanged="@{viewModel.telephoneAfterTextChanged()}"
+                    android:text="@={viewModel.telephone}"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_phone"
+                    app:layout_constraintEnd_toEndOf="@id/gline_end"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"
+                    app:layout_constraintTop_toTopOf="@id/bg_phone"/>
+
+            <View
+                    android:layout_width="0dp"
+                    android:background="@color/line_colorc"
+                    android:layout_height="1dp"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_phone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"/>
+
+            <!--验证码-->
+            <View
+                    android:id="@+id/bg_authcode"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="360:47"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bg_phone"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/account_login_psw"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/gap_size2"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_authcode"
+                    app:layout_constraintStart_toStartOf="@id/gline_start1"
+                    app:layout_constraintTop_toTopOf="@id/bg_authcode"/>
+
+            <EditText
+                    android:id="@+id/et_authcode"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@null"
+                    android:hint="@string/account_hint_authcode"
+                    android:textSize="@dimen/tx_size15"
+                    android:textColorHint="@color/tx_colord"
+                    android:textColor="@color/tx_colorb"
+                    android:maxLines="1"
+                    android:text="@={viewModel.authcodeValue}"
+                    android:afterTextChanged="@{viewModel.authcodeAfterTextChanged()}"
+                    android:inputType="text"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_authcode"
+                    app:layout_constraintEnd_toStartOf="@id/tv_countdown"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"
+                    app:layout_constraintTop_toTopOf="@id/bg_authcode"/>
+
+            <TextView
+                    android:id="@+id/tv_countdown"
+                    android:layout_width="wrap_content"
+                    android:textColor="@drawable/selector_txcolor_b"
+                    android:textSize="@dimen/tx_size15"
+                    android:text="@={viewModel.authcode}"
+                    android:gravity="center"
+                    android:layout_height="0dp"
+                    android:enabled="@{viewModel.uc.authcodeEnableObservable,default=false}"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_authcode"
+                    app:layout_constraintEnd_toEndOf="@id/gline_end"
+                    app:layout_constraintTop_toTopOf="@id/bg_authcode"
+                    app:onClickCommand="@{viewModel.authcodeClickCommand}"/>
+
+            <View
+                    android:layout_width="0dp"
+                    android:background="@color/line_colorc"
+                    android:layout_height="1dp"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_authcode"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"/>
+
+            <!--密码-->
+            <View
+                    android:id="@+id/bg_pswa"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="360:47"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bg_authcode"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/account_login_psw"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/gap_size2"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_pswa"
+                    app:layout_constraintStart_toStartOf="@id/gline_start1"
+                    app:layout_constraintTop_toTopOf="@id/bg_pswa"/>
+
+            <EditText
+                    android:id="@+id/et_pswa"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@null"
+                    android:hint="@string/account_hint_psw2"
+                    android:textSize="@dimen/tx_size15"
+                    android:textColorHint="@color/tx_colord"
+                    android:textColor="@color/tx_colorb"
+                    android:inputType="numberPassword"
+                    android:afterTextChanged="@{viewModel.paymentpswAfterTextChanged()}"
+                    android:layout_marginEnd="@dimen/gap_size10"
+                    android:text="@={viewModel.paymentpsw}"
+                    android:maxLines="1"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_pswa"
+                    app:layout_constraintEnd_toStartOf="@id/cbox_toogle"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"
+                    app:layout_constraintTop_toTopOf="@id/bg_pswa"/>
+
+            <CheckBox
+                    android:id="@+id/cbox_toogle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:button="@drawable/selector_cbox_d"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_pswa"
+                    app:layout_constraintEnd_toEndOf="@id/gline_end"
+                    app:layout_constraintTop_toTopOf="@id/bg_pswa"
+                    app:onCheckedChangedCommand="@{viewModel.toogleCheckCommand}"/>
+
+            <View
+                    android:layout_width="0dp"
+                    android:background="@color/line_colorc"
+                    android:layout_height="1dp"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_pswa"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"/>
+
+            <!--确认密码-->
+            <View
+                    android:id="@+id/bg_pswb"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="360:47"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bg_pswa"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@mipmap/account_login_psw"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/gap_size2"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_pswb"
+                    app:layout_constraintStart_toStartOf="@id/gline_start1"
+                    app:layout_constraintTop_toTopOf="@id/bg_pswb"/>
+
+            <EditText
+                    android:id="@+id/et_pswb"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@null"
+                    android:hint="@string/account_hint_psw3"
+                    android:textSize="@dimen/tx_size15"
+                    android:text="@={viewModel.confirmpsw}"
+                    android:textColorHint="@color/tx_colord"
+                    android:textColor="@color/tx_colorb"
+                    android:maxLines="1"
+                    android:afterTextChanged="@{viewModel.confirmpswAfterTextChanged()}"
+                    android:inputType="numberPassword"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_pswb"
+                    app:layout_constraintEnd_toStartOf="@id/gline_end"
+                    app:layout_constraintStart_toStartOf="@id/gline_start2"
+                    app:layout_constraintTop_toTopOf="@id/bg_pswb"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <!--完成-->
+        <Button
+                android:id="@+id/btn_sure"
+                android:layout_width="0dp"
+                android:textSize="@dimen/tx_size15"
+                android:textColor="@color/tx_colorf"
+                android:layout_height="0dp"
+                android:text="@string/account_payment_psw_finish"
+                android:layout_marginTop="78dp"
+                android:background="@drawable/selector_btnbg_a"
+                android:enabled="@{viewModel.uc.nextEnableObservable}"
+                app:layout_constraintDimensionRatio="327:40"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/gap_size19"
+                app:onClickCommand="@{viewModel.nextClickCommand}"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/gap_size15"
+                app:layout_constraintTop_toBottomOf="@id/clayout_middle"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

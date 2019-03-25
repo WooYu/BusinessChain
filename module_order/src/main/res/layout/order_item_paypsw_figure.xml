@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:paddingStart="@dimen/gap_size2"
+                                             android:paddingBottom="@dimen/gap_size2"
+                                             android:paddingTop="@dimen/gap_size4"
+                                             android:paddingEnd="@dimen/gap_size4"
+                                             android:layout_height="wrap_content">
+
+    <TextView
+            android:id="@+id/tv_figure"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:elevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="0"
+            android:gravity="center"
+            android:textColor="@color/tx_colorb"
+            android:background="@drawable/order_selector_bg_keyboard"
+            android:textSize="@dimen/tx_size18"
+            android:layout_height="40dp"/>
+</android.support.constraint.ConstraintLayout>

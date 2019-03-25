@@ -34,6 +34,7 @@
     <color name="line_colora">#ECECEC</color>
     <color name="line_colorb">#F8F8F8</color>
     <color name="line_colorc">#E8E8E8</color>
+    <color name="line_colord">#D6D6D6</color>
 
     <!--边框颜色-->
     <color name="border_colora">#E8E8E8</color>

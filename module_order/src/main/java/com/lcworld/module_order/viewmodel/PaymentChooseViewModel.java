@@ -30,7 +30,6 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
         requestPayMethod();
     }
 
-
     public final ObservableArrayList<DataPaymentMethodVo> valuePayMethodList = new ObservableArrayList<>();
     public final ObservableInt valueSelectPayMethodPosition = new ObservableInt(-1);
     public final ObservableField<String> valueTotalPrice = new ObservableField<>();
@@ -50,18 +49,6 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
         }
     });
 
-    public final BindingCommand clickOfPayNow = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            String[] config_plugin_ids = getApplication().getResources().getStringArray(R.array.payment_plugin_id);
-            if (valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id().equals(config_plugin_ids[3])) {
-                requestInitiativePayBalance();
-            } else {
-                requestInitiativePay();
-            }
-        }
-    });
-
     private void initObservableValue() {
         valueSelectPayMethodPosition.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
@@ -77,14 +64,12 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
             }
         });
 
-
         valueAgreeProtocol.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
                 enableBtnPayNow();
             }
         });
-
     }
 
     private void enableBtnPayNow() {
@@ -126,10 +111,10 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
     }
 
     //请求对一个交易发起支付(余额)
-    private void requestInitiativePayBalance() {
+    public void requestBalance_InitiativePay(String password) {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .balancePayTrade(valueTradeSN.get()
-                        , valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id())
+                        , password, valuePayMethodList.get(valueSelectPayMethodPosition.get()).getPlugin_id())
                 .compose(RxUtilsEnhanced.explicitTransform())
                 .subscribe(new ResponseObserver<RequestResultImp>() {
 
@@ -145,7 +130,7 @@ public class PaymentChooseViewModel extends BaseViewModelEnhance {
     }
 
     //请求对一个交易发起支付（微信、支付宝）
-    private void requestInitiativePay() {
+    public void requestInitiativePay() {
         RetrofitClient.getInstance().create(ApiServiceInterf.class)
                 .orderPayInitiate(
                         valueTradeSN.get(), getApplication().getResources().getStringArray(R.array.trade_type)[0]

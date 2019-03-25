@@ -1,29 +1,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.lcworld.module_account">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.lcworld.module_account">
 
     <application
-        android:name="com.lcworld.library_base.debug.DebugApplication"
-        tools:replace="label"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/account_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppMainTheme">
+            android:name="com.lcworld.library_base.debug.DebugApplication"
+            tools:replace="label"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/account_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppMainTheme">
         <activity android:name="com.lcworld.module_account.debug.DebugActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name="com.lcworld.module_account.activity.LoginActivity"
-        android:launchMode="singleTop"/>
+        <activity
+                android:name="com.lcworld.module_account.activity.LoginActivity"
+                android:launchMode="singleTop"/>
         <activity android:name="com.lcworld.module_account.activity.RegistFirstActivity"/>
         <activity android:name="com.lcworld.module_account.activity.SetPasswordActivity"/>
         <activity android:name="com.lcworld.module_account.activity.RetrieveFirstActivity"/>
         <activity android:name="com.lcworld.module_account.activity.BrowseTextActivity"/>
+        <activity android:name="com.lcworld.module_account.activity.PaymentPswModifyAct"/>
     </application>
 </manifest>

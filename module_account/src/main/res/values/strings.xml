@@ -49,6 +49,7 @@
     <string name="account_regist_sure">确认</string>
     <string name="account_retrieve_title">忘记密码</string>
     <string name="account_retrieve_subtitle">请输入原手机号码找回</string>
-
+    <string name="account_payment_psw_title">修改支付密码</string>
+    <string name="account_payment_psw_finish">完成</string>
 
 </resources>

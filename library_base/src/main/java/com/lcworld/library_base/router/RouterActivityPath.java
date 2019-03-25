@@ -34,6 +34,8 @@ public class RouterActivityPath {
         public static final String PAGER_LOGIN = ACCOUNT +"/login";
         //快速注册第一步
         public static final String PAGER_REGIST_FIRST = ACCOUNT +"/regist_first";
+        //支付密码
+        public static final String PAGER_Payment_Psw_Modify = ACCOUNT +"/payment/psw/modify";
 
     }
 
