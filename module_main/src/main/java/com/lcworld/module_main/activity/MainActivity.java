@@ -11,6 +11,7 @@ import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.module_main.BR;
 import com.lcworld.module_main.R;
 import com.lcworld.module_main.databinding.MainActivityMainBinding;
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
 
@@ -20,6 +21,12 @@ import java.util.List;
 public class MainActivity extends BaseActivityEnhance<MainActivityMainBinding, BaseViewModelEnhance> {
     private List<BaseRefreshFragment> mFragments;
     private BaseRefreshFragment mCurFrag;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        QMUIStatusBarHelper.translucent(this);
+    }
 
     @Override
     public int initContentView(Bundle savedInstanceState) {

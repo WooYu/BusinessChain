@@ -38,6 +38,7 @@ import com.lcworld.module_goods.bean.DataGoodsGalleryInfo;
 import com.lcworld.module_goods.databinding.GoodsActivityProductDetailsBinding;
 import com.lcworld.module_goods.fragment.GoodsPropertyFrag;
 import com.lcworld.module_goods.viewmodel.ProductDetailViewModel;
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.functions.Consumer;
 import me.goldze.mvvmhabit.utils.KLog;
@@ -57,6 +58,12 @@ public class ProductDetailAct extends BaseActivityEnhance<GoodsActivityProductDe
     private Button btnOperationPayNow;//btn_operation_paynow
     private TextView tvOperationServiceB;//tv_operation_service_b
     private Button btnOperationConfirmBuy;//btn_operation_confirmbuy
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        QMUIStatusBarHelper.translucent(this);
+    }
 
     @Override
     public int initContentView(Bundle bundle) {

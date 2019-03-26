@@ -6,8 +6,9 @@
         <!--在自己组件中注册Activity-->
         <activity
             android:name="com.lcworld.module_main.activity.GuideActivity"
-            android:theme="@style/MainTheme.FullScreen" />
-        <activity android:name="com.lcworld.module_main.activity.MainActivity"/>
+            android:theme="@style/ModuleTheme.FullScreen" />
+        <activity android:name="com.lcworld.module_main.activity.MainActivity"
+                android:theme="@style/ModuleTheme.Translucent"/>
     </application>
 
 </manifest>

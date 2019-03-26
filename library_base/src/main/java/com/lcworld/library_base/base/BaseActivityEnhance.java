@@ -15,6 +15,7 @@ import com.lcworld.library_base.global.SPKeyGlobal;
 import com.lcworld.library_base.http.ErrorConvention;
 import com.lcworld.library_base.http.EventRequestLoadingBox;
 import com.lcworld.library_base.router.RouterActivityPath;
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -40,18 +41,10 @@ public abstract class BaseActivityEnhance<V extends ViewDataBinding, VM extends 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-//        Window window = getWindow();
-//        //After LOLLIPOP not translucent status bar
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        //Then call setStatusBarColor.
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//        window.setStatusBarColor(getResources().getColor(R.color.qmui_config_color_transparent));
-
         //隐藏键盘
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         //状态栏文字设置成黑色
-//        QMUIStatusBarHelper.setStatusBarLightMode(this);
+        QMUIStatusBarHelper.setStatusBarLightMode(this);
         super.onCreate(savedInstanceState);
     }
 

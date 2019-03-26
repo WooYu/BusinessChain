@@ -14,7 +14,7 @@
             android:theme="@style/AppMainTheme">
         <activity
                 android:name="com.lcworld.module_main.activity.SplashActivity"
-                android:theme="@style/MainAppTheme.Start">
+                android:theme="@style/MainModuleTheme.Start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

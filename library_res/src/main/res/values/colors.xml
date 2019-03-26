@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorPrimaryDark">@color/statusBarColor</color>
     <color name="colorAccent">@color/dominant_hue</color>
     <color name="color_fc501c">#fc501c</color>
     <color name="color_e6e6e6">#e6e6e6</color>
@@ -23,6 +23,8 @@
 
     <!--应用主色调-->
     <color name="dominant_hue">#FF5234</color>
+    <color name="navigationBarColor">#F2F2F2</color>
+    <color name="statusBarColor">#FFFFFF</color>
 
     <!--页面背景色-->
     <color name="appbg_color">#F8F8F8</color>

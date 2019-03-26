@@ -10,7 +10,6 @@
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout
-            android:fitsSystemWindows="true"
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
