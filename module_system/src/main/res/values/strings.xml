@@ -5,6 +5,7 @@
     <string name="system_question">常见问题</string>
     <string name="system_feedback">意见反馈</string>
     <string name="system_about_us">关于我们</string>
+    <string name="system_fans_manager">粉丝管理</string>
     <string name="system_next">下一步</string>
     <string name="system_invite_friends">邀请好友</string>
     <string name="system_invite_code">邀请码%s</string>

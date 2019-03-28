@@ -12,7 +12,6 @@ import com.bigkoo.pickerview.view.TimePickerView
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.lcodecore.tkrefreshlayout.footer.LoadingView
-import com.lcodecore.tkrefreshlayout.header.GoogleDotView
 import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
 import com.lcworld.library_base.base.BaseActivityEnhance
 import com.lcworld.module_exchange.BR
@@ -20,7 +19,6 @@ import com.lcworld.module_exchange.R
 import com.lcworld.module_exchange.TimeUtil
 import com.lcworld.module_exchange.databinding.ExchangeActivityBillListBinding
 import com.lcworld.module_exchange.viewmodel.BillListViewModel
-import com.lcworld.module_exchange.viewmodel.recyclerItem.BillListItemViewModel
 import java.util.*
 
 class BillListAct : BaseActivityEnhance<ExchangeActivityBillListBinding, BillListViewModel>() {

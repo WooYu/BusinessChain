@@ -50,8 +50,8 @@ class BillListViewModel(application: Application) : BaseViewModelEnhance(applica
                 onNext = {
                     val result = (it as RequestResult<BillListEntity>).data
                     observableList.clear()
-                    observableList.addAll(result.data.map { item -> BillListItemViewModel(this, item) })
-                    totalIncome.set(getTotalData(observableList))
+                    observableList.addAll(result.bill_list.data.map { item -> BillListItemViewModel(this, item) })
+                    totalIncome.set("支出￥${formatAmount(result.pay_money)}  收入￥${formatAmount(result.income_money)}")
                 },
                 onError = {
                     finishRefreshing.set(!finishRefreshing.get())
@@ -76,13 +76,13 @@ class BillListViewModel(application: Application) : BaseViewModelEnhance(applica
             .wrapSubscribe(
                 onNext = {
                     val result = (it as RequestResult<BillListEntity>).data
-                    if (result.data.isNotEmpty()) {
-                        pageNo.set(result.page_no)
-                        observableList.addAll(result.data.map { item -> BillListItemViewModel(this, item) })
+                    if (result.bill_list.data.isNotEmpty()) {
+                        pageNo.set(result.bill_list.page_no)
+                        observableList.addAll(result.bill_list.data.map { item -> BillListItemViewModel(this, item) })
                     } else {
                         showShort("没有更多数据了")
                     }
-                    totalIncome.set(getTotalData(observableList))
+                    totalIncome.set("支出￥${formatAmount(result.pay_money)}  收入￥${formatAmount(result.income_money)}")
                 },
                 onError = {
                     finishLoadMore.set(!finishLoadMore.get())
@@ -91,12 +91,5 @@ class BillListViewModel(application: Application) : BaseViewModelEnhance(applica
                 onComplete = {
                     finishLoadMore.set(!finishLoadMore.get())
                 })
-    }
-
-    private fun getTotalData(data: ObservableList<BillListItemViewModel>): String {
-        if (data.isEmpty()) return "支出￥0.0  收入￥0.0"
-        val allIncome = data.map { it.item }.filter { it.pay_type == 1 }.map { it.pay_money }.sum()
-        val allPay = data.map { it.item }.filter { it.pay_type == 2 }.map { it.pay_money }.sum()
-        return "支出￥${formatAmount(allPay)}  收入￥${formatAmount(allIncome)}"
     }
 }

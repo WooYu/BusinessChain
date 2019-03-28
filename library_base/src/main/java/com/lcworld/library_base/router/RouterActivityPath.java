@@ -78,6 +78,7 @@ public class RouterActivityPath {
     public static class Backstage {
         private static final String BACKSTAGE = "/backstage";
         public static final String PAGER_ENTRANCE = BACKSTAGE + "/entrance";
+        public static final String PAGER_FANS_MANAGER = BACKSTAGE + "/fans_manager";
     }
 
     /**

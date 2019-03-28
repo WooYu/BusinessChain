@@ -4,7 +4,6 @@ import android.databinding.Observable
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lcworld.library_base.base.BaseActivityEnhance
 import com.lcworld.library_base.router.RouterActivityPath

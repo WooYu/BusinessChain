@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/appbg_color_white"
-            tools:ignore="RtlSymmetry">
+            tools:ignore="RtlSymmetry"
+            app:onClickCommand="@{viewModel.itemOnClickCommand}">
 
         <ImageView
                 android:id="@+id/iv_pay_type"
@@ -58,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.amount}"
-                android:textColor="@{viewModel.isIncome() ? @color/tx_colore : @color/tx_colorb}"
+                android:textColor="@{viewModel.isIncome ? @color/tx_colore : @color/tx_colorb}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

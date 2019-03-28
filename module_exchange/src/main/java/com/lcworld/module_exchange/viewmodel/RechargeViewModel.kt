@@ -76,7 +76,7 @@ class RechargeViewModel(application: Application) : BaseViewModelEnhance(applica
         val amount = amount.get()?:return
         service.createOrder(amount)
             .flatMap {
-                service.recharge(it.data.toString(), payTypeIndex.plus(1))
+                service.recharge(it.data.toString(), payTypeIndex + 1)
             }
             .compose(RxUtilsEnhanced.explicitTransform())
             .wrapSubscribe(onNext = {
@@ -87,8 +87,8 @@ class RechargeViewModel(application: Application) : BaseViewModelEnhance(applica
                 }
                 when (payTypeIndex) {
                     //0 对应微信支付 其他对应支付宝
-                    0 -> valueAlipayOrderInfo.set(result.data)
-                    else -> valueWechatOrderInfo.set(result.data)
+                    0 -> valueWechatOrderInfo.set(result.data)
+                    else -> valueAlipayOrderInfo.set(result.data)
                 }
             })
     }

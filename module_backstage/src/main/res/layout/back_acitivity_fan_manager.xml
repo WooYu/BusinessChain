@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.lcworld.module_backstage.viewmodel.FanListViewModel"/>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <include
+                android:id="@+id/layout_title"
+                layout="@layout/back_layout_title"/>
+
+        <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+                android:id="@+id/refresh_layout"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/gap_size7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:items="@{viewModel.observableList}"
+                    app:adapter="@{viewModel.adapter}"
+                    app:itemBinding="@{viewModel.itemBinding}"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    />
+        </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+
+        <TextView
+                android:id="@+id/emptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{viewModel.loadErrorStr}"
+                android:visibility="@{viewModel.showError ? 0 : 8}"
+                />
+    </android.support.constraint.ConstraintLayout>
+</layout>

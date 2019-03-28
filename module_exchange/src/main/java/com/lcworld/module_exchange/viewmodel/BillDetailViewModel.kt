@@ -10,12 +10,12 @@ import me.goldze.mvvmhabit.binding.command.BindingAction
 import me.goldze.mvvmhabit.binding.command.BindingCommand
 
 class BillDetailViewModel(application: Application) : BaseViewModelEnhance(application) {
-    val payTypeTitle = ObservableField("微信支付")
-    val payTypeImage = ObservableInt(R.mipmap.exchange_weixin)
+    val payTypeTitle = ObservableField("")
+    val payTypeImage = ObservableInt()
     val amount = ObservableField("")
     val amountType = ObservableBoolean(false)
-    val account = ObservableField("中商北斗")
-    val billId = ObservableField("20190214039554545")
-    val time = ObservableField("2019-02-14")
+    val account = ObservableField("")
+    val billId = ObservableField("")
+    val time = ObservableField("")
 
 }

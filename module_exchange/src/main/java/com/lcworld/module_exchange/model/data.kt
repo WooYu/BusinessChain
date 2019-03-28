@@ -14,8 +14,16 @@ data class AccountBalance(
 )
 data class RechargeResult(val form_items:List<RechargeItem> = listOf(),val gateway_url:String = "")
 data class RechargeItem(val item_name:String = "",val item_value:String = "")
-data class BillListEntity(val data:List<BillListItem> = listOf(),val data_total:String = ""
-                          ,val page_no:Int = 1,val page_size:String = "")
+data class BillListEntity(
+    val bill_list: BillListData = BillListData(),
+    val pay_money: Double = 0.0,
+    val income_money: Double = 0.0
+)
+
+data class BillListData(
+    val data: List<BillListItem> = listOf(), val data_total: String = ""
+    , val page_no: Int = 1, val page_size: String = ""
+)
 @Parcelize
 data class BillListItem(
     val create_time: Long = 0, val id: String = "", val member_id: String = "", val order_name: String = "",
