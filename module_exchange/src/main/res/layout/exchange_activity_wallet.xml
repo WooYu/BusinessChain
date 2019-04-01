@@ -72,14 +72,14 @@
                 <android.support.constraint.Group
                         android:id="@+id/group1"
                         android:layout_width="wrap_content"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_height="wrap_content"
                         app:constraint_referenced_ids="bg_bankcard,iv_bankcard,tv_bankcard,iv_arrow_1,line_wallet1"/>
 
                 <android.support.constraint.Group
                         android:id="@+id/group2"
                         android:layout_width="wrap_content"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_height="wrap_content"
                         app:constraint_referenced_ids="bg_commodity_chain,iv_commodity_chain,tv_commodity_chain,iv_arrow_4"/>
 

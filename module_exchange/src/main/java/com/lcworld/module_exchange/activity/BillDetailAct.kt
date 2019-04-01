@@ -2,6 +2,7 @@ package com.lcworld.module_exchange.activity
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import com.lcworld.library_base.base.BaseActivityEnhance
 import com.lcworld.module_exchange.BR
 import com.lcworld.module_exchange.R
@@ -40,7 +41,7 @@ class BillDetailAct : BaseActivityEnhance<ExchangeActivityBillDetailBinding, Bil
             2 -> R.mipmap.exchange_pay_type_chain
             else -> R.mipmap.exchange_pay_type_balance
         }
-        viewModel.payTypeImage.set(image)
+        viewModel.payTypeImage.set(ContextCompat.getDrawable(viewModel.getApplication(), image))
         viewModel.payTypeTitle.set(item.pay_method)
         viewModel.time.set(TimeUtil.formatData(Date(item.create_time.times(1000)), "yyyy-MM-dd"))
         viewModel.account.set(item.member_id)

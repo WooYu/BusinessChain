@@ -1,8 +1,6 @@
 package com.lcworld.module_home.fragment;
 
 import android.animation.ArgbEvaluator;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.databinding.Observable;
 import android.databinding.ObservableList;
 import android.os.Bundle;
@@ -13,11 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.ScreenUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.request.RequestOptions;
 import com.lcworld.businesschain.GlideApp;
 import com.lcworld.library_base.base.BaseRefreshFragment;
 import com.lcworld.library_base.extension.ListChangedCallbackImpl;
+import com.lcworld.library_base.extension.browse.BrowseWebsiteActivity;
 import com.lcworld.library_base.model.DataLogin;
 import com.lcworld.library_base.router.RouterFragmentPath;
 import com.lcworld.library_base.widget.scrollview.ScrollViewMine;
@@ -33,6 +34,8 @@ import me.goldze.mvvmhabit.bus.RxBus;
 import me.goldze.mvvmhabit.bus.RxSubscriptions;
 
 import java.util.List;
+
+import static com.lcworld.library_base.extension.browse.BrowseWebsiteActivity.PARAM_URL;
 
 /**
  * 我的
@@ -96,7 +99,19 @@ public class MineFragment extends BaseRefreshFragment<HomeFragMineBinding, MineV
             }
 
         });
-
+        binding.banner.setDelegate(new BGABanner.Delegate() {
+            @Override
+            public void onBannerItemClick(BGABanner banner, View itemView, @Nullable Object model, int position) {
+                DataFocusPictures pic = (DataFocusPictures) model;
+                if (RegexUtils.isURL(pic.getOperation_param())) {
+                    Bundle b = new Bundle();
+                    b.putString(PARAM_URL, pic.getOperation_param());
+                    startActivity(BrowseWebsiteActivity.class, b);
+                } else {
+                    ToastUtils.showShort("url 配置错误");
+                }
+            }
+        });
         binding.banner.setAutoPlayAble(viewModel.focusPicturesObservableList.size() > 1);
         binding.banner.setData(viewModel.focusPicturesObservableList, null);
     }
